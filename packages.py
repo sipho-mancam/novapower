@@ -16,13 +16,36 @@ class Package:
         self.__items_list = []
         self.__hashing_object = hashlib.sha256(usedforsecurity=True)
         self.__uid = self.__hashing_object.hexdigest()
+        self.__max_power = 0
+        self.__solar_qty = 0
+
     
     def add_item(self, item):
         self.__items_list.append(item)
+        self.solar_qty()
         self.__total_price = self._gen_total()
         self.__hashing_object.update(self.encode_for_hashing(str(self.__total_price)))
         self.__hashing_object.update(self.encode_for_hashing(self.get_summary().__str__()))
         self.update_hash()
+    
+    def calc_max_power(self):
+        for i in self.__items_list:
+            if i.get_name().lower() == 'inverter':
+                temp = i.get_size()
+                # print(temp)
+                if 'Power' in temp:
+                    power = temp['Power']['value']
+                    self.__max_power = power
+    
+    def solar_qty(self):
+        self.calc_max_power()
+        for i in self.__items_list:
+            if i.get_name().lower() == 'solar':
+                qty = (self.__max_power*1000)//i.get_size()['Power']['value']
+                self.__solar_qty = qty
+                # print('qty: {} max_power: {}'.format(i.to_dict(), self.__max_power))
+                return
+
 
     def encode_for_hashing(self, s:str):
         return bytes(s, 'utf-8')
@@ -39,7 +62,11 @@ class Package:
     def _gen_total(self):
         s = self.__items_list[0].get_price()
         for item in self.__items_list:
-            s += item.get_price()
+            if item.get_name() == 'solar':
+                s+= item.get_price()*self.__solar_qty
+            else:
+                s += item.get_price()
+
         return (s - self.__items_list[0].get_price())
     
     def get_summary(self):
@@ -50,6 +77,8 @@ class Package:
             counter += 1
         d['total-price'] = self.__total_price
         d['_uid'] = self.__uid
+        d['max-power'] = self.__max_power
+        d['solar-qty'] = self.__solar_qty
         return d
     
         
@@ -285,6 +314,7 @@ class PackageHandler:
     def generate_package(self, n=0):        
         first_sub = self.__sub_packages_list[0]
         first_sub.set_current_size(STD_VOLTAGE_48)
+        self.__packages = []
         if n > 0:
             for i in range(n):
                 temp = Package()

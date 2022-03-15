@@ -1,5 +1,6 @@
 from flask import Flask, make_response, request, jsonify, session
 from flask_cors import CORS
+from flask_session import Session
 from package_manager import *
 import CONSTANTS
 from packages import *
@@ -8,26 +9,32 @@ import pprint
 import json
 import time
 import datetime
-
 from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
 
 app = Flask(__name__)
 app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
-CORS(app)
-
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_COOKIE_SECURE']=True
+# app.config['SESSION_COOKIE_DOMAIN']=''
+Session(app)
+CORS(app, supports_credentials=True)
 
 db_manager, client = setup()
-
 data_path = './input-data-1.xlsx'
-
 solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverter', 'battery']);
 inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'battery'])
 # generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
 
 
-solar_package_handler.generate_package(10)
-inverter_package_handler.generate_package(10)
-# generator_package_handler.generate_package()
+# solar_package_handler.generate_package(10)
+# inverter_package_handler.generate_package(10)
+# # generator_package_handler.generate_package()
+
+def validate_session(token):
+    if token in session:
+        pass
+    return True
 
 package_table = {
     # 'generator':generator_package_handler.get_summary(),
@@ -39,6 +46,8 @@ package_table = {
 @app.route('/packages/all', methods=['GET', 'OPTIONS']) # require a sesson token to send data
 def index_data():
     return package_table
+
+
 
 @app.route('/session', methods=['GET'])
 def generate_session():
@@ -52,8 +61,29 @@ def generate_session():
                 
             }
         }
-
+        session.modified=True
+    
     return {'session_token':session_token}
+
+@app.route('/featured', methods=['GET'])
+def get_featured_products():
+    session_token = request.args.get('session_token')
+    if validate_session(session_token):
+        n = request.args.get('n')
+        x = int(n)
+        print(x)
+        solar_package_handler.generate_package(x//2)
+        inverter_package_handler.generate_package(x//2)
+        return {
+            'solar':solar_package_handler.get_summary(),
+            'inverter':inverter_package_handler.get_summary()
+        }
+    else:
+        return {
+            'status':0x05,
+            'response':'Invalid session token'
+        }
+
 
 def validate_cart_object(schema:dict, obj:dict):
     return True

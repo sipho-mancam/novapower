@@ -1,206 +1,4 @@
 {
-    "generator": {
-        "packag 0": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 3,
-                        "unit": "kVA"
-                    },
-                    "EngineSize": {
-                        "value": 4,
-                        "unit": "Stroke"
-                    }
-                },
-                "name": "Generator",
-                "package-group": "Diesel",
-                "brand": "Leroy-Merlin",
-                "type-group": "Key-Start",
-                "price": 15000
-            },
-            "total-price": 15000
-        },
-        "packag 1": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 10,
-                        "unit": "kVA"
-                    },
-                    "EngineSize": {
-                        "value": 4,
-                        "unit": "Stroke"
-                    }
-                },
-                "name": "Generator",
-                "package-group": "Petrol",
-                "brand": "Ryobi",
-                "type-group": "Key-Start",
-                "price": 21000
-            },
-            "total-price": 21000
-        },
-        "packag 2": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 3.5,
-                        "unit": "kVA"
-                    },
-                    "EngineSize": {
-                        "value": 4,
-                        "unit": "Stroke"
-                    }
-                },
-                "name": "Generator",
-                "package-group": "Petrol",
-                "brand": "Ryobi",
-                "type-group": "Key-Start",
-                "price": 7000
-            },
-            "total-price": 7000
-        },
-        "packag 3": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 5.5,
-                        "unit": "kVA"
-                    },
-                    "EngineSize": {
-                        "value": 4,
-                        "unit": "Stroke"
-                    }
-                },
-                "name": "Generator",
-                "package-group": "Petrol",
-                "brand": "Ryobi",
-                "type-group": "Key-Start",
-                "price": 12000
-            },
-            "total-price": 12000
-        },
-        "packag 4": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 1.2,
-                        "unit": "kVA"
-                    },
-                    "EngineSize": {
-                        "value": 4,
-                        "unit": "Stroke"
-                    }
-                },
-                "name": "Generator",
-                "package-group": "Petrol",
-                "brand": "Ryobi",
-                "type-group": "Pull-Start",
-                "price": 4500
-            },
-            "total-price": 4500
-        },
-        "packag 5": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 7,
-                        "unit": "kVA"
-                    },
-                    "EngineSize": {
-                        "value": 4,
-                        "unit": "Stroke"
-                    }
-                },
-                "name": "Generator",
-                "package-group": "Diesel",
-                "brand": "Leroy-Merlin",
-                "type-group": "Key-Start",
-                "price": 22000
-            },
-            "total-price": 22000
-        },
-        "packag 6": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 1.2,
-                        "unit": "kVA"
-                    },
-                    "EngineSize": {
-                        "value": 4,
-                        "unit": "Stroke"
-                    }
-                },
-                "name": "Generator",
-                "package-group": "Petrol",
-                "brand": "Ryobi",
-                "type-group": "Pull-Start",
-                "price": 4500
-            },
-            "total-price": 4500
-        },
-        "packag 7": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 6.4,
-                        "unit": "kVA"
-                    },
-                    "EngineSize": {
-                        "value": 4,
-                        "unit": "Stroke"
-                    }
-                },
-                "name": "Generator",
-                "package-group": "Diesel",
-                "brand": "Ryobi",
-                "type-group": "Key-Start",
-                "price": 36000
-            },
-            "total-price": 36000
-        },
-        "packag 8": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 7.5,
-                        "unit": "kVA"
-                    },
-                    "EngineSize": {
-                        "value": 4,
-                        "unit": "Stroke"
-                    }
-                },
-                "name": "Generator",
-                "package-group": "Petrol",
-                "brand": "Ryobi",
-                "type-group": "Key-Start",
-                "price": 13000
-            },
-            "total-price": 13000
-        },
-        "packag 9": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 4.5,
-                        "unit": "kVA"
-                    },
-                    "EngineSize": {
-                        "value": 4,
-                        "unit": "Stroke"
-                    }
-                },
-                "name": "Generator",
-                "package-group": "Diesel",
-                "brand": "Ryobi",
-                "type-group": "Key-Start",
-                "price": 30000
-            },
-            "total-price": 30000
-        }
-    },
     "solar": {
         "packag 0": {
             "item 0": {
@@ -226,7 +24,8 @@
                 "package-group": "Solar",
                 "brand": "CNBM",
                 "type-group": "Polycrystalline",
-                "price": 2250
+                "price": 2250,
+                "_uid": "df380f0acfc8e6b182171c1ab65d0c3b"
             },
             "item 1": {
                 "size": {
@@ -235,19 +34,24 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
             },
             "item 2": {
                 "size": {
@@ -256,7 +60,7 @@
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 2.4,
+                        "value": 3.6,
                         "unit": "kWh"
                     }
                 },
@@ -264,39 +68,13 @@
                 "package-group": "Batteries",
                 "brand": "Dyness",
                 "type-group": "Lithium-ion",
-                "price": 11782
+                "price": 18918,
+                "_uid": "3860d3b47006ad8c38bf021ea5527c7e"
             },
-            "item 3": {
-                "size": {
-                    "Length": {
-                        "value": 2.1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Rack",
-                "package-group": "Rack",
-                "brand": "Renusol",
-                "type-group": "Mounting Rail",
-                "price": 315
-            },
-            "item 4": {
-                "size": {
-                    "Size": {
-                        "value": 50,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 221
-            },
-            "total-price": 20568
+            "total-price": 30274,
+            "_uid": "2f1e187ebd6edc251ad6f854c4e3216f4d5a62b318485336ce9f78884c0d60ff",
+            "max-power": 3,
+            "solar-qty": 9
         },
         "packag 1": {
             "item 0": {
@@ -322,77 +100,57 @@
                 "package-group": "Solar",
                 "brand": "CNBM",
                 "type-group": "Polycrystalline",
-                "price": 2250
+                "price": 2250,
+                "_uid": "df380f0acfc8e6b182171c1ab65d0c3b"
             },
             "item 1": {
                 "size": {
                     "Size": {
-                        "value": 3,
+                        "value": 5,
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 56,
                         "unit": "V"
                     },
                     "Power": {
-                        "value": 3,
+                        "value": 5,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 13247,
+                "_uid": "4e232ece57d90d8c7574a375b9966ac0"
             },
             "item 2": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.2,
+                        "value": 4.8,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "MaxLi",
+                "brand": "Fusion",
                 "type-group": "Lithium-ion",
-                "price": 9786
+                "price": 22995,
+                "_uid": "0dd849a0ff763328c450d31b17075511"
             },
-            "item 3": {
-                "size": {
-                    "Length": {
-                        "value": 4.2,
-                        "unit": "m"
-                    }
-                },
-                "name": "Rack",
-                "package-group": "Rack",
-                "brand": "Renusol",
-                "type-group": "Mounting Rail",
-                "price": 587
-            },
-            "item 4": {
-                "size": {
-                    "Size": {
-                        "value": 35,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 147
-            },
-            "total-price": 18770
+            "total-price": 38492,
+            "_uid": "e24d444ac6bcaa388257d6566cfa9ec9fd39cce8dd359dec524e0a5a16b1de7c",
+            "max-power": 5,
+            "solar-qty": 15
         },
         "packag 2": {
             "item 0": {
@@ -418,7 +176,8 @@
                 "package-group": "Solar",
                 "brand": "CNBM",
                 "type-group": "Polycrystalline",
-                "price": 2250
+                "price": 2250,
+                "_uid": "df380f0acfc8e6b182171c1ab65d0c3b"
             },
             "item 1": {
                 "size": {
@@ -427,19 +186,24 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
             },
             "item 2": {
                 "size": {
@@ -448,47 +212,21 @@
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 2.4,
+                        "value": 4.8,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "Dyness",
+                "brand": "Fusion",
                 "type-group": "Lithium-ion",
-                "price": 11782
+                "price": 22995,
+                "_uid": "0dd849a0ff763328c450d31b17075511"
             },
-            "item 3": {
-                "size": {
-                    "Length": {
-                        "value": 2.1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Rack",
-                "package-group": "Rack",
-                "brand": "Renusol",
-                "type-group": "Mounting Rail",
-                "price": 315
-            },
-            "item 4": {
-                "size": {
-                    "Size": {
-                        "value": 35,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 147
-            },
-            "total-price": 20494
+            "total-price": 34351,
+            "_uid": "bf2f4c1a51d092bb85540af79053c127bd19ae0995d40897f9dce19eef4ab652",
+            "max-power": 3,
+            "solar-qty": 9
         },
         "packag 3": {
             "item 0": {
@@ -514,7 +252,8 @@
                 "package-group": "Solar",
                 "brand": "CNBM",
                 "type-group": "Polycrystalline",
-                "price": 2250
+                "price": 2250,
+                "_uid": "df380f0acfc8e6b182171c1ab65d0c3b"
             },
             "item 1": {
                 "size": {
@@ -523,68 +262,47 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
             },
             "item 2": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.2,
+                        "value": 3.5,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "MaxLi",
+                "brand": "PylonTech",
                 "type-group": "Lithium-ion",
-                "price": 9786
+                "price": 18170,
+                "_uid": "e19879fbca758f56cb2f21ed62f333a4"
             },
-            "item 3": {
-                "size": {
-                    "Length": {
-                        "value": 2.1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Rack",
-                "package-group": "Rack",
-                "brand": "Renusol",
-                "type-group": "Mounting Rail",
-                "price": 315
-            },
-            "item 4": {
-                "size": {
-                    "Size": {
-                        "value": 50,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 221
-            },
-            "total-price": 18572
+            "total-price": 29526,
+            "_uid": "1b81ce2b7ea8121f52a008cfa9fc6a3be41bf338110e2c44793e969639e2cace",
+            "max-power": 3,
+            "solar-qty": 9
         },
         "packag 4": {
             "item 0": {
@@ -610,77 +328,57 @@
                 "package-group": "Solar",
                 "brand": "CNBM",
                 "type-group": "Polycrystalline",
-                "price": 2250
+                "price": 2250,
+                "_uid": "df380f0acfc8e6b182171c1ab65d0c3b"
             },
             "item 1": {
                 "size": {
                     "Size": {
-                        "value": 3,
+                        "value": 5,
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 56,
                         "unit": "V"
                     },
                     "Power": {
-                        "value": 3,
+                        "value": 5,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 13247,
+                "_uid": "4e232ece57d90d8c7574a375b9966ac0"
             },
             "item 2": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.5,
+                        "value": 3.5,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "Hubble",
+                "brand": "PylonTech",
                 "type-group": "Lithium-ion",
-                "price": 6995
+                "price": 18170,
+                "_uid": "e19879fbca758f56cb2f21ed62f333a4"
             },
-            "item 3": {
-                "size": {
-                    "Length": {
-                        "value": 2.1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Rack",
-                "package-group": "Rack",
-                "brand": "Renusol",
-                "type-group": "Mounting Rail",
-                "price": 315
-            },
-            "item 4": {
-                "size": {
-                    "Size": {
-                        "value": 50,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 221
-            },
-            "total-price": 15781
+            "total-price": 33667,
+            "_uid": "7766af4152f0a59deb48b4e4803079427dbd286f035337c85372f9dfb8c47826",
+            "max-power": 5,
+            "solar-qty": 15
         },
         "packag 5": {
             "item 0": {
@@ -706,7 +404,8 @@
                 "package-group": "Solar",
                 "brand": "CNBM",
                 "type-group": "Polycrystalline",
-                "price": 2250
+                "price": 2250,
+                "_uid": "df380f0acfc8e6b182171c1ab65d0c3b"
             },
             "item 1": {
                 "size": {
@@ -715,68 +414,55 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
             },
             "item 2": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.2,
+                        "value": 3.5,
                         "unit": "kWh"
+                    },
+                    "DischargeVoltage": {
+                        "value": 53.5,
+                        "unit": "V"
+                    },
+                    "ChargeVoltage": {
+                        "value": 53.5,
+                        "unit": "V"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "MaxLi",
+                "brand": "Pylon",
                 "type-group": "Lithium-ion",
-                "price": 9786
+                "price": 26219,
+                "_uid": "d746b0c2e002f9da536dfafe85e7053e"
             },
-            "item 3": {
-                "size": {
-                    "Length": {
-                        "value": 2.1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Rack",
-                "package-group": "Rack",
-                "brand": "Renusol",
-                "type-group": "Mounting Rail",
-                "price": 315
-            },
-            "item 4": {
-                "size": {
-                    "Size": {
-                        "value": 35,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 147
-            },
-            "total-price": 18498
+            "total-price": 37575,
+            "_uid": "43dfe4395dbd0a83b610f265d5dbe903d0e3eec5da3f2fe34e34f0c832fcd71c",
+            "max-power": 3,
+            "solar-qty": 9
         },
         "packag 6": {
             "item 0": {
@@ -802,7 +488,8 @@
                 "package-group": "Solar",
                 "brand": "CNBM",
                 "type-group": "Polycrystalline",
-                "price": 2250
+                "price": 2250,
+                "_uid": "df380f0acfc8e6b182171c1ab65d0c3b"
             },
             "item 1": {
                 "size": {
@@ -811,68 +498,47 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
             },
             "item 2": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.2,
+                        "value": 2.4,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "MaxLi",
+                "brand": "Dyness",
                 "type-group": "Lithium-ion",
-                "price": 9786
+                "price": 17249,
+                "_uid": "4f6e312c058410e8ff10b6cad476ae54"
             },
-            "item 3": {
-                "size": {
-                    "Length": {
-                        "value": 4.2,
-                        "unit": "m"
-                    }
-                },
-                "name": "Rack",
-                "package-group": "Rack",
-                "brand": "Renusol",
-                "type-group": "Mounting Rail",
-                "price": 587
-            },
-            "item 4": {
-                "size": {
-                    "Size": {
-                        "value": 50,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 221
-            },
-            "total-price": 18844
+            "total-price": 28605,
+            "_uid": "7aa6a03adc6f8cb9bbc496dae2b75155cdde071c9660f451e5a79200d50312c9",
+            "max-power": 3,
+            "solar-qty": 9
         },
         "packag 7": {
             "item 0": {
@@ -898,77 +564,57 @@
                 "package-group": "Solar",
                 "brand": "CNBM",
                 "type-group": "Polycrystalline",
-                "price": 2250
+                "price": 2250,
+                "_uid": "df380f0acfc8e6b182171c1ab65d0c3b"
             },
             "item 1": {
                 "size": {
                     "Size": {
-                        "value": 3,
+                        "value": 5,
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 56,
                         "unit": "V"
                     },
                     "Power": {
-                        "value": 3,
+                        "value": 5,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 13247,
+                "_uid": "4e232ece57d90d8c7574a375b9966ac0"
             },
             "item 2": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.5,
+                        "value": 3.6,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "Hubble",
+                "brand": "Dyness",
                 "type-group": "Lithium-ion",
-                "price": 6995
+                "price": 18918,
+                "_uid": "3860d3b47006ad8c38bf021ea5527c7e"
             },
-            "item 3": {
-                "size": {
-                    "Length": {
-                        "value": 4.2,
-                        "unit": "m"
-                    }
-                },
-                "name": "Rack",
-                "package-group": "Rack",
-                "brand": "Renusol",
-                "type-group": "Mounting Rail",
-                "price": 587
-            },
-            "item 4": {
-                "size": {
-                    "Size": {
-                        "value": 35,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 147
-            },
-            "total-price": 15979
+            "total-price": 34415,
+            "_uid": "cc86e3e624bcd7f22ea8e519c720fa531f4cef2a303268fe7230fc3a28d69371",
+            "max-power": 5,
+            "solar-qty": 15
         },
         "packag 8": {
             "item 0": {
@@ -994,77 +640,57 @@
                 "package-group": "Solar",
                 "brand": "CNBM",
                 "type-group": "Polycrystalline",
-                "price": 2250
+                "price": 2250,
+                "_uid": "df380f0acfc8e6b182171c1ab65d0c3b"
             },
             "item 1": {
                 "size": {
                     "Size": {
-                        "value": 3,
+                        "value": 5,
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 56,
                         "unit": "V"
                     },
                     "Power": {
-                        "value": 3,
+                        "value": 5,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 13247,
+                "_uid": "4e232ece57d90d8c7574a375b9966ac0"
             },
             "item 2": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.5,
+                        "value": 2.4,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "Hubble",
+                "brand": "Dyness",
                 "type-group": "Lithium-ion",
-                "price": 6995
+                "price": 11782,
+                "_uid": "a013df5126a8e7c9a514ba31a5c6f146"
             },
-            "item 3": {
-                "size": {
-                    "Length": {
-                        "value": 4.2,
-                        "unit": "m"
-                    }
-                },
-                "name": "Rack",
-                "package-group": "Rack",
-                "brand": "Renusol",
-                "type-group": "Mounting Rail",
-                "price": 587
-            },
-            "item 4": {
-                "size": {
-                    "Size": {
-                        "value": 50,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 221
-            },
-            "total-price": 16053
+            "total-price": 27279,
+            "_uid": "284c4ad1bc62584bfd534ee49cb91aeb246f9791f5c4c8221a84ceb36a9fb404",
+            "max-power": 5,
+            "solar-qty": 15
         },
         "packag 9": {
             "item 0": {
@@ -1090,7 +716,8 @@
                 "package-group": "Solar",
                 "brand": "CNBM",
                 "type-group": "Polycrystalline",
-                "price": 2250
+                "price": 2250,
+                "_uid": "df380f0acfc8e6b182171c1ab65d0c3b"
             },
             "item 1": {
                 "size": {
@@ -1099,68 +726,47 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
             },
             "item 2": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.5,
+                        "value": 2.4,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "Hubble",
+                "brand": "Dyness",
                 "type-group": "Lithium-ion",
-                "price": 6995
+                "price": 11782,
+                "_uid": "a013df5126a8e7c9a514ba31a5c6f146"
             },
-            "item 3": {
-                "size": {
-                    "Length": {
-                        "value": 2.1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Rack",
-                "package-group": "Rack",
-                "brand": "Renusol",
-                "type-group": "Mounting Rail",
-                "price": 315
-            },
-            "item 4": {
-                "size": {
-                    "Size": {
-                        "value": 35,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 147
-            },
-            "total-price": 15707
+            "total-price": 23138,
+            "_uid": "08399f2737440b406b75954eba38552024d49227e068b7a6415ab33906d30ae1",
+            "max-power": 3,
+            "solar-qty": 9
         }
     },
     "inverter": {
@@ -1172,19 +778,24 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
             },
             "item 1": {
                 "size": {
@@ -1201,26 +812,13 @@
                 "package-group": "Batteries",
                 "brand": "Dyness",
                 "type-group": "Lithium-ion",
-                "price": 18918
+                "price": 18918,
+                "_uid": "3860d3b47006ad8c38bf021ea5527c7e"
             },
-            "item 2": {
-                "size": {
-                    "Size": {
-                        "value": 50,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 221
-            },
-            "total-price": 25139
+            "total-price": 28024,
+            "_uid": "e14bd96f13a5f7ce11e009a81d4d5a5a71abcab740413f2a06b7bd097f8381b8",
+            "max-power": 3,
+            "solar-qty": 0
         },
         "packag 1": {
             "item 0": {
@@ -1230,113 +828,97 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
             },
             "item 1": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.2,
+                        "value": 3.5,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "MaxLi",
+                "brand": "PylonTech",
                 "type-group": "Lithium-ion",
-                "price": 9786
+                "price": 18170,
+                "_uid": "e19879fbca758f56cb2f21ed62f333a4"
             },
-            "item 2": {
-                "size": {
-                    "Size": {
-                        "value": 50,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 221
-            },
-            "total-price": 16007
+            "total-price": 27276,
+            "_uid": "c97142232f6b3ab9fb6080e693afa60c6dc3488de328276381334ad138650589",
+            "max-power": 3,
+            "solar-qty": 0
         },
         "packag 2": {
             "item 0": {
                 "size": {
                     "Size": {
-                        "value": 3,
+                        "value": 5,
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 56,
                         "unit": "V"
                     },
                     "Power": {
-                        "value": 3,
+                        "value": 5,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 13247,
+                "_uid": "4e232ece57d90d8c7574a375b9966ac0"
             },
             "item 1": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.5,
+                        "value": 4.8,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "Hubble",
+                "brand": "Fusion",
                 "type-group": "Lithium-ion",
-                "price": 6995
+                "price": 22995,
+                "_uid": "0dd849a0ff763328c450d31b17075511"
             },
-            "item 2": {
-                "size": {
-                    "Size": {
-                        "value": 35,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 147
-            },
-            "total-price": 13142
+            "total-price": 36242,
+            "_uid": "827ee4d9e7fee0fad650cee45de1811fd0b9e0c42f35aba3f07605d45f5ffaea",
+            "max-power": 5,
+            "solar-qty": 0
         },
         "packag 3": {
             "item 0": {
@@ -1346,55 +928,47 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
             },
             "item 1": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.2,
+                        "value": 4.8,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "MaxLi",
+                "brand": "Fusion",
                 "type-group": "Lithium-ion",
-                "price": 9786
+                "price": 22995,
+                "_uid": "0dd849a0ff763328c450d31b17075511"
             },
-            "item 2": {
-                "size": {
-                    "Size": {
-                        "value": 35,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 147
-            },
-            "total-price": 15933
+            "total-price": 32101,
+            "_uid": "36f63da2014f375b7446f466a8fe95d60efe4e4c810649ccb64fb813ce26800b",
+            "max-power": 3,
+            "solar-qty": 0
         },
         "packag 4": {
             "item 0": {
@@ -1404,19 +978,232 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 48,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 3.5,
+                        "unit": "kWh"
+                    },
+                    "DischargeVoltage": {
+                        "value": 53.5,
+                        "unit": "V"
+                    },
+                    "ChargeVoltage": {
+                        "value": 53.5,
+                        "unit": "V"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Pylon",
+                "type-group": "Lithium-ion",
+                "price": 26219,
+                "_uid": "d746b0c2e002f9da536dfafe85e7053e"
+            },
+            "total-price": 35325,
+            "_uid": "208bc2b500e106bd04ecdce2e9bea6d493a86a21213b138e876fc7eb5e71f785",
+            "max-power": 3,
+            "solar-qty": 0
+        },
+        "packag 5": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 5,
+                        "unit": "kVA"
+                    },
+                    "Voltage": {
+                        "value": 56,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 5,
+                        "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "V"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "RCT-AXPERT",
+                "type-group": "Off-Grid",
+                "price": 13247,
+                "_uid": "4e232ece57d90d8c7574a375b9966ac0"
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 48,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.4,
+                        "unit": "kWh"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Dyness",
+                "type-group": "Lithium-ion",
+                "price": 11782,
+                "_uid": "a013df5126a8e7c9a514ba31a5c6f146"
+            },
+            "total-price": 25029,
+            "_uid": "20db91a0f2d9a822990a1986705c0b42195c829023777e71d68a9a3124df037a",
+            "max-power": 5,
+            "solar-qty": 0
+        },
+        "packag 6": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "Voltage": {
+                        "value": 48,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 3,
+                        "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "RCT-AXPERT",
+                "type-group": "Off-Grid",
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 48,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.4,
+                        "unit": "kWh"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Dyness",
+                "type-group": "Lithium-ion",
+                "price": 11782,
+                "_uid": "a013df5126a8e7c9a514ba31a5c6f146"
+            },
+            "total-price": 20888,
+            "_uid": "c2ff8abdfb85578d6e788c2be3f8000a9ac103712562d91451037bdea279081c",
+            "max-power": 3,
+            "solar-qty": 0
+        },
+        "packag 7": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 5,
+                        "unit": "kVA"
+                    },
+                    "Voltage": {
+                        "value": 56,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 5,
+                        "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "V"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "RCT-AXPERT",
+                "type-group": "Off-Grid",
+                "price": 13247,
+                "_uid": "4e232ece57d90d8c7574a375b9966ac0"
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 48,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 3.5,
+                        "unit": "kWh"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "PylonTech",
+                "type-group": "Lithium-ion",
+                "price": 18170,
+                "_uid": "e19879fbca758f56cb2f21ed62f333a4"
+            },
+            "total-price": 31417,
+            "_uid": "b35f06ec7241230e1496931e75986453e76e242534265a2b71c445cd831e2b82",
+            "max-power": 5,
+            "solar-qty": 0
+        },
+        "packag 8": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 5,
+                        "unit": "kVA"
+                    },
+                    "Voltage": {
+                        "value": 56,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 5,
+                        "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "V"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "RCT-AXPERT",
+                "type-group": "Off-Grid",
+                "price": 13247,
+                "_uid": "4e232ece57d90d8c7574a375b9966ac0"
             },
             "item 1": {
                 "size": {
@@ -1433,258 +1220,13 @@
                 "package-group": "Batteries",
                 "brand": "Dyness",
                 "type-group": "Lithium-ion",
-                "price": 18918
+                "price": 18918,
+                "_uid": "3860d3b47006ad8c38bf021ea5527c7e"
             },
-            "item 2": {
-                "size": {
-                    "Size": {
-                        "value": 35,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 147
-            },
-            "total-price": 25065
-        },
-        "packag 5": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 3,
-                        "unit": "kVA"
-                    },
-                    "Voltage": {
-                        "value": 24,
-                        "unit": "V"
-                    },
-                    "Power": {
-                        "value": 3,
-                        "unit": "kW"
-                    }
-                },
-                "name": "Inverter",
-                "package-group": "Inverters",
-                "brand": "Mecer",
-                "type-group": "Off-Grid",
-                "price": 6000
-            },
-            "item 1": {
-                "size": {
-                    "Voltage": {
-                        "value": 48,
-                        "unit": "V"
-                    },
-                    "Energy": {
-                        "value": 2.4,
-                        "unit": "kWh"
-                    }
-                },
-                "name": "Battery",
-                "package-group": "Batteries",
-                "brand": "Dyness",
-                "type-group": "Lithium-ion",
-                "price": 11782
-            },
-            "item 2": {
-                "size": {
-                    "Size": {
-                        "value": 35,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 147
-            },
-            "total-price": 17929
-        },
-        "packag 6": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 3,
-                        "unit": "kVA"
-                    },
-                    "Voltage": {
-                        "value": 24,
-                        "unit": "V"
-                    },
-                    "Power": {
-                        "value": 3,
-                        "unit": "kW"
-                    }
-                },
-                "name": "Inverter",
-                "package-group": "Inverters",
-                "brand": "Mecer",
-                "type-group": "Off-Grid",
-                "price": 6000
-            },
-            "item 1": {
-                "size": {
-                    "Voltage": {
-                        "value": 48,
-                        "unit": "V"
-                    },
-                    "Energy": {
-                        "value": 3.5,
-                        "unit": "kWh"
-                    }
-                },
-                "name": "Battery",
-                "package-group": "Batteries",
-                "brand": "PylonTech",
-                "type-group": "Lithium-ion",
-                "price": 18170
-            },
-            "item 2": {
-                "size": {
-                    "Size": {
-                        "value": 35,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 147
-            },
-            "total-price": 24317
-        },
-        "packag 7": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 3,
-                        "unit": "kVA"
-                    },
-                    "Voltage": {
-                        "value": 24,
-                        "unit": "V"
-                    },
-                    "Power": {
-                        "value": 3,
-                        "unit": "kW"
-                    }
-                },
-                "name": "Inverter",
-                "package-group": "Inverters",
-                "brand": "Mecer",
-                "type-group": "Off-Grid",
-                "price": 6000
-            },
-            "item 1": {
-                "size": {
-                    "Voltage": {
-                        "value": 48,
-                        "unit": "V"
-                    },
-                    "Energy": {
-                        "value": 3.5,
-                        "unit": "kWh"
-                    }
-                },
-                "name": "Battery",
-                "package-group": "Batteries",
-                "brand": "PylonTech",
-                "type-group": "Lithium-ion",
-                "price": 18170
-            },
-            "item 2": {
-                "size": {
-                    "Size": {
-                        "value": 50,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 221
-            },
-            "total-price": 24391
-        },
-        "packag 8": {
-            "item 0": {
-                "size": {
-                    "Size": {
-                        "value": 3,
-                        "unit": "kVA"
-                    },
-                    "Voltage": {
-                        "value": 24,
-                        "unit": "V"
-                    },
-                    "Power": {
-                        "value": 3,
-                        "unit": "kW"
-                    }
-                },
-                "name": "Inverter",
-                "package-group": "Inverters",
-                "brand": "Mecer",
-                "type-group": "Off-Grid",
-                "price": 6000
-            },
-            "item 1": {
-                "size": {
-                    "Voltage": {
-                        "value": 48,
-                        "unit": "V"
-                    },
-                    "Energy": {
-                        "value": 2.4,
-                        "unit": "kWh"
-                    }
-                },
-                "name": "Battery",
-                "package-group": "Batteries",
-                "brand": "Dyness",
-                "type-group": "Lithium-ion",
-                "price": 11782
-            },
-            "item 2": {
-                "size": {
-                    "Size": {
-                        "value": 50,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 221
-            },
-            "total-price": 18003
+            "total-price": 32165,
+            "_uid": "df88a8e365d38ad77e30c508df919b0c365d476796264e925310d5e223478455",
+            "max-power": 5,
+            "solar-qty": 0
         },
         "packag 9": {
             "item 0": {
@@ -1694,55 +1236,47 @@
                         "unit": "kVA"
                     },
                     "Voltage": {
-                        "value": 24,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Power": {
                         "value": 3,
                         "unit": "kW"
+                    },
+                    "MPPTVoltage": {
+                        "value": 430,
+                        "unit": "V"
                     }
                 },
                 "name": "Inverter",
                 "package-group": "Inverters",
-                "brand": "Mecer",
+                "brand": "RCT-AXPERT",
                 "type-group": "Off-Grid",
-                "price": 6000
+                "price": 9106,
+                "_uid": "756ab4b980ed7a58fe75a32fd93f423e"
             },
             "item 1": {
                 "size": {
                     "Voltage": {
-                        "value": 12,
+                        "value": 48,
                         "unit": "V"
                     },
                     "Energy": {
-                        "value": 1.5,
+                        "value": 2.4,
                         "unit": "kWh"
                     }
                 },
                 "name": "Battery",
                 "package-group": "Batteries",
-                "brand": "Hubble",
+                "brand": "Dyness",
                 "type-group": "Lithium-ion",
-                "price": 6995
+                "price": 17249,
+                "_uid": "4f6e312c058410e8ff10b6cad476ae54"
             },
-            "item 2": {
-                "size": {
-                    "Size": {
-                        "value": 50,
-                        "unit": "mm2"
-                    },
-                    "Length": {
-                        "value": 1,
-                        "unit": "m"
-                    }
-                },
-                "name": "Cable",
-                "package-group": "Cable",
-                "brand": "Geewiz",
-                "type-group": "SingleCore-DC",
-                "price": 221
-            },
-            "total-price": 13216
+            "total-price": 26355,
+            "_uid": "cb4b8e5cec997ce77be32dea1cfc1bcf71058babdcd5f8823a6d923f81af9119",
+            "max-power": 3,
+            "solar-qty": 0
         }
     }
 }
