@@ -5,9 +5,6 @@ from package_manager import *
 import CONSTANTS
 from packages import *
 from init import *
-import pprint
-import json
-import time
 import datetime
 from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
 
@@ -61,8 +58,12 @@ def generate_session():
                 
             }
         }
+<<<<<<< HEAD
         session.modified=True
     
+=======
+        print(session)
+>>>>>>> 08c83a7c0084f170d2f67c151266efd89ee035f7
     return {'session_token':session_token}
 
 @app.route('/featured', methods=['GET'])
