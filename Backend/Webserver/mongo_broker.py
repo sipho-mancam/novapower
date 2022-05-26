@@ -24,14 +24,23 @@ def get_db_instance(client:MongoClient=None, db_name:str=''):
     if client is None:
         raise pymongo.error.PyMongoError
         return
-    if db_name == '':
-        print('[x] please enter a database name.')
-        return
     return client[db_name]
+
 
 def read_record(_db:Database=None, _collection:Collection=None):
     if _db is not None or _collection is not None:
-        record = 
+        pass
+
+
+# 1) Read one item from the database
+# 2) Read Many items from the db
+# 3) insert one item to the db
+# 4) insert many items into the db
+# 5) Update one item in the db
+# 6) Update many items in the db
+
+
+
 
 if __name__ == "__main__":
     pass
