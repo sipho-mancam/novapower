@@ -1,6 +1,5 @@
 import random
 from flask import Flask, request, jsonify
-
 from item import Item
 from random import choice
 

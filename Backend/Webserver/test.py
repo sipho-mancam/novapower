@@ -1,25 +1,14 @@
+from package_manager import *
 from mongo_broker import *
-
 
 client = connect(HOST, PORT)
 
 if client is not None:
-    db = client['test']
-    collection = db['test-collection']
+    pm = PManager(client, client['test-db'], client['test-db']['test-collection'].name, {})
 
-    print(collection.name)
+    res = pm._insert_record(record={
+        "name":"Sthembiso Musana",
+        "last name":"Sipho Mancam"
+    })
 
-    res = insert_records(db, collection.name, [{
-        "name": "Sthembiso",
-        "last-name":"Mancam"
-    },
-    {
-        "name": "Sthembiso",
-        "last-name":"Mancam2"
-    }])
-
-    res2 = read_records(db, collection.name)
-
-    for _ in res2:
-        print(_)
-    # print(res2)
+    print(res)

@@ -1,0 +1,6 @@
+ID = 'id'
+CLASS = 'class'
+PRICE = 'price'
+IMG_URL='img_url'
+DESCRIPTION = 'description'
+OPTIONS='options'

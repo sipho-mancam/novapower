@@ -6,6 +6,13 @@ from pymongo.database import Database
 HOST = 'localhost'
 PORT = 27017
 
+# 1) Read one item from the database
+# 2) Read Many items from the db
+# 3) insert one item to the db
+# 4) insert many items into the db
+# 5) Update one item in the db
+# 6) Update many items in the db
+
 def connect(host, port):
     print("[+] Connecting to db ...")
     client = None
@@ -35,6 +42,7 @@ def read_records(_db:Database, _collection:str|Collection, _schema:str|dict={}):
 def insert_record(_db:Database, _collection:str|dict, _document:dict={}):
     if len(_document) == 0:
         return
+    print("Collection is {}: db is {}".format(_collection, _db))
     return _db[_collection].insert_one(_document)
 
 def insert_records(_db:Database, _collection:str|Collection, _documents:list):
@@ -59,15 +67,6 @@ def delete_record(_db:Database,_collection:str, _filter:dict):
 
 def delete_records(_db:Database,_collection:str, _filter:dict):
     return _db[_collection].delete_many(_filter)
-
-
-# 1) Read one item from the database
-# 2) Read Many items from the db
-# 3) insert one item to the db
-# 4) insert many items into the db
-# 5) Update one item in the db
-# 6) Update many items in the db
-
 
 
 
