@@ -5,26 +5,9 @@ from random import choice
 
 app = Flask(__name__)
 
+def init():
+    global app
 
-
-################
-# testing code #
-################
-
-# items = dict()
-# l_i = [
-#     'Solar',
-#     'Inverter',
-#     'Battery',
-#     'Charger'
-# ]
-
-# for _ in range(10):
-#     t = Item("231fasd12{}".format(_), choice(l_i), _*random.random(), "Some item", "/imagesdata")
-#     items['item - {}'.format(_)] = t.to_dict()
-    
-
-# end of test code 
 
 @app.route('/') # give me everything you have in the database...
 def view_function():
@@ -60,7 +43,9 @@ def on_one():
 
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
-    # pass
+
+
+def get_app_instance():
+    global app
+    return app
 

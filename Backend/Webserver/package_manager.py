@@ -4,7 +4,7 @@ from item import Item
 
 
 class PManager:
-    def __init__(self,client, db, collection, query) -> None:
+    def __init__(self,client, db=None, collection=None, query=None) -> None:
         self.__h_client = client
         self.__db=db
         self.__collection = collection
@@ -37,7 +37,7 @@ class PManager:
         if db is None or collection is None:
             return self._insert_record(self.__db, self.__collection, record)
 
-        if type(record) == type(dict()):
+        if type(record) is dict:
             return insert_record(db, collection, record)
         else:
             return insert_record(db, collection, self.parse_input(record))

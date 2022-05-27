@@ -7,7 +7,7 @@ import CONSTANTS
 class Item:
     def __init__(self, id:str='', cl:str='', price:float=0.0, desc:str='', img_url:str='', 
                 _obj:list|dict=None, **kwargs) -> None:
-        
+    
         self.__id = id
         self.__cl = cl
         self.__price = price
