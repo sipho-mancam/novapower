@@ -54,7 +54,7 @@ def on_one():
         print(id)
         app.logger.info('id') 
         return {"response":id,
-                "cclass":cl}
+                "class":cl}
     else:
         return "Request not found"
 
