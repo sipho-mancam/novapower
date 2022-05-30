@@ -16,7 +16,7 @@ class Item:
         self.__options = dict()
 
         if _obj is not None:
-            if type(_obj) is type(dict()):
+            if type(_obj) is dict:
                 for _key in _obj.keys():
                     if _key == CONSTANTS.ID:
                         self.__id  = _obj[_key]
@@ -31,10 +31,9 @@ class Item:
                     elif _key is CONSTANTS.OPTIONS:
                         self.__options = _obj[_key]
 
-            elif type(_obj) is type(list()) and len(_obj)>=5:
+            elif type(_obj) is list and len(_obj)>=5:
                 for pair in _obj:
                     _key, value = pair.split(':')
-
                     if _key == CONSTANTS.ID:
                         self.__id  = value
                     elif _key == CONSTANTS.CLASS:

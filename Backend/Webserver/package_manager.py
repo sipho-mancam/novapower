@@ -62,5 +62,12 @@ class PManager:
     
 
 
+# create a package Object...
+# create a package table object
+# take in list inputs of objects and iterate through them to 
+# to generate package of objects from them
+# sort packages according to small - big
+# generate a json objects from package list..
 
-
+# write a js script to interact with the server, 
+# generate views and 
