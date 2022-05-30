@@ -19,6 +19,7 @@ p_manager, client = setup()
 @app.route('/item/<collection_name>', methods=['GET', 'OPTIONS'])
 def index_data(collection_name):
     counter = int(0)
+    print(collection_name)
     if collection_name in CONSTANTS.valid_collection_list:
         res = p_manager.read_all([CONSTANTS.DB_ITEMS], [collection_name])
         jres = {}
@@ -27,12 +28,11 @@ def index_data(collection_name):
             item['index'] = counter
             jres['item '+str(counter)] = item
             counter += 1
-        
-        response = jsonify(jres)
-        response.headers.add('Access-Control-Allow-Origin','*')
-        return response
-        # if jres is not None: return jres
-        # else: return 'items not found'
+     
+        # return 
+        if jres is not None: return jres
+        else: return 'items not found'
+    return 'collection is not in the list'
 
 
 

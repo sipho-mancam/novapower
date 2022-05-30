@@ -78,7 +78,6 @@ class PManager:
                             res[db.name][c] = temp
             return res 
 
-
     def _insert_record(self, db=None, collection=None, record:Item|dict={}):
         if db is None or collection is None:
             return self._insert_record(self.__db, self.__collection, record)
@@ -114,8 +113,7 @@ def setup():
     db_list = [
         CONSTANTS.DB_ITEMS,
         CONSTANTS.DB_ORDERS,
-        CONSTANTS.DB_USERS,
-        CONSTANTS.DB_MAIN
+        CONSTANTS.DB_USERS
     ]
 
     client = connect(CONSTANTS.D_HOST, CONSTANTS.D_PORT)

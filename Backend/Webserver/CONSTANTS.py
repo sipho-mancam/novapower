@@ -7,6 +7,14 @@ IMG_URL='img_url'
 DESCRIPTION = 'description'
 OPTIONS='options'
 
+# class definitions
+
+CL_SOLAR='solar'
+CL_INVERTER='inverter'
+CL_BATTERY='battery'
+CL_CABLING='cabling'
+CL_RACKING='racking'
+
 # Database names constants
 DB_ITEMS='items-db'
 DB_ORDERS='orders-db'
