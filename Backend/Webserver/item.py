@@ -48,7 +48,6 @@ class Item:
                         self.__options = value
 
 
-
     def to_dict(self)->dict:
         return{
             CONSTANTS.ID:self.__id,
