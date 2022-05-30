@@ -3,8 +3,11 @@ import pymongo
 from pymongo.collection import Collection
 from pymongo.database import Database
 
+<<<<<<< HEAD
 D_HOST = 'localhost'
 D_PORT = 27017
+=======
+>>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
 
 # 1) Read one item from the database
 # 2) Read Many items from the db

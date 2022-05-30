@@ -19,7 +19,11 @@ class Item:
             if type(_obj) is dict:
                 for _key in _obj.keys():
                     if _key == CONSTANTS.ID:
+<<<<<<< HEAD
                         self.__id  = _obj[_key]
+=======
+                        self.__id  = str(_obj[_key])
+>>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
                     elif _key == CONSTANTS.CLASS:
                         self.__cl = _obj[_key]
                     elif _key == CONSTANTS.PRICE:
@@ -31,9 +35,16 @@ class Item:
                     elif _key is CONSTANTS.OPTIONS:
                         self.__options = _obj[_key]
 
+<<<<<<< HEAD
             elif type(_obj) is list and len(_obj)>=5:
                 for pair in _obj:
                     _key, value = pair.split(':')
+=======
+            elif type(_obj) is type(list()) and len(_obj)>=5:
+                for pair in _obj:
+                    _key, value = pair.split(':')
+
+>>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
                     if _key == CONSTANTS.ID:
                         self.__id  = value
                     elif _key == CONSTANTS.CLASS:
@@ -48,6 +59,11 @@ class Item:
                         self.__options = value
 
 
+<<<<<<< HEAD
+=======
+    def get_price(self):return self.__price
+    
+>>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
     def to_dict(self)->dict:
         return{
             CONSTANTS.ID:self.__id,

@@ -1,2 +1,6 @@
 flask
+<<<<<<< HEAD
+=======
+flask-cors
+>>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
 pymongo
