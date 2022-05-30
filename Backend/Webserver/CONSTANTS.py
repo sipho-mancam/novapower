@@ -1,18 +1,12 @@
 
 # Item constants
-<<<<<<< HEAD
-ID = 'id'
-=======
 ID = '_id'
->>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
 CLASS = 'class'
 PRICE = 'price'
 IMG_URL='img_url'
 DESCRIPTION = 'description'
 OPTIONS='options'
 
-<<<<<<< HEAD
-=======
 # class definitions
 
 CL_SOLAR='solar'
@@ -21,16 +15,12 @@ CL_BATTERY='battery'
 CL_CABLING='cabling'
 CL_RACKING='racking'
 
->>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
 # Database names constants
 DB_ITEMS='items-db'
 DB_ORDERS='orders-db'
 DB_USERS='user-db'
 DB_MAIN='main-db'
-<<<<<<< HEAD
-=======
 DB_TEST='test-db'
->>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
 
 #collection names constants
 COL_SOLAR="solar-collection"
@@ -42,8 +32,6 @@ COL_UAC='uac-collection' # USER ACCESS CONTROL
 COL_COMP_ORDERS='comp-order-collection' # completed orders
 COL_PENDING_ORDERS='pending-orders-collection'
 COL_MAIN='main-collection'
-<<<<<<< HEAD
-=======
 COL_TEST='test-collection'
 
 valid_collection_list = [
@@ -58,16 +46,12 @@ valid_collection_list = [
     COL_MAIN,
     COL_TEST
 ]
->>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
 
 # set up constants
 
 DEBUG=True
 HOST='0.0.0.0'
 
-<<<<<<< HEAD
-=======
 D_HOST = 'localhost'
 D_PORT = 27017
 
->>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192

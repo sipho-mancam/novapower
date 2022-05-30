@@ -31,18 +31,9 @@ class Main:
         self.init()
 
     def init(self):
-<<<<<<< HEAD
-        self.__app.run(host=CONSTANTS.HOST, debug=CONSTANTS.DEBUG) 
-
-
-# main = Main()
-
-# main.setup()
-=======
         self.__app.run(host=CONSTANTS.HOST, debug=CONSTANTS.DEBUG)
 
 
 main = Main()
 
 main.setup()
->>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
