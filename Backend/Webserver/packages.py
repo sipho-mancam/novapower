@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 
 class Package:
     def __init__(self, metadata:dict=None, t_price:float=0.0)->None:
@@ -13,7 +11,6 @@ class Package:
 class PackageList(list):
     def __init__(self,l:list=[])->None:
         super.__init__(self, t, obj)
-=======
 from CONSTANTS import *
 
 class Package:
@@ -48,4 +45,3 @@ d  = {
 
 for i in d.values():
     print(i)
->>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
