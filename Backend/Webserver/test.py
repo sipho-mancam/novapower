@@ -1,14 +1,9 @@
 from package_manager import *
 from mongo_broker import *
-<<<<<<< HEAD
-
-
-class DBHandler:
-    def __init__(self)->None:
-        pass
-=======
 import CONSTANTS
 from random import choice, randbytes, random
+import json
+from packages import *
 
 client = connect(host=CONSTANTS.D_HOST, port=CONSTANTS.D_PORT)
 
@@ -45,42 +40,65 @@ def test_write(data={}, n=1):
             print("[x] Failed to write to db")
 
 
-def generate_mock_items(n = 1):
-    l = list()
-    c_list = ['solar', 'battery', 'inverter', 'charger', 'racking', 'cabling']
-    if n > 1:
-        for i in range(n):
-            l.append(Item(
-                _obj={
-                CONSTANTS.ID: str(randbytes(32)),
-                CONSTANTS.CLASS:choice(c_list),
-                CONSTANTS.PRICE:random()*1000,
-                CONSTANTS.IMG_URL:'https://some-image-server/'+str(randbytes(32)),
-                CONSTANTS.OPTIONS:{}
-                }
-            ).to_dict())
-        return l
-    else:
-        return Item(
-                _obj={
-                CONSTANTS.ID: str(randbytes(32)),
-                CONSTANTS.CLASS:choice(c_list),
-                CONSTANTS.PRICE:random()*1000,
-                CONSTANTS.IMG_URL:'https://some-image-server/'+str(randbytes(32)),
-                CONSTANTS.OPTIONS:{}
-                }
-            ).to_dict()
+# def generate_mock_items(n = 1):
+#     l = list()
+#     c_list = ['solar', 'battery', 'inverter', 'charger', 'racking', 'cabling']
+#     if n > 1:
+#         for i in range(n):
+#             l.append(Item(
+#                 _obj={
+#                 CONSTANTS.ID: str(randbytes(32)),
+#                 CONSTANTS.CLASS:choice(c_list),
+#                 CONSTANTS.PRICE:random()*1000,
+#                 CONSTANTS.IMG_URL:'https://some-image-server/'+str(randbytes(32)),
+#                 CONSTANTS.OPTIONS:{}
+#                 }
+#             ).to_dict())
+#         return l
+#     else:
+#         return Item(
+#                 _obj={
+#                 CONSTANTS.ID: str(randbytes(32)),
+#                 CONSTANTS.CLASS:choice(c_list),
+#                 CONSTANTS.PRICE:random()*1000,
+#                 CONSTANTS.IMG_URL:'https://some-image-server/'+str(randbytes(32)),
+#                 CONSTANTS.OPTIONS:{}
+#                 }
+#             ).to_dict()
 
 # def test_delete(filter={}):
-    
-items = generate_mock_items(100)
-# item = generate_mock_items(1)
 
-# test_write(item)
-test_write(items, len(items))
-print(p_manager.read_all(db_name=[CONSTANTS.DB_ITEMS], col_name=[CONSTANTS.COL_SOLAR]))
-
-# print("All records: \n", p_manager.read_all())
+data = None
+with open('data.json', 'r') as jsonfile:
+    data = json.load(jsonfile)
 
 
->>>>>>> 12f57be8798c80551edcbdd0a54d056fc783f192
+def parse_json(data1):
+    l = list()
+    d_table = dict()
+    for items in data1:
+        d_table[items] = list()
+        for item in data[items]:
+            d_table[items].append(p_manager.parse_record(item))
+    return d_table
+
+d_table = parse_json(data)
+
+
+pHandler = PackageHandler(d_table)
+
+result = pHandler.generate_package(120)
+
+final_json = {}
+
+print(pHandler.get_summary())
+
+with open('packages.json', 'w') as write_file:
+    json.dump(pHandler.get_summary(), write_file)
+
+
+# for package in result:
+    # print(package.get_summary())
+
+# print(result)
+

@@ -1,0 +1,349 @@
+{
+    "solar-collection":[
+                    {
+            "price":1685.39,
+            "class":"solar-collection",
+            "description":"",
+            "options":{
+                "supplier":"SegenSolar",
+                "manufacturer":"Canadian",
+                "elec-size":"335W",
+                "R/Wp":5.03
+            }
+        },
+        {
+            "price":1936.30,
+            "class":"solar-collection",
+            "description":"",
+            "options":{
+                "supplier":"SegenSolar",
+                "manufacturer":"JA Solar",
+                "elec-size":"335W",
+                "R/Wp":5.78
+            }
+        },
+        {
+            "price":1861.10,
+            "class":"solar-collection",
+            "description":"",
+            "options":{
+                "supplier":"SegenSolar",
+                "manufacturer":"Canadian",
+                "elec-size":"370W",
+                "R/Wp":5.03
+            }
+        },
+        {
+            "price":2152.79,
+            "class":"solar-collection",
+            "description":"",
+            "options":{
+                "supplier":"SegenSolar",
+                "manufacturer":"Canadian",
+                "elec-size":"375W",
+                "R/Wp":5.74
+            }
+        },
+        {
+            "price":2132.21,
+            "class":"solar-collection",
+            "description":"",
+            "options":{
+                "supplier":"SegenSolar",
+                "manufacturer":"JA Solar",
+                "elec-size":"365W",
+                "R/Wp":5.84
+            }
+        },
+        {
+            "price":2095.08,
+            "class":"solar-collection",
+            "description":"",
+            "options":{
+                "supplier":"SegenSolar",
+                "manufacturer":"Canadian",
+                "elec-size":"375W",
+                "R/Wp":5.59,
+                "type":"Bundle",
+                "Qty":30
+            }
+        },
+
+        {
+            "price":2059.08,
+            "class":"solar-collection",
+            "description":"",
+            "options":{
+                "supplier":"SegenSolar",
+                "manufacturer":"Canadian",
+                "elec-size":"375W",
+                "R/Wp":5.49,
+                "type":"Bundle",
+                "Qty":150
+            }
+        },
+        {
+            "price":2075.05,
+            "class":"solar-collection",
+            "description":"",
+            "options":{
+                "supplier":"SegenSolar",
+                "manufacturer":"JA Solar",
+                "elec-size":"365W",
+                "R/Wp":5.69,
+                "type":"Bundle",
+                "Qty":31
+            }
+        },
+        {
+            "price":2039.52,
+            "class":"solar-collection",
+            "description":"",
+            "options":{
+                "supplier":"SegenSolar",
+                "manufacturer":"JA Solar",
+                "elec-size":"365W",
+                "R/Wp":5.59,
+                "type":"Bundle",
+                "Qty":155
+            }
+        }
+    ],
+    "inverter-collection":[
+                    {
+            "price":2953.23,
+            "class":"inverter-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"Victron Energey",
+                "elec-size":"1.2kVA",
+                "supply-voltage":"48V",
+                "socket-type":"IEC",
+                "loading-type":"light load"
+            }
+        },
+        {
+            "price":3882.58,
+            "class":"inverter-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"Victron Energey",
+                "elec-size":"1.2kVA",
+                "supply-voltage":"24V",
+                "socket-type":"Schuko",
+                "loading-type":"light load"
+            }
+        },
+        {
+            "price":4721.14,
+            "class":"inverter-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"Victron Energey",
+                "elec-size":"1.2kVA",
+                "supply-voltage":"12V",
+                "socket-type":"C",
+                "loading-type":"Heavy loading"
+            }
+        },
+        {
+            "price":4721.12,
+            "class":"inverter-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"Victron Energey",
+                "elec-size":"1.2kVA",
+                "supply-voltage":"24V",
+                "socket-type":"C",
+                "loading-type":"Heavy load"
+            }
+        },
+        {
+            "price":5757.52,
+            "class":"inverter-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"Victron Energey",
+                "elec-size":"1.6kVA",
+                "supply-voltage":"24V",
+                "socket-type":"C",
+                "loading-type":"Heavy load"
+            }
+        },
+        {
+            "price":14109.78,
+            "class":"inverter-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"Victron Energey",
+                "elec-size":"3kVA",
+                "supply-voltage":"48V",
+                "socket-type":"Bus",
+                "loading-type":"Heavy load"
+            }
+        }
+    ],
+
+    "battery-collection":[
+                        {
+            "price":12026.99,
+            "class":"battery-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"Pylon",
+                "elec-size":"2.4kWh",
+                "voltage":"48V",
+                "type":"lithium"
+            }
+        },
+        {
+            "price":23977.73,
+            "class":"battery-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"Kodak",
+                "elec-size":"5.12kWh",
+                "voltage":"48V",
+                "type":"lithium"
+            }
+        },
+        {
+            "price":16375.28,
+            "class":"battery-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"Pylon",
+                "elec-size":"3.552kWh",
+                "voltage":"48V",
+                "type":"lithium"
+            }
+        },
+
+        {
+            "price":8826.68,
+            "class":"battery-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"G2500-24-N",
+                "elec-size":"2.56kWh",
+                "voltage":"24V",
+                "type":"lead-acid"
+            }
+        }
+
+    ],
+
+    "cabling-collection":[
+                {
+            "price":115.12,
+            "class":"cabling-collection",
+            "description":"For interconnection within photovoltaic systems",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacture":"Cable-35-1-HV-R/B",
+                "area":"35mm.sq",
+                "max-current-DC":"99A",
+                "max-dc-voltage":"1000V",
+                "type":"single core red/black"
+            }
+        },
+        {
+            "price":230.24,
+            "class":"cabling-collection",
+            "description":"For interconnection within photovoltaic systems",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacture":"Cable-35-1-HV-PAIR",
+                "area":"35mm.sq",
+                "max-current-DC":"99A",
+                "max-dc-voltage":"1000V",
+                "type":"single core Pair (Red&Black)"
+            }
+        },
+        {
+            "price":163.74,
+            "class":"cabling-collection",
+            "description":"For interconnection within photovoltaic systems",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacture":"Cable-35-1-HV-R/B",
+                "area":"50mm.sq",
+                "max-current-DC":"119A",
+                "max-dc-voltage":"1000V",
+                "type":"single core red/black"
+            }
+        },
+        {
+            "price":327.48,
+            "class":"cabling-collection",
+            "description":"For interconnection within photovoltaic systems",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacture":"Cable-35-1-HV-PAIR",
+                "area":"50mm.sq",
+                "max-current-DC":"119A",
+                "max-dc-voltage":"1000V",
+                "type":"single core Pair(red/black)"
+            }
+        }
+    ],
+    "charger-collection":[
+                    {
+            "price":1530.25,
+            "class":"charge-controller",
+            "description":"Improves energy harvest by up to 30%",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"VIC-SMARTSOL-MPPT-75-15",
+                "elec-size":"396W",
+                "max-current-dc":"15A",
+                "max-dc-voltage":"75V",
+                "type":"single phase; single chanel"
+            }
+        },
+        {
+            "price":7705.70,
+            "class":"charge-controller",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"SOL-3.6-S6-DT-DC",
+                "elec-size":"3.6kW",
+                "max-current-dc":"14A",
+                "type":"single phase; dual chanel"
+            }
+        },
+        {
+            "price":7422.62,
+            "class":"charge-controller",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"SOL-3.6-S6-DT-DC-3",
+                "elec-size":"10.8kW",
+                "type":"single phase; dual chanel; 3 Pack"
+            }
+        },
+        {
+            "price":7346.10,
+            "class":"charge-controller",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"SOL-3.6-S6-DT-DC-5",
+                "elec-size":"18kW",
+                "type":"single phase; dual chanel; 5 Pack"
+            }
+        }
+    ]
+}
