@@ -26,6 +26,7 @@ class Package:
         for i in self.__items_list:
             d['item '+str(counter)] = i.to_json()
             counter += 1
+        d['total-price'] = self.__total_price
         return d
     
     # def __str__(self):
@@ -96,6 +97,7 @@ class Subpackage:
             else:
                 self.next()
                 return False
+
 
         
 class PackageHandler:

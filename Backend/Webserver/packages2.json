@@ -1,0 +1,962 @@
+{
+    "package 0": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 115.12, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 1530.25, 'description': 'Improves energy harvest by up to 30%', 'img_url': '', 'options': {}}",
+        "total-price": 18310.98
+    },
+    "package 1": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 115.12, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24486.43
+    },
+    "package 2": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 115.12, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24203.35
+    },
+    "package 3": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 115.12, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24126.83
+    },
+    "package 4": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24241.950000000004
+    },
+    "package 5": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24601.550000000003
+    },
+    "package 6": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24318.47
+    },
+    "package 7": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24241.950000000004
+    },
+    "package 8": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24175.450000000004
+    },
+    "package 9": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24535.050000000003
+    },
+    "package 10": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24251.97
+    },
+    "package 11": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24175.450000000004
+    },
+    "package 12": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24339.190000000002
+    },
+    "package 13": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24698.79
+    },
+    "package 14": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24415.71
+    },
+    "package 15": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 12026.99, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 24339.190000000002
+    },
+    "package 16": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36289.93
+    },
+    "package 17": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36649.53
+    },
+    "package 18": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36366.45
+    },
+    "package 19": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36289.93
+    },
+    "package 20": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36192.69
+    },
+    "package 21": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36552.29
+    },
+    "package 22": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36269.21
+    },
+    "package 23": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36192.69
+    },
+    "package 24": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36126.19
+    },
+    "package 25": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36485.79
+    },
+    "package 26": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36202.71
+    },
+    "package 27": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36126.19
+    },
+    "package 28": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36289.93
+    },
+    "package 29": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36649.53
+    },
+    "package 30": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36366.45
+    },
+    "package 31": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 36289.93
+    },
+    "package 32": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28687.480000000003
+    },
+    "package 33": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29047.08
+    },
+    "package 34": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28764
+    },
+    "package 35": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28687.480000000003
+    },
+    "package 36": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28590.240000000005
+    },
+    "package 37": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28949.840000000004
+    },
+    "package 38": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28666.760000000002
+    },
+    "package 39": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28590.240000000005
+    },
+    "package 40": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28523.740000000005
+    },
+    "package 41": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28883.340000000004
+    },
+    "package 42": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28600.260000000002
+    },
+    "package 43": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28523.740000000005
+    },
+    "package 44": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28687.480000000003
+    },
+    "package 45": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29047.08
+    },
+    "package 46": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28764
+    },
+    "package 47": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 28687.480000000003
+    },
+    "package 48": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21138.88
+    },
+    "package 49": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21498.48
+    },
+    "package 50": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21215.4
+    },
+    "package 51": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21138.88
+    },
+    "package 52": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21041.64
+    },
+    "package 53": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21401.24
+    },
+    "package 54": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21118.16
+    },
+    "package 55": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21041.64
+    },
+    "package 56": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 20975.14
+    },
+    "package 57": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21334.74
+    },
+    "package 58": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21051.66
+    },
+    "package 59": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 20975.14
+    },
+    "package 60": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21138.88
+    },
+    "package 61": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21498.48
+    },
+    "package 62": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21215.4
+    },
+    "package 63": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 2953.23, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21138.88
+    },
+    "package 64": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22068.230000000003
+    },
+    "package 65": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22427.83
+    },
+    "package 66": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22144.75
+    },
+    "package 67": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22068.230000000003
+    },
+    "package 68": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21970.99
+    },
+    "package 69": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22330.59
+    },
+    "package 70": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22047.510000000002
+    },
+    "package 71": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21970.99
+    },
+    "package 72": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21904.49
+    },
+    "package 73": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22264.09
+    },
+    "package 74": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21981.010000000002
+    },
+    "package 75": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21904.49
+    },
+    "package 76": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22068.230000000003
+    },
+    "package 77": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22427.83
+    },
+    "package 78": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22144.75
+    },
+    "package 79": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22068.230000000003
+    },
+    "package 80": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37219.28
+    },
+    "package 81": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37578.88
+    },
+    "package 82": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37295.8
+    },
+    "package 83": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37219.28
+    },
+    "package 84": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37122.04
+    },
+    "package 85": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37481.64
+    },
+    "package 86": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37198.560000000005
+    },
+    "package 87": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37122.04
+    },
+    "package 88": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37055.54
+    },
+    "package 89": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37415.14
+    },
+    "package 90": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37132.060000000005
+    },
+    "package 91": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37055.54
+    },
+    "package 92": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37219.28
+    },
+    "package 93": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37578.88
+    },
+    "package 94": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37295.8
+    },
+    "package 95": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 23977.73, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 37219.28
+    },
+    "package 96": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29616.83
+    },
+    "package 97": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29976.43
+    },
+    "package 98": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29693.35
+    },
+    "package 99": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29616.83
+    },
+    "package 100": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29519.590000000004
+    },
+    "package 101": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29879.190000000002
+    },
+    "package 102": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29596.11
+    },
+    "package 103": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29519.590000000004
+    },
+    "package 104": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29453.090000000004
+    },
+    "package 105": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29812.690000000002
+    },
+    "package 106": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29529.61
+    },
+    "package 107": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 163.74, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29453.090000000004
+    },
+    "package 108": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29616.83
+    },
+    "package 109": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29976.43
+    },
+    "package 110": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29693.35
+    },
+    "package 111": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 16375.28, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 29616.83
+    },
+    "package 112": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22068.230000000003
+    },
+    "package 113": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22427.83
+    },
+    "package 114": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22144.75
+    },
+    "package 115": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 327.48, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22068.230000000003
+    },
+    "package 116": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21970.99
+    },
+    "package 117": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7705.7, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22330.59
+    },
+    "package 118": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7422.62, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 22047.510000000002
+    },
+    "package 119": {
+        "item 0": "{'_id': '', 'class': 'solar-collection', 'price': 1685.39, 'description': '', 'img_url': '', 'options': {}}",
+        "item 1": "{'_id': '', 'class': 'inverter-collection', 'price': 3882.58, 'description': '', 'img_url': '', 'options': {}}",
+        "item 2": "{'_id': '', 'class': 'battery-collection', 'price': 8826.68, 'description': '', 'img_url': '', 'options': {}}",
+        "item 3": "{'_id': '', 'class': 'cabling-collection', 'price': 230.24, 'description': 'For interconnection within photovoltaic systems', 'img_url': '', 'options': {}}",
+        "item 4": "{'_id': '', 'class': 'charge-controller', 'price': 7346.1, 'description': '', 'img_url': '', 'options': {}}",
+        "total-price": 21970.99
+    }
+}

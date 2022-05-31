@@ -19,7 +19,7 @@ class Item:
             if type(_obj) is dict:
                 for _key in _obj.keys():
                     if _key == CONSTANTS.ID:
-                        self.__id  = _obj[_key]
+                        # self.__id  = _obj[_key]
                         self.__id  = str(_obj[_key])
                     elif _key == CONSTANTS.CLASS:
                         self.__cl = _obj[_key]

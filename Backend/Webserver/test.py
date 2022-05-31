@@ -93,7 +93,7 @@ final_json = {}
 
 print(pHandler.get_summary())
 
-with open('packages.json', 'w') as write_file:
+with open('packages2.json', 'w') as write_file:
     json.dump(pHandler.get_summary(), write_file)
 
 
