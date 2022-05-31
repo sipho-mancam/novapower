@@ -1,0 +1,12 @@
+#dis{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.items{
+    margin:2em;
+}
+
+h4{
+    color:red
+}
