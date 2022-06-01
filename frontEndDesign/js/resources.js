@@ -6718,12 +6718,19 @@ let images = [
 ]
 
 
+let package_groups = []
+let keys = Object.keys(packages_data)
+for(let i=0; i<keys.length; i++){
+    temp = PackageGroup(packages_data[keys[i]])
+    package_groups.push(temp)
+}
+
+
 
 
 let pack_inv_bat = get_packages(packages_data['inverter+battery'])
 let pack_solar_inv_bat = get_packages(packages_data['solar+inverter+battery']['data'])
 
-console.log(pack_inv_bat, pack_solar_inv_bat)
 
 
 let add_to_cart_buttons = document.getElementsByClassName('add-to-cart')

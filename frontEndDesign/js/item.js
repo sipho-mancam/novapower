@@ -53,8 +53,7 @@ class PackageGroup{
         this.packages = get_packages(this.raw_data)
         
     }
-
-
+    
      get_packages(data){
         let p_keys = Object.keys(data)
         let packages_list = []
