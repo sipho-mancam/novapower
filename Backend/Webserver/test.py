@@ -79,24 +79,27 @@ def parse_json(data1):
     d_table = dict()
     for items in data1:
         d_table[items] = list()
-        for item in data[items]:
-            d_table[items].append(p_manager.parse_record(item))
+        for item in data[items]: 
+            temp = p_manager.parse_record(item)
+            d_table[items].append(temp)
     return d_table
 
-print(data)
+# print(data)
 
 d_table = parse_json(data)
+
+# print(d_table)
 
 
 pHandler = PackageHandler(d_table)
 
-result = pHandler.generate_package(350)
+result = pHandler.generate_package(50)
 
 final_json = {}
 
 # print(pHandler.get_summary())
 
-with open('packages2.json', 'w') as write_file:
+with open('packages5.json', 'w') as write_file:
     json.dump(pHandler.get_summary(), write_file)
 
 

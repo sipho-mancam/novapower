@@ -41,7 +41,7 @@ valid_collection_list = [
 
 //  set up constants
 
-DEBUG=True
+DEBUG=true
 HOST='0.0.0.0'
 
 D_HOST = 'localhost'

@@ -1,0 +1,36 @@
+.nav-bar{
+    width:100%;
+    /* border:1px solid black; */
+    position: sticky;
+    left: 0;
+    top:0;
+    background-color:white;
+    z-index: 100;
+}
+
+.container{
+    display:flex;
+    flex-flow: row;
+}
+
+.nav-items{
+    margin-left: auto;
+}
+
+.nav-list{
+    display:flex;
+    flex-flow: row;
+    list-style: none;
+}
+
+.item{
+    /* border:1px solid black; */
+    margin:5px;
+    font-family: var(--font);
+    color:black;
+
+}
+
+.logo-brand{
+    /* border:1px solid black; */
+}

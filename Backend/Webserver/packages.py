@@ -24,7 +24,7 @@ class Package:
         counter = 0
         d = dict()
         for i in self.__items_list:
-            d['item '+str(counter)] = i.to_json()
+            d['item '+str(counter)] = i.to_dict()
             counter += 1
         d['total-price'] = self.__total_price
         return d
@@ -112,7 +112,7 @@ class PackageHandler:
         d = dict()
         counter = 0
         for p in self.__packages:
-            d['package '+str(counter)]=p.get_summary()
+            d['packag '+str(counter)]=p.get_summary()
             counter+=1
         return d
 

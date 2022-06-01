@@ -7,7 +7,6 @@ import CONSTANTS
 class Item:
     def __init__(self, id:str='', cl:str='', price:float=0.0, desc:str='', img_url:str='', 
                 _obj:list|dict=None, **kwargs) -> None:
-    
         self.__id = id
         self.__cl = cl
         self.__price = price
@@ -19,7 +18,6 @@ class Item:
             if type(_obj) is dict:
                 for _key in _obj.keys():
                     if _key == CONSTANTS.ID:
-                        # self.__id  = _obj[_key]
                         self.__id  = str(_obj[_key])
                     elif _key == CONSTANTS.CLASS:
                         self.__cl = _obj[_key]
@@ -27,9 +25,9 @@ class Item:
                         self.__price = _obj[_key]
                     elif _key == CONSTANTS.DESCRIPTION:
                         self.__description = _obj[_key]
-                    elif _key is CONSTANTS.IMG_URL:
+                    elif _key == CONSTANTS.IMG_URL:
                         self.__img_url = _obj[_key]
-                    elif _key is CONSTANTS.OPTIONS:
+                    elif _key == CONSTANTS.OPTIONS:
                         self.__options = _obj[_key]
 
             elif type(_obj) is list and len(_obj)>=5:

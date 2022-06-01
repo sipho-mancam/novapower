@@ -1,6 +1,6 @@
 {
     "solar-collection":[
-                    {
+        {
             "price":1685.39,
             "class":"solar-collection",
             "description":"",
@@ -10,8 +10,8 @@
                 "elec-size":"335W",
                 "R/Wp":5.03
             }
-        },
-        {
+            },
+            {
             "price":1936.30,
             "class":"solar-collection",
             "description":"",
@@ -21,8 +21,8 @@
                 "elec-size":"335W",
                 "R/Wp":5.78
             }
-        },
-        {
+            },
+            {
             "price":1861.10,
             "class":"solar-collection",
             "description":"",
@@ -32,8 +32,8 @@
                 "elec-size":"370W",
                 "R/Wp":5.03
             }
-        },
-        {
+            },
+            {
             "price":2152.79,
             "class":"solar-collection",
             "description":"",
@@ -43,8 +43,8 @@
                 "elec-size":"375W",
                 "R/Wp":5.74
             }
-        },
-        {
+            },
+            {
             "price":2132.21,
             "class":"solar-collection",
             "description":"",
@@ -54,8 +54,8 @@
                 "elec-size":"365W",
                 "R/Wp":5.84
             }
-        },
-        {
+            },
+            {
             "price":2095.08,
             "class":"solar-collection",
             "description":"",
@@ -67,9 +67,9 @@
                 "type":"Bundle",
                 "Qty":30
             }
-        },
+            },
 
-        {
+            {
             "price":2059.08,
             "class":"solar-collection",
             "description":"",
@@ -81,8 +81,8 @@
                 "type":"Bundle",
                 "Qty":150
             }
-        },
-        {
+            },
+            {
             "price":2075.05,
             "class":"solar-collection",
             "description":"",
@@ -94,8 +94,8 @@
                 "type":"Bundle",
                 "Qty":31
             }
-        },
-        {
+            },
+            {
             "price":2039.52,
             "class":"solar-collection",
             "description":"",
@@ -107,9 +107,22 @@
                 "type":"Bundle",
                 "Qty":155
             }
-        }
-    ],
+            }
+            ],
     "inverter-collection":[
+        {
+            "price":10000,
+            "class":"inverter-collection",
+            "description":"",
+            "options":{
+                "supplier":"Segen Solar",
+                "manufacterer":"Victron Energey",
+                "elec-size":"3kVA",
+                "supply-voltage":"48V",
+                "socket-type":"Bus",
+                "loading-type":"Heavy load"
+            }
+        },
                     {
             "price":2953.23,
             "class":"inverter-collection",
@@ -174,20 +187,8 @@
                 "socket-type":"C",
                 "loading-type":"Heavy load"
             }
-        },
-        {
-            "price":14109.78,
-            "class":"inverter-collection",
-            "description":"",
-            "options":{
-                "supplier":"Segen Solar",
-                "manufacterer":"Victron Energey",
-                "elec-size":"3kVA",
-                "supply-voltage":"48V",
-                "socket-type":"Bus",
-                "loading-type":"Heavy load"
-            }
         }
+        
     ],
 
     "battery-collection":[
@@ -298,7 +299,7 @@
         }
     ],
     "charger-collection":[
-                    {
+                        {
             "price":1530.25,
             "class":"charge-controller",
             "description":"Improves energy harvest by up to 30%",

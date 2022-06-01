@@ -3,7 +3,7 @@
 # initialize package manager
 # initialize the programms main class - Entry points
 # initialize the kafka connector
-# set up the validator
+# set up the validator  qw
 
 from mongo_broker import *
 from package_manager import PManager
