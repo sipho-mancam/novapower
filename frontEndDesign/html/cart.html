@@ -6,8 +6,10 @@
    
     <title>Nova Power</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/cards.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../css/cart.css" type="text/css" media='all'/>
     <link rel="stylesheet" href="../css/tabs.css" type="text/css" media="all" />
 </head>
 <body>
@@ -21,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Products</a>
@@ -39,13 +41,6 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Contact us</a>
             </li>
-
-            <li class="nav-item">
-                <button type="button" class="btn btn-primary mr-5" id="cart-button">
-                    Cart <span class="badge badge-light" id="cart-badge">0</span>
-                    <span class="sr-only">cart-items</span>
-                </button>
-              </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -53,57 +48,58 @@
           </form>
         </div>
       </nav>
+      
+      <div class="cart-main container content">
+            <div class="h4">Cart</div>
+            <span class="h6">Ready to checkout ...</span>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>
+            <tbody id="cart-table">
 
-      <div id="carouselExampleIndicators" data-interval="5000" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="../../res/img_lights_wide.jpg" alt="First slide">
+              <tr>
+                <th scope="row"><img src="https://i.pinimg.com/564x/f7/12/98/f71298f873880592c4202e19a06da3a9.jpg" alt="c_image" width="40" height="30"/></th>
+                <td>
+                    Solar Package
+                </td>
+                <td>
+                    R 23521.00
+                </td>
+                <td>
+                    <div class="qty-container">
+                        <input type="number" name="qty" class="q-input" value="0" />
+                        <div class="qty-buttons">
+                            <i class="bi bi-caret-up-fill q-b up"></i>
+                            <i class="bi bi-caret-down-fill q-b down"></i>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="remove-container">
+                        <i class="bi bi-trash"></i>
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="u-table">
+            <button class="checkout">
+                Proceed to checkout
+              </button>
+              <div class="total">
+                  <p>Total: R<span id="cart-total">23141</span></p>
+              </div>
           </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="../../res/img_nature_wide.jpg" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="../../res/lighthouse.jpg" alt="Third slide">
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+          
+
       </div>
-
-      <div class="container-fluid">
-        <div class="tabs-container">
-          <ul class="nav nav-tabs">
-            <li class="nav-item active-tab tab">
-              <a class="nav-link"  aria-current="page" href="#tab-content">Solar Packages</a>
-            </li>
-            <li class="nav-item tab">
-              <a class="nav-link" href="#tab-content">Inverter Packages</a>
-            </li>
-            <li class="nav-item tab">
-              <a class="nav-link" href="#tab-content">Generator Packages</a>
-            </li>
-            <li class="nav-item tab">
-              <a class="nav-link" href="#tab-content">Components</a>
-            </li>
-          </ul>
-
-          <div class="tab-content tab-content" id="tab-content">
-            
-          </div>
-        </div>
-      </div>
-
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -116,5 +112,6 @@
 <script type="text/javascript" src="../js/resources.js"></script>
 <script type="text/javascript" src="../js/views_generator.js"></script>
 <script type="text/javascript" src="../js/processor.js"></script>
+<script type="text/javascript" src="../js/cart.js"></script>
 
 </html>

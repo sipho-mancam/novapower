@@ -2,7 +2,7 @@
 --font:Arial, Helvetica, sans-serif;
 }
 
-.card{
+.cust-card{
     /* border:1px solid black; */
     border-radius: 2vh;
     display:flex;
@@ -12,11 +12,12 @@
     padding-bottom: 5px;
     background-color:rgb(250, 255, 255);
     padding:1.5vh;
-    margin:0.5vh
+    margin:0.8vh;
+    max-width: 300px;
 
 }
 
-.card:hover{
+.cust-card:hover{
     transition: transform 0.5s ease-in-out;
     transform: scale(1.01);
 }
@@ -30,12 +31,6 @@
     overflow:hidden;
     margin-bottom:1vh;
 
-}
-
-
-hr{
-    margin-top:-1vh;
-    margin-bottom: -1vh;
 }
 
 h4{
@@ -71,16 +66,15 @@ h4{
 }
 
 .h-buttons{
-    margin-top: 20;
     /* border:1px solid black; */
-    height: 3vh;
-    padding-top: 1vh;
+    height: fit-content;
+    padding: 0.5vh;
     width: 50%;
     text-decoration: none;
     text-align: center;
     border-radius: 3vh;
     margin:1px 0 1px 0;
-    border:2px solid red;
+    border:2px solid rgb(0, 204, 255);
     color:rgb(109, 5, 5);
     font-weight: bold;
     font-family:Arial, Helvetica, sans-serif;
@@ -91,18 +85,8 @@ h4{
 
 .h-buttons:hover{
     transition: background-color 0.5s ease-in;
-    background-color: red;
+    background-color: rgb(0, 204, 255);
     border:2px solid white;
     color:white;
 }
 
-.h-buttons-pressed{
-    transition: background-color 0.5s ease-in;
-    background-color: red;
-    border:2px solid white;
-    color:white;
-}
-
-.h-buttons-pressed:hover{
-    color:rgb(109, 5, 5);
-}
