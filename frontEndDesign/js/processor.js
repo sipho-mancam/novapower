@@ -90,6 +90,12 @@ function openCart(event){
     }   
 }
 
+window.addEventListener('load', function(event){
+    let ycoord = document.getElementById('tab-cont').scrollHeight;
+    this.setTimeout(function(e){
+        scrollTo(0,(ycoord-0.5*ycoord))
+    }, 5000);
+});
 
 
 

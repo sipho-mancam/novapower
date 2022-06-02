@@ -64,7 +64,7 @@ function get_row_view(cart_obj){
             </td>
             <td>
                 <div class="qty-container">
-                    <input type="number" name="qty" class="q-input" value="${cart_obj['qty']}" />
+                    <input type="text" name="qty" class="q-input" value="${cart_obj['qty']}" />
                     <div class="qty-buttons">
                         <i class="bi bi-caret-up-fill q-b up"></i>
                         <i class="bi bi-caret-down-fill q-b down"></i>
