@@ -1,3 +1,17 @@
+
+function get_package_groups(data_json){
+    let _keys = Object.keys(data_json);
+    let temp = null;
+    let package_groups_list = []
+    for(let i=0; i<_keys.length; i++){
+        temp = new PackageGroup(data_json[_keys[i]]);
+        temp['id'] = _keys[i];
+        package_groups_list.push(temp);
+    }
+    return package_groups_list
+}
+
+
 let solar_inv_bat = {
     "package 0": {
         "item 0": {
@@ -3665,7 +3679,6 @@ let solar_inv_bat = {
         "total-price": 28545.25
     }
 }
-
 let data_no_solar ={
     "packag 0": {
         "item 0": {
@@ -6684,7 +6697,6 @@ let data_no_solar ={
     }
 }
 
-
 let packages_data = {
     "inverter+battery":{
         "title":"Inverter - Battery",
@@ -6707,8 +6719,6 @@ let packages_data = {
         "data":{}
     }
 }
-
-
 let images = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfamdwzmQLtnZHPjPNaiukcPqmeLMsGAVbLA&usqp=CAU",
     "https://s.alicdn.com/@sc04/kf/Hfbd2edb28f02404da030c89ae61a1ef9H.jpg_220x220.jpg",
@@ -6716,23 +6726,28 @@ let images = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh1WiV3y5FkLlQnOvj72qJQuh2XABs5R-5kQ&usqp=CAU",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlUAR4AVkGPVSwN6WNOAbktxmrl9eM-Xy9lQ&usqp=CAU"
 ]
-
-
-let package_groups = []
-let keys = Object.keys(packages_data)
-for(let i=0; i<keys.length; i++){
-    temp = PackageGroup(packages_data[keys[i]])
-    package_groups.push(temp)
+let groups_maps = {
+    'Solar Packages':'solar+inverter+battery',
+    'Inverter Packages':'inverter+battery',
+    'Generator Packages':['generator+diesel', 'generator+petrol']
 }
-
-
-
-
-let pack_inv_bat = get_packages(packages_data['inverter+battery'])
-let pack_solar_inv_bat = get_packages(packages_data['solar+inverter+battery']['data'])
-
-
-
+let view = document.getElementById('tab-content')
 let add_to_cart_buttons = document.getElementsByClassName('add-to-cart')
 let view_more_buttons = document.getElementsByClassName('view-more-buttons')
 let cart = new Cart([])
+let tabs = document.getElementsByClassName('tab')
+let current_tab = tabs[0]
+let tab_content = document.getElementById('tab-content')
+let package_groups = get_package_groups(packages_data);
+let current_list = package_groups[1].get_package_list()
+let cart_badge = document.getElementById('cart-badge')
+let cart_button = document.getElementById('cart-button')
+let qty_buttons = document.getElementsByClassName('q-b')
+let qty_buttons_down = null;
+let qty_buttons_up = null;
+let cart_table = null
+let cart_total = null
+
+
+
+
