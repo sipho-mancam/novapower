@@ -1,0 +1,13 @@
+.features{
+    border: 1px solid black;
+    display:flex;
+    justify-content:center;
+    flex-flow: column;
+    padding:2vh;
+}
+
+.sec-title{
+    text-align:center;
+    border: 1px solid black;
+}
+
