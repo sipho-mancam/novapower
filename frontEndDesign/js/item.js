@@ -111,6 +111,7 @@ class Cart{
         if(this.cart_list.includes(item)){
            let index = this.cart_list.indexOf(item);
            this.cart_objects[index]['qty']++;
+           console.log(index)
            return;
         }
         this.parse_to_cart_i(item)
@@ -118,14 +119,25 @@ class Cart{
     }
 
     get_price(){
+        this.total_price = 0;
         for(let i=0; i<this.cart_list.length; i++){
-            this.total_price += this.cart_list[i].get_total_price()
+            this.total_price += (this.cart_list[i].get_total_price()*this.cart_objects[i]['qty'])
         }
-        console.log(this.total_price)
     }
 
     remove_from_cart(id){
         let from = this.cart_list.indexOf(id);
         this.cart_list.splice(from, 1);
+    }
+    search_by_name(name, price){
+        for(let i=0; i<this.cart_objects.length; i++){
+            if(name == this.cart_objects[i]['name'] && price == this.cart_objects[i]['price']){
+                return this.cart_objects[i]
+            }
+        }
+    }
+
+    update_price(){
+        this.get_price();
     }
 }
