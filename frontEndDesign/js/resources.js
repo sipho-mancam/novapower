@@ -6747,6 +6747,7 @@ let qty_buttons_down = null;
 let qty_buttons_up = null;
 let cart_table = null
 let cart_total = null
+let current_cart_obj = null;
 
 
 

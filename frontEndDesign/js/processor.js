@@ -80,11 +80,8 @@ function openCart(event){
         event.preventDefault()
 
         window.sessionStorage.setItem('cart', JSON.stringify(cart))
-        window.location.pathname = window.location.pathname.replace('index.html','cart.html');
-        
-        for(let i =  0; i<qty_buttons.length; i++){
-            
-        }
+        window.location.pathname = window.location.pathname.replace('store.html','cart.html');
+
     }catch(err){
         console.log(err)
     }   

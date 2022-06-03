@@ -1,20 +1,52 @@
-
+let tab_row = document.getElementsByTagName('tr')
 window.addEventListener('load', function(e){
     qty_buttons_up = this.document.getElementsByClassName('up')
     qty_buttons_down = this.document.getElementsByClassName('down')
     let res = window.sessionStorage.getItem('cart')
+
+    console.log(JSON.parse(res))
     cart = deserialiseCart(JSON.parse(res))
 
-    console.log(cart)
     cart_table = this.document.getElementById('cart-table')
     cart_total = this.document.getElementById('cart-total')
     update_table(cart.cart_objects, cart_table)
     update_price(cart, cart_total)
+
+
     for(let i=0; i<qty_buttons_up.length; i++){
         qty_buttons_up[i].addEventListener('click', incrementQty)
         qty_buttons_down[i].addEventListener('click', decrementQty)
+        
+    }
+
+    for(let j=0; j<tab_row.length; j++){
+        tab_row[j].addEventListener('click', function(e){
+            let name = e.currentTarget.children[1].innerText;
+            let price = e.currentTarget.children[2].innerText.split(' ')[1]
+            price = parseFloat(price)
+            current_cart_obj = cart.search_by_name(name, price)
+
+            if(e.target.className.split(' ').includes('up')){
+                try{
+                    current_cart_obj['qty']++;
+                    cart.update_price()
+                    update_price(cart, cart_total)
+                }
+                catch(err){console.log(err)}
+
+            }
+            else if(e.target.className.split(' ').includes('down')){
+                try{
+                    current_cart_obj['qty'] = (current_cart_obj['qty']-1)>=0?current_cart_obj['qty']-1:0;
+                    cart.update_price()
+                    update_price(cart, cart_total)
+                }
+                catch(err){console.log(err)}
+            }  
+        })
     }
 })
+
 
 
 
@@ -25,7 +57,8 @@ function incrementQty(event){
     let inp = parent_parent.children[0]
     let val = parseInt(inp.value);
     inp.value = val+1; // update screen, 
-    // let package = search_package()
+   
+    //update memory and price ...
 }
 
 function decrementQty(event){
@@ -35,6 +68,7 @@ function decrementQty(event){
     let inp = parent_parent.children[0]
     let val = parseInt(inp.value);
     inp.value = val-1>0?val-1:0;
+    //update memory and price ...
 }
 
 function deserialisePackages(package){
@@ -46,7 +80,10 @@ function deserialiseCart(cart){
     for(let i=0; i<cart.cart_list.length; i++){
         temp.push(deserialisePackages(cart.cart_list[i]))
     }
-    return new Cart(temp)
+    let t_cart = new Cart(temp)
+    t_cart.cart_objects = cart.cart_objects;
+    t_cart.update_price()
+    return t_cart
 }
 
 function get_row_view(cart_obj){

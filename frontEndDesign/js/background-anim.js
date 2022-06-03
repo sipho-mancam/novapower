@@ -117,7 +117,7 @@ mouseObject.id = 'mouse';
 
 let head = new AnimeObject(stage, 'yellow');
 head.addNode(mouseObject);
-head.generateObjects(15);
+head.generateObjects(20);
 
 for(let i=0; i<5; i++){
     let tempO = new AnimeObject(stage, 'rgba(110, 110, 110, 1)');
