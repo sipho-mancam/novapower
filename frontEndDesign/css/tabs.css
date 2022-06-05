@@ -2,9 +2,17 @@
     /* border:1px solid black; */
     display:flex;
     justify-content: center;
-    margin-top:2vh;
+    margin-top:10vh;
     flex-flow: column;
     background-color: rgb(253, 250, 250);
+}
+
+
+.products-heading{
+    color:rgb(240, 15, 15);
+    font-size: xx-large;
+    font-weight: bolder;
+    text-align: center;
 }
 
 .nav-tabs{

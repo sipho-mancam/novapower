@@ -1,24 +1,24 @@
 
 class Item{
-
     constructor(obj){
+        
         this._id = obj['_id'];
         this.class = obj['class'];
         this.description = obj['description'];
         this.img_url= obj['img_url'];
-        // this.index= obj['index'];
         this.price= obj['price'];
-        this.options= obj['options'];
+        this.options= obj['extra'];
         this.json_obj=obj;
+        this.brand = obj['brand'];
+        this.type = obj['type'];
+        this.size = obj['size'];
+        this.name = obj['name']
 
     }
     get_id(){return this._id}
     get_total_price(){ return this.price; }
     get_json(){ return this.json_obj; }
-    
-    get_elec_size(){
-        return this.options_object['elec-size']
-    }
+    get_elec_size(){return this.options_object['elec-size']}
     get_name(){return this.class}
 }
 
@@ -60,11 +60,14 @@ class PackageGroup{
         this.title = obj['title']
         this.count = obj['count']
         this.raw_data = obj['data']
+        console.log(this.raw_data)
         this.packages = this.get_packages(this.raw_data)
         this.id = obj['id']
     }
     
     get_packages(data){
+
+        
         let p_keys = Object.keys(data)
         let packages_list = []
         for (let i =0; i<p_keys.length; i++){
@@ -81,6 +84,7 @@ class PackageGroup{
     get_group_title(){return this.title;}
     get_id(){return this.id;}
 }
+
 
 class Cart{
     constructor(list){
@@ -111,7 +115,7 @@ class Cart{
         if(this.cart_list.includes(item)){
            let index = this.cart_list.indexOf(item);
            this.cart_objects[index]['qty']++;
-           console.log(index)
+        //    console.log(index)
            return;
         }
         this.parse_to_cart_i(item)
@@ -125,10 +129,20 @@ class Cart{
         }
     }
 
-    remove_from_cart(id){
-        let from = this.cart_list.indexOf(id);
-        this.cart_list.splice(from, 1);
+    remove_from_cart(cart_obj){
+        let price = cart_obj['price']
+        let name = cart_obj['name']
+        let res = this.search_by_name(name, price)
+
+        if (res != null){
+            let index = this.cart_objects.indexOf(res);
+            this.cart_objects.splice(index, 1);
+            this.cart_list.splice(index, 1); 
+            this.update_price()
+        }
+        
     }
+
     search_by_name(name, price){
         for(let i=0; i<this.cart_objects.length; i++){
             if(name == this.cart_objects[i]['name'] && price == this.cart_objects[i]['price']){

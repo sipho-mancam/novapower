@@ -1,4 +1,12 @@
 
+body{
+    color:white;
+    background-repeat: no-repeat;
+    background-blend-mode: exclusion;
+    /* background-size: contain; */
+    background-image: url('https://wallpaperaccess.com/full/2338264.jpg');
+
+}
 
 
 .qty-container{
@@ -62,5 +70,14 @@
 
 .total p{
     font-weight: bold;
-    color:red;
+    color:rgb(248, 225, 19);
+}
+
+.d-item{
+    color:rgb(255, 255, 255);
+
+}
+
+.d-item:hover{
+    color:rgb(146, 248, 78);
 }

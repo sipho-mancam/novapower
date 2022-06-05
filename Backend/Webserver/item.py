@@ -8,27 +8,32 @@ class Item:
     def __init__(self, id:str='', cl:str='', price:float=0.0, desc:str='', img_url:str='', 
                 _obj:list|dict=None, **kwargs) -> None:
         self.__id = id
-        self.__cl = cl
+        self.__brand = cl
         self.__price = price
-        self.__description = desc
+        self.__type = desc
         self.__img_url = img_url
         self.__options = dict()
+        self.__obj_raw = _obj
+        self.__size = {}
 
         if _obj is not None:
             if type(_obj) is dict:
                 for _key in _obj.keys():
                     if _key == CONSTANTS.ID:
                         self.__id  = str(_obj[_key])
-                    elif _key == CONSTANTS.CLASS:
+                    elif _key == CONSTANTS.BRAND:
                         self.__cl = _obj[_key]
                     elif _key == CONSTANTS.PRICE:
                         self.__price = _obj[_key]
-                    elif _key == CONSTANTS.DESCRIPTION:
-                        self.__description = _obj[_key]
+                    elif _key == CONSTANTS.TYPE:
+                        self.__type = _obj[_key]
                     elif _key == CONSTANTS.IMG_URL:
                         self.__img_url = _obj[_key]
                     elif _key == CONSTANTS.OPTIONS:
                         self.__options = _obj[_key]
+                    elif _key == CONSTANTS.SIZE:
+                        self.__size = _obj[_key]
+
 
             elif type(_obj) is list and len(_obj)>=5:
                 for pair in _obj:
@@ -54,14 +59,8 @@ class Item:
     def get_price(self):return self.__price
     
     def to_dict(self)->dict:
-        return{
-            CONSTANTS.ID:self.__id,
-            CONSTANTS.CLASS:self.__cl,
-            CONSTANTS.PRICE:self.__price,
-            CONSTANTS.DESCRIPTION:self.__description,
-            CONSTANTS.IMG_URL:self.__img_url,
-            CONSTANTS.OPTIONS:self.__options
-        }
+        return self.__obj_raw
+        
     def to_json(self)->str:
         return str(self.to_dict())
     

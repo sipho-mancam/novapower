@@ -5,6 +5,7 @@ function get_package_group_views(package_group, view){
         for(let i=0; i<package_group.get_package_list().length; i++){
             view.innerHTML += get_card_html(package_group.get_package_list()[i],
                                         package_group.get_group_title());
+
         
         }
     }catch(err){
@@ -12,10 +13,26 @@ function get_package_group_views(package_group, view){
     }
 }
 
+function get_item(package){
+    let item_list = package.item_list;
+    let v = '<ul>';
+    let temp = ''
+    let keys = item_list;
+    for(let k=0; k<keys.length; k++){
+        if(item_list[k].name){
+            temp = `<li>${item_list[k].name} - ${item_list[k].size[(Object.keys(item_list[k].size))[0]]['value']} ${item_list[k].size[(Object.keys(item_list[k].size))[0]]['unit']}</li>`
+            v += temp
+        }
+    }
+    v += '</ul>';
+
+    return v
+
+}
+
 
 function get_card_html(package, p_type){
     return(
-        
         `<div class="cust-card">
               <div class ="image">
                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfamdwzmQLtnZHPjPNaiukcPqmeLMsGAVbLA&usqp=CAU" width=200 height=200 alt="p-h" />
@@ -25,9 +42,8 @@ function get_card_html(package, p_type){
                   <h4>${p_type}</h4>
                   <hr />
                   <span>
-                    This backup power system will give you x-hours of backup power under average
-                    household usage conditions like plugging a stove,
-                    fridge etc..
+                    In this package we have: <br />
+                    ${get_item(package)}
                   </span>
                   <p class='price'>R ${package.get_total_price()}*</p>
               </div>
@@ -38,5 +54,4 @@ function get_card_html(package, p_type){
           </div>`
     )
 }
-
 

@@ -1,0 +1,45 @@
+{
+    "solar": [
+        {
+            "item 0": {
+                "name": "PartNo",
+                "pacakge-group": "Battery",
+                "brand": "VictronEnergy",
+                "type": "Lithium",
+                "size": {
+                    "voltage": {
+                        "value": 12,
+                        "unit": "V"
+                    },
+                    " energy": {
+                        "value": 300,
+                        "unit": "kWh"
+                    }
+                },
+                "price": 0,
+                "extras": "size:3,type:2"
+            },
+            "item 1": {
+                "name": "solar",
+                "pacakge-group": "solar",
+                "brand": "JA Solar",
+                "type": "Poly..",
+                "size": {
+                    "Power": {
+                        "value": 300,
+                        "unit": "W"
+                    }
+                },
+                "price": 0,
+                "extras": 0
+            }
+        }
+    ],
+    "inverter": [],
+    "battery": [],
+    "controller": [],
+    "rack": [],
+    "labour": [],
+    "cable": [],
+    "generator": []
+}

@@ -3,7 +3,7 @@ from mongo_broker import *
 from item import Item
 import CONSTANTS
 
-class PManager:
+class DBManager:
     def __init__(self,client, db=None, collection=None, query=None) -> None:
         self.__h_client = client
         self.__db=db
@@ -117,10 +117,10 @@ def setup():
     ]
 
     client = connect(CONSTANTS.D_HOST, CONSTANTS.D_PORT)
-    p_manager = PManager(client, client[CONSTANTS.DB_MAIN], CONSTANTS.COL_MAIN, {})
+    db_manager = DBManager(client, client[CONSTANTS.DB_MAIN], CONSTANTS.COL_MAIN, {})
 
     for db_name in db_list:
-        p_manager.register_db(client[db_name])
-    
-    return p_manager, client
+        db_manager.register_db(client[db_name])
+        
+    return db_manager, client
 

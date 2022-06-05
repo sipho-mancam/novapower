@@ -4,7 +4,7 @@ window.addEventListener('load', function(e){
     qty_buttons_down = this.document.getElementsByClassName('down')
     let res = window.sessionStorage.getItem('cart')
 
-    console.log(JSON.parse(res))
+    // console.log(JSON.parse(res))
     cart = deserialiseCart(JSON.parse(res))
 
     cart_table = this.document.getElementById('cart-table')
@@ -19,12 +19,21 @@ window.addEventListener('load', function(e){
         
     }
 
+    window.sessionStorage.setItem('cart', JSON.stringify(cart))
+
     for(let j=0; j<tab_row.length; j++){
         tab_row[j].addEventListener('click', function(e){
             let name = e.currentTarget.children[1].innerText;
             let price = e.currentTarget.children[2].innerText.split(' ')[1]
             price = parseFloat(price)
             current_cart_obj = cart.search_by_name(name, price)
+
+            if(e.target.className.split(' ').includes('d-item')){
+                cart.remove_from_cart(current_cart_obj);
+                this.style.display = 'None';
+                update_price(cart, cart_total)
+
+            } 
 
             if(e.target.className.split(' ').includes('up')){
                 try{
@@ -41,11 +50,17 @@ window.addEventListener('load', function(e){
                     cart.update_price()
                     update_price(cart, cart_total)
                 }
-                catch(err){console.log(err)}
-            }  
+                catch(err){
+                    console.log(err)
+                }
+            }
+
+            window.sessionStorage.setItem('cart', JSON.stringify(cart))
+
         })
     }
 })
+
 
 
 
@@ -110,7 +125,7 @@ function get_row_view(cart_obj){
             </td>
             <td>
                 <div class="remove-container">
-                    <i class="bi bi-trash"></i>
+                    <i class="bi bi-trash d-item" ></i>
                 </div>
             </td>
         </tr>

@@ -1,8 +1,11 @@
 function add_to_cart(e){
     // Search for the item using id ...
+    // console.log('I run ... ad to cart')
     e.preventDefault() 
     let _search_key = e.path[0].id
     let package = search_package(current_list, _search_key)
+
+    // console.log('Current -->\n',current_list)
 
     if (package) {
         cart.add_to_cart(package);
@@ -11,11 +14,11 @@ function add_to_cart(e){
     else{
         alert("Couldn't find the package ...")
     }
-    console.log(cart)
     // update the cart icon with the current number of items in the cart
 }
 
 function add_to_cart_init(){
+    console.log("I run add_to_cart_init")
     try{
         for(let i = 0; i < add_to_cart_buttons.length; i++){
             add_to_cart_buttons[i].addEventListener('click', add_to_cart)
@@ -80,7 +83,11 @@ function openCart(event){
         event.preventDefault()
 
         window.sessionStorage.setItem('cart', JSON.stringify(cart))
-        window.location.pathname = window.location.pathname.replace('store.html','cart.html');
+        let st = window.location.pathname
+        window.location.pathname = window.location.pathname.replace(st.match('html/[a-zA-Z0-9]+.html')[0].split('/')[1],'cart.html');
+
+        console.log(window.location.pathname.match('html/[a-zA-Z0-9]+.html')[0])
+
 
     }catch(err){
         console.log(err)
@@ -88,15 +95,24 @@ function openCart(event){
 }
 
 window.addEventListener('load', function(event){
-    let ycoord = document.getElementById('tab-cont').scrollHeight;
-    this.setTimeout(function(e){
-        scrollTo(0,(ycoord-0.5*ycoord))
-    }, 5000);
+    console.log('PackageGroups\n',package_groups)
+    // current_list = package_groups[1].get_package_list()
+    // get_package_group_views(search_package_group(package_groups,groups_maps[0]), tab_content)
+    // let res = this.sessionStorage.getItem('cart')
+    
+    cart_badge.addEventListener('click', openCart)
+    // console.log(res)
+    // if(res){
+    //     // alert('Cart has stuff..')
+    // }
+    // else{
+    //     // this.alert('cart is empty')
+    // }
+
+
+
+  
 });
 
-
-
-
 init_tabs()
-get_package_group_views(search_package_group(package_groups,groups_maps['Solar Packages']), tab_content)
 add_to_cart_init()

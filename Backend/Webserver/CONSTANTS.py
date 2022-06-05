@@ -1,11 +1,15 @@
 
 # Item constants
 ID = '_id'
-CLASS = 'class'
+CLASS = 'name'
 PRICE = 'price'
 IMG_URL='img_url'
-DESCRIPTION = 'description'
-OPTIONS='options'
+DESCRIPTION = 'package-group'
+OPTIONS='extras'
+BRAND='brand'
+SIZE='size'
+TYPE='type'
+
 
 # class definitions
 

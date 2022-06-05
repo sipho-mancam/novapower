@@ -29,11 +29,6 @@ class Package:
         d['total-price'] = self.__total_price
         return d
     
-    # def __str__(self):
-    #     return str([
-    #         i.to_json() for i in self.__items_list
-    #     ])
-    
         
 
 class Subpackage:
@@ -98,7 +93,6 @@ class Subpackage:
                 self.next()
                 return False
 
-
         
 class PackageHandler:
     def __init__(self, _sub_packages:dict=None):
@@ -142,38 +136,5 @@ class PackageHandler:
             first_sub.pack(temp)
             self.__package_count +=1
             self.__packages.append(temp)
-        
         return self.__packages
            
-
-# def generate_mock_items(n = 1):
-#     l = list()
-#     res = dict()
-#     c_list = ['solar', 'battery', 'inverter', 'charger', 'racking', 'cabling']
-#     if n > 1:
-#         for i in c_list:
-#             l = list()
-#             for j in range(10):
-#                 l.append(Item(
-#                     _obj={
-#                     CONSTANTS.ID: str(random()),
-#                     CONSTANTS.CLASS:i,
-#                     CONSTANTS.PRICE:random()*1000,
-#                     CONSTANTS.IMG_URL:'https://some-image-server/'+str(random()),
-#                     CONSTANTS.OPTIONS:{}
-#                     }))
-#             res[i] = l
-#         return res
-#     else:
-#         return Item(
-#                 _obj={
-#                 CONSTANTS.ID: str(randbytes(32)),
-#                 CONSTANTS.CLASS:choice(c_list),
-#                 CONSTANTS.PRICE:random()*1000,
-#                 CONSTANTS.IMG_URL:'https://some-image-server/'+str(randbytes(32)),
-#                 CONSTANTS.OPTIONS:{}
-#                 }
-#             ).to_dict()
-
-
-

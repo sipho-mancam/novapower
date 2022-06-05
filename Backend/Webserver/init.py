@@ -6,34 +6,19 @@
 # set up the validator  qw
 
 from mongo_broker import *
-from package_manager import PManager
+from package_manager import DBManager
 import CONSTANTS
-from App import get_app_instance
+from utility import *
+from packages import *
+from excel_driver import *
 
 
+def setup_input(xl_path, sheet_name, keys=[]):
+    data = xl_to_json(xl_path, sheet=sheet_name)
+    if len(keys)>0:
+        d_table = parse_json(data, keys=keys)
+    else: 
+        d_table = parse_json(data)
+    package_handler = PackageHandler(d_table)
 
-class Main:
-    def __init__(self, config:dict=None)->None:
-        self.__package_manager = None
-        self.__app = None
-        self.__db_client =None
-    
-    def setup(self):
-        self.__db_client = connect(D_HOST, D_PORT)
-        
-        if self.__db_client is not None:
-            self.__package_manager = PManager(self.__db_client, 
-                                            self.__db_client[CONSTANTS.DB_MAIN],
-                                            CONSTANTS.COL_MAIN,
-                                            {})
-            print("[+] Package manager setup with default values - Mian DB and Collection")
-        self.__app = get_app_instance()
-        self.init()
-
-    def init(self):
-        self.__app.run(host=CONSTANTS.HOST, debug=CONSTANTS.DEBUG)
-
-
-main = Main()
-
-main.setup()
+    return package_handler

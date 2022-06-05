@@ -2,42 +2,38 @@ from flask import Flask, make_response, request, jsonify
 from flask_cors import CORS
 from package_manager import *
 import CONSTANTS
-
-
-
+from packages import *
+from init import *
+import pprint
 
 app = Flask(__name__)
 CORS(app)
 
-p_manager, client = setup()
+db_manager, client = setup()
 
-# p_manager.register_db(client[CONSTANTS.DB_ITEMS])
+solar_package_handler = setup_input('./input-data.xlsx', 'Sheet1', keys=['solar', 'inverter', 'battery', 'cable', 'rack']);
+inverter_package_handler = setup_input('./input-data.xlsx', 'Sheet1', keys=['inverter', 'battery', 'cable', 'rack'])
+generator_package_handler = setup_input('./input-data.xlsx','Sheet1', keys=['generator'])
 
-# serving index data  we have to server everything in the db
+
+solar_package_handler.generate_package(10)
+inverter_package_handler.generate_package(10)
+generator_package_handler.generate_package(3)
+
+package_table = {
+    'generator':generator_package_handler.get_summary(),
+    'solar':solar_package_handler.get_summary(),
+    'inverter':inverter_package_handler.get_summary()
+}
 
 
-@app.route('/item/<collection_name>', methods=['GET', 'OPTIONS'])
-def index_data(collection_name):
-    counter = int(0)
-    print(collection_name)
-    if collection_name in CONSTANTS.valid_collection_list:
-        res = p_manager.read_all([CONSTANTS.DB_ITEMS], [collection_name])
-        jres = {}
-        for i in res[CONSTANTS.DB_ITEMS][collection_name]:
-            item = i.to_dict() 
-            item['index'] = counter
-            jres['item '+str(counter)] = item
-            counter += 1
-     
-        # return 
-        if jres is not None: return jres
-        else: return 'items not found'
-    return 'collection is not in the list'
-
+@app.route('/packages/all', methods=['GET', 'OPTIONS'])
+def index_data():
+    return package_table
 
 
 if __name__ == '__main__':
-    app.run(host=CONSTANTS.HOST,debug=True)
+    app.run(host=CONSTANTS.HOST, debug=True)
 
 
 
