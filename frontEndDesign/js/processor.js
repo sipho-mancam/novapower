@@ -84,7 +84,7 @@ function openCart(event){
 
         window.sessionStorage.setItem('cart', JSON.stringify(cart))
         let st = window.location.pathname
-        window.location.pathname = window.location.pathname.replace(st.match('html/[a-zA-Z0-9]+.html')[0].split('/')[1],'cart.html');
+        window.location.pathname = window.location.pathname.replace(st.match('/[a-zA-Z0-9]+.html')[0].split('/')[1],'cart.html');
 
         console.log(window.location.pathname.match('html/[a-zA-Z0-9]+.html')[0])
 

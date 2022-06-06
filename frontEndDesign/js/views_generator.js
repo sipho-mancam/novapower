@@ -32,10 +32,11 @@ function get_item(package){
 
 
 function get_card_html(package, p_type){
+    console.log(images)
     return(
         `<div class="cust-card">
               <div class ="image">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfamdwzmQLtnZHPjPNaiukcPqmeLMsGAVbLA&usqp=CAU" width=200 height=200 alt="p-h" />
+                  <img src="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
               </div>
               <div class="info">
                   <hr />
