@@ -11,9 +11,11 @@ CORS(app)
 
 db_manager, client = setup()
 
-solar_package_handler = setup_input('./input-data.xlsx', 'Sheet1', keys=['solar', 'inverter', 'battery', 'cable', 'rack']);
-inverter_package_handler = setup_input('./input-data.xlsx', 'Sheet1', keys=['inverter', 'battery', 'cable', 'rack'])
-generator_package_handler = setup_input('./input-data.xlsx','Sheet1', keys=['generator'])
+spread_sheet = './input-data.xlsx'
+
+solar_package_handler = setup_input(spread_sheet, 'Sheet1', keys=['solar', 'inverter', 'battery', 'cable', 'rack']);
+inverter_package_handler = setup_input(spread_sheet, 'Sheet1', keys=['inverter', 'battery', 'cable', 'rack'])
+generator_package_handler = setup_input(spread_sheet,'Sheet1', keys=['generator'])
 
 
 solar_package_handler.generate_package(15)

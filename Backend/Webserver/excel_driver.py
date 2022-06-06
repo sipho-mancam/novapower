@@ -37,7 +37,7 @@ def clean_data(df):
 
 def parse_size(size:str)->dict:
     res = dict()
-    # name-unit:value, ...
+    # name-unit:value, ... 
     s = size.split(',') # seperate the different sizes ...
     for _s in s:
         try:
@@ -53,7 +53,6 @@ def parse_size(size:str)->dict:
 
 
 def parse_excel_to_dict(data_frame):
-
     clean_data(data_frame)
     items_collection ={
         'solar':[], 
@@ -95,6 +94,8 @@ def xl_to_json(xl_file, sheet):
     write_json('data-1.json', js)
 
     return js
+
+
 
 # print(df.columns)
 
