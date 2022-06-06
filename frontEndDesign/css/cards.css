@@ -13,7 +13,8 @@
     background-color:rgb(250, 255, 255);
     padding:1.5vh;
     margin:0.8vh;
-    max-width: 300px;
+    max-width: 340px;
+    min-width:320px;
 
 }
 
