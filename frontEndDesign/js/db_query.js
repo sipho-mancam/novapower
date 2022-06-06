@@ -28,7 +28,7 @@ xhttp.addEventListener('readystatechange',function(){
     } 
 })
 
-xhttp.open('GET', 'http://localhost:5000/packages/all');
+xhttp.open('GET', 'https://novapower.herokuapp.com/packages/all');
 xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
 xhttp.send();
 
