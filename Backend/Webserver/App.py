@@ -16,8 +16,8 @@ inverter_package_handler = setup_input('./input-data.xlsx', 'Sheet1', keys=['inv
 generator_package_handler = setup_input('./input-data.xlsx','Sheet1', keys=['generator'])
 
 
-solar_package_handler.generate_package(10)
-inverter_package_handler.generate_package(10)
+solar_package_handler.generate_package(15)
+inverter_package_handler.generate_package(15)
 generator_package_handler.generate_package(3)
 
 package_table = {
