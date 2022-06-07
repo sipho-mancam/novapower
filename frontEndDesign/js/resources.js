@@ -46,10 +46,11 @@ let packages_data = {
         "title":"Generator",
         "count":20,
         "data":generator,
-        'images':['https://www.adendorff.co.za/wp-content/uploads/2017/05/MGENER-090-NEW.jpg',
+        'images':[
+                'https://www.adendorff.co.za/wp-content/uploads/2017/05/MGENER-090-NEW.jpg',
                 'https://www.adendorff.co.za/wp-content/uploads/2019/12/MGENER-220-NEW.jpg',
                 'https://media.takealot.com/covers/35319989/6009605021476-zoom.jpg',
-                'https://www.adendorff.co.za/wp-content/uploads/2018/01/MGENER-201-NEW.jpg',
+                'https://www.adendorff.co.za/wp-content/uploads/2018/01/MGENER-201-NEW.jpg'
                 ]
     }
 }
