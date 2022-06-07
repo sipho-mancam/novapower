@@ -87,5 +87,6 @@ let cart_total = null
 let current_cart_obj = null;
 let overlay = document.getElementById('view-detail')
 let close_overlay = document.getElementById('close-overlay')
-
-console.log(overlay)
+let order_button = document.getElementById('order-button')
+let order_form = document.getElementById('order-form')
+let close_order_form = document.getElementById('close-order-form')

@@ -20,6 +20,8 @@ window.addEventListener('load', function(e){
     }
 
     window.sessionStorage.setItem('cart', JSON.stringify(cart))
+    order_button.addEventListener('click', openOrderForm)
+    close_order_form.addEventListener('click', closeOrderForm)
 
     for(let j=0; j<tab_row.length; j++){
         tab_row[j].addEventListener('click', function(e){
@@ -56,12 +58,18 @@ window.addEventListener('load', function(e){
             }
 
             window.sessionStorage.setItem('cart', JSON.stringify(cart))
-
+            
         })
     }
 })
 
+function openOrderForm(e){
+    order_form.style.display = 'flex'
+}
 
+function closeOrderForm(e){
+    order_form.style.display = 'none'
+}
 
 
 

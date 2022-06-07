@@ -123,11 +123,13 @@ function close(e){
     overlay.style.display = 'none'
 }
 
+
+
 window.addEventListener('load', function(event){
-   
     cart_badge.addEventListener('click', openCart)
     close_overlay.addEventListener('click', close)
     overlay = document.getElementById('view-detail')
+
 });
 
 init_tabs()
