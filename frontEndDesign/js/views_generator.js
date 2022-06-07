@@ -4,7 +4,7 @@ function get_package_group_views(package_group, view){
         view.innerHTML = ''
         for(let i=0; i<package_group.get_package_list().length; i++){
             view.innerHTML += get_card_html(package_group.get_package_list()[i],
-                                        package_group.get_group_title());
+                                        package_group.get_group_title(), package_group.images);
         }
     }catch(err){
         console.log(err)
@@ -26,11 +26,12 @@ function get_item(package){
     return v
 }
 
-function get_card_html(package, p_type){
+function get_card_html(package, p_type, imgs=null){
+  
     return(
         `<div class="cust-card">
               <div class ="image">
-                  <img src="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
+                  <img  src="${imgs[Math.ceil(Math.random()*(imgs.length-1))]}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
               </div>
               <div class="info">
                   <hr />

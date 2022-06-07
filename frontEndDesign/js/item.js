@@ -63,6 +63,7 @@ class PackageGroup{
         console.log(this.raw_data)
         this.packages = this.get_packages(this.raw_data)
         this.id = obj['id']
+        this.images= obj['images']
     }
     
     get_packages(data){

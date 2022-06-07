@@ -22,17 +22,35 @@ let packages_data = {
     "inverter+battery":{
         "title":"Inverter - Battery",
         "count":20,
-        "data":inverter_packages
+        "data":inverter_packages,
+        'images':['https://www.solar-shop.co.za/1741/sunsynk-5kw-inverter-hubble-li-ion-5kwh-package-solar-ready.jpg',
+                'https://www.victronenergy.com/upload/products/multiplus_nw.png',
+                'https://electrical-compliance-certificate.co.za/wp-content/uploads/inverter_solar_package.png',
+                'https://www.mobile-solarpower.com/uploads/1/2/9/6/12964626/fireshot-capture-141-6500w-48v-solar-charge-inverter-parallel-wifi-monitor-ul1741-listed-sungoldpower-com_orig.png'
+                ]
+
     },
     "solar+inverter+battery":{
         "title":"Solar panels, Inverters and Battery",
         "count":20,
-        "data":solar_packages
+        "data":solar_packages,
+        'images':[
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfamdwzmQLtnZHPjPNaiukcPqmeLMsGAVbLA&usqp=CAU",
+            "https://s.alicdn.com/@sc04/kf/Hfbd2edb28f02404da030c89ae61a1ef9H.jpg_220x220.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoG7SL03bsXQod1gkOHLq-nappFtr7HymFAg&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh1WiV3y5FkLlQnOvj72qJQuh2XABs5R-5kQ&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlUAR4AVkGPVSwN6WNOAbktxmrl9eM-Xy9lQ&usqp=CAU"
+        ]
     },
     "generator":{
         "title":"Generator",
         "count":20,
-        "data":generator
+        "data":generator,
+        'images':['https://www.adendorff.co.za/wp-content/uploads/2017/05/MGENER-090-NEW.jpg',
+                'https://www.adendorff.co.za/wp-content/uploads/2019/12/MGENER-220-NEW.jpg',
+                'https://media.takealot.com/covers/35319989/6009605021476-zoom.jpg',
+                'https://www.adendorff.co.za/wp-content/uploads/2018/01/MGENER-201-NEW.jpg',
+                ]
     }
 }
 
