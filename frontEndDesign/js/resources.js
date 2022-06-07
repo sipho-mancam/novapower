@@ -67,3 +67,7 @@ let qty_buttons_up = null;
 let cart_table = null
 let cart_total = null
 let current_cart_obj = null;
+let overlay = document.getElementById('view-detail')
+let close_overlay = document.getElementById('close-overlay')
+
+console.log(overlay)

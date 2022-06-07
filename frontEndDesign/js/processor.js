@@ -17,11 +17,34 @@ function add_to_cart(e){
     // update the cart icon with the current number of items in the cart
 }
 
+function view_more(e){
+
+    e.preventDefault() 
+    let _search_key = e.path[0].id
+    _search_key = _search_key.split('+')[0]
+    let package = search_package(current_list, _search_key)
+
+    if (package) {
+        console.log(package)
+        overlay.innerHTML = get_view_more(package, package.name)
+        overlay.style.display='flex';
+        close_overlay = document.getElementById('close-overlay')
+        close_overlay.addEventListener('click', close)
+    }
+    else{
+        alert("Couldn't find the package ...")
+    }
+
+    
+
+}
+
 function add_to_cart_init(){
     console.log("I run add_to_cart_init")
     try{
         for(let i = 0; i < add_to_cart_buttons.length; i++){
             add_to_cart_buttons[i].addEventListener('click', add_to_cart)
+            view_more_buttons[i].addEventListener('click', view_more)
         }
         cart_button.addEventListener('click', openCart)
     }catch(err){
@@ -94,24 +117,17 @@ function openCart(event){
     }   
 }
 
+
+
+function close(e){
+    overlay.style.display = 'none'
+}
+
 window.addEventListener('load', function(event){
-    console.log('PackageGroups\n',package_groups)
-    // current_list = package_groups[1].get_package_list()
-    // get_package_group_views(search_package_group(package_groups,groups_maps[0]), tab_content)
-    // let res = this.sessionStorage.getItem('cart')
-    
+   
     cart_badge.addEventListener('click', openCart)
-    // console.log(res)
-    // if(res){
-    //     // alert('Cart has stuff..')
-    // }
-    // else{
-    //     // this.alert('cart is empty')
-    // }
-
-
-
-  
+    close_overlay.addEventListener('click', close)
+    overlay = document.getElementById('view-detail')
 });
 
 init_tabs()
