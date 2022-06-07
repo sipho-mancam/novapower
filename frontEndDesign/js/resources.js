@@ -20,7 +20,7 @@ let generator={}
 
 let packages_data = {
     "inverter+battery":{
-        "title":"Inverter - Battery",
+        "title":"Inverter Package",
         "count":20,
         "data":inverter_packages,
         'images':['https://www.solar-shop.co.za/1741/sunsynk-5kw-inverter-hubble-li-ion-5kwh-package-solar-ready.jpg',
@@ -31,7 +31,7 @@ let packages_data = {
 
     },
     "solar+inverter+battery":{
-        "title":"Solar panels, Inverters and Battery",
+        "title":"Solar Package",
         "count":20,
         "data":solar_packages,
         'images':[
@@ -88,5 +88,7 @@ let cart_total = null
 let current_cart_obj = null;
 let overlay = document.getElementById('view-detail')
 let close_overlay = document.getElementById('close-overlay')
-
-console.log(overlay)
+let order_button = document.getElementById('order-button')
+let order_form = document.getElementById('order-form')
+let close_order_form = document.getElementById('close-order-form')
+let featured_products = []

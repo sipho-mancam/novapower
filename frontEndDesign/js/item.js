@@ -1,7 +1,6 @@
 
 class Item{
     constructor(obj){
-        
         this._id = obj['_id'];
         this.class = obj['class'];
         this.description = obj['description'];
@@ -25,13 +24,14 @@ class Item{
 
 class Package{
     constructor(obj){
-        this.id = obj['_id']
+    this.id = obj['_id']
        this.total_price = obj['total-price'];
        this.obj = obj
        this.item_list = this.parse_items(); 
        this.state = true;
        this.name = obj['name'];
-       this.img_url = obj['img_url'];
+       this.img_url = obj['image'];
+       
     }
 
     toggle_state(){this.state = !this.state;}
@@ -60,10 +60,10 @@ class PackageGroup{
         this.title = obj['title']
         this.count = obj['count']
         this.raw_data = obj['data']
-        console.log(this.raw_data)
+        this.images= obj['images']
         this.packages = this.get_packages(this.raw_data)
         this.id = obj['id']
-        this.images= obj['images']
+        
     }
     
     get_packages(data){
@@ -75,6 +75,7 @@ class PackageGroup{
             let temp = data[p_keys[i]]
             temp['_id'] = p_keys[i]
             temp['name'] = this.title;
+            temp['image'] = this.images[Math.ceil(Math.random()*this.images.length-1)]
             let pack = new Package(temp)
             packages_list.push(pack)
         }

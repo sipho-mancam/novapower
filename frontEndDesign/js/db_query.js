@@ -7,6 +7,7 @@ function get_package_groups(data_json){
         temp = new PackageGroup(data_json[_keys[i]]);
         temp['id'] = _keys[i];
         package_groups_list.push(temp);
+        
     }
     return package_groups_list
 }
@@ -22,7 +23,17 @@ xhttp.addEventListener('readystatechange',function(){
         get_package_group_views(search_package_group(package_groups,groups_maps['Solar Packages']), tab_content)
         init_tabs()
         add_to_cart_init()
-        current_list = package_groups[0].get_package_list()
+        current_list = package_groups[1].get_package_list()
+        featured_products = []
+        for(let i=0; i<package_groups.length; i++){
+            try{
+                featured_products.push(package_groups[i].packages[0])
+                featured_products.push(package_groups[i].packages[1])
+            }catch(err){
+
+            }
+        }
+        
     }catch(err){
         console.log(err)
     } 

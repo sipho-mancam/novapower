@@ -8,6 +8,10 @@ body{
 
 }
 
+.table{
+    /* border:2px solid blueviolet; */
+    background-color: rgba(3, 3, 3, 0.404);
+}
 
 .qty-container{
     /* border:1px solid black; */
@@ -57,7 +61,7 @@ body{
 }
 
 .total{
-    border:1px solid black;
+    /* border:1px solid black; */
     width:fit-content;
     padding-bottom:0;
     display: flex;
@@ -65,7 +69,10 @@ body{
     border:0px solid grey;
     border-top:none;
     margin-left: auto;
-    background-color: rgba(0,0,0,.05);
+    background-color: rgba(3, 3, 3, 0.404);
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .total p{
@@ -80,4 +87,47 @@ body{
 
 .d-item:hover{
     color:rgb(146, 248, 78);
+}
+
+.checkout{
+    /* border:2px solid black; */
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color:rgb(0, 255, 234);
+}
+
+.cart-checkout{
+    height: 100vh;
+    position: fixed;
+    border: 4px solid black;
+    background-color: rgba(0,0,0,.5);
+    top:0;
+    left:0;
+    width: 100%;
+    display: none;
+    flex-flow: column;
+    justify-content:flex-start;
+}
+
+#form{
+    background-color: white;
+    color:black;
+    padding: 10px;
+    width: 70%;
+    border-radius: 5px;
+    margin:0 auto;
+    max-width:600px;
+    min-width: 400px;
+}
+
+.close{
+    background-color: red;
+}
+
+div p{
+    text-align: center;
+    font-size: larger;
+    text-decoration:underline;
+    font-weight: bolder;
+    padding: 10px;
 }

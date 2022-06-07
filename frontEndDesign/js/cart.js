@@ -20,6 +20,8 @@ window.addEventListener('load', function(e){
     }
 
     window.sessionStorage.setItem('cart', JSON.stringify(cart))
+    order_button.addEventListener('click', openOrderForm)
+    close_order_form.addEventListener('click', closeOrderForm)
 
     for(let j=0; j<tab_row.length; j++){
         tab_row[j].addEventListener('click', function(e){
@@ -56,12 +58,25 @@ window.addEventListener('load', function(e){
             }
 
             window.sessionStorage.setItem('cart', JSON.stringify(cart))
-
+            
         })
     }
 })
 
+function openOrderForm(e){
+    
+    if(cart.total_price>0){
+        order_form.style.display = 'flex'
+    }
+    else{
+        alert('Cart Empty ... please add items')
+    }
+    
+}
 
+function closeOrderForm(e){
+    order_form.style.display = 'none'
+}
 
 
 
@@ -106,7 +121,7 @@ function get_row_view(cart_obj){
         `
         <tr>
             <th scope="row">
-                <img src="https://i.pinimg.com/564x/f7/12/98/f71298f873880592c4202e19a06da3a9.jpg" alt="c_image" width="40" height="30"/>
+                <img src="${cart_obj['item']['img_url']}" alt="c_image" width="40" height="30"/>
             </th>
             <td>
                 ${cart_obj['name']}
