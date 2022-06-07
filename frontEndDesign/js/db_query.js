@@ -24,7 +24,7 @@ xhttp.addEventListener('readystatechange',function(){
         init_tabs()
         add_to_cart_init()
         current_list = package_groups[1].get_package_list()
-
+        featured_products = []
         for(let i=0; i<package_groups.length; i++){
             try{
                 featured_products.push(package_groups[i].packages[0])

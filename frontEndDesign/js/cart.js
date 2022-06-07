@@ -64,7 +64,14 @@ window.addEventListener('load', function(e){
 })
 
 function openOrderForm(e){
-    order_form.style.display = 'flex'
+    
+    if(cart.total_price>0){
+        order_form.style.display = 'flex'
+    }
+    else{
+        alert('Cart Empty ... please add items')
+    }
+    
 }
 
 function closeOrderForm(e){
@@ -114,7 +121,7 @@ function get_row_view(cart_obj){
         `
         <tr>
             <th scope="row">
-                <img src="https://i.pinimg.com/564x/f7/12/98/f71298f873880592c4202e19a06da3a9.jpg" alt="c_image" width="40" height="30"/>
+                <img src="${cart_obj['item']['img_url']}" alt="c_image" width="40" height="30"/>
             </th>
             <td>
                 ${cart_obj['name']}
