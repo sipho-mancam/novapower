@@ -11,6 +11,8 @@
 .view-details-card{
     width:50%;
     height:fit-content;
+    max-height: 80vh;
+    overflow-y: auto;
     background-color:white;
     border-radius: 5px;
     margin:0 auto;

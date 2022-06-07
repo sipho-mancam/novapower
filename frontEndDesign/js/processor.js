@@ -25,7 +25,6 @@ function view_more(e){
     let package = search_package(current_list, _search_key)
 
     if (package) {
-        console.log(package)
         overlay.innerHTML = get_view_more(package, package.name)
         overlay.style.display='flex';
         close_overlay = document.getElementById('close-overlay')
@@ -40,7 +39,6 @@ function view_more(e){
 }
 
 function add_to_cart_init(){
-    console.log("I run add_to_cart_init")
     try{
         for(let i = 0; i < add_to_cart_buttons.length; i++){
             add_to_cart_buttons[i].addEventListener('click', add_to_cart)
@@ -54,8 +52,11 @@ function add_to_cart_init(){
 }
 
 function search_package(pack_list, key){
-    let _key = key.split(' ')[1]
-    return pack_list[_key]
+    
+    for(let i=0; i<pack_list.length; i++){
+        if(pack_list[i].id == key) return pack_list[i]
+    }
+    return null
 }
 
 function search_package_group(p_list, id){
@@ -109,9 +110,6 @@ function openCart(event){
         let st = window.location.pathname
         window.location.pathname = window.location.pathname.replace(st.match('/[a-zA-Z0-9]+.html')[0].split('/')[1],'cart.html');
 
-        console.log(window.location.pathname.match('html/[a-zA-Z0-9]+.html')[0])
-
-
     }catch(err){
         console.log(err)
     }   
@@ -126,9 +124,14 @@ function close(e){
 
 
 window.addEventListener('load', function(event){
-    cart_badge.addEventListener('click', openCart)
-    close_overlay.addEventListener('click', close)
     overlay = document.getElementById('view-detail')
+    try{
+        cart_badge.addEventListener('click', openCart)
+        close_overlay.addEventListener('click', close)
+    }catch(err){
+
+    }
+   
 
 });
 

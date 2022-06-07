@@ -1,10 +1,8 @@
-
 function get_package_group_views(package_group, view){
     try{
         view.innerHTML = ''
         for(let i=0; i<package_group.get_package_list().length; i++){
-            view.innerHTML += get_card_html(package_group.get_package_list()[i],
-                                        package_group.get_group_title(), package_group.images);
+            view.innerHTML += get_card_html(package_group.get_package_list()[i]);
         }
     }catch(err){
         console.log(err)
@@ -26,16 +24,16 @@ function get_item(package){
     return v
 }
 
-function get_card_html(package, p_type, imgs=null){
+function get_card_html(package){
   
     return(
         `<div class="cust-card">
               <div class ="image">
-                  <img  src="${imgs[Math.ceil(Math.random()*(imgs.length-1))]}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
+                  <img  src="${package.img_url}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
               </div>
               <div class="info">
                   <hr />
-                  <h4>${p_type}</h4>
+                  <h4>${package.name}</h4>
                   <hr />
                   <span>
                     In this package we have: <br />
@@ -53,12 +51,12 @@ function get_card_html(package, p_type, imgs=null){
 
 function get_item_full(package){
     let item_list = package.item_list;
-    let v = '<ul>';
+    let v = '<ul>  <li><b>Name :Brand - Type: size</b></li>';
     let temp = ''
     let keys = item_list;
     for(let k=0; k<keys.length; k++){
         if(item_list[k].name){
-            temp = `<li>${item_list[k].name} - 
+            temp = `<li><b>${item_list[k].name}</b>:&nbsp;&nbsp;   
                         ${item_list[k].brand} - 
                         ${item_list[k].type} : size (
                             ${get_size(item_list[k].size)}
@@ -89,20 +87,18 @@ function get_view_more(package, p_type){
         `
         <div class="view-details-card container">
             <div class="img v-img">
-              <img src="https://s.alicdn.com/@sc04/kf/Hfbd2edb28f02404da030c89ae61a1ef9H.jpg_220x220.jpg" class="img-thumbnail img-fluid" alt=""/>
+              <img src="${package.img_url}" class="img-thumbnail img-fluid" alt=""/>
             </div>
 
             <div class="text">
-                <h4>${p_type}</h4>
+                <h4>${package.name}</h4>
 
                 <p>This packages/Items has the below specifications:</p>
-
-                <ul>
+                   
                   ${get_item_full(package)}
-                </ul>
+                
                 <p class='price'>R ${package.get_total_price()}*</p>
                 <div class="buttons">
-                
                   <a class="close-buttons h-buttons b close" id="close-overlay">Close</a>
                 </div>
             </div>
