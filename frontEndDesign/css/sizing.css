@@ -29,7 +29,7 @@ body{
     display: flex;
     flex-flow: column;
     justify-content: center;
-    /* background-image: url('https://static.wixstatic.com/media/4b1826_9c73f9c0bf5e4a94b9dc5412f99c7b4a~mv2.png'); */
+    background-image: url('https://static.wixstatic.com/media/4b1826_9c73f9c0bf5e4a94b9dc5412f99c7b4a~mv2.png');
     background-size:contain;
     background-repeat: no-repeat;
     background-position: right;
@@ -45,16 +45,31 @@ body{
 
 .sys-price-container{
     /* border:1px solid black; */
-    margin:10px;
+    /* margin:10px; */
+    width: 300px;
+    display:flex;
+    flex-flow:column;
 }
 
-.price{
-    margin: 5px;
+.price{ 
+     /* margin: 5px; */
     border:1px solid  black;
-    padding: 2px;
+    /* padding: 2px; */
+    margin-left:auto;
     width:fit-content;
     float: right;
     border-left: none;
     border-right: none;
     font-weight:bolder;
+    float:right;
+}
+
+#get-quote{
+    background-color: red;
+    border:1px solid red;
+}
+.est-button{
+
+    margin:20px;
+    /* border:1px solid black; */
 }
