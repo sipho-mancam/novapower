@@ -40,14 +40,20 @@ def index_data():
 def sizeme():
     data = request.get_data(cache=True, as_text=True)
     json = request.get_json(cache=True, force=True)
-        
+    
+    # Need to create a queuing system here to make sure we take care of races...
+
     res = create_ss_list(json)
+    
     write_sheet(INPUT_SHEET_NAME, data=res)
 
     result = read_sheet(OUTPUT_SHEET_NAME);
 
-    print(result)
-    return jsonify(result)
+    resp ={
+        'size':result[0][0],
+        'price':result[0][1]
+    }
+    return jsonify(resp)
 
 
 def create_ss_list(json:dict):
@@ -71,7 +77,6 @@ def create_ss_list(json:dict):
 
     return l
     
-
 
 if __name__ == '__main__':
     app.run(host=CONSTANTS.HOST, debug=True)

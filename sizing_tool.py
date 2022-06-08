@@ -65,7 +65,7 @@ def write_sheet(sheet_name, data):
                 range=sheet_name, body=body)
             
             res = req.execute()
-            print(res)
+            return res
 
         except HttpError as err:
             print(err)
