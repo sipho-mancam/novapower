@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, make_response, request, jsonify
 from flask_cors import CORS
 from package_manager import *
@@ -5,6 +6,9 @@ import CONSTANTS
 from packages import *
 from init import *
 import pprint
+import json
+
+from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
 
 app = Flask(__name__)
 CORS(app)
@@ -30,6 +34,43 @@ package_table = {
 @app.route('/packages/all', methods=['GET', 'OPTIONS'])
 def index_data():
     return package_table
+
+
+@app.route('/size-me', methods=['POST'])
+def sizeme():
+    data = request.get_data(cache=True, as_text=True)
+    json = request.get_json(cache=True, force=True)
+        
+    res = create_ss_list(json)
+    write_sheet(INPUT_SHEET_NAME, data=res)
+
+    result = read_sheet(OUTPUT_SHEET_NAME);
+
+    print(result)
+    return jsonify(result)
+
+
+def create_ss_list(json:dict):
+    l = [
+        json['size'],
+        json['cctv'],
+        json['home server'],
+        'FALSE',
+        json['ac'],
+        json['stove'],
+        json['kettle'],
+        json['microwave'],
+        json['toaster'],
+        json['oven'],
+        json['geyser'],
+        json['freezer'],
+        json['heat pump'],
+        json['borehole'],
+        json['pool pump']
+    ]
+
+    return l
+    
 
 
 if __name__ == '__main__':
