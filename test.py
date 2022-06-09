@@ -5,19 +5,23 @@ from random import choice, randbytes, random
 import json
 from packages import *
 from utility import *
+from init import *
+import pprint
+# db_manager, client = setup()
 
-result = pHandler.generate_package(50)
-
-final_json = {}
-
-# print(pHandler.get_summary())
-
-with open('packages5.json', 'w') as write_file:
-    json.dump(pHandler.get_summary(), write_file)
+solar_package_handler = setup_input('./formatted-input-1.xlsx', 'Sheet1', keys=['solar', 'inverter', 'battery', 'cable', 'rack']);
+inverter_package_handler = setup_input('./input-data.xlsx', 'Sheet1', keys=['inverter', 'battery', 'cable',])
+generator_package_handler = setup_input('./input-data.xlsx','Sheet1', keys=['generator'])
 
 
-# for package in result:
-    # print(package.get_summary())
+solar_package_handler.generate_package(15)
+inverter_package_handler.generate_package(15)
+generator_package_handler.generate_package(3)
 
-# print(result)
+package_table = {
+    'generator':generator_package_handler.get_summary(),
+    'solar':solar_package_handler.get_summary(),
+    'inverter':inverter_package_handler.get_summary()
+}
 
+# pprint.pprint(package_table)
