@@ -28,11 +28,11 @@
             <form id="sizing-form" action>
                 <div class="mb-3">      
                   <div id="house-size" class="form-text">What size is your house ? 
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>*Please select</option>
-                        <option value="1">2 Bed House</option>
-                        <option value="2">3 Bed House</option>
-                        <option value="3">4 Bed House</option>
+                    <select class="form-select" required aria-label="Default select example" name="size">
+                        
+                        <option selected>2 Bed House</option>
+                        <option value="3">3 Bed House</option>
+                        <option value="4">4 Bed House</option>
                         <option value="5">5 Bed House</option>
                         <option value="6">6 Bed House</option>
                         <option value="7">7 Bed House</option>
@@ -41,57 +41,56 @@
                 </div>
                 <div class="mb-3">
                     <div id="cottage-op" class="form-text">Do you hava a cottage you want powered by solar? 
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" required aria-label="Default select example" name="cottage">
                             <option selected>*Please select</option>
-                            <option value="1">Yes</option>
-                            <option value="2">No</option>
+                            <option value="yes">Yes</option>
+                            <option selected>no</option>
                           </select>
                       </div>
                     </div>
     
                 <div class="mb-3">
                     <div id="battery-hours" class="form-text">How Many hourrs of Battery Backup do you want ? 
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" name="battery-hours">
                             <option value='0' selected>0 Hours</option>
                             <option value="1">1 - 2 Hours</option>
                             <option value="2">2 - 4 Hours</option>
                             <option value="3">4 - 6 Hours</option>
                             <option value="5">6 - 9 Hours</option>
                             <option value="6">9 - 12 Hours</option>
-                            <option value="7">More*</option>
+                            <!-- <option value="7">More*</option> -->
                         </select>
                   </div>
                 </div>
                 
     
                 <div class="mb-3 form-check">
-                  
                     <div id="battery-hours" class="form-text">would you like any of the following items powered by your solar system?  
                        
                     </div>
                     <div class="check-container">
                         <div class="check-col">
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="0" id="flexCheckDefault">
+                              <input class="form-check-input" type="checkbox" value="True" id="flexCheckDefault" name="kettle">
                               <label class="form-check-label" for="flexCheckDefault">
                                 Kettle
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" checked>
+                              <input class="form-check-input" type="checkbox" value="true" name="cctv" id="flexCheckChecked" checked>
                               <label class="form-check-label" for="flexCheckChecked">
                                 CCTV
                               </label>
                           </div>
                           <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="2" id="flexCheckChecked" checked>
+                              <input class="form-check-input" type="checkbox" value="true" name="freezer" id="flexCheckChecked" checked>
                               <label class="form-check-label" for="flexCheckChecked">
                                 Chest Freezer
                               </label>
                           </div>
 
                           <div class="form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="12" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="true" name="stove" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                               Stove
                             </label>
@@ -100,19 +99,19 @@
 
                       <div class="check-col">
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="3" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="true" name="home server" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                               Home Server
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="4" id="flexCheckChecked" checked>
+                            <input class="form-check-input" type="checkbox" value="true" name="microwave" id="flexCheckChecked" checked>
                             <label class="form-check-label" for="flexCheckChecked">
                               Microwave
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="5" id="flexCheckChecked" checked>
+                            <input class="form-check-input" type="checkbox" value="true" name="pool pump" id="flexCheckChecked" checked>
                             <label class="form-check-label" for="flexCheckChecked">
                               Pool pump
                             </label>
@@ -121,19 +120,19 @@
 
                       <div class="check-col">
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="6" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="true" name="heater" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                               Heater
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="7" id="flexCheckChecked" checked>
+                            <input class="form-check-input" type="checkbox" value="true" name="toaster" id="flexCheckChecked" checked>
                             <label class="form-check-label" for="flexCheckChecked">
                               Toaster
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="8" id="flexCheckChecked" checked>
+                            <input class="form-check-input" type="checkbox" value="true" name="heat pump" id="flexCheckChecked" checked>
                             <label class="form-check-label" for="flexCheckChecked">
                               Heat Pump
                             </label>
@@ -142,38 +141,50 @@
                         
                       <div class="check-col">
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="9" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="true" name="ac" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                               AC
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="10" id="flexCheckChecked" checked>
+                            <input class="form-check-input" type="checkbox" value="true" name="oven" id="flexCheckChecked" checked>
                             <label class="form-check-label" for="flexCheckChecked">
                               Oven
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="11" id="flexCheckChecked" checked>
+                            <input class="form-check-input" type="checkbox" value="true" name="borehole" id="flexCheckChecked" checked>
                             <label class="form-check-label" for="flexCheckChecked">
                               Borehole
                             </label>
                         </div>
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="true" name="geyser" id="flexCheckChecked" checked>
+                          <label class="form-check-label" for="flexCheckChecked">
+                            Geyser
+                          </label>
+                      </div>
                       </div>
 
                     </div>
-    
+                    
                     <div class="sys-price-container">
-                        <span>System Price</span> <div class="price" id="sys-price">R 1,234,123</div>
+                      <div class="sys-price">
+                        <span>System Price</span> <div class="price" id="sys-price">R 0</div>
+                      </div>
+      
+                      <div class="sys-price">
+                          <span>System Size</span> <div class="price" id="roi"></div>
+                      </div>
                     </div>
-    
-                    <div class="sys-price-container">
-                        <span>Anticipated ROI</span> <div class="price" id="roi"></div>
-                    </div>
-                   
-    
                 </div>
-                <button type="submit" class="btn btn-primary">Get Quote</button>
+
+                <div class="buttons-container">
+                  <button type="submit" class="btn btn-primary est-button">Estimate</button>
+                  <button type="button" id="get-quote" class="btn btn-primary est-button">Get Quote</button>
+                </div>
+                
             </form>
         </div>
     </div>
