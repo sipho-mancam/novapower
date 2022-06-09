@@ -1,5 +1,0 @@
-flask_cors
-flask
-pandas
-gunicorn
-pymongo

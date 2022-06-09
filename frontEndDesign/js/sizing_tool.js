@@ -21,7 +21,7 @@ let formkeys = [
 
 let cons = ' Bed House'
 
-let base_url = 'http://10.30.0.58:5000/'
+let base_url = 'https://novapower.herokuapp.com/'
 
 async function postData(url='', data={}){
 
