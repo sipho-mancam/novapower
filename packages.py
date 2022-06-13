@@ -39,16 +39,61 @@ class Subpackage:
         self.__next_package = None
         self.__index = 0
         self.__change_flag = False
+        self.__max_items = len(self.__items)
+        self.__name = None
+        self.__organised_data_structure = {}
+        
+        # print("Items in subpackage:\n",items)
     
     def _get_items(self):return self.__items
     def _set_items(self, items_list):self.__items = items_list
     def _get_current_count(self):return self.__current_count
-    def _get_current_item(self):return self.__current_item
+    def _get_current_item(self):return self.__items[self.__current_count]
+    def _get_item_count(self):return self.__max_items 
+    def _set_name(self, name:str):
+        self.__name = name
+        if name =='solar' or name=='inverter' or name=='battery':
+            self.order_data()
+            print(self.__organised_data_structure,'\n', name)
+        
+    def _get_name(self):return self.__name if self.__name is not None else ''
+
+    def order_data(self):
+        for i in self.__items:
+            dict_temp = i.to_dict();
+            size = dict_temp['size'];
+            
+            s =''
+            if 'Voltage' in size:
+                s = 'Voltage-'+str(round(size['Voltage']['value']))
+            elif 'BatVoltage' in size:
+                s = 'Voltage-'+str(round(size['BatVoltage']['value']))
+
+            if s in self.__organised_data_structure:
+                
+                self.__organised_data_structure[s].append(i)
+            else:
+                self.__organised_data_structure[s] = []
+                self.__organised_data_structure[s].append(i)
+
+
+    def next_package(self):
+        return self.__next_package
     
+    def add_count_to_table(self, table:dict):
+        table[self.__name] = self.__max_items
+        if self.__next_package is not None:
+            return self.__next_package.add_count_to_table(table)
+        else:
+            return
+        
     def next(self):
-        self.__current_count += 1
-        self.__current_item = self.__items[self.__current_count]
-        return self.__current_item
+        if self.__current_count <= (len(self.__items)-2):
+            self.__current_count += 1 
+            self.__current_item = self.__items[self.__current_count]
+            return self.__current_item
+       
+        
 
     def prev(self):
         self.__current_count -= 1
@@ -72,25 +117,29 @@ class Subpackage:
             self.__next_package.reset()
         return
 
-    def pack(self, package):
+    def pack(self, package)->bool:
+        # print("name: {} currentCount: {}, ".format(self.__name, self.__current_count), end="")
         package.add_item(self._get_current_item()) # append my current element
-        if not self.is_last():
-            res = self.__next_package.pack(package)
+
+        if not self.is_last(): # if you not the last subpackagegroup, call the next subpackage.
+            res = self.__next_package.pack(package) # next subpackage group, give us your item
             if res: # you are supposed to change...
-                if not self.is_end(): 
-                    self.next()
-                    return False
+                if not self.is_end(): # are we at the end of the list ?
+                    self.next() # increase the indexing ...
+                    return False # stop changes on you.
                 else:
-                    self.reset()
-                    return True
-            return res
-        else:  # if it is the last object
-            if self.is_end():
-                self.reset()
-                self.__change_flag = True
+                    self.reset() # reset indexing to 0
+                    return True # tell the previous subpackage group to change*
+            return res # tell everyone else not to change...
+
+        else:  # if it is the last subpackage group
+            # print('\n')
+            if self.is_end(): #we at the end of the items list
+                self.reset() # reset items indexing to 0
+                self.__change_flag = True # tell the previous container to now change to the second item.
                 return self.__change_flag
-            else:
-                self.next()
+            else: # if we not at the end, index to the next item
+                self.next() # increase index to get the next item in the group.
                 return False
 
         
@@ -99,16 +148,29 @@ class PackageHandler:
         self.__sub_packages_list = list()
         self.__packages = list()
         self.__package_count = 0
+        self.__subs_table = {}
         if _sub_packages is not None:
             self.__populate_sub_p(_sub_packages)
+            self.get_subs_table()
+
+    def possible_package_count(self):
+        max_count = 1
+        for i in self.__subs_table.values():
+            max_count *= i
+        return max_count
 
     def get_summary(self):
         d = dict()
         counter = 0
-        for p in self.__packages:
+        t_list = sample(self.__packages, len(self.__packages))
+        for p in t_list:
             d['packag '+str(counter)]=p.get_summary()
             counter+=1
         return d
+
+    def get_subs_table(self):
+        self.__sub_packages_list[0].add_count_to_table(self.__subs_table)
+        return self.__subs_table
 
     def __append_sub(self, sub_p:Subpackage):
         if sub_p not in self.__sub_packages_list:
@@ -116,8 +178,10 @@ class PackageHandler:
             self.__sub_packages_list.append(sub_p)
 
     def __populate_sub_p(self, subs:dict):
-        for i in subs.values():
-            temp = Subpackage(i)
+        keys = subs.keys()
+        for i in keys:
+            temp = Subpackage(subs[i])
+            temp._set_name(i)
             self.__sub_packages_list.append(temp)
         self.__link_list()
     
@@ -129,12 +193,21 @@ class PackageHandler:
                 except IndexError:
                     return
         
-    def generate_package(self, n):
+    def generate_package(self, n=0):
+        print(self.possible_package_count(), )
         first_sub = self.__sub_packages_list[0]
-        for i in range(n):
-            temp = Package()
-            first_sub.pack(temp)
-            self.__package_count +=1
-            self.__packages.append(temp)
-        return self.__packages
+        if n > 0:
+            for i in range(n):
+                temp = Package()
+                first_sub.pack(temp)
+                self.__package_count +=1
+                self.__packages.append(temp)
+            return self.__packages
+        else:
+            for i in range(self.possible_package_count() if self.possible_package_count() <100 else 100):
+                temp = Package()
+                first_sub.pack(temp)
+                self.__package_count +=1
+                self.__packages.append(temp)
+            return self.__packages
            

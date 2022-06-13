@@ -9,19 +9,23 @@ from init import *
 import pprint
 # db_manager, client = setup()
 
-solar_package_handler = setup_input('./formatted-input-1.xlsx', 'Sheet1', keys=['solar', 'inverter', 'battery', 'cable', 'rack']);
-inverter_package_handler = setup_input('./input-data.xlsx', 'Sheet1', keys=['inverter', 'battery', 'cable',])
-generator_package_handler = setup_input('./input-data.xlsx','Sheet1', keys=['generator'])
+data_path = './input-data-1.xlsx'
+
+solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverter', 'battery', 'cable', 'rack']);
+# inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'battery', 'cable',])
+# generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
 
 
-solar_package_handler.generate_package(15)
-inverter_package_handler.generate_package(15)
-generator_package_handler.generate_package(3)
+solar_package_handler.generate_package(10)
+# inverter_package_handler.generate_package(10)
+# generator_package_handler.generate_package(10)
 
 package_table = {
-    'generator':generator_package_handler.get_summary(),
+    # 'generator':generator_package_handler.get_summary(),
     'solar':solar_package_handler.get_summary(),
-    'inverter':inverter_package_handler.get_summary()
+    # 'inverter':inverter_package_handler.get_summary()
 }
+
+write_json('package-debug.json', package_table)
 
 # pprint.pprint(package_table)
