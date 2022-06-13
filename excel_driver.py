@@ -95,6 +95,8 @@ def parse_excel_to_dict(data_frame):
 def xl_to_json(xl_file, sheet):
     df = read_excel(xl_file, sheet)
     js = parse_excel_to_dict(df)
+
+    # pprint.pprint(js)
     # pprint.pprint(df)
     # print(df.columns)
     write_json('data-1.json', js)

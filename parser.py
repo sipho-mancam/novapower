@@ -1,5 +1,4 @@
-
-
+import re
 class Parser:
     def __init__(self) -> None:
         self.__data_frame = None
@@ -40,9 +39,7 @@ class Parser:
         }
 
 
-
     def parse_data_frame(self, df)->dict:
-        self.__data_frame = df
         # print(self.__data_frame)
         # 1) get items from the data frame ...
         # 2) parse extras from the item
@@ -50,6 +47,7 @@ class Parser:
         # 4) parse the rest of the items in the extras first ... 
         # 5) parse the rest of the items 
         # 6) append element to the list ...
+        self.__data_frame = df
         try:
             length = len(self.__data_frame.index)
             
@@ -90,35 +88,45 @@ class Parser:
 
 
     def parse_size(self, df_item, n:int=1):
-        
         size = df_item[self.__indexing_table[self.__key_map['size']]]
-        
         s_object = {}
         if n > 1:
             s_list = self.parse_item_list(size)     
             for _s in s_list:
                 try:
                     _r = _s.split(':')
-                    value = _r[1]
-                    _r2 = _r[0].split('-')
-                    name = _r2[0]
-                    unit = _r2[1]
-                    if name.isalnum:
-                        s_object[name.strip('[0-9][0-9]?')] = {'value':float(value), 'unit':unit, 'qty':0}
-                    else:
-                        s_object[name]={'value':float(value), 'unit':unit}
+                    if len(_r)>=2: 
+                        value = _r[1]
+                        _r2 = _r[0].split('-')
+                        name = _r2[0].rstrip(' ').lstrip(' ')
+                        unit = _r2[1]
+                        char_1 = name[0:1]
+                        m = re.match(r"[0-9]", char_1)
+                        if m is not None:
+                            s_object[name[1:]] = {'value':float(value), 'unit':unit, 'qty':int(char_1)}
+                        else:
+                            s_object[name]={'value':float(value), 'unit':unit}
+                        
                 except Exception as e:
-                    print(e)
+                    print("Error parsing size. : ", _r, "\n{}".format(e))
         else:
             try:
                 _r = size.split(':')
-                value = _r[1]
-                _r2 = _r[0].split('-')
-                name = _r2[0]
-                unit = _r2[1]
-                s_object[name]={'value':float(value), 'unit':unit};
+                if len(_r)>=2:
+                    value = _r[1]
+                    _r2 = _r[0].split('-')
+                    name = _r2[0].rstrip(' ').lstrip(' ')
+                    unit = _r2[1]
+                    char_1 = name[0:1]
+                    m = re.match(r"[0-9]", char_1)
+                    # print(m is None, char_1)
+                    if m is not None:
+                        s_object[name[1:]] = {'value':float(value), 'unit':unit, 'qty':int(char_1)}
+                    else:
+                        s_object[name]={'value':float(value), 'unit':unit}
             except Exception as e:
-                    pass
+                # print("Error parsing size. : ", _r, "\n{}".format(e))
+                pass
 
         return s_object
 
@@ -154,7 +162,7 @@ class Parser:
                     # print(df_item[self.__indexing_table[self.__key_map['size']]])
                 
         except Exception as e:
-            print('There was an error', e)
+            print('Error getting extras: ', e)
         finally:
             return extras_table
 
