@@ -1,8 +1,12 @@
+from turtle import update
+
+from bson import encode
 from CONSTANTS import *
 from item import *
 from random import *
 import json
 from package_manager import *
+import hashlib
 
 
 class Package:
@@ -10,10 +14,27 @@ class Package:
         self._obj = _obj
         self.__total_price = 0
         self.__items_list = []
+        self.__hashing_object = hashlib.sha256(usedforsecurity=True)
+        self.__uid = self.__hashing_object.hexdigest()
     
     def add_item(self, item):
         self.__items_list.append(item)
         self.__total_price = self._gen_total()
+        self.__hashing_object.update(self.encode_for_hashing(str(self.__total_price)))
+        self.__hashing_object.update(self.encode_for_hashing(self.get_summary().__str__()))
+        self.update_hash()
+
+    def encode_for_hashing(self, s:str):
+        return bytes(s, 'utf-8')
+    
+    def update_hashing_string(self, s:str):
+        st = self.encode_for_hashing(s)
+        self.__hashing_object.update(st)
+        self.update_hash()
+
+
+    def update_hash(self):
+        self.__uid = self.__hashing_object.hexdigest()
     
     def _gen_total(self):
         s = self.__items_list[0].get_price()
@@ -28,6 +49,7 @@ class Package:
             d['item '+str(counter)] = i.to_dict()
             counter += 1
         d['total-price'] = self.__total_price
+        d['_uid'] = self.__uid
         return d
     
         
@@ -53,11 +75,12 @@ class Subpackage:
     def _get_current_count(self):return self.__current_count
     def _get_current_item(self):return self.__items[self.__current_count]
     def _get_item_count(self):return self.__max_items 
+
     def _set_name(self, name:str):
         self.__name = name
         if name =='solar' or name=='inverter' or name=='battery':
             self.order_data()
-            print(self.__organised_data_structure,'\n', name)
+            # print(self.__organised_data_structure,'\n', name)
         
     def _get_name(self):return self.__name if self.__name is not None else ''
 
@@ -231,6 +254,9 @@ class PackageHandler:
             counter+=1
         return d
 
+    def search_package_by_id(self, uid:str):
+        pass
+
     def get_subs_table(self):
         self.__sub_packages_list[0].add_count_to_table(self.__subs_table)
         return self.__subs_table
@@ -258,7 +284,7 @@ class PackageHandler:
         
     def generate_package(self, n=0):        
         first_sub = self.__sub_packages_list[0]
-        first_sub.set_current_size(STD_VOLTAGE_24)
+        first_sub.set_current_size(STD_VOLTAGE_48)
         if n > 0:
             for i in range(n):
                 temp = Package()

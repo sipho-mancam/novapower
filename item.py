@@ -1,5 +1,6 @@
 
 import enum
+import hashlib
 import CONSTANTS
 
 
@@ -15,7 +16,11 @@ class Item:
         self.__options = dict()
         self.__obj_raw = _obj
         self.__size = {}
-
+        self.__hashing_object = hashlib.md5(self.encode_for_hashing(self.__obj_raw.__str__()))
+        self.__uid = ''
+        self.update_hash()
+        self.__obj_raw['_uid'] = self.__uid
+        
         if _obj is not None:
             if type(_obj) is dict:
                 for _key in _obj.keys():
@@ -55,6 +60,18 @@ class Item:
                     elif _key is CONSTANTS.OPTIONS:
                         self.__options = value
 
+
+    def encode_for_hashing(self, s:str):
+        return bytes(s, 'utf-8')
+    
+    def update_hashing_string(self, s:str):
+        st = self.encode_for_hashing(s)
+        self.__hashing_object.update(st)
+        self.update_hash()
+
+
+    def update_hash(self):
+        self.__uid = self.__hashing_object.hexdigest()
 
     def get_price(self):return self.__price
     
