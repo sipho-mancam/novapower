@@ -4,6 +4,7 @@ from random import *
 import json
 from package_manager import *
 
+
 class Package:
     def __init__(self, _obj:dict=None) -> None:
         self._obj = _obj
@@ -42,6 +43,8 @@ class Subpackage:
         self.__max_items = len(self.__items)
         self.__name = None
         self.__organised_data_structure = {}
+        self.__current_list = []
+        self.__current_list_index = 0
         
         # print("Items in subpackage:\n",items)
     
@@ -65,18 +68,80 @@ class Subpackage:
             
             s =''
             if 'Voltage' in size:
-                s = 'Voltage-'+str(round(size['Voltage']['value']))
+                # figure out where it falls...
+                voltage = round(size['Voltage']['value'])
+                if abs(voltage-12) <= 3 or voltage <=12:
+                    s = STD_VOLTAGE_12
+                elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
+                    s = STD_VOLTAGE_24
+                elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
+                    s = STD_VOLTAGE_48
+
             elif 'BatVoltage' in size:
-                s = 'Voltage-'+str(round(size['BatVoltage']['value']))
+                voltage = round(size['BatVoltage']['value'])
+
+                if abs(voltage-12) <= 3 or voltage <=12:
+                    s = STD_VOLTAGE_12
+                elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
+                    s = STD_VOLTAGE_24
+                elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
+                    s = STD_VOLTAGE_48
 
             if s in self.__organised_data_structure:
-                
                 self.__organised_data_structure[s].append(i)
             else:
                 self.__organised_data_structure[s] = []
                 self.__organised_data_structure[s].append(i)
 
+    def set_current_size(self, size):
+        if size in STD_VOLTAGE_LIST:
+            if size in self.__organised_data_structure:
+                self.__current_list = self.__organised_data_structure[size]
+                if self.__next_package is not None:
+                    return self.__next_package.set_current_size(size)
+            else:
+                sze = int(size.split('-')[1])
+                bs = size.split('-')[0]
+                if bs+'-'+str(sze*2) in self.__organised_data_structure:
+                    self.__current_list = self.__organised_data_structure[bs+'-'+str(sze*2)]
+                    return self.__next_package.set_current_size(size)
+                else:
+                    try:
+                        self.__current_list = self.__organised_data_structure[STD_VOLTAGE_48]
+                        return self.__next_package.set_current_size(size)
+                    except Exception as e:
+                        print("Error setting current size {}".format(size),e)
+            return 
 
+    def ordered_packing(self, package):
+        try:
+            package.add_item(self.__current_list[self.__current_list_index])
+        except IndexError as e:
+            self.__current_list_index = 0
+            package.add_item(self.__current_list[self.__current_list_index])
+
+        if not self.is_last(): # if you not the last subpackagegroup, call the next subpackage.
+            res = self.__next_package.ordered_packing(package) # next subpackage group, give us your item
+            if res: # you are supposed to change...
+                if not self.is_current_end(): # are we at the end of the list ?
+                    if self.__current_list_index <= len(self.__current_list)-2:
+                        self.__current_list_index +=1 # increase the indexing ...
+                        return False # stop changes on you.
+                else:
+                    self.__current_list_index = 0 # reset indexing to 0
+                    return True # tell the previous subpackage group to change*
+            return res # tell everyone else not to change...
+        else:  # if it is the last subpackage group
+            # print('\n')
+            if self.is_current_end(): #we at the end of the items list
+                self.__current_list_index = 0 # reset items indexing to 0
+                self.__change_flag = True # tell the previous container to now change to the second item.
+                return self.__change_flag
+            else: # if we not at the end, index to the next item
+                if self.__current_list_index<=len(self.__current_list)-2: # increase index to get the next item in the group.
+                    self.__current_list_index +=1
+                return False
+                
     def next_package(self):
         return self.__next_package
     
@@ -93,8 +158,6 @@ class Subpackage:
             self.__current_item = self.__items[self.__current_count]
             return self.__current_item
        
-        
-
     def prev(self):
         self.__current_count -= 1
         if self.__current_count > 0:
@@ -108,6 +171,7 @@ class Subpackage:
         self.__next_package = sub_p
 
     def is_end(self):return self.__current_count == (len(self.__items)-1)
+    def is_current_end(self):return self.__current_list_index == (len(self.__current_list)-1)
     def is_last(self):return self.__next_package == None
     def is_first(self): return self.__index == 0
 
@@ -133,7 +197,6 @@ class Subpackage:
             return res # tell everyone else not to change...
 
         else:  # if it is the last subpackage group
-            # print('\n')
             if self.is_end(): #we at the end of the items list
                 self.reset() # reset items indexing to 0
                 self.__change_flag = True # tell the previous container to now change to the second item.
@@ -193,20 +256,20 @@ class PackageHandler:
                 except IndexError:
                     return
         
-    def generate_package(self, n=0):
-        print(self.possible_package_count(), )
+    def generate_package(self, n=0):        
         first_sub = self.__sub_packages_list[0]
+        first_sub.set_current_size(STD_VOLTAGE_24)
         if n > 0:
             for i in range(n):
                 temp = Package()
-                first_sub.pack(temp)
+                first_sub.ordered_packing(temp)
                 self.__package_count +=1
                 self.__packages.append(temp)
             return self.__packages
         else:
             for i in range(self.possible_package_count() if self.possible_package_count() <100 else 100):
                 temp = Package()
-                first_sub.pack(temp)
+                first_sub.ordered_packing(temp)
                 self.__package_count +=1
                 self.__packages.append(temp)
             return self.__packages

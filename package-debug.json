@@ -1,1 +1,1565 @@
-{"solar": {"packag 0": {"item 0": {"size": {"Voltage": {"value": 37.5, "unit": "V"}, "Power": {"value": 330.0, "unit": "W"}, "MaxPowerCurrent": {"value": 8.89, "unit": "A"}, "OpenCircuitVoltage": {"value": 47.0, "unit": "V"}}, "name": "Solar", "package-group": "Solar", "brand": "CNBM", "type-group": "Polycrystalline", "price": 2250.0}, "item 1": {"size": {"Size": {"value": 3.0, "unit": "kVA"}, "Voltage": {"value": 24.0, "unit": "V"}, "Power": {"value": 3.0, "unit": "kW"}}, "name": "Inverter", "package-group": "Inverters", "brand": "Mecer", "type-group": "Off-Grid", "price": 6000.0}, "item 2": {"size": {"Voltage": {"value": 48.0, "unit": "V"}, "Energy": {"value": 2.4, "unit": "kWh"}}, "name": "Battery", "package-group": "Batteries", "brand": "Dyness", "type-group": "Lithium-ion", "price": 11782.0}, "item 3": {"size": {"Length": {"value": 2.1, "unit": "m"}}, "name": "Rack", "package-group": "Rack", "brand": "Renusol", "type-group": "Mounting Rail", "price": 315.0}, "item 4": {"size": {"Size": {"value": 50.0, "unit": "mm2"}, "Length": {"value": 1.0, "unit": "m"}}, "name": "Cable", "package-group": "Cable", "brand": "Geewiz", "type-group": "SingleCore-DC", "price": 221.0}, "total-price": 20568.0}, "packag 1": {"item 0": {"size": {"Voltage": {"value": 37.5, "unit": "V"}, "Power": {"value": 330.0, "unit": "W"}, "MaxPowerCurrent": {"value": 8.89, "unit": "A"}, "OpenCircuitVoltage": {"value": 47.0, "unit": "V"}}, "name": "Solar", "package-group": "Solar", "brand": "CNBM", "type-group": "Polycrystalline", "price": 2250.0}, "item 1": {"size": {"Size": {"value": 3.0, "unit": "kVA"}, "Voltage": {"value": 24.0, "unit": "V"}, "Power": {"value": 3.0, "unit": "kW"}}, "name": "Inverter", "package-group": "Inverters", "brand": "Mecer", "type-group": "Off-Grid", "price": 6000.0}, "item 2": {"size": {"Voltage": {"value": 12.0, "unit": "V"}, "Energy": {"value": 1.2, "unit": "kWh"}}, "name": "Battery", "package-group": "Batteries", "brand": "MaxLi", "type-group": "Lithium-ion", "price": 9786.0}, "item 3": {"size": {"Length": {"value": 4.2, "unit": "m"}}, "name": "Rack", "package-group": "Rack", "brand": "Renusol", "type-group": "Mounting Rail", "price": 587.0}, "item 4": {"size": {"Size": {"value": 50.0, "unit": "mm2"}, "Length": {"value": 1.0, "unit": "m"}}, "name": "Cable", "package-group": "Cable", "brand": "Geewiz", "type-group": "SingleCore-DC", "price": 221.0}, "total-price": 18844.0}, "packag 2": {"item 0": {"size": {"Voltage": {"value": 37.5, "unit": "V"}, "Power": {"value": 330.0, "unit": "W"}, "MaxPowerCurrent": {"value": 8.89, "unit": "A"}, "OpenCircuitVoltage": {"value": 47.0, "unit": "V"}}, "name": "Solar", "package-group": "Solar", "brand": "CNBM", "type-group": "Polycrystalline", "price": 2250.0}, "item 1": {"size": {"Size": {"value": 3.0, "unit": "kVA"}, "Voltage": {"value": 24.0, "unit": "V"}, "Power": {"value": 3.0, "unit": "kW"}}, "name": "Inverter", "package-group": "Inverters", "brand": "Mecer", "type-group": "Off-Grid", "price": 6000.0}, "item 2": {"size": {"Voltage": {"value": 12.0, "unit": "V"}, "Energy": {"value": 1.2, "unit": "kWh"}}, "name": "Battery", "package-group": "Batteries", "brand": "MaxLi", "type-group": "Lithium-ion", "price": 9786.0}, "item 3": {"size": {"Length": {"value": 2.1, "unit": "m"}}, "name": "Rack", "package-group": "Rack", "brand": "Renusol", "type-group": "Mounting Rail", "price": 315.0}, "item 4": {"size": {"Size": {"value": 50.0, "unit": "mm2"}, "Length": {"value": 1.0, "unit": "m"}}, "name": "Cable", "package-group": "Cable", "brand": "Geewiz", "type-group": "SingleCore-DC", "price": 221.0}, "total-price": 18572.0}, "packag 3": {"item 0": {"size": {"Voltage": {"value": 37.5, "unit": "V"}, "Power": {"value": 330.0, "unit": "W"}, "MaxPowerCurrent": {"value": 8.89, "unit": "A"}, "OpenCircuitVoltage": {"value": 47.0, "unit": "V"}}, "name": "Solar", "package-group": "Solar", "brand": "CNBM", "type-group": "Polycrystalline", "price": 2250.0}, "item 1": {"size": {"Size": {"value": 3.0, "unit": "kVA"}, "Voltage": {"value": 24.0, "unit": "V"}, "Power": {"value": 3.0, "unit": "kW"}}, "name": "Inverter", "package-group": "Inverters", "brand": "Mecer", "type-group": "Off-Grid", "price": 6000.0}, "item 2": {"size": {"Voltage": {"value": 12.0, "unit": "V"}, "Energy": {"value": 1.2, "unit": "kWh"}}, "name": "Battery", "package-group": "Batteries", "brand": "MaxLi", "type-group": "Lithium-ion", "price": 9786.0}, "item 3": {"size": {"Length": {"value": 2.1, "unit": "m"}}, "name": "Rack", "package-group": "Rack", "brand": "Renusol", "type-group": "Mounting Rail", "price": 315.0}, "item 4": {"size": {"Size": {"value": 35.0, "unit": "mm2"}, "Length": {"value": 1.0, "unit": "m"}}, "name": "Cable", "package-group": "Cable", "brand": "Geewiz", "type-group": "SingleCore-DC", "price": 147.0}, "total-price": 18498.0}, "packag 4": {"item 0": {"size": {"Voltage": {"value": 37.5, "unit": "V"}, "Power": {"value": 330.0, "unit": "W"}, "MaxPowerCurrent": {"value": 8.89, "unit": "A"}, "OpenCircuitVoltage": {"value": 47.0, "unit": "V"}}, "name": "Solar", "package-group": "Solar", "brand": "CNBM", "type-group": "Polycrystalline", "price": 2250.0}, "item 1": {"size": {"Size": {"value": 3.0, "unit": "kVA"}, "Voltage": {"value": 24.0, "unit": "V"}, "Power": {"value": 3.0, "unit": "kW"}}, "name": "Inverter", "package-group": "Inverters", "brand": "Mecer", "type-group": "Off-Grid", "price": 6000.0}, "item 2": {"size": {"Voltage": {"value": 12.0, "unit": "V"}, "Energy": {"value": 1.5, "unit": "kWh"}}, "name": "Battery", "package-group": "Batteries", "brand": "Hubble", "type-group": "Lithium-ion", "price": 6995.0}, "item 3": {"size": {"Length": {"value": 2.1, "unit": "m"}}, "name": "Rack", "package-group": "Rack", "brand": "Renusol", "type-group": "Mounting Rail", "price": 315.0}, "item 4": {"size": {"Size": {"value": 50.0, "unit": "mm2"}, "Length": {"value": 1.0, "unit": "m"}}, "name": "Cable", "package-group": "Cable", "brand": "Geewiz", "type-group": "SingleCore-DC", "price": 221.0}, "total-price": 15781.0}, "packag 5": {"item 0": {"size": {"Voltage": {"value": 37.5, "unit": "V"}, "Power": {"value": 330.0, "unit": "W"}, "MaxPowerCurrent": {"value": 8.89, "unit": "A"}, "OpenCircuitVoltage": {"value": 47.0, "unit": "V"}}, "name": "Solar", "package-group": "Solar", "brand": "CNBM", "type-group": "Polycrystalline", "price": 2250.0}, "item 1": {"size": {"Size": {"value": 3.0, "unit": "kVA"}, "Voltage": {"value": 24.0, "unit": "V"}, "Power": {"value": 3.0, "unit": "kW"}}, "name": "Inverter", "package-group": "Inverters", "brand": "Mecer", "type-group": "Off-Grid", "price": 6000.0}, "item 2": {"size": {"Voltage": {"value": 12.0, "unit": "V"}, "Energy": {"value": 1.5, "unit": "kWh"}}, "name": "Battery", "package-group": "Batteries", "brand": "Hubble", "type-group": "Lithium-ion", "price": 6995.0}, "item 3": {"size": {"Length": {"value": 4.2, "unit": "m"}}, "name": "Rack", "package-group": "Rack", "brand": "Renusol", "type-group": "Mounting Rail", "price": 587.0}, "item 4": {"size": {"Size": {"value": 50.0, "unit": "mm2"}, "Length": {"value": 1.0, "unit": "m"}}, "name": "Cable", "package-group": "Cable", "brand": "Geewiz", "type-group": "SingleCore-DC", "price": 221.0}, "total-price": 16053.0}, "packag 6": {"item 0": {"size": {"Voltage": {"value": 37.5, "unit": "V"}, "Power": {"value": 330.0, "unit": "W"}, "MaxPowerCurrent": {"value": 8.89, "unit": "A"}, "OpenCircuitVoltage": {"value": 47.0, "unit": "V"}}, "name": "Solar", "package-group": "Solar", "brand": "CNBM", "type-group": "Polycrystalline", "price": 2250.0}, "item 1": {"size": {"Size": {"value": 3.0, "unit": "kVA"}, "Voltage": {"value": 24.0, "unit": "V"}, "Power": {"value": 3.0, "unit": "kW"}}, "name": "Inverter", "package-group": "Inverters", "brand": "Mecer", "type-group": "Off-Grid", "price": 6000.0}, "item 2": {"size": {"Voltage": {"value": 12.0, "unit": "V"}, "Energy": {"value": 1.2, "unit": "kWh"}}, "name": "Battery", "package-group": "Batteries", "brand": "MaxLi", "type-group": "Lithium-ion", "price": 9786.0}, "item 3": {"size": {"Length": {"value": 4.2, "unit": "m"}}, "name": "Rack", "package-group": "Rack", "brand": "Renusol", "type-group": "Mounting Rail", "price": 587.0}, "item 4": {"size": {"Size": {"value": 35.0, "unit": "mm2"}, "Length": {"value": 1.0, "unit": "m"}}, "name": "Cable", "package-group": "Cable", "brand": "Geewiz", "type-group": "SingleCore-DC", "price": 147.0}, "total-price": 18770.0}, "packag 7": {"item 0": {"size": {"Voltage": {"value": 37.5, "unit": "V"}, "Power": {"value": 330.0, "unit": "W"}, "MaxPowerCurrent": {"value": 8.89, "unit": "A"}, "OpenCircuitVoltage": {"value": 47.0, "unit": "V"}}, "name": "Solar", "package-group": "Solar", "brand": "CNBM", "type-group": "Polycrystalline", "price": 2250.0}, "item 1": {"size": {"Size": {"value": 3.0, "unit": "kVA"}, "Voltage": {"value": 24.0, "unit": "V"}, "Power": {"value": 3.0, "unit": "kW"}}, "name": "Inverter", "package-group": "Inverters", "brand": "Mecer", "type-group": "Off-Grid", "price": 6000.0}, "item 2": {"size": {"Voltage": {"value": 48.0, "unit": "V"}, "Energy": {"value": 2.4, "unit": "kWh"}}, "name": "Battery", "package-group": "Batteries", "brand": "Dyness", "type-group": "Lithium-ion", "price": 11782.0}, "item 3": {"size": {"Length": {"value": 2.1, "unit": "m"}}, "name": "Rack", "package-group": "Rack", "brand": "Renusol", "type-group": "Mounting Rail", "price": 315.0}, "item 4": {"size": {"Size": {"value": 35.0, "unit": "mm2"}, "Length": {"value": 1.0, "unit": "m"}}, "name": "Cable", "package-group": "Cable", "brand": "Geewiz", "type-group": "SingleCore-DC", "price": 147.0}, "total-price": 20494.0}, "packag 8": {"item 0": {"size": {"Voltage": {"value": 37.5, "unit": "V"}, "Power": {"value": 330.0, "unit": "W"}, "MaxPowerCurrent": {"value": 8.89, "unit": "A"}, "OpenCircuitVoltage": {"value": 47.0, "unit": "V"}}, "name": "Solar", "package-group": "Solar", "brand": "CNBM", "type-group": "Polycrystalline", "price": 2250.0}, "item 1": {"size": {"Size": {"value": 3.0, "unit": "kVA"}, "Voltage": {"value": 24.0, "unit": "V"}, "Power": {"value": 3.0, "unit": "kW"}}, "name": "Inverter", "package-group": "Inverters", "brand": "Mecer", "type-group": "Off-Grid", "price": 6000.0}, "item 2": {"size": {"Voltage": {"value": 12.0, "unit": "V"}, "Energy": {"value": 1.5, "unit": "kWh"}}, "name": "Battery", "package-group": "Batteries", "brand": "Hubble", "type-group": "Lithium-ion", "price": 6995.0}, "item 3": {"size": {"Length": {"value": 2.1, "unit": "m"}}, "name": "Rack", "package-group": "Rack", "brand": "Renusol", "type-group": "Mounting Rail", "price": 315.0}, "item 4": {"size": {"Size": {"value": 35.0, "unit": "mm2"}, "Length": {"value": 1.0, "unit": "m"}}, "name": "Cable", "package-group": "Cable", "brand": "Geewiz", "type-group": "SingleCore-DC", "price": 147.0}, "total-price": 15707.0}, "packag 9": {"item 0": {"size": {"Voltage": {"value": 37.5, "unit": "V"}, "Power": {"value": 330.0, "unit": "W"}, "MaxPowerCurrent": {"value": 8.89, "unit": "A"}, "OpenCircuitVoltage": {"value": 47.0, "unit": "V"}}, "name": "Solar", "package-group": "Solar", "brand": "CNBM", "type-group": "Polycrystalline", "price": 2250.0}, "item 1": {"size": {"Size": {"value": 3.0, "unit": "kVA"}, "Voltage": {"value": 24.0, "unit": "V"}, "Power": {"value": 3.0, "unit": "kW"}}, "name": "Inverter", "package-group": "Inverters", "brand": "Mecer", "type-group": "Off-Grid", "price": 6000.0}, "item 2": {"size": {"Voltage": {"value": 12.0, "unit": "V"}, "Energy": {"value": 1.5, "unit": "kWh"}}, "name": "Battery", "package-group": "Batteries", "brand": "Hubble", "type-group": "Lithium-ion", "price": 6995.0}, "item 3": {"size": {"Length": {"value": 4.2, "unit": "m"}}, "name": "Rack", "package-group": "Rack", "brand": "Renusol", "type-group": "Mounting Rail", "price": 587.0}, "item 4": {"size": {"Size": {"value": 35.0, "unit": "mm2"}, "Length": {"value": 1.0, "unit": "m"}}, "name": "Cable", "package-group": "Cable", "brand": "Geewiz", "type-group": "SingleCore-DC", "price": 147.0}, "total-price": 15979.0}}}
+{
+    "generator": {},
+    "solar": {
+        "packag 0": {
+            "item 0": {
+                "size": {
+                    "Voltage": {
+                        "value": 37.5,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 330,
+                        "unit": "W"
+                    },
+                    "MaxPowerCurrent": {
+                        "value": 8.89,
+                        "unit": "A"
+                    },
+                    "OpenCircuitVoltage": {
+                        "value": 47,
+                        "unit": "V"
+                    }
+                },
+                "name": "Solar",
+                "package-group": "Solar",
+                "brand": "CNBM",
+                "type-group": "Polycrystalline",
+                "price": 2250
+            },
+            "item 1": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "Voltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 3,
+                        "unit": "kW"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "Mecer",
+                "type-group": "Off-Grid",
+                "price": 6000
+            },
+            "item 2": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 5.12,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 200,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 22995
+            },
+            "total-price": 31245
+        },
+        "packag 1": {
+            "item 0": {
+                "size": {
+                    "Voltage": {
+                        "value": 37.5,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 330,
+                        "unit": "W"
+                    },
+                    "MaxPowerCurrent": {
+                        "value": 8.89,
+                        "unit": "A"
+                    },
+                    "OpenCircuitVoltage": {
+                        "value": 47,
+                        "unit": "V"
+                    }
+                },
+                "name": "Solar",
+                "package-group": "Solar",
+                "brand": "CNBM",
+                "type-group": "Polycrystalline",
+                "price": 2250
+            },
+            "item 1": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": "Hybrid",
+                "price": 7500
+            },
+            "item 2": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 5.12,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 200,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 22995
+            },
+            "total-price": 32745
+        },
+        "packag 2": {
+            "item 0": {
+                "size": {
+                    "Voltage": {
+                        "value": 37.5,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 330,
+                        "unit": "W"
+                    },
+                    "MaxPowerCurrent": {
+                        "value": 8.89,
+                        "unit": "A"
+                    },
+                    "OpenCircuitVoltage": {
+                        "value": 47,
+                        "unit": "V"
+                    }
+                },
+                "name": "Solar",
+                "package-group": "Solar",
+                "brand": "CNBM",
+                "type-group": "Polycrystalline",
+                "price": 2250
+            },
+            "item 1": {
+                "size": {
+                    "Size": {
+                        "value": 5,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 5,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 4
+                    },
+                    "CableL": {
+                        "value": 5,
+                        "unit": "m"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid",
+                    "2": " SingleCore"
+                },
+                "price": 29980
+            },
+            "item 2": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.56,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 100,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 16500
+            },
+            "total-price": 48730
+        },
+        "packag 3": {
+            "item 0": {
+                "size": {
+                    "Voltage": {
+                        "value": 37.5,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 330,
+                        "unit": "W"
+                    },
+                    "MaxPowerCurrent": {
+                        "value": 8.89,
+                        "unit": "A"
+                    },
+                    "OpenCircuitVoltage": {
+                        "value": 47,
+                        "unit": "V"
+                    }
+                },
+                "name": "Solar",
+                "package-group": "Solar",
+                "brand": "CNBM",
+                "type-group": "Polycrystalline",
+                "price": 2250
+            },
+            "item 1": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "Voltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 3,
+                        "unit": "kW"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "Mecer",
+                "type-group": "Off-Grid",
+                "price": 6000
+            },
+            "item 2": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.56,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 100,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 16500
+            },
+            "total-price": 24750
+        },
+        "packag 4": {
+            "item 0": {
+                "size": {
+                    "Voltage": {
+                        "value": 37.5,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 330,
+                        "unit": "W"
+                    },
+                    "MaxPowerCurrent": {
+                        "value": 8.89,
+                        "unit": "A"
+                    },
+                    "OpenCircuitVoltage": {
+                        "value": 47,
+                        "unit": "V"
+                    }
+                },
+                "name": "Solar",
+                "package-group": "Solar",
+                "brand": "CNBM",
+                "type-group": "Polycrystalline",
+                "price": 2250
+            },
+            "item 1": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 2
+                    },
+                    "CableL": {
+                        "value": 5,
+                        "unit": "m"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid",
+                    "2": " SingleCore"
+                },
+                "price": 23000
+            },
+            "item 2": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.56,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 100,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 16500
+            },
+            "total-price": 41750
+        },
+        "packag 5": {
+            "item 0": {
+                "size": {
+                    "Voltage": {
+                        "value": 37.5,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 330,
+                        "unit": "W"
+                    },
+                    "MaxPowerCurrent": {
+                        "value": 8.89,
+                        "unit": "A"
+                    },
+                    "OpenCircuitVoltage": {
+                        "value": 47,
+                        "unit": "V"
+                    }
+                },
+                "name": "Solar",
+                "package-group": "Solar",
+                "brand": "CNBM",
+                "type-group": "Polycrystalline",
+                "price": 2250
+            },
+            "item 1": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 2
+                    },
+                    "CableL": {
+                        "value": 5,
+                        "unit": "m"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid",
+                    "2": " SingleCore"
+                },
+                "price": 23000
+            },
+            "item 2": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 5.12,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 200,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 22995
+            },
+            "total-price": 48245
+        },
+        "packag 6": {
+            "item 0": {
+                "size": {
+                    "Voltage": {
+                        "value": 37.5,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 330,
+                        "unit": "W"
+                    },
+                    "MaxPowerCurrent": {
+                        "value": 8.89,
+                        "unit": "A"
+                    },
+                    "OpenCircuitVoltage": {
+                        "value": 47,
+                        "unit": "V"
+                    }
+                },
+                "name": "Solar",
+                "package-group": "Solar",
+                "brand": "CNBM",
+                "type-group": "Polycrystalline",
+                "price": 2250
+            },
+            "item 1": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": "Hybrid",
+                "price": 7500
+            },
+            "item 2": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.56,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 100,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 16500
+            },
+            "total-price": 26250
+        },
+        "packag 7": {
+            "item 0": {
+                "size": {
+                    "Voltage": {
+                        "value": 37.5,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 330,
+                        "unit": "W"
+                    },
+                    "MaxPowerCurrent": {
+                        "value": 8.89,
+                        "unit": "A"
+                    },
+                    "OpenCircuitVoltage": {
+                        "value": 47,
+                        "unit": "V"
+                    }
+                },
+                "name": "Solar",
+                "package-group": "Solar",
+                "brand": "CNBM",
+                "type-group": "Polycrystalline",
+                "price": 2250
+            },
+            "item 1": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 2
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid"
+                },
+                "price": 16995
+            },
+            "item 2": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.56,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 100,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 16500
+            },
+            "total-price": 35745
+        },
+        "packag 8": {
+            "item 0": {
+                "size": {
+                    "Voltage": {
+                        "value": 37.5,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 330,
+                        "unit": "W"
+                    },
+                    "MaxPowerCurrent": {
+                        "value": 8.89,
+                        "unit": "A"
+                    },
+                    "OpenCircuitVoltage": {
+                        "value": 47,
+                        "unit": "V"
+                    }
+                },
+                "name": "Solar",
+                "package-group": "Solar",
+                "brand": "CNBM",
+                "type-group": "Polycrystalline",
+                "price": 2250
+            },
+            "item 1": {
+                "size": {
+                    "Size": {
+                        "value": 5,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 5,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 4
+                    },
+                    "CableL": {
+                        "value": 5,
+                        "unit": "m"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid",
+                    "2": " SingleCore"
+                },
+                "price": 29980
+            },
+            "item 2": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 5.12,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 200,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 22995
+            },
+            "total-price": 55225
+        },
+        "packag 9": {
+            "item 0": {
+                "size": {
+                    "Voltage": {
+                        "value": 37.5,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 330,
+                        "unit": "W"
+                    },
+                    "MaxPowerCurrent": {
+                        "value": 8.89,
+                        "unit": "A"
+                    },
+                    "OpenCircuitVoltage": {
+                        "value": 47,
+                        "unit": "V"
+                    }
+                },
+                "name": "Solar",
+                "package-group": "Solar",
+                "brand": "CNBM",
+                "type-group": "Polycrystalline",
+                "price": 2250
+            },
+            "item 1": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 2
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid"
+                },
+                "price": 16995
+            },
+            "item 2": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 5.12,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 200,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 22995
+            },
+            "total-price": 42240
+        }
+    },
+    "inverter": {
+        "packag 0": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 2
+                    },
+                    "CableL": {
+                        "value": 5,
+                        "unit": "m"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid",
+                    "2": " SingleCore"
+                },
+                "price": 23000
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.56,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 100,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 16500
+            },
+            "total-price": 39500
+        },
+        "packag 1": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "Voltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 3,
+                        "unit": "kW"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "Mecer",
+                "type-group": "Off-Grid",
+                "price": 6000
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.56,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 100,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 16500
+            },
+            "total-price": 22500
+        },
+        "packag 2": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": "Hybrid",
+                "price": 7500
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.56,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 100,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 16500
+            },
+            "total-price": 24000
+        },
+        "packag 3": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 2
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid"
+                },
+                "price": 16995
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.56,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 100,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 16500
+            },
+            "total-price": 33495
+        },
+        "packag 4": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 2
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid"
+                },
+                "price": 16995
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 5.12,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 200,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 22995
+            },
+            "total-price": 39990
+        },
+        "packag 5": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 2
+                    },
+                    "CableL": {
+                        "value": 5,
+                        "unit": "m"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid",
+                    "2": " SingleCore"
+                },
+                "price": 23000
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 5.12,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 200,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 22995
+            },
+            "total-price": 45995
+        },
+        "packag 6": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "Voltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "Power": {
+                        "value": 3,
+                        "unit": "kW"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "Mecer",
+                "type-group": "Off-Grid",
+                "price": 6000
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 5.12,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 200,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 22995
+            },
+            "total-price": 28995
+        },
+        "packag 7": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 5,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 5,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 4
+                    },
+                    "CableL": {
+                        "value": 5,
+                        "unit": "m"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid",
+                    "2": " SingleCore"
+                },
+                "price": 29980
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 5.12,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 200,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 22995
+            },
+            "total-price": 52975
+        },
+        "packag 8": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 3,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 2.4,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 100,
+                        "unit": "VDC"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": "Hybrid",
+                "price": 7500
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 5.12,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 200,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 22995
+            },
+            "total-price": 30495
+        },
+        "packag 9": {
+            "item 0": {
+                "size": {
+                    "Size": {
+                        "value": 5,
+                        "unit": "kVA"
+                    },
+                    "InputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "OutputVoltage": {
+                        "value": 230,
+                        "unit": "AC"
+                    },
+                    "Power": {
+                        "value": 5,
+                        "unit": "kW"
+                    },
+                    "BatVoltage": {
+                        "value": 24,
+                        "unit": "V"
+                    },
+                    "MPPTVoltage": {
+                        "value": 115,
+                        "unit": "VDC"
+                    },
+                    "BatEnergy": {
+                        "value": 105,
+                        "unit": "Ah",
+                        "qty": 4
+                    },
+                    "CableL": {
+                        "value": 5,
+                        "unit": "m"
+                    }
+                },
+                "name": "Inverter",
+                "package-group": "Inverters",
+                "brand": "TheCoolGuys",
+                "type-group": {
+                    "0": "Hybrid",
+                    "1": " LeadAcid",
+                    "2": " SingleCore"
+                },
+                "price": 29980
+            },
+            "item 1": {
+                "size": {
+                    "Voltage": {
+                        "value": 25.6,
+                        "unit": "V"
+                    },
+                    "Energy": {
+                        "value": 2.56,
+                        "unit": "kWh"
+                    },
+                    "RechargeVoltage": {
+                        "value": 27.6,
+                        "unit": "V"
+                    },
+                    "Capacity": {
+                        "value": 100,
+                        "unit": "Ah"
+                    }
+                },
+                "name": "Battery",
+                "package-group": "Batteries",
+                "brand": "Rentech",
+                "type-group": "Lithium-ion",
+                "price": 16500
+            },
+            "total-price": 46480
+        }
+    }
+}

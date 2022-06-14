@@ -11,21 +11,19 @@ import pprint
 
 data_path = './input-data-1.xlsx'
 
-solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverter', 'battery', 'cable', 'rack']);
-# inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'battery', 'cable',])
-# generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
+solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar','inverter', 'battery']);
+inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'battery'])
+generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
 
 
-solar_package_handler.generate_package(10)
-# inverter_package_handler.generate_package(10)
+solar_package_handler.generate_package()
+inverter_package_handler.generate_package()
 # generator_package_handler.generate_package(10)
 
 package_table = {
-    # 'generator':generator_package_handler.get_summary(),
+    'generator':generator_package_handler.get_summary(),
     'solar':solar_package_handler.get_summary(),
-    # 'inverter':inverter_package_handler.get_summary()
+    'inverter':inverter_package_handler.get_summary()
 }
 
 write_json('package-debug.json', package_table)
-
-# pprint.pprint(package_table)
