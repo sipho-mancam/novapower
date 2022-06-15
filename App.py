@@ -101,7 +101,6 @@ def get_cart_items():
 def sizeme():
     data = request.get_data(cache=True, as_text=True)
     json = request.get_json(cache=True, force=True)
-    
     # Need to create a queuing system here to make sure we take care of races...
 
     res = create_ss_list(json)
