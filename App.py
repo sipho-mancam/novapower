@@ -48,7 +48,7 @@ def generate_session():
                 
             }
         }
-
+        print(session)
     return {'session_token':session_token}
 
 def validate_cart_object(schema:dict, obj:dict):
