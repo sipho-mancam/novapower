@@ -126,12 +126,13 @@ function make_request(method, url, data){
     const promise = new Promise((resolve, reject) =>{
 
         const xhttp = new XMLHttpRequest()
-
+        xhttp.open('GET', url, true)
+        xhttp.withCredentials=true
         xhttp.responseType='json'
 
         if(data){
-            xhttp.setRequestHeader('Content-TType', 'application/json')
-            
+            xhttp.setRequestHeader('Content-Type', 'application/json')
+
         }
 
         xhttp.onerror = (e)=>{
@@ -139,18 +140,20 @@ function make_request(method, url, data){
         }
 
         xhttp.onreadystatechange = function(){
-            if(xhttp.readyState == 4 && xhttp.status == 200){
+
+            if(xhttp.readyState == 4 && xhttp.status == 200){ 
                 resolve(xhttp.response)
             }
             else if( xhttp.status >= 400){ // request unsuccesful
                 reject(xhttp.response)
             }
         }
+
+        xhttp.ontimeout = function(){
+            alert('timedout')
+        }
         
-        xhttp.open('GET', url, true)
         xhttp.send(JSON.stringify(data))
-
-
     })
     return promise
     
@@ -158,12 +161,15 @@ function make_request(method, url, data){
 
  async function request_token(url){
 
-    let s_url = 'session?session_id='+Math.random()*10000
+    let s_url = 'session?session_id='+12312341//Math.random()*10000
     let session_token = null
     await make_request('GET', base_url+s_url)
     .then(responseData=>{
         try{
+           
             session_token = responseData.session_token
+
+
         }catch(err){
             console.log(err)
         }
@@ -179,8 +185,12 @@ function make_request(method, url, data){
 
 async function get_session_token(){
     let session_token = window.localStorage.getItem('session_token')
+    
     if(session_token == null){
         session_token = await request_token()
+        // session_token = await request_token()
+        console.log(session_token)
     }
+   
     return session_token
 }
