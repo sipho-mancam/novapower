@@ -34,8 +34,6 @@ function view_more(e){
         alert("Couldn't find the package ...")
     }
 
-    
-
 }
 
 function add_to_cart_init(){
@@ -115,25 +113,74 @@ function openCart(event){
     }   
 }
 
-
-
 function close(e){
     overlay.style.display = 'none'
 }
 
+function is_session_token(){
+    let session_token = window.sessionStorage.getItem('session_token')
+    return session_token == null
+}
+
+function make_request(method, url, data){
+    const promise = new Promise((resolve, reject) =>{
+
+        const xhttp = new XMLHttpRequest()
+
+        xhttp.responseType='json'
+
+        if(data){
+            xhttp.setRequestHeader('Content-TType', 'application/json')
+            
+        }
+
+        xhttp.onerror = (e)=>{
+            reject(xhttp.response)
+        }
+
+        xhttp.onreadystatechange = function(){
+            if(xhttp.readyState == 4 && xhttp.status == 200){
+                resolve(xhttp.response)
+            }
+            else if( xhttp.status >= 400){ // request unsuccesful
+                reject(xhttp.response)
+            }
+        }
+        
+        xhttp.open('GET', url, true)
+        xhttp.send(JSON.stringify(data))
 
 
-window.addEventListener('load', function(event){
-    overlay = document.getElementById('view-detail')
-    try{
-        cart_badge.addEventListener('click', openCart)
-        close_overlay.addEventListener('click', close)
-    }catch(err){
+    })
+    return promise
+    
+}
 
+ async function request_token(url){
+
+    let s_url = 'session?session_id='+Math.random()*10000
+    let session_token = null
+    await make_request('GET', base_url+s_url)
+    .then(responseData=>{
+        try{
+            session_token = responseData.session_token
+        }catch(err){
+            console.log(err)
+        }
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+    localStorage.setItem('session_token', session_token)
+    
+    return session_token
+
+}
+
+async function get_session_token(){
+    let session_token = window.localStorage.getItem('session_token')
+    if(session_token == null){
+        session_token = await request_token()
     }
-   
-
-});
-
-init_tabs()
-add_to_cart_init()
+    return session_token
+}

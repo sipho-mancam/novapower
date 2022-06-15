@@ -11,7 +11,6 @@ function get_package_groups(data_json){
     return package_groups_list
 }
 
-
 let solar_packages = {}
 
 let inverter_packages ={}
@@ -92,3 +91,5 @@ let order_button = document.getElementById('order-button')
 let order_form = document.getElementById('order-form')
 let close_order_form = document.getElementById('close-order-form')
 let featured_products = []
+// let session_token = null
+let base_url = 'http://10.30.0.235:5000/'
