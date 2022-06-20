@@ -58,12 +58,7 @@ def generate_session():
                 
             }
         }
-<<<<<<< HEAD
-        session.modified=True
-    
-=======
         print(session)
->>>>>>> 08c83a7c0084f170d2f67c151266efd89ee035f7
     return {'session_token':session_token}
 
 @app.route('/featured', methods=['GET'])
