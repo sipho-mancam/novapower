@@ -92,4 +92,4 @@ let order_form = document.getElementById('order-form')
 let close_order_form = document.getElementById('close-order-form')
 let featured_products = []
 // let session_token = null
-let base_url = 'http://10.30.0.168:5000/'
+let base_url = 'http://10.30.0.235:5000/'
