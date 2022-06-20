@@ -3,25 +3,29 @@
 }
 
 .cust-card{
-    /* border:1px solid black; */
-    border-radius: 2vh;
+    border:1px solid rgba(180,180,180,0.5);
+    border-style: groove;
     display:flex;
     flex-flow: column;
     flex-wrap: wrap;
-    box-shadow: 1px 1px 50px #ddd7d7;
     padding-bottom: 5px;
     background-color:rgb(250, 255, 255);
     padding:1.5vh;
-    margin:0.8vh;
     max-width: 340px;
     min-width: 320px;
-
 }
 
-.cust-card:hover{
+@media  only screen and (max-width:500px) {
+    .cust-card{
+        width:100%;
+    }
+    
+}
+
+/* .cust-card:hover{
     transition: transform 0.5s ease-in-out;
     transform: scale(1.01);
-}
+} */
 
 .image{
     /* border:1px solid black; */
@@ -49,9 +53,11 @@ h4{
 }
 
 .price{
+    /* border: 1px solid black; */
+    
     font-weight: bold;
     font-size:large;
-    text-align: start;
+    text-align: end;
 }
 
 .controls{
@@ -60,7 +66,7 @@ h4{
     padding-top: 0.5vh;
     border-top: 1px solid rgb(172, 170, 170);
     display:flex;
-    flex-flow: row;
+    flex-flow: column;
     justify-content: center;
     background-color:rgb(255, 255, 255);
   
@@ -70,7 +76,7 @@ h4{
     /* border:1px solid black; */
     height: fit-content;
     padding: 0.5vh;
-    width: 50%;
+    width: 100%;
     text-decoration: none;
     text-align: center;
     border-radius: 3vh;

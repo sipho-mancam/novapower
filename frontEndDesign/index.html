@@ -6,8 +6,11 @@
    
     <title>Nova Power</title>
 
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+
     <link rel="stylesheet" href="./css/cards.css" type="text/css" media="all" />
     <link rel="stylesheet" href="./css/tabs.css" type="text/css" media="all" />
     <link rel="stylesheet" href="./css/main.css" type="text/css" media="all" />
@@ -31,7 +34,7 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="./sizing.html">Sizing Tool</a>
+              <a class="nav-link" href="./sizing.html">Tools</a>
             </li>
 
             <li class="nav-item">
@@ -49,7 +52,7 @@
       </nav>
 
       <div id="carouselExampleIndicators" data-interval="5000" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
+        <!-- <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
@@ -72,10 +75,10 @@
         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
-        </a>
+        </a> -->
       </div>
 
-      <div class="overlay">
+      <div class="landing"> <!--overlay-->
         
         <div class="view-portal">
 
@@ -83,28 +86,110 @@
 
         <div class="buttons-container">
             <a href="./sizing.html" class="button s-tool">
-                Sizing Tool <i class="bi bi-gear"></i>   
+                Tools <i class="bi bi-gear"></i>   
             </a>
             <a href="./store.html" class="button store">
-                Store <i class="bi bi-cart4"></i>
+                Store  <i class="bi bi-cart4"></i>
             </a>
         </div>
     </div>
 
-      <div class="container-fluid">
+      <div class="container-fluid">   
         <div class="tabs-container">
           
           <h4 class="products-heading">Featured Products</h4>
-          <div class="tab-content container" id="featured-cont">
+          <div class="" id="featured-cont">
             
           </div>
         </div>
+
+        <div class="tools-container container">
+          <h4 class="products-heading">Quick Tools</h4>
+          <div class="tool-card-container">
+            <div class="tool-card">
+              <img class="tool-image" width="200" height="150" alt="" src="https://icon2.cleanpng.com/20180204/vee/kisspng-gear-icon-gears-png-file-5a7793b1e283d3.8984860115177860339278.jpg">
+            
+              <span class="tool-topic">Hybrid System</span>
+            </div>
+
+            <div class="tool-card">
+              <img class="tool-image" width="200" height="150" alt="" src="https://p.kindpng.com/picc/s/200-2007734_maintenance-icon-png-transparent-png.png">
+            
+              <span class="tool-topic">Hybrid System</span>
+            </div>
+
+            <div class="tool-card">
+              <img class="tool-image" width="200" height="150" alt="" src="https://p.kindpng.com/picc/s/200-2007857_free-daemon-tools-icon-daemon-tools-white-icon.png">
+            
+              <span class="tool-topic">Hybrid System</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="extras container">
+          <h4 class="" style="text-align:center;">You may also like:</h4>
+          <div class="extras-card-container">
+
+            <div class="extras-card border tool-card">
+              <img class="extra-image" width="200" height="150" alt="" src="https://cdn.shopify.com/s/files/1/0378/1964/6088/products/UntitledDesign-2022-02-02T123214_1080x1080.png?v=1650789661">
+            
+              <span class="extras-topic">Hybrid System</span>
+            </div>
+
+            <div class="extras-card border tool-card">
+              <img class="extra-image" width="200" height="150" alt="" src="https://protonsolardistributors.co.za/wp-content/uploads/2021/11/download27.jpg">
+            
+              <span class="extras-topic">Hybrid System</span>
+            </div>
+
+            <div class="extras-card border tool-card">
+              <img class="extra-image" width="200" height="150" alt="" src="https://3pmedia.leroymerlin.co.za/SOURCE/2ea7a7f842bc467fa12c135baef80e81">
+            
+              <span class="extras-topic">Hybrid System</span>
+            </div>
+
+            <div class="extras-card border tool-card">
+              <img class="extra-image" width="200" height="150" alt="" src="https://za.wiautomation.com/181903-large_default/MTN668991.jpg">
+            
+              <span class="extras-topic">Hybrid System</span>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="brands container">
+          <h4 class="brands-logos">Brands</h4>
+        </div>
       </div>
 
-      <div class="view-details overlay" id="view-detail">
+      <!-- <div class="view-details overlay" id="view-detail">
 
-      </div>
-     
+      </div> -->
+      <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Footer Content</h5>
+              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+            © 2014 Copyright novapower
+            <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+          </div>
+        </div>
+      </footer>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -117,7 +202,6 @@
 <script type="text/javascript" src="./js/resources.js"></script>
 <script type="text/javascript" src="./js/views_generator.js"></script>
 <script type="text/javascript" src="./js/processor.js"></script>
-
 <script type="text/javascript" src="./js/index.js"></script>
 
 

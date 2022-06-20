@@ -1,9 +1,33 @@
+  body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+  }
+
+  main {
+      flex: 1 0 auto;
+  }
+
+
 .features{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display:flex;
     justify-content:center;
     flex-flow: column;
     padding:2vh;
+
+}
+
+#featured-cont{
+    overflow-x: auto;
+    display: flex;
+    flex-flow: row;
+    max-width: 62%;
+    min-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    /* min-height: fit-content; */
+    height: fit-content;
 }
 
 .sec-title{
@@ -17,3 +41,73 @@
     height:80vh;
 }
 
+
+
+.tools-container{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column;
+}
+
+.tool-card-container{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.tool-card{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column;
+    width: fit-content;
+    max-width: 400px;
+    margin: 16px;
+    box-shadow: 3px 3px 20px #777777;
+    padding: 5px;
+}
+
+.tool-topic{
+    text-align: center;
+    font-weight: bold;
+}
+
+.extras-card-container{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.extras-card{
+    box-shadow: none;
+    /* border: 1px solid rgb(180, 180, 180); */
+    /* background-color: aqua; */
+    padding: 5px;
+    margin: 0px;
+}
+
+.extras-topic{
+    /* border: 1px solid black; */
+    text-align: center;
+    font-weight: bold;
+}
+
+.container{
+    margin-top: 100px;
+}
+
+.page-footer{
+    border: 1px solid black;
+    background-color: rgb(1, 1, 15);
+    color:white;
+}
+
+@media only screen and (max-width:500px) {
+    #featured-cont {
+        flex-flow: column;
+        max-height: 60vh;
+        overflow-y: auto;
+        min-width: 100%;
+    }
+
+}

@@ -1,7 +1,6 @@
 window.addEventListener('load', function(e){
-
+    let featured_products_view = this.document.getElementById('featured-cont');
     const resp = get_session_token()
-
     resp
     .then(function(token){
         let session_token = token;
@@ -22,7 +21,19 @@ window.addEventListener('load', function(e){
                 // this.window.location.pathname = this.window.location.pathname
             }
             const featured_products_raw = response
-            console.log(featured_products_raw)
+            parse_json(featured_products_raw)         
+            package_groups = get_package_groups(packages_data)
+
+            for(let i=0; i<package_groups.length; i++) {
+                if (package_groups[i].packages.length >0){
+                    console.log(package_groups[i])
+                    get_package_group_views(package_groups[i], featured_products_view, true)
+                }
+                
+            }
+
+            
+            
         })
         .catch(err=>{
             console.log(`Error making request`,err)

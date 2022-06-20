@@ -24,7 +24,7 @@ body{
     /* width: fit-content; */
     min-width:400px;
     max-width:1080px;
-    border: 2px solid rgb(65, 92, 214);
+    /* border: 2px solid rgb(65, 92, 214); */
     background-color: rgb(193, 193, 236);
     display: flex;
     flex-flow: column;

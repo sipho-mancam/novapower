@@ -1,6 +1,6 @@
-function get_package_group_views(package_group, view){
+function get_package_group_views(package_group, view, append=false){
     try{
-        view.innerHTML = ''
+        if(!append)view.innerHTML = ''
         for(let i=0; i<package_group.get_package_list().length; i++){
             view.innerHTML += get_card_html(package_group.get_package_list()[i]);
         }
@@ -14,12 +14,23 @@ function get_item(package){
     let v = '<ul>';
     let temp = ''
     let keys = item_list;
+    let p_obj = package.obj
+
     for(let k=0; k<keys.length; k++){
         if(item_list[k].name){
-            temp = `<li>${item_list[k].name} - ${item_list[k].size[(Object.keys(item_list[k].size))[0]]['value']} ${item_list[k].size[(Object.keys(item_list[k].size))[0]]['unit']}</li>`
-            v += temp
+            item = item_list[k]; 
+            if(item_list[k].name == 'Solar'){
+                temp += `<li>${p_obj['solar-qty']} x ${item.json_obj.size.Power.value} ${item.json_obj.size.Power.unit} ${item_list[k].name} panels</li>`;
+                v+= temp
+            }
+            else if(item.name =='Battery'){
+                let i = item.json_obj
+                v+= `<li>Battery backup of ${i.size.Energy.value}${i.size.Energy.unit}</li>`;
+            } 
         }
+
     }
+    v+=`<li>Maximum power Output of ${p_obj['max-power']}kW</li>`;
     v += '</ul>';
     return v
 }
@@ -32,11 +43,9 @@ function get_card_html(package){
                   <img  src="${package.img_url}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
               </div>
               <div class="info">
-                  <hr />
-                  <h4>${package.name}</h4>
-                  <hr />
+                  
                   <span>
-                    In this package we have: <br />
+                    ${package.obj['item 1'].size.Voltage.value}${package.obj['item 1'].size.Voltage.unit} system with:  <br />
                     ${get_item(package)}
                   </span>
                   <p class='price'>R ${package.get_total_price()}*</p>
