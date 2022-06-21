@@ -1,6 +1,6 @@
-from flask import Flask, make_response, request, jsonify, session
+from flask import Flask, make_response, render_template, request, jsonify, session
 from flask_cors import CORS
-from flask_session import Session
+# from flask_session import Session
 from package_manager import *
 import CONSTANTS
 from packages import *
@@ -10,12 +10,12 @@ from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_s
 
 app = Flask(__name__)
 app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
-app.config['SESSION_PERMANENT'] = False
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SESSION_COOKIE_SECURE']=True
-# app.config['SESSION_COOKIE_DOMAIN']=''
-Session(app)
-CORS(app, supports_credentials=True)
+# app.config['SESSION_PERMANENT'] = False
+# app.config['SESSION_TYPE'] = 'filesystem'
+# app.config['SESSION_COOKIE_SECURE']=True
+
+# Session(app)
+# CORS(app, supports_credentials=True)
 
 db_manager, client = setup()
 data_path = './input-data-1.xlsx'
@@ -30,8 +30,8 @@ inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'b
 
 def validate_session(token):
     if token in session:
-        pass
-    return True
+        return True
+    return False
 
 package_table = {
     # 'generator':generator_package_handler.get_summary(),
@@ -39,9 +39,33 @@ package_table = {
     'inverter':inverter_package_handler.get_summary()
 }
 
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('index.html')
+
+@app.route('/store', methods=['GET'])
+def store():
+    return render_template('store.html')
+
+@app.route('/cart', methods=['GET'])
+def cart():
+    return render_template('cart.html')
+
+@app.route('/sizing', methods=['GET'])
+def sizing():
+    return render_template('sizing.html')
 
 @app.route('/packages/all', methods=['GET', 'OPTIONS']) # require a sesson token to send data
 def index_data():
+    n = request.args.get('n')
+    i = int(n)
+    solar_package_handler.generate_package(i)
+    inverter_package_handler.generate_package(i)
+    # # generator_package_handler.generate_package()
+    package_table = {
+        'solar':solar_package_handler.get_summary(),
+        'inverter':inverter_package_handler.get_summary()
+    }
     return package_table
 
 
@@ -58,12 +82,14 @@ def generate_session():
                 
             }
         }
-        print(session)
-    return {'session_token':session_token}
+        session.modified=True
+    print(session)
+    return {'session_token':session_token, 'session':session}
 
 @app.route('/featured', methods=['GET'])
 def get_featured_products():
     session_token = request.args.get('session_token')
+    print(session)
     if validate_session(session_token):
         n = request.args.get('n')
         x = int(n)
@@ -88,21 +114,25 @@ def validate_cart_object(schema:dict, obj:dict):
 def add_to_session_cart():
     session_token = request.args.get('session_token')
     data = request.get_json()
-    if validate_cart_object(schema={}, data=data):
-        if session_token in session:
-            user_data = session[session_token]
-            if 'cart' in user_data['data']:
-                session[session_token]['data']['cart'].append(data)
-                session.modified = True
-            else:
-                session[session_token]['data']['cart'] = []
-                session[session_token]['data']['cart'].append(data)
-                session.modified = True
-            return {'response':0x01}
+    if session_token in session:
+        user_data = session[session_token]
+        if 'cart' in user_data['data']:
+            session[session_token]['data']['cart'].append(data)
+            session.modified = True
         else:
-            return {'response':0x05}
+            session[session_token]['data']['cart'] = []
+            session[session_token]['data']['cart'].append(data)
+            session.modified = True
+        return {'response':0x01, 'cart':session}
     else:
-        return {'response':0x06}
+        return {'response':0x05}
+
+@app.route('/contact-us', methods=['POST'])
+def contact_us():
+    data = request.get_json() 
+    print(data)
+
+    return data
 
 
 @app.route('/get-cart', methods=['GET'])
@@ -146,7 +176,7 @@ def create_ss_list(json:dict):
     l = [
         json['size'],
         json['cctv'],
-        json['home server'],
+        json['home server'],  
         'FALSE',
         json['ac'],
         json['stove'],

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "novapower-352617",
+  "private_key_id": "0e66dd733f67cbfc547e07fed54566fc76cdca25",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCw3pDcCeshsUuc\nQZ4NxvF2CoML+HsJLqZlbEibkp82NazVi1PWUJqEJx5xLSKweaI7NHOCB3k0MXxf\nKYkqIwlf9zPpJKiEOm99ltHud1310+HDTfSx218e7gktj8BGA6+YnHhTf+Q8tR7h\nNzQquTf+o2EpBP0m/BQmT971c8lPmK30e5aLU4tG/bHf07OAUmhY9g8vhxxSsqQR\nt4QqAOIDnorlaKAvw8xs49+3F6n1yPh+uD1jot2B6Mij5gXeUWy9wGjvESREcbB9\nWdXwxsLMEEzVmajLpBMDYv3/1JLZ9yxpCGNTyhhhAMO45MY4f1grx54bOWItfuGY\nvvT0kOJFAgMBAAECggEAA7tDsHYVG9+IX4I9j2ovFfUgJqnWDq+JRdfZqvlA7/0v\nPvdy4Vv5++fHYKPkeMyte4pJFZPgHsBx20rJC2E0hW3LDpQov1bBm2i0gnofkAbU\nWzEohHLDDaf//DzC1bdQ28C8A9Gi7b+fKH6S/y5r3AIeaVB4TCZCq+bre/ThaRMf\ny7bzY/t1ja6/C+X3rr+9B7yqi+d482p5SKxI81Rg3yCSANF24G2MJF2GuvRQTrRG\n9CgeyI7AytbIR/2N4A/0yS0ScdaplqUypbNGkGA8XfXN/QmIbWWQ+MR+laOfeuLc\nwLsoy7W/BE84E/LYwUhxUWta6ccO3JPYYNnX4qCE0QKBgQD5QUcCcmQLI7oHi5kb\nNhMR+BF5lSSwS7+hZKyraSGou4MYK98QvGSZMl5Q1vfYimbN4QtC6jfW0wg+AAHM\ne0mtz8OLK3+bQHrK+k06s9AW38NHJkRWlzWt+A3Ug5FsiP4IYTUWB7o/Bm08tCN5\nL3hVHfXNpPaYfL+jHdj+gbF3nwKBgQC1p9WzZmrlY2TbdZ1rOk7uTFX3gNSQB017\nDsH3rtoAmBJaBybe1oiRbJLPN/BPQY4Mav4ljOIDLdhPnp1GaxWo/uyksVeguCeJ\nY1dbnHnd4Ir+vX5GzN9EhQNSkFftEpN/sXBF2obTyf4aDtQt5/jz5bPhx5vJwgUt\nUUKl4iJrmwKBgBlA8+DblidKx15cVnbbU7NOXvbilYUHJ7NCb/wt+qsN1IpuZ3ta\nmxaqc8PdA998pk3Vrz5oXJ/3Ya5mccg19ZEWq8k97v/b2JUYJxr7fOnUYgSja+ka\nCOZHa59MdT954cMXljlVLxmTnR25Yp60oIx/LJhZTmLEwOXV8FZY7ZIhAoGAK87v\nBZXUf7+JqjdiIGLueB+mt8q0+IsaT2wOsSnU30HNYzLIWANK6i9R9HFcHfEETdBb\nvDiOpQ+gVAs/iKT4k0nvTgSKynK+7i4r+ibxaOXm/2o5kt+DlKWzWG0BF2ZcdfYX\nynDaBSd4hVZAK1X/PuqNiAy4cF6/Gt+3AARaIrMCgYA/7HHyb6thKVqIgmEP+MJG\nuSKSzl1Gokeld6J0C/tniBLTIWQDWtix2NRQ3L0ofeHhnszPvKB13m2qvbLdpaXN\nkpCkAioscqcNY6VfzBY0ILaEzx99xtJR86D9A4PWC/a8NroC8Uccs+hZI8EJutxz\n4jGkrCgBSmnyK5t4w5h4pA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "gmail-service@novapower-352617.iam.gserviceaccount.com",
+  "client_id": "106062863109240642800",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gmail-service%40novapower-352617.iam.gserviceaccount.com"
+}
