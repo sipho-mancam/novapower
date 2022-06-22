@@ -2,65 +2,69 @@ let tab_row = document.getElementsByTagName('tr')
 window.addEventListener('load', function(e){
     qty_buttons_up = this.document.getElementsByClassName('up')
     qty_buttons_down = this.document.getElementsByClassName('down')
-    let res = window.sessionStorage.getItem('cart')
 
-    // console.log(JSON.parse(res))
-    cart = deserialiseCart(JSON.parse(res))
-
-    cart_table = this.document.getElementById('cart-table')
-    cart_total = this.document.getElementById('cart-total')
-    update_table(cart.cart_objects, cart_table)
-    update_price(cart, cart_total)
-
-
-    for(let i=0; i<qty_buttons_up.length; i++){
-        qty_buttons_up[i].addEventListener('click', incrementQty)
-        qty_buttons_down[i].addEventListener('click', decrementQty)
-        
-    }
-
-    window.sessionStorage.setItem('cart', JSON.stringify(cart))
-    order_button.addEventListener('click', openOrderForm)
-    close_order_form.addEventListener('click', closeOrderForm)
-
-    for(let j=0; j<tab_row.length; j++){
-        tab_row[j].addEventListener('click', function(e){
-            let name = e.currentTarget.children[1].innerText;
-            let price = e.currentTarget.children[2].innerText.split(' ')[1]
-            price = parseFloat(price)
-            current_cart_obj = cart.search_by_name(name, price)
-
-            if(e.target.className.split(' ').includes('d-item')){
-                cart.remove_from_cart(current_cart_obj);
-                this.style.display = 'None';
-                update_price(cart, cart_total)
-
-            } 
-
-            if(e.target.className.split(' ').includes('up')){
-                try{
-                    current_cart_obj['qty']++;
-                    cart.update_price()
-                    update_price(cart, cart_total)
-                }
-                catch(err){console.log(err)}
-
-            }
-            else if(e.target.className.split(' ').includes('down')){
-                try{
-                    current_cart_obj['qty'] = (current_cart_obj['qty']-1)>=0?current_cart_obj['qty']-1:0;
-                    cart.update_price()
-                    update_price(cart, cart_total)
-                }
-                catch(err){
-                    console.log(err)
-                }
-            }
-
-            window.sessionStorage.setItem('cart', JSON.stringify(cart))
+    get_session_token()
+    .then(res=>{
+        _token = res
+        get_cart_items() // update cart with current data for now ...
+       .then(function(){
+            cart_table = this.document.getElementById('cart-table')
+            cart_total = this.document.getElementById('cart-total')
+            update_table(cart.cart_objects, cart_table)
+            update_price(cart, cart_total)
             
-        })
-    }
+            for(let i=0; i<qty_buttons_up.length; i++){
+                qty_buttons_up[i].addEventListener('click', incrementQty)
+                qty_buttons_down[i].addEventListener('click', decrementQty)
+            }
+            
+
+            order_button.addEventListener('click', openOrderForm)
+            close_order_form.addEventListener('click', closeOrderForm)
+
+            for(let j=0; j<tab_row.length; j++){
+                tab_row[j].addEventListener('click', function(e){
+                    let name = e.currentTarget.children[1].innerText;
+                    let price = e.currentTarget.children[2].innerText.split(' ')[1]
+                    price = parseFloat(price)
+                    current_cart_obj = cart.search_by_name(name, price)
+
+                    if(e.target.className.split(' ').includes('d-item')){
+                        cart.remove_from_cart(current_cart_obj);
+                        this.style.display = 'None';
+                        update_price(cart, cart_total)
+                        update_cart_server('delete', current_cart_obj.item.id)
+
+                    } 
+
+                    if(e.target.className.split(' ').includes('up')){
+                        try{
+                            console.log(current_cart_obj)
+                            current_cart_obj['qty']++;
+                            cart.update_price()
+                            update_price(cart, cart_total)
+                            update_cart_server('increase', current_cart_obj.item.id)
+                            
+                        }
+                        catch(err){console.log(err)}
+
+                    }
+                    else if(e.target.className.split(' ').includes('down')){
+                        try{
+                            current_cart_obj['qty'] = (current_cart_obj['qty']-1)>=0?current_cart_obj['qty']-1:0;
+                            cart.update_price()
+                            update_price(cart, cart_total)
+                            update_cart_server('decrease', current_cart_obj.item.id)
+                        }
+                        catch(err){
+                            console.log(err)
+                        }
+                    }
+                })
+            }
+       })
+    })
+      
 })
 
 function openOrderForm(e){
@@ -119,7 +123,7 @@ function deserialiseCart(cart){
 function get_row_view(cart_obj){
     return(
         `
-        <tr>
+        <tr id="${cart_obj['item']['id']}">
             <th scope="row">
                 <img src="${cart_obj['item']['img_url']}" alt="c_image" width="40" height="30"/>
             </th>
@@ -149,7 +153,7 @@ function get_row_view(cart_obj){
 }
 
 function update_table(cart,view){
-    let temp = null;
+    // console.log(cart)
     view.innerHTML = ''
     for(let i=0; i<cart.length; i++){
         view.innerHTML += get_row_view(cart[i]);
@@ -157,6 +161,7 @@ function update_table(cart,view){
 }
 
 function update_price(cart, view){
+    cart.update_price()
     try{
         view.innerText = cart.total_price
     }catch(err){

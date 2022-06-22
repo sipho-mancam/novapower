@@ -15,9 +15,9 @@ window.addEventListener('load', function(e){
         package_groups = get_package_groups(packages_data)
         get_package_group_views(search_package_group(package_groups,groups_maps['Solar Packages']), tab_content)
         init_tabs()
-        add_to_cart_init()
+        add_to_cart_init();
         current_list = package_groups
-        // console.log(current_list)
+        get_cart_count();
     })
     .catch(err=>{
         console.log(err)

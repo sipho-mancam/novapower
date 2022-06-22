@@ -1,4 +1,4 @@
-from flask import Flask, make_response, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session
 from flask_cors import CORS
 # from flask_session import Session
 from package_manager import *
@@ -6,16 +6,11 @@ import CONSTANTS
 from packages import *
 from init import *
 import datetime
+from utility import update_cart
 from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
 
 app = Flask(__name__)
 app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
-# app.config['SESSION_PERMANENT'] = False
-# app.config['SESSION_TYPE'] = 'filesystem'
-# app.config['SESSION_COOKIE_SECURE']=True
-
-# Session(app)
-# CORS(app, supports_credentials=True)
 
 db_manager, client = setup()
 data_path = './input-data-1.xlsx'
@@ -23,10 +18,6 @@ solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverte
 inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'battery'])
 # generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
 
-
-# solar_package_handler.generate_package(10)
-# inverter_package_handler.generate_package(10)
-# # generator_package_handler.generate_package()
 
 def validate_session(token):
     if token in session:
@@ -79,7 +70,7 @@ def generate_session():
             'id': session_token,
             'start-time':datetime.datetime.now().strftime("%H:%M:%S"),
             'data': {
-                
+                'cart':[]
             }
         }
         session.modified=True
@@ -107,7 +98,7 @@ def get_featured_products():
         }
 
 
-def validate_cart_object(schema:dict, obj:dict):
+def validate_cart_object(schema:dict, data:dict):
     return True
 
 @app.route('/add-to-cart', methods=['POST', 'PUT'])
@@ -117,7 +108,9 @@ def add_to_session_cart():
     if session_token in session:
         user_data = session[session_token]
         if 'cart' in user_data['data']:
-            session[session_token]['data']['cart'].append(data)
+            res = update_cart(data['_uid'], user_data['data']['cart'])
+            if not res:
+                session[session_token]['data']['cart'].append(data)    
             session.modified = True
         else:
             session[session_token]['data']['cart'] = []
@@ -127,6 +120,31 @@ def add_to_session_cart():
     else:
         return {'response':0x05}
 
+
+@app.route('/get-cart', methods=['GET'])
+def get_cart_items():
+    m = request.args.get('m')
+    session_token = request.args.get('session_token')
+    if session_token in session:
+        data = session[session_token]['data']
+        if m == 'count': # give me the number of items in the cart...
+            if 'cart' in data:
+                cart = data['cart']
+                return {'cart-items-count':len(cart)}
+            else:
+                return {'cart-items-count':0}
+        elif m == 'items':
+            if 'cart' in data:
+                cart = data['cart']
+                return {'cart-items':cart}
+            else:
+                return {'cart-items':0}
+    else:
+        return {'response':0x05}
+            
+
+
+
 @app.route('/contact-us', methods=['POST'])
 def contact_us():
     data = request.get_json() 
@@ -134,21 +152,36 @@ def contact_us():
 
     return data
 
-
-@app.route('/get-cart', methods=['GET'])
-def get_cart_items():
-    # get session token ...
+@app.route('/update-cart', methods=['POST'])
+def update_cart_items():
     session_token = request.args.get('session_token')
+    data = request.get_json()
+    print(data)
+    func = request.args.get('func')
     if session_token in session:
-        try:
-            cart = session[session_token]['data']['cart']
-            return {'response':cart}
-        except KeyError as ke:
-            session[session_token]['data']['cart'] = []
+        user_data = session[session_token]['data']
+        res = update_cart(data['_uid'], user_data['cart'], func)
+        if res:
             session.modified = True
-            return {'response':0x11}
-    else:
-        return {'response':0x05}
+            return {func:'Sucessful'};
+        else: return {func:'Failed'}
+    return {'response':0x05}
+
+
+# @app.route('/get-cart', methods=['GET'])
+# def get_cart_items():
+#     # get session token ...
+#     session_token = request.args.get('session_token')
+#     if session_token in session:
+#         try:
+#             cart = session[session_token]['data']['cart']
+#             return {'response':cart}
+#         except KeyError as ke:
+#             session[session_token]['data']['cart'] = []
+#             session.modified = True
+#             return {'response':0x11}
+#     else:
+#         return {'response':0x05}
 
 
 
@@ -192,9 +225,9 @@ def create_ss_list(json:dict):
     ]
     return l
     
-
 if __name__ == '__main__':
     app.run(host=CONSTANTS.HOST, debug=True)
+    # app.run(host=CONSTANTS.HOST, debug=True)
 
 
 

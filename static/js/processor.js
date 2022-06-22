@@ -5,18 +5,11 @@ function parse_json(data) {
     // packages_data['generator']['data'] = data['generator']
 }
 
-
-
 function add_to_cart(e){
 
     e.preventDefault() 
     let _search_key = e.path[0].id
-    console.log(current_list)
     let package = search_package(current_list, _search_key)
-
-    
-
-    // console.log('Current -->\n',current_list)
 
     if (package) {
         let p_group = package.name.split(' ')[0]
@@ -24,14 +17,14 @@ function add_to_cart(e){
         make_request('POST', '/add-to-cart?session_token='+_token, {
             'group': p_group,
             '_uid':package.id,
-            'qty':1
+            'qty':1,
+            'package':package
         })
         .then(res=>{
-            console.log(res)
+            get_cart_count();
         })
 
         cart.add_to_cart(package);
-        cart_badge.innerText = cart.cart_list.length;
     }
     else{
         alert("Couldn't find the package ...")
@@ -132,8 +125,7 @@ function openTab(event){
 function openCart(event){
     try{
         event.preventDefault()
-
-        window.sessionStorage.setItem('cart', JSON.stringify(cart))
+        // window.sessionStorage.setItem('cart', JSON.stringify(cart))
         let st = window.location.pathname
         window.location.pathname = '/cart'
 
@@ -221,3 +213,42 @@ async function get_session_token(){
     return session_token
 }
 
+function get_cart_count(){
+    let path = '/get-cart?m=count&session_token='+_token;
+    make_request('GET', path)
+    .then(res=>{
+        let keys = Object.keys(res)
+        cart_badge.innerText = res[keys[0]]
+    })
+}
+
+async function get_cart_items(){
+    let path = '/get-cart?m=items&session_token='+_token;
+    await make_request('GET', path)
+    .then(res=>{
+        console.log(res)
+        let keys = Object.keys(res)
+        if(res[keys[0]]==5)// there's a session token error
+        {
+            window.sessionStorage.clear();
+            window.location.reload();
+        }
+        else{
+            if('cart-items' in res){
+                for(let i=0; i<res[keys[0]].length;i++){
+                    let p = res[keys[0]][i]['package']
+                    p['qty'] = res[keys[0]][i]['qty']
+                    cart.add_to_cart(p)
+                }
+            }
+        }
+    });
+}
+
+async function update_cart_server(func='increase', _uid){
+    let path = '/update-cart?func='+func+'&session_token='+_token;
+    await make_request('POST', path, {'_uid':_uid})
+    .then(res=>{
+        console.log(res)
+    });
+}

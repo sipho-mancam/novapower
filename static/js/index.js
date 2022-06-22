@@ -1,6 +1,6 @@
 window.addEventListener('load', function(e){
     let featured_products_view = this.document.getElementById('featured-cont');
-    const resp = get_session_token()
+    const resp = get_session_token( )
     resp
     .then(function(token){
         let session_token = token;
@@ -12,7 +12,6 @@ window.addEventListener('load', function(e){
         make_request('GET', base_url+f_url)
         .then(response => {
             // const res = JSON.parse(response)
-            console.log(response)
             if('status' in response){
                 console.log('There is an error') 
                 sessionStorage.clear()
@@ -32,6 +31,8 @@ window.addEventListener('load', function(e){
                 
             }
             add_to_cart_init()
+
+            get_cart_count()
         
         })
         .catch(err=>{
@@ -42,6 +43,8 @@ window.addEventListener('load', function(e){
     let contact_us_form = document.getElementById('contact-us-form')
 
     contact_us_form.addEventListener('submit', send_form_data)
+
+    
 })
 
 

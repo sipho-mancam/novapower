@@ -105,9 +105,9 @@ class Cart{
 
     parse_to_cart_i(item){
         let temp = {}
-        temp['name'] = item.get_name();
-        temp['price'] = item.get_total_price();
-        temp['qty'] = 1;
+        temp['name'] = item['name'];
+        temp['price'] = item['total_price'];
+        temp['qty'] = item['qty'];
         temp['item']= item;
         this.cart_objects.push(temp);
     }
@@ -127,7 +127,7 @@ class Cart{
     get_price(){
         this.total_price = 0;
         for(let i=0; i<this.cart_list.length; i++){
-            this.total_price += (this.cart_list[i].get_total_price()*this.cart_objects[i]['qty'])
+            this.total_price += (this.cart_objects[i]['price']*this.cart_objects[i]['qty'])
         }
     }
 

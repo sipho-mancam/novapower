@@ -24,7 +24,7 @@ let packages_data = {
         "data":inverter_packages,
         'images':['https://www.solar-shop.co.za/1741/sunsynk-5kw-inverter-hubble-li-ion-5kwh-package-solar-ready.jpg',
                 'https://www.victronenergy.com/upload/products/multiplus_nw.png',
-                'https://electrical-compliance-certificate.co.za/wp-content/uploads/inverter_solar_package.png',
+                'https://electrical-compliance-certificate.co.za/wp-content/uploads/inverter_solar_package.png', 
                 'https://www.mobile-solarpower.com/uploads/1/2/9/6/12964626/fireshot-capture-141-6500w-48v-solar-charge-inverter-parallel-wifi-monitor-ul1741-listed-sungoldpower-com_orig.png'
                 ]
 
