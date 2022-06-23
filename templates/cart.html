@@ -64,7 +64,7 @@
             </tbody>
           </table>
           <div class="u-table">
-            <input type="submit" class="checkout" value="Place Order" id="order-button" />
+            <input type="submit" class="checkout" value="Get Quote" id="order-button" />
               <div class="total">
                   <p>Total: R<span id="cart-total">23141</span></p>
               </div>
@@ -75,32 +75,36 @@
             <form class="form-group" id="form">
               <div class="mb-3">
                 <label for="name-input" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name-input" placeholder="name" required />
+                <input type="text" class="form-control" name="name" id="name-input" placeholder="name" required />
               </div>
 
               <div class="mb-3">
-                <label for="surname-input" class="form-label">Surname</label>
-                <input type="text" class="form-control" id="surname-input" placeholder="surname" required>
+                <label for="surname-input" class="form-label">Address</label>
+                <input type="text" class="form-control" name="address" id="surname-input" placeholder="Street name, city, state, zip code" required>
               </div>
 
               <div class="mb-3">
                 <label for="email-input" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email-input" placeholder="name@example.com" required>
+                <input type="email" class="form-control" name="email" id="email-input" placeholder="name@example.com" required>
               </div>
 
               <div class="mb-3">
                 <label for="number-input" class="form-label">Tel/Cel No:</label>
-                <input type="tel" class="form-control" id="number-input" placeholder="078 123 1234" required>
+                <input type="tel" class="form-control" name="cell" id="number-input" placeholder="078 123 1234" required>
               </div>
 
               <div class="mb-3">
                 <label for="number-input-alt" class="form-label">Alt. Tel/Cel No:</label>
-                <input type="tel" class="form-control" id="number-alt-input" placeholder="078 123 1234">
+                <input type="tel" class="form-control" id="number-alt-input" placeholder="078 123 4567" name="alt-num">
               </div>
 
               <div class="mb-3">
                 <label for="number-input-alt" class="form-label">Alt. Tel/Cel No:</label>
                 <input type="submit" class="form-control" id="number-alt-input" placeholder="078 123 1234">
+              </div>
+
+              <div class="mb-3">
+                <input type="hidden" class="form-control" name="sub-total" id="sub-tot" value="0" />
               </div>
               <input type="button" class="close" value="close" id="close-order-form" />
             </form>

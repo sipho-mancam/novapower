@@ -7,7 +7,7 @@ window.addEventListener('load', function(e){
         _token = session_token
         const session_param = 'session_token='+session_token
         const f_url = 'featured?n=6&'+session_param
-        console.log(session_token)
+   
         const feature_products = null
         make_request('GET', base_url+f_url)
         .then(response => {
@@ -31,7 +31,6 @@ window.addEventListener('load', function(e){
                 
             }
             add_to_cart_init()
-
             get_cart_count()
         
         })
@@ -46,8 +45,6 @@ window.addEventListener('load', function(e){
 
     
 })
-
-
 
 
 function send_form_data(e){

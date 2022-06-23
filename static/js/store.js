@@ -13,10 +13,10 @@ window.addEventListener('load', function(e){
         // console.log(res)
         parse_json(res)
         package_groups = get_package_groups(packages_data)
+        current_list = package_groups
         get_package_group_views(search_package_group(package_groups,groups_maps['Solar Packages']), tab_content)
         init_tabs()
         add_to_cart_init();
-        current_list = package_groups
         get_cart_count();
     })
     .catch(err=>{

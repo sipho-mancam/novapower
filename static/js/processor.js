@@ -6,11 +6,11 @@ function parse_json(data) {
 }
 
 function add_to_cart(e){
-
     e.preventDefault() 
     let _search_key = e.path[0].id
+   
     let package = search_package(current_list, _search_key)
-
+    console.log(package)
     if (package) {
         let p_group = package.name.split(' ')[0]
 
@@ -107,9 +107,8 @@ function openTab(event){
     let id = groups_maps[event.currentTarget.innerText]
 
     let package_group = search_package_group(package_groups, id);
-
+    
     if(package_group){
-        current_list = package_group.get_package_list()
         get_package_group_views(package_group, tab_content)
         add_to_cart_buttons = document.getElementsByClassName('add-to-cart')
         add_to_cart_init()
@@ -251,4 +250,44 @@ async function update_cart_server(func='increase', _uid){
     .then(res=>{
         console.log(res)
     });
+}
+
+async function send_quote_form(fd){
+    let p = '/get-quote?session_token='+_token;
+
+    await make_request('POST', p, fd)
+    .then(res=>{
+        console.log(res)
+    })
+}
+
+async function get_quote(){
+    let p = '/get-quote?session_token='+_token;
+    return new Promise((resolve, reject) =>{
+        const xhttp = new XMLHttpRequest()
+        xhttp.open('GET', p, true)
+        xhttp.withCredentials=true
+        xhttp.responseType='blob'
+        // xhttp.overrideMimeType('text\/plain; charset=x-user-defined');
+        xhttp.onerror = (e)=>{
+            reject(xhttp.response)
+        }
+
+        xhttp.onreadystatechange = function(){
+
+            if(xhttp.readyState == 4 && xhttp.status == 200){ 
+                resolve(xhttp.response)
+            }
+        
+        }
+
+        xhttp.ontimeout = function(){
+            alert('timedout')
+        }
+        
+        xhttp.send(null)
+
+    })
+    
+
 }

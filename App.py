@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, send_from_directory, session, url_for
 from flask_cors import CORS
 # from flask_session import Session
 from package_manager import *
@@ -6,12 +6,14 @@ import CONSTANTS
 from packages import *
 from init import *
 import datetime
+from pdf_gen import generate_pdf
 from utility import update_cart
 from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
+import pathlib
 
 app = Flask(__name__)
 app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
-
+app.config['UPLOAD_FOLDER'] = pathlib.Path('./Quotes/').absolute().as_posix()
 db_manager, client = setup()
 data_path = './input-data-1.xlsx'
 solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverter', 'battery']);
@@ -168,6 +170,22 @@ def update_cart_items():
     return {'response':0x05}
 
 
+@app.route('/get-quote', methods=['GET', 'POST'])
+def get_quote():
+    if request.method == 'POST':
+        session_token = request.args.get('session_token')
+        user_info = request.get_json()
+        if session_token in session:
+            data = session[session_token]['data']
+            p = generate_pdf(user_info['name']+'.pdf', data['cart'], user_info)
+            print(app.config['UPLOAD_FOLDER'])
+            data['quote'] = p.name
+            session.modified = True
+        return {'filename':p.name}
+    elif request.method == 'GET':
+        session_token = request.args.get('session_token')
+        if session_token in session:
+            return send_from_directory(app.config['UPLOAD_FOLDER'], session[session_token]['data']['quote']) 
 # @app.route('/get-cart', methods=['GET'])
 # def get_cart_items():
 #     # get session token ...
@@ -182,8 +200,6 @@ def update_cart_items():
 #             return {'response':0x11}
 #     else:
 #         return {'response':0x05}
-
-
 
 
 @app.route('/size-me', methods=['POST'])

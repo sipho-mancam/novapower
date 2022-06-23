@@ -1,8 +1,9 @@
 let tab_row = document.getElementsByTagName('tr')
+let form_sub = null
 window.addEventListener('load', function(e){
     qty_buttons_up = this.document.getElementsByClassName('up')
     qty_buttons_down = this.document.getElementsByClassName('down')
-
+    form_sub = document.getElementById('form')
     get_session_token()
     .then(res=>{
         _token = res
@@ -18,7 +19,7 @@ window.addEventListener('load', function(e){
                 qty_buttons_down[i].addEventListener('click', decrementQty)
             }
             
-
+            form_sub.addEventListener('submit', submit_quote);
             order_button.addEventListener('click', openOrderForm)
             close_order_form.addEventListener('click', closeOrderForm)
 
@@ -67,6 +68,29 @@ window.addEventListener('load', function(e){
       
 })
 
+function submit_quote(e){
+    let path = '/contact-us';
+    e.preventDefault()
+    let form_data = new FormData(e.currentTarget)
+    let entries = form_data.entries()
+    let res = entries.next()
+    let form_json = {}
+
+    while(!res.done){
+        form_json[res.value[0]] = res.value[1]
+        res = entries.next()
+    }
+    form_json['sub-tot'] = cart.total_price
+    send_quote_form(form_json)
+    .then(res=>{
+        get_quote()
+        .then(res=>{
+            let uri = window.URL.createObjectURL(res)
+            window.open(uri, '_blank')
+        })
+    })
+}
+
 function openOrderForm(e){
     
     if(cart.total_price>0){
@@ -74,8 +98,7 @@ function openOrderForm(e){
     }
     else{
         alert('Cart Empty ... please add items')
-    }
-    
+    }   
 }
 
 function closeOrderForm(e){
@@ -105,20 +128,6 @@ function decrementQty(event){
     //update memory and price ...
 }
 
-function deserialisePackages(package){
-    return new Package(package.obj)
-}
-
-function deserialiseCart(cart){
-    let temp = []
-    for(let i=0; i<cart.cart_list.length; i++){
-        temp.push(deserialisePackages(cart.cart_list[i]))
-    }
-    let t_cart = new Cart(temp)
-    t_cart.cart_objects = cart.cart_objects;
-    t_cart.update_price()
-    return t_cart
-}
 
 function get_row_view(cart_obj){
     return(
