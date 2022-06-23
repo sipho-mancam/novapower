@@ -179,11 +179,12 @@ def get_quote():
             data['quote'] = p.name
             session.modified = True
             return {'filename':p.name}
+        return {'response':'not found'}
     elif request.method == 'GET':
         session_token = request.args.get('session_token')
         if session_token in session:
             return send_from_directory(app.config['UPLOAD_FOLDER'], session[session_token]['data']['quote']) 
-
+        return {'response':0x05}
 
 @app.route('/size-me', methods=['POST'])
 def sizeme():
