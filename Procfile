@@ -1,2 +1,2 @@
-web: waitress App:app
+web: waitress-serve App:app
 ps:scale web=10
