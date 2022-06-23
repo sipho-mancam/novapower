@@ -178,7 +178,7 @@ def get_quote():
             print(app.config['UPLOAD_FOLDER'])
             data['quote'] = p.name
             session.modified = True
-        return {'filename':p.name}
+            return {'filename':p.name}
     elif request.method == 'GET':
         session_token = request.args.get('session_token')
         if session_token in session:
