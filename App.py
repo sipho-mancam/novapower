@@ -74,7 +74,7 @@ def generate_session():
         }
         session.modified=True
     print(session)
-    return {'session_token':session_token, 'session':session}
+    return {'session_token':session_token}
 
 @app.route('/featured', methods=['GET'])
 def get_featured_products():
@@ -115,7 +115,7 @@ def add_to_session_cart():
             session[session_token]['data']['cart'] = []
             session[session_token]['data']['cart'].append(data)
             session.modified = True
-        return {'response':0x01, 'cart':session}
+        return {'response':0x01,}
     else:
         return {'response':0x05}
 
