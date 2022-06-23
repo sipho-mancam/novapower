@@ -1,2 +1,2 @@
-web: gunicorn App:app
-ps:scale web=1
+web: waitress App:app
+ps:scale web=10
