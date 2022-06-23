@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify, send_from_directory,
 from flask_cors import CORS
 from package_manager import *
 import CONSTANTS
-from packages import *
+from packages_gen import *
 from init import *
 import datetime
 from pdf_gen import generate_pdf

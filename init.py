@@ -9,7 +9,7 @@ from mongo_broker import *
 from package_manager import DBManager
 import CONSTANTS
 from utility import *
-from packages import *
+from packages_gen import *
 from excel_driver import *
 import pprint
 
