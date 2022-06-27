@@ -283,11 +283,11 @@ div>h4{
     #featured-cont {
         flex-flow: column;
         overflow-y: auto;
-        min-width: 100%;
+        min-width: fit-content;
     }
     .cust-card{
         margin: auto;
-        width: 100%;
+        width: 80%;
     }
     .tools-container{
         margin-top: 5px;
