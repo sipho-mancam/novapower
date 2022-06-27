@@ -1,6 +1,3 @@
-from turtle import update
-
-from bson import encode
 from CONSTANTS import *
 from item import *
 from random import *
