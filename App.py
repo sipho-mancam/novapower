@@ -80,7 +80,7 @@ def generate_session():
         }
         session.modified=True
     print(session)
-    return {'session_token':session_token, 'session':session}
+    return {'session_token':session_token}
 
 @app.route('/featured', methods=['GET'])
 def get_featured_products():
