@@ -10,6 +10,7 @@ from pdf_gen import generate_pdf
 from utility import update_cart
 from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
 import pathlib
+from pricing import *
 
 app = Flask(__name__)
 app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
@@ -72,7 +73,9 @@ def generate_session():
             'id': session_token,
             'start-time':datetime.datetime.now().strftime("%H:%M:%S"),
             'data': {
-                'cart':[]
+                'cart':[],
+                'price':{},
+                'processed-list':[] 
             }
         }
         session.modified=True
@@ -107,12 +110,15 @@ def validate_cart_object(schema:dict, data:dict):
 def add_to_session_cart():
     session_token = request.args.get('session_token')
     data = request.get_json()
+    # print(data)
     if session_token in session:
         user_data = session[session_token]
         if 'cart' in user_data['data']:
             res = update_cart(data['_uid'], user_data['data']['cart'])
             if not res:
                 session[session_token]['data']['cart'].append(data)    
+            
+            pprint.pprint(session[session_token]['data']['cart'])
             session.modified = True
         else:
             session[session_token]['data']['cart'] = []
@@ -122,6 +128,17 @@ def add_to_session_cart():
     else:
         return {'response':0x05}
 
+@app.route('/price-summary')
+def price_summary():
+    session_token = request.args.get('session_token')
+    if session_token in session:
+        data = session[session_token]['data']
+        cart_list = data['cart']
+        res = process_cart_pricing(cart_list, session_token, data['processed-list'])
+        session.modified = True
+        return res
+    else:
+        return {'response':0x05}
 
 @app.route('/get-cart', methods=['GET'])
 def get_cart_items():

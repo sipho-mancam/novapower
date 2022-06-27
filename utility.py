@@ -5,7 +5,6 @@ from package_manager import *
 from mongo_broker import *
 import CONSTANTS
 
-
 client = connect(host=CONSTANTS.D_HOST, port=CONSTANTS.D_PORT)
 db_manager = DBManager(client, client[CONSTANTS.DB_TEST], CONSTANTS.COL_TEST, {})
 
