@@ -124,7 +124,7 @@ def add_to_session_cart():
             session[session_token]['data']['cart'] = []
             session[session_token]['data']['cart'].append(data)
             session.modified = True
-        return {'response':0x01, 'cart':session}
+        return {'response':0x01}
     else:
         return {'response':0x05}
 
