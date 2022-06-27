@@ -198,11 +198,13 @@ def get_quote():
             print(app.config['UPLOAD_FOLDER'])
             data['quote'] = p.name
             session.modified = True
-        return {'filename':p.name}
+            return {'filename':p.name}
     elif request.method == 'GET':
         session_token = request.args.get('session_token')
         if session_token in session:
             return send_from_directory(app.config['UPLOAD_FOLDER'], session[session_token]['data']['quote']) 
+        else:
+            return {'response':0x05}
 # @app.route('/get-cart', methods=['GET'])
 # def get_cart_items():
 #     # get session token ...
