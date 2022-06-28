@@ -39,16 +39,14 @@ th{
 }
 
 #cart-table{
-    /* max-height: 30vh; */
     max-height: 30vh;
     overflow-y: auto;
-    /* border: 1px solid black; */
+
 }
 
 
 
 .cart-details{
-    /* border: 1px solid black; */
     display: flex;
     width:100%;
     flex-flow: row;
@@ -61,7 +59,6 @@ th{
 
 td{
     font-size: small;
-    /* border: 1px solid black; */
 }
 
 .cart-item-details{
@@ -140,6 +137,7 @@ td{
     text-align: center;
     width: 35px;
     height: 20px;
+    
 }
 
 .qty-item>i:hover{

@@ -123,7 +123,7 @@ function get_row_view(cart_obj){
                     <i class="bi bi-dash-lg q-b down"></i>
                 </div>
                 <div class="qty-item">
-                    <input type="text" name="qty" class="q-input" value="${cart_obj['qty']}" />
+                    <input type="text" disabled name="qty" class="q-input" value="${cart_obj['qty']}" />
                 </div>
                 <div class="qty-item">
                     <i class="bi bi-plus-lg q-b up"></i>
