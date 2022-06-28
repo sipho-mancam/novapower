@@ -46,29 +46,90 @@
         </div>
       </nav>
       
-      <div class="cart-main container content">
-            <div class="h4">Cart</div>
-            <!-- <span class="h6">Ready to checkout ...</span> -->
-          <table class="table table-striped ">
-            <thead>
-              <tr>
-                <th scope="col">Item</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Qty</th>
-                <th scope="col">Remove</th>
-              </tr>
-            </thead>
-            <tbody id="cart-table">
 
-            </tbody>
-          </table>
-          <div class="u-table">
-            <input type="submit" class="checkout" value="Get Quote" id="order-button" />
-              <div class="total">
-                  <p>Total: R<span id="cart-total">23141</span></p>
+      <div class="cart-main-container">
+
+        <div class="cart-main container content">
+              
+              <!-- <span class="h6">Ready to checkout ...</span> -->
+            <div class="cart-details .table-responsive">
+              <div class="table-container table-responsive">
+                <div class="h5 header">
+                  <span>Shopping Cart</span>
+                </div>
+                <!-- <hr /> -->
+                <table class="table table-hover d-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Product Details</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cart-table">
+                    
+                  </tbody>
+                </table>
               </div>
-          </div>
+              <div class="cart-r-section">
+                    <div class="header h5">
+                      Order Summary
+                    </div>
+                    <hr />
+                    <div class="s-item">
+                      <div class="t-line"><span class="name">Item</span><span class="value">3</span></div>
+                  </div>
+
+                    <div class="s-item delivery disabled">
+                      <span class="i-topic">Delivery</span><br />
+                      <div class="text-lines">
+                        <div class="t-line"><span class="name">Price</span><span class="value">R 34.123</span></div>
+                        <div class="t-line">
+                          <span class="name">Add</span><span class="value"><input type="range" class="form-range" min="0" max="1" step="1" id="installation-control" /></span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="s-item install-option">
+                      <span class="i-topic">Installation</span><br />
+                      <div class="text-lines">
+                        <div class="t-line"><span class="name">Price</span><span class="value">R 34.123</span></div>
+                        <div class="t-line">
+                          <span class="name">Add</span><span class="value"><input type="range" class="form-range" min="0" max="1" step="1" id="installation-control" /></span>
+                        </div>
+                      </div>
+                      
+                      
+                    </div>
+
+                    <div class="s-item">
+                        <span class="i-topic">Shipping Address</span>
+                    </div>
+
+                    <hr /> 
+                    <div class="s-item">
+                      <div class="text-lines">
+                        <div class="t-line"><span class="name tot">Sub-total <span class="small-text">excl. VAT</span></span><span class="value tot">R 34.123</span></div>
+                        <div class="t-line"><span class="name tot">VAT <span class="small-text">(%15)</span></span><span class="value tot">R 34.123</span></div>
+                        <div class="t-line"><span class="name tot">Total</span><span class="value tot">R 34.123</span></div>
+                      </div>
+                    </div>
+                    <div class="checkout-container checkout" id="checkout-b">  
+                      Checkout
+                    </div>
+                    
+
+                    <div class="or">
+                      <span><hr /></span>OR<span><hr /></span>
+                    </div>
+
+                    <div class="checkout" class="checkout-container" id="get-quote-b">
+                      Get Quote
+                    </div>
+              </div>
+            </div>
 
           <div class="cart-checkout" id="order-form">
             <p>Please provide the details below to help us process your order.</p>

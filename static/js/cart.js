@@ -132,24 +132,37 @@ function decrementQty(event){
 function get_row_view(cart_obj){
     return(
         `
-        <tr id="${cart_obj['item']['id']}">
+          <tr>
             <th scope="row">
-                <img src="${cart_obj['item']['img_url']}" alt="c_image" width="40" height="30"/>
-            </th>
-            <td>
-                ${cart_obj['name']}
-            </td>
-            <td>
-                R ${cart_obj['price']}
-            </td>
-            <td>
-                <div class="qty-container">
-                    <input type="text" name="qty" class="q-input" value="${cart_obj['qty']}" />
-                    <div class="qty-buttons">
-                        <i class="bi bi-caret-up-fill q-b up"></i>
-                        <i class="bi bi-caret-down-fill q-b down"></i>
-                    </div>
+            <div class="cart-item-details">
+                <img src="${cart_obj['item']['img_url']}" alt="c_image" width="100" height="100"/>
+                <div class="cart-item-text-details">
+                <span class="item-heading">${cart_obj['name']}</span><br />
+                <span class="size">5kVA - 48V - 5kWh</span><br />
+                <span class="cart-item-type">Solar Hybrid System</span>
                 </div>
+            </div>
+            </td>
+            <td> 
+            <div class="qty-container">
+                <div class="qty-buttons">
+                <div class="qty-item">
+                    <i class="bi bi-dash-lg q-b down"></i>
+                </div>
+                <div class="qty-item">
+                    <input type="text" name="qty" class="q-input" value="${cart_obj['qty']}" />
+                </div>
+                <div class="qty-item">
+                    <i class="bi bi-plus-lg q-b up"></i>
+                </div>   
+                </div>
+            </div>
+            </td>
+            <td>
+                <span class="cart-item-unit-price">R ${cart_obj['price']}</span>
+            </td>
+            <td>
+            <span class="cart-item-unit-price">R ${cart_obj['price']*cart_obj['qty']}</span>
             </td>
             <td>
                 <div class="remove-container">
