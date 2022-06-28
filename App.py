@@ -49,6 +49,7 @@ def cart():
 def sizing():
     return render_template('sizing.html')
 
+
 @app.route('/packages/all', methods=['GET', 'OPTIONS']) # require a sesson token to send data
 def index_data():
     n = request.args.get('n')
@@ -136,6 +137,8 @@ def price_summary():
         cart_list = data['cart']
         res = process_cart_pricing(cart_list, session_token, data['processed-list'])
         session.modified = True
+        for key in res.keys():
+            res[key] = format_price(res[key])
         return res
     else:
         return {'response':0x05}

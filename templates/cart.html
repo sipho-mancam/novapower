@@ -18,7 +18,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Novapower</a><
+        <a class="navbar-brand" href="/">Novapower</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/"> Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/store">Store</a>
@@ -52,12 +52,13 @@
         <div class="cart-main container content">
               
               <!-- <span class="h6">Ready to checkout ...</span> -->
-            <div class="cart-details .table-responsive">
+            <div class="cart-details">
               <div class="table-container table-responsive">
                 <div class="h5 header">
-                  <span>Shopping Cart</span>
+                  <div class="t-line"><span class="name">Shopping Cart</span><span class="value">N - Items</span></div>
                 </div>
                 <!-- <hr /> -->
+                
                 <table class="table table-hover d-table">
                   <thead>
                     <tr>
@@ -111,9 +112,9 @@
                     <hr /> 
                     <div class="s-item">
                       <div class="text-lines">
-                        <div class="t-line"><span class="name tot">Sub-total <span class="small-text">excl. VAT</span></span><span class="value tot">R 34.123</span></div>
-                        <div class="t-line"><span class="name tot">VAT <span class="small-text">(%15)</span></span><span class="value tot">R 34.123</span></div>
-                        <div class="t-line"><span class="name tot">Total</span><span class="value tot">R 34.123</span></div>
+                        <div class="t-line"><span class="name">Sub-total <span class="small-text">excl. VAT</span></span><span class="value tot"></span></div>
+                        <div class="t-line"><span class="name">VAT <span class="small-text">(%15)</span></span><span class="value tot"></span></div>
+                        <div class="t-line"><span class="name">Total</span><span class="value tot"></span></div>
                       </div>
                     </div>
                     <div class="checkout-container checkout" id="checkout-b">  
@@ -125,7 +126,7 @@
                       <span><hr /></span>OR<span><hr /></span>
                     </div>
 
-                    <div class="checkout" class="checkout-container" id="get-quote-b">
+                    <div  class="checkout-container checkout" id="get-quote-b">
                       Get Quote
                     </div>
               </div>
