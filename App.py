@@ -19,7 +19,7 @@ db_manager, client = setup()
 data_path = './input-data-1.xlsx'
 solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverter', 'battery']);
 inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'battery'])
-# generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
+generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
 
 
 def validate_session(token):
@@ -28,7 +28,7 @@ def validate_session(token):
     return False
 
 package_table = {
-    # 'generator':generator_package_handler.get_summary(),
+    'generator':generator_package_handler.get_summary(),
     'solar':solar_package_handler.get_summary(),
     'inverter':inverter_package_handler.get_summary()
 }
@@ -56,10 +56,12 @@ def index_data():
     i = int(n)
     solar_package_handler.generate_package(i)
     inverter_package_handler.generate_package(i)
-    # # generator_package_handler.generate_package()
+    generator_package_handler.generate_package(i)
+    
     package_table = {
         'solar':solar_package_handler.get_summary(),
-        'inverter':inverter_package_handler.get_summary()
+        'inverter':inverter_package_handler.get_summary(),
+        'generator':generator_package_handler.get_summary()
     }
     return package_table
 
@@ -93,9 +95,11 @@ def get_featured_products():
         # print(x)
         solar_package_handler.generate_package(x//2)
         inverter_package_handler.generate_package(x//2)
+        generator_package_handler.generate_package(x//2)
         return {
             'solar':solar_package_handler.get_summary(),
-            'inverter':inverter_package_handler.get_summary()
+            'inverter':inverter_package_handler.get_summary(),
+            'generator':generator_package_handler.get_summary(),
         }
     else:
         return {

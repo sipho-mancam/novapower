@@ -1,8 +1,13 @@
 function parse_json(data) {
     // console.log(data)
-    packages_data['inverter+battery']['data'] = data['inverter']
-    packages_data['solar+inverter+battery']['data'] = data['solar']
-    // packages_data['generator']['data'] = data['generator']
+    try{
+        packages_data['inverter+battery']['data'] = data['inverter']
+        packages_data['solar+inverter+battery']['data'] = data['solar']
+        packages_data['generator']['data'] = data['generator']
+    }catch(err){
+        console.log(err)
+    }
+    
 }
 
 function add_to_cart(e){

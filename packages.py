@@ -5,7 +5,6 @@ import json
 from package_manager import *
 import hashlib
 
-
 class Package:
     def __init__(self, _obj:dict=None) -> None:
         self._obj = _obj
@@ -164,32 +163,15 @@ class Subpackage:
 
     def ordered_packing(self, package):
         try:
-            package.add_item(random.choice(self.__current_list))
+            package.add_item(choice(self.__current_list))
         except IndexError as e:
-            self.__current_list_index = 0
-            package.add_item(self.__current_list[self.__current_list_index])
+            print('Error Adding package')
 
         if not self.is_last(): # if you not the last subpackagegroup, call the next subpackage.
-            res = self.__next_package.ordered_packing(package) # next subpackage group, give us your item
-            if res: # you are supposed to change...
-                if not self.is_current_end(): # are we at the end of the list ?
-                    if self.__current_list_index <= len(self.__current_list)-2:
-                        self.__current_list_index +=1 # increase the indexing ...
-                        return False # stop changes on you.
-                else:
-                    self.__current_list_index = 0 # reset indexing to 0
-                    return True # tell the previous subpackage group to change*
-            return res # tell everyone else not to change...
-        else:  # if it is the last subpackage group
-            # print('\n')
-            if self.is_current_end(): #we at the end of the items list
-                self.__current_list_index = 0 # reset items indexing to 0
-                self.__change_flag = True # tell the previous container to now change to the second item.
-                return self.__change_flag
-            else: # if we not at the end, index to the next item
-                if self.__current_list_index<=len(self.__current_list)-2: # increase index to get the next item in the group.
-                    self.__current_list_index +=1
-                return False
+            res = self.__next_package.ordered_packing(package) 
+            return res
+        else: 
+            return False
                 
     def next_package(self):
         return self.__next_package
@@ -230,29 +212,20 @@ class Subpackage:
             self.__next_package.reset()
         return
 
+    def create_package(self, package):
+        if self.__name.lower() == 'generator':
+            self.pack(package)
+        else:
+            self.ordered_packing(package)
+    
     def pack(self, package)->bool:
         # print("name: {} currentCount: {}, ".format(self.__name, self.__current_count), end="")
-        package.add_item(self._get_current_item()) # append my current element
-
+        package.add_item(choice(self.__items)) # append my current element
         if not self.is_last(): # if you not the last subpackagegroup, call the next subpackage.
             res = self.__next_package.pack(package) # next subpackage group, give us your item
-            if res: # you are supposed to change...
-                if not self.is_end(): # are we at the end of the list ?
-                    self.next() # increase the indexing ...
-                    return False # stop changes on you.
-                else:
-                    self.reset() # reset indexing to 0
-                    return True # tell the previous subpackage group to change*
-            return res # tell everyone else not to change...
-
-        else:  # if it is the last subpackage group
-            if self.is_end(): #we at the end of the items list
-                self.reset() # reset items indexing to 0
-                self.__change_flag = True # tell the previous container to now change to the second item.
-                return self.__change_flag
-            else: # if we not at the end, index to the next item
-                self.next() # increase index to get the next item in the group.
-                return False
+            return res # tell everyone else not to change..
+        else:  
+            return False
 
      
 class PackageHandler:
@@ -310,19 +283,22 @@ class PackageHandler:
         
     def generate_package(self, n=0):        
         first_sub = self.__sub_packages_list[0]
-        first_sub.set_current_size(STD_VOLTAGE_48)
+        try:
+            first_sub.set_current_size(STD_VOLTAGE_48)
+        except Exception as e:
+            pass
         self.__packages = []
         if n > 0:
             for i in range(n):
                 temp = Package()
-                first_sub.ordered_packing(temp)
+                first_sub.create_package(temp)
                 self.__package_count +=1
                 self.__packages.append(temp)
             return self.__packages
         else:
             for i in range(self.possible_package_count() if self.possible_package_count() <100 else 100):
                 temp = Package()
-                first_sub.ordered_packing(temp)
+                first_sub.create_package(temp)
                 self.__package_count +=1
                 self.__packages.append(temp)
             return self.__packages

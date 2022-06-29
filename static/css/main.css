@@ -45,9 +45,12 @@
 
 
 #featured-cont{
-    overflow-x: auto;
+    /* overflow-x: auto; */
+    /* border: 1px solid black; */
     display: flex;
     flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: center;
     max-width: 100%;
     min-width: 450px;
     margin-left: auto;
@@ -284,6 +287,7 @@ div>h4{
         flex-flow: column;
         overflow-y: auto;
         min-width: fit-content;
+        
     }
     .cust-card{
         margin: auto;
