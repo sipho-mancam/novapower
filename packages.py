@@ -81,7 +81,7 @@ class Package:
         
 
 class Subpackage:
-    def __init__(self, items:list=[]):
+    def __init__(self, items:list=[]): # items in this list are already parsed into local Item objects.
         self.__items = items
         self.__current_count = 0
         self.__current_item = self.__items[0]
@@ -90,7 +90,7 @@ class Subpackage:
         self.__change_flag = False
         self.__max_items = len(self.__items)
         self.__name = None
-        self.__organised_data_structure = {}
+        self.__organised_data_structure = {}  # this structure sorts the data according to the 
         self.__current_list = []
         self.__current_list_index = 0
         
@@ -111,36 +111,36 @@ class Subpackage:
     def _get_name(self):return self.__name if self.__name is not None else ''
 
     def order_data(self):
-        for i in self.__items:
-            dict_temp = i.to_dict();
-            size = dict_temp['size'];
-            
-            s =''
-            if 'Voltage' in size:
-                # figure out where it falls...
-                voltage = round(size['Voltage']['value'])
-                if abs(voltage-12) <= 3 or voltage <=12:
-                    s = STD_VOLTAGE_12
-                elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
-                    s = STD_VOLTAGE_24
-                elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
-                    s = STD_VOLTAGE_48
+        if self.__name is not None and self.__name.lower() != 'generator':
+            for i in self.__items:
+                dict_temp = i.to_dict();
+                size = dict_temp['size'];
+                
+                s =''
+                if 'Voltage' in size:
+                    # figure out where it falls...
+                    voltage = round(size['Voltage']['value'])
+                    if abs(voltage-12) <= 3 or voltage <=12:
+                        s = STD_VOLTAGE_12
+                    elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
+                        s = STD_VOLTAGE_24
+                    elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
+                        s = STD_VOLTAGE_48
 
-            elif 'BatVoltage' in size:
-                voltage = round(size['BatVoltage']['value'])
+                elif 'BatVoltage' in size:
+                    voltage = round(size['BatVoltage']['value'])
+                    if abs(voltage-12) <= 3 or voltage <=12:
+                        s = STD_VOLTAGE_12
+                    elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
+                        s = STD_VOLTAGE_24
+                    elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
+                        s = STD_VOLTAGE_48
 
-                if abs(voltage-12) <= 3 or voltage <=12:
-                    s = STD_VOLTAGE_12
-                elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
-                    s = STD_VOLTAGE_24
-                elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
-                    s = STD_VOLTAGE_48
-
-            if s in self.__organised_data_structure:
-                self.__organised_data_structure[s].append(i)
-            else:
-                self.__organised_data_structure[s] = []
-                self.__organised_data_structure[s].append(i)
+                if s in self.__organised_data_structure:
+                    self.__organised_data_structure[s].append(i)
+                else:
+                    self.__organised_data_structure[s] = []
+                    self.__organised_data_structure[s].append(i)
 
     def set_current_size(self, size):
         if size in STD_VOLTAGE_LIST:
@@ -164,7 +164,7 @@ class Subpackage:
 
     def ordered_packing(self, package):
         try:
-            package.add_item(self.__current_list[self.__current_list_index])
+            package.add_item(random.choice(self.__current_list))
         except IndexError as e:
             self.__current_list_index = 0
             package.add_item(self.__current_list[self.__current_list_index])
@@ -254,7 +254,7 @@ class Subpackage:
                 self.next() # increase index to get the next item in the group.
                 return False
 
-        
+     
 class PackageHandler:
     def __init__(self, _sub_packages:dict=None):
         self.__sub_packages_list = list()

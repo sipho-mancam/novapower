@@ -11,7 +11,6 @@ import CONSTANTS
 from utility import *
 from packages import *
 from excel_driver import *
-import pprint
 
 
 def setup_input(xl_path, sheet_name, keys=[]):

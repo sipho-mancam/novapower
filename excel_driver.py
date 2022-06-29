@@ -5,6 +5,7 @@ import os
 import pathlib
 
 # itemName; PackageGroup; Brand; TypeGroup; sizeGroup; ItemPrice; Extras
+
 def read_excel(path, sheet_n):
     df = None
 
@@ -35,8 +36,8 @@ def clean_data(df):
 
 def parse_excel_to_dict(data_frame):
     clean_data(data_frame)
-    parse = Parser()
-    return parse.parse_data_frame(data_frame)
+    parser = Parser()
+    return parser.parse_data_frame(data_frame)
 
 def xl_to_json(xl_file, sheet):
     df = read_excel(xl_file, sheet)
