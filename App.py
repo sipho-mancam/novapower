@@ -86,11 +86,11 @@ def generate_session():
 @app.route('/featured', methods=['GET'])
 def get_featured_products():
     session_token = request.args.get('session_token')
-    print(session)
+    # print(session)
     if validate_session(session_token):
         n = request.args.get('n')
         x = int(n)
-        print(x)
+        # print(x)
         solar_package_handler.generate_package(x//2)
         inverter_package_handler.generate_package(x//2)
         return {
@@ -107,6 +107,7 @@ def get_featured_products():
 def validate_cart_object(schema:dict, data:dict):
     return True
 
+
 @app.route('/add-to-cart', methods=['POST', 'PUT'])
 def add_to_session_cart():
     session_token = request.args.get('session_token')
@@ -118,8 +119,6 @@ def add_to_session_cart():
             res = update_cart(data['_uid'], user_data['data']['cart'])
             if not res:
                 session[session_token]['data']['cart'].append(data)    
-            
-            pprint.pprint(session[session_token]['data']['cart'])
             session.modified = True
         else:
             session[session_token]['data']['cart'] = []
@@ -129,19 +128,22 @@ def add_to_session_cart():
     else:
         return {'response':0x05}
 
-@app.route('/price-summary')
-def price_summary():
+
+@app.route('/update-cart', methods=['POST'])
+def update_cart_items():
     session_token = request.args.get('session_token')
+    data = request.get_json()
+    print(data)
+    func = request.args.get('func')
     if session_token in session:
-        data = session[session_token]['data']
-        cart_list = data['cart']
-        res = process_cart_pricing(cart_list, session_token, data['processed-list'])
-        session.modified = True
-        for key in res.keys():
-            res[key] = format_price(res[key])
-        return res
-    else:
-        return {'response':0x05}
+        user_data = session[session_token]['data']
+        res = update_cart(data['_uid'], user_data['cart'], func)
+        if res:
+            session.modified = True
+            return {func:'Sucessful'};
+        else: return {func:'Failed'}
+    return {'response':0x05}
+
 
 @app.route('/get-cart', methods=['GET'])
 def get_cart_items():
@@ -163,31 +165,6 @@ def get_cart_items():
                 return {'cart-items':0}
     else:
         return {'response':0x05}
-            
-
-
-
-@app.route('/contact-us', methods=['POST'])
-def contact_us():
-    data = request.get_json() 
-    print(data)
-
-    return data
-
-@app.route('/update-cart', methods=['POST'])
-def update_cart_items():
-    session_token = request.args.get('session_token')
-    data = request.get_json()
-    print(data)
-    func = request.args.get('func')
-    if session_token in session:
-        user_data = session[session_token]['data']
-        res = update_cart(data['_uid'], user_data['cart'], func)
-        if res:
-            session.modified = True
-            return {func:'Sucessful'};
-        else: return {func:'Failed'}
-    return {'response':0x05}
 
 
 @app.route('/get-quote', methods=['GET', 'POST'])
@@ -208,20 +185,39 @@ def get_quote():
             return send_from_directory(app.config['UPLOAD_FOLDER'], session[session_token]['data']['quote']) 
         else:
             return {'response':0x05}
-# @app.route('/get-cart', methods=['GET'])
-# def get_cart_items():
-#     # get session token ...
-#     session_token = request.args.get('session_token')
-#     if session_token in session:
-#         try:
-#             cart = session[session_token]['data']['cart']
-#             return {'response':cart}
-#         except KeyError as ke:
-#             session[session_token]['data']['cart'] = []
-#             session.modified = True
-#             return {'response':0x11}
-#     else:
-#         return {'response':0x05}
+
+@app.route('/price-summary')
+def price_summary():
+    session_token = request.args.get('session_token')
+    if session_token in session:
+        data = session[session_token]['data']
+        cart_list = data['cart']
+        res = process_cart_pricing(cart_list, session_token, data['processed-list'])
+        res = res.get_totals()
+        session.modified = True
+        for key in res.keys():
+            res[key] = format_price(res[key])
+        return res
+    else:
+        return {'response':0x05}
+
+@app.route('/add-option', methods=['POST', 'GET'])
+def add_option():
+    if request.method == 'GET':
+        session_token = request.args.get('session_token')
+        options_list = [installers_option]
+        if session_token in session:
+            data = session[session_token]['data']
+            res = add_options_to_all(session_token, data, options_list)
+
+            res = res.get_totals()
+            for key in res.keys():
+                res[key] = format_price(res[key])
+            return res
+        else:
+            return {'response':0x05}
+    else:
+        return {'status':0x05}
 
 
 @app.route('/size-me', methods=['POST'])
@@ -241,6 +237,14 @@ def sizeme():
         'price':result[0][1]
     }
     return jsonify(resp)
+
+@app.route('/contact-us', methods=['POST'])
+def contact_us():
+    data = request.get_json() 
+    print(data)
+
+    return data
+
 
 
 def create_ss_list(json:dict):

@@ -1,6 +1,33 @@
 
 let form_sub = null
 window.addEventListener('load', function(e){
+
+    let add_installation = this.document.getElementById('installation-control')
+    // let add_delivery = this.document.getElementById('delivery-control')
+
+    add_installation.addEventListener('change', function(e){
+        let value = e.target.value
+        let path = '/add-option?session_token='+_token+'&option=installation';
+        if(value == 1){
+            make_request('GET',path)
+            .then(function(response){
+                update_totals(response)
+            })
+        }
+    })
+
+    // add_delivery.addEventListener('change', function(e){
+    //     let value = e.target.value
+
+    //     let path = '/add-option?session_token='+_token+'&option=delivery';
+    //     if(value == 1){
+    //         make_request('GET',path)
+    //         .then(function(response){
+    //             update_totals(response)
+    //         })
+    //     }
+    // })
+
     form_sub = document.getElementById('form')    
     get_session_token()
     .then(res=>{
@@ -11,7 +38,15 @@ window.addEventListener('load', function(e){
             cart_total = this.document.getElementById('cart-total')
             update_table(cart.cart_objects, cart_table)
 
+            let cart_counts = this.document.getElementsByClassName('cart-count')
             let tab_row = document.getElementsByTagName('tr')
+            
+            get_cart_count()
+            .then(()=>{
+                for(let i of cart_counts){
+                    i.innerText = cart_count
+                }
+            })
             
             form_sub.addEventListener('submit', submit_quote);
             order_button.addEventListener('click', openOrderForm)
@@ -48,21 +83,23 @@ window.addEventListener('load', function(e){
                     
                 })
             }
-
-            let tot_buttons = document.getElementsByClassName('tot')
+        
             get_price_summary(_token)
             .then(res=>{
-                console.log(res, tot_buttons)
-                let keys = Object.keys(res)
-                tot_buttons[0].innerText = res[keys[0]]
-                tot_buttons[1].innerText = res[keys[2]]
-                tot_buttons[2].innerText = res[keys[1]]
+                update_totals(res)
             })
-        
        })
     })
       
 })
+
+function update_totals(res, tot_buttons=document.getElementsByClassName('tot')){
+    
+    let keys = Object.keys(res)
+    tot_buttons[0].innerText = res[keys[0]]
+    tot_buttons[1].innerText = res[keys[2]]
+    tot_buttons[2].innerText = res[keys[1]]
+}
 
 function submit_quote(e){
     let path = '/contact-us';
@@ -89,12 +126,15 @@ function submit_quote(e){
 
 function openOrderForm(e){
     
-    if(cart.total_price>0){
-        order_form.style.display = 'flex'
-    }
-    else{
-        alert('Cart Empty ... please add items')
-    }   
+    get_cart_count()
+    .then(()=>{
+        if(cart_count){
+            order_form.style.display = 'flex'
+        }
+        else{
+            alert('Cart Empty ... please add items')
+        } 
+    }) // set the cart count value in there ...
 }
 
 function closeOrderForm(e){
@@ -103,6 +143,7 @@ function closeOrderForm(e){
 
 
 function get_row_view(cart_obj){
+    console.log(cart_obj)
     return(
         `
           <tr id=${cart_obj['item']['obj']['_uid']}>
@@ -112,7 +153,7 @@ function get_row_view(cart_obj){
                 <div class="cart-item-text-details">
                 <span class="item-heading">${cart_obj['name']}</span><br />
                 <span class="size">5kVA - 48V - 5kWh</span><br />
-                <span class="cart-item-type">Solar Hybrid System</span>
+                <span class="cart-item-type">${cart_obj['name']}</span>
                 </div>
             </div>
             </td>

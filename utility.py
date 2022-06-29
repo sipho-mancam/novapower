@@ -4,6 +4,7 @@ import json
 from package_manager import *
 from mongo_broker import *
 import CONSTANTS
+from pricing import *
 
 client = connect(host=CONSTANTS.D_HOST, port=CONSTANTS.D_PORT)
 db_manager = DBManager(client, client[CONSTANTS.DB_TEST], CONSTANTS.COL_TEST, {})
@@ -26,7 +27,7 @@ def update_cart(uid:str, cart_list:list, func:str='increase'):
                 return True
         elif func == 'delete':
             cart_list.remove(res)
-            return True
+            return True        
     else: return False;
     
 
@@ -100,31 +101,6 @@ def test_write(data={}, n=1):
         else:
             print("[x] Failed to write to db")
 
-# def generate_mock_items(n = 1):
-#     l = list()
-#     c_list = ['solar', 'battery', 'inverter', 'charger', 'racking', 'cabling']
-#     if n > 1:
-#         for i in range(n):
-#             l.append(Item(
-#                 _obj={
-#                 CONSTANTS.ID: str(randbytes(32)),
-#                 CONSTANTS.CLASS:choice(c_list),
-#                 CONSTANTS.PRICE:random()*1000,
-#                 CONSTANTS.IMG_URL:'https://some-image-server/'+str(randbytes(32)),
-#                 CONSTANTS.OPTIONS:{}
-#                 }
-#             ).to_dict())
-#         return l
-#     else:
-#         return Item(
-#                 _obj={
-#                 CONSTANTS.ID: str(randbytes(32)),
-#                 CONSTANTS.CLASS:choice(c_list),
-#                 CONSTANTS.PRICE:random()*1000,
-#                 CONSTANTS.IMG_URL:'https://some-image-server/'+str(randbytes(32)),
-#                 CONSTANTS.OPTIONS:{}
-#                 }
-#             ).to_dict()
 
 def format_price(price):
     s = "R {:,.2f}".format(price)

@@ -93,5 +93,6 @@ let close_order_form = document.getElementById('close-order-form')
 let featured_products = []
 let _token = null
 let base_url = '/' //window.location.pathname
+let cart_count = null;
 
 console.log(base_url)

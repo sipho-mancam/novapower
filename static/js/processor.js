@@ -212,12 +212,17 @@ async function get_session_token(){
     return session_token
 }
 
-function get_cart_count(){
+async function get_cart_count(){
     let path = '/get-cart?m=count&session_token='+_token;
-    make_request('GET', path)
+    await make_request('GET', path)
     .then(res=>{
         let keys = Object.keys(res)
-        cart_badge.innerText = res[keys[0]]
+        try{
+            cart_badge.innerText = res[keys[0]]
+        }catch(err){
+            console.log(err)
+        }
+        cart_count = res[keys[0]]
     })
 }
 
