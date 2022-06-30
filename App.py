@@ -157,9 +157,9 @@ def update_cart_items():
     if session_token in session:
         user_data = session[session_token]['data']
         res = update_cart(data['_uid'], user_data['cart'], func)
-        if res:
-            session.modified = True
-            return {func:'Sucessful'};
+        session.modified = True
+        print(session)
+        if res: return {func:'Sucessful'};
         else: return {func:'Failed'}
     return {'response':0x05}
 

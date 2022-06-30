@@ -28,7 +28,8 @@ def update_cart(uid:str, cart_list:list, func:str='increase'):
         elif func == 'delete':
             cart_list.remove(res)
             return True        
-    else: return False;
+    else: 
+        return False;
     
 
 

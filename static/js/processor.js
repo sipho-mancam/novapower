@@ -256,10 +256,7 @@ async function get_cart_items(){
 
 async function update_cart_server(func='increase', _uid){
     let path = '/update-cart?func='+func+'&session_token='+_token;
-    await make_request('POST', path, {'_uid':_uid})
-    .then(res=>{
-        console.log(res)
-    });
+    return make_request('POST', path, {'_uid':_uid})
 }
 
 async function send_quote_form(fd){

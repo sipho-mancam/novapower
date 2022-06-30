@@ -59,13 +59,21 @@ window.addEventListener('load', function(e){
                
                     if(e.target.className.split(' ').includes('d-item')){
                         update_cart_server('delete', _uid)
-                        window.location.reload()
+                        .then(res=>{
+                            console.log(res)
+                            window.location.reload()
+                        })
+                        
                     } 
 
                     if(e.target.className.split(' ').includes('up')){
                         try{
                             update_cart_server('increase', _uid)
-                            window.location.reload()
+                            .then(res=>{
+                                window.location.reload()
+                            })
+                            
+                            
                         }
                         catch(err){console.log(err)}
 
@@ -73,8 +81,9 @@ window.addEventListener('load', function(e){
                     else if(e.target.className.split(' ').includes('down')){
                         try{
                             update_cart_server('decrease', _uid)
-
-                            window.location.reload()
+                            .then(res=>{
+                                window.location.reload()
+                            })
                         }
                         catch(err){
                             console.log(err)
