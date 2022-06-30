@@ -14,8 +14,8 @@ window.addEventListener('load', function(e){
         const session_param = 'session_token='+session_token
         const f_url = 'featured?n=6&'+session_param
 
-        loader.style.display = 'none';
-               
+        
+
         const feature_products = null
         make_request('GET', base_url+f_url)
         .then(response => {
@@ -40,6 +40,7 @@ window.addEventListener('load', function(e){
             }
             add_to_cart_init()
             get_cart_count()
+            loader.style.display = 'none';
         
         })
         .catch(err=>{
