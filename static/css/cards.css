@@ -4,7 +4,8 @@
 
 .cust-card{
     /* border:1px solid rgba(180,180,180,0.5); */
-    border-style: groove;
+    border-radius: 5px;
+    /* border-style: groove; */
     display:flex;
     flex-flow: column;
     flex-wrap: wrap;
@@ -64,7 +65,7 @@ h4{
     /* border:1px solid black; */
     margin-top: 0vh;
     padding-top: 0.5vh;
-    border-top: 1px solid rgb(172, 170, 170);
+    /* border-top: 1px solid rgb(172, 170, 170); */
     display:flex;
     flex-flow: column;
     justify-content: center;

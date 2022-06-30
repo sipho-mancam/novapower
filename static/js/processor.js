@@ -295,6 +295,12 @@ async function get_quote(){
         xhttp.send(null)
 
     })
-    
+}
 
+let cart_float = document.getElementById('cart-button-float')
+
+cart_float.addEventListener('click', click_cart)
+
+function click_cart(){
+    window.location.pathname = '/cart';
 }

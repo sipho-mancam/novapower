@@ -37,6 +37,8 @@ inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'b
 generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
 
 
+s = 0
+
 def validate_session(token):
     if token in session:
         return True
@@ -78,6 +80,9 @@ def index_data():
         'inverter':inverter_package_handler.get_summary(),
         'generator':generator_package_handler.get_summary()
     }
+    global s
+    s +=1
+    print(s)
     return package_table
 
 

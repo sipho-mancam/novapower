@@ -2,7 +2,6 @@ window.addEventListener('load', function(e){
     let flag = false;
     let loader = this.document.getElementById('loader')
     // console.log(loader)
-    loader.style.display = 'flex'
     //start the spinner overlay here....
 
     let featured_products_view = this.document.getElementById('featured-cont');

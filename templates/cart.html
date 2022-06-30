@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/cards.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/tabs.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/cart.css') }}" type="text/css" media="all" />
@@ -41,8 +41,8 @@
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input disabled class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button disabled class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
       </nav>
@@ -118,7 +118,7 @@
                         <div class="t-line"><span class="name">Total</span><span class="value tot"></span></div>
                       </div>
                     </div>
-                    <div class="checkout-container checkout" id="checkout-b">  
+                    <div disabled class="checkout-container checkout disable" id="checkout-b">  
                       Checkout
                     </div>
                     

@@ -38,17 +38,18 @@
 
             <li class="nav-item">
                 <button type="button" class="btn btn-primary mr-5" id="cart-button">
-                    Cart <span class="badge badge-light" id="cart-badge">0</span>
+                    <i class="bi bi-cart4"></i> <span class="badge badge-light" id="cart-badge" style="color:black ;">0</span>
                     <span class="sr-only">cart-items</span>
                 </button>
               </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input disabled class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button disabled class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
       </nav>
+
       <div class="video-container container-fluid">
         <video autoplay loop muted  id="bg-video" role="presentation" style="width: 100%; height:100%;object-fit: cover; object-position: center;">
           <source src="https://video.wixstatic.com/video/4b1826_aae658464790414db4a9aa8d948b9f02/720p/mp4/file.mp4" type="video/mp4" />
@@ -72,6 +73,11 @@
           <!-- <img src="https://static.wixstatic.com/media/4b1826_9c73f9c0bf5e4a94b9dc5412f99c7b4a~mv2.png/v1/fill/w_678,h_441,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/shutterstock_1488897269.png" id="landing-image"/> -->
 
         </div>
+       
+        <button type="button" class="btn btn-primary mr-5" id="cart-button-float">
+          <i class="bi bi-cart4"></i>
+          <span class="sr-only">cart-items</span>
+        </button>
 
         <div class="buttons-container">
             <a href="./sizing" class="button s-tool">
@@ -107,7 +113,7 @@
                   The Hybrid system sizing tool is here to assist you figuring out what size of UPS you need.
                   Simply input details about your property (house, office, etc.) and the system will recommend what size you may need.
                 </span>
-                <a class="find-out-more" href="#">Explore More</a>
+                <a class="find-out-more" href="/sizing">Explore More</a>
               </div>
             </div>
 
@@ -123,7 +129,7 @@
                   The inverter sizing tool is here to assist you figuring out what size of UPS you need.
                   Simply input details about your property (house, office, etc.) and the system will recommend what size you may need.
                 </span>
-                <a class="find-out-more" href="#">Explore More</a>
+                <a class="find-out-more" href="/sizing">Explore More</a>
               </div>
             </div>
             <div class="tool-card sizing">
@@ -137,7 +143,7 @@
                   The Generator sizing tool is here to assist you figuring out what size of UPS you need.
                   Simply input details about your property (house, office, etc.) and the system will recommend what size you may need.
                 </span>
-                <a class="find-out-more" href="#">Explore More</a>
+                <a class="find-out-more" href="/sizing">Explore More</a>
               </div>
             </div>
           </div>
@@ -224,10 +230,10 @@
               <div class="col">
                   <h5 class="white-text">Menu</h5>
                   <ul class="footer-links">
-                    <li><a class="grey-text" href="#!">Home</a></li>
-                    <li><a class="grey-text" href="#!">Tools</a></li>
-                    <li><a class="grey-text" href="#!">Store</a></li>
-                    <li><a class="grey-text" href="#!">Cart</a></li>
+                    <li><a class="grey-text" href="/">Home</a></li>
+                    <li><a class="grey-text" href="/sizing">Tools</a></li>
+                    <li><a class="grey-text" href="/store">Store</a></li>
+                    <li><a class="grey-text" href="/cart">Cart</a></li>
                   </ul>
               </div>
 
@@ -251,8 +257,8 @@
         <div class="row">
           <div class="col">
             <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <input disabled class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button disabled class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>
         </div>
