@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory, session, url_for
 from flask_cors import CORS
-from flask_pymongo import PyMongo
-from flask_mongo_sessions import MongoDBSessionInterface
 from flask_session import Session
 from package_manager import *
 import CONSTANTS
@@ -29,8 +27,7 @@ app.config['SESSION_MONGODB'] = client
 app.config['SESSION_MONGODB_DB'] = 'sessions'
 app.config['SESSION_MONGODB_COLLECTION'] = 'user-sessions'
 
-# mongo  = PyMongo(app)
-# mongo.db.get_collection('user-session')
+
 
 Session(app)
 
