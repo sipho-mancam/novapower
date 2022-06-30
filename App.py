@@ -21,12 +21,11 @@ app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest(
 app.config['UPLOAD_FOLDER'] = pathlib.Path('./Quotes/').absolute().as_posix()
 # app.config['MONGO_DBNAME'] = 'sessions'
 # app.config['MONGO_URI'] = 'mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mongodb.net/sessions?retryWrites=true&w=majority'
-app.config['SESSION_PERMANENT'] = False
+# app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] = 'mongodb'
 app.config['SESSION_MONGODB'] = client
 app.config['SESSION_MONGODB_DB'] = 'sessions'
 app.config['SESSION_MONGODB_COLLECTION'] = 'user-sessions'
-
 
 
 Session(app)
