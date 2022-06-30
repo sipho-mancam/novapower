@@ -4,9 +4,12 @@ Cerberus==1.3.4
 certifi==2022.5.18.1
 charset-normalizer==2.0.12
 click==8.1.3
+dnspython==2.2.1
 et-xmlfile==1.1.0
 Flask==2.1.2
 Flask-Cors==3.0.10
+flask-mongo-sessions==0.2.1
+Flask-PyMongo==2.3.0
 Flask-Session==0.4.0
 fpdf==1.7.2
 google-api-core==2.8.1

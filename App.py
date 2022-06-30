@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory, session, url_for
 from flask_cors import CORS
-# from flask_session import Session
+from flask_pymongo import PyMongo
+from flask_mongo_sessions import MongoDBSessionInterface
+from flask_session import Session
 from package_manager import *
 import CONSTANTS
 from packages import *
@@ -11,10 +13,27 @@ from utility import update_cart
 from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
 import pathlib
 from pricing import *
+from pymongo import MongoClient
 
 app = Flask(__name__)
+
+client = MongoClient("mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mongodb.net/sessions?retryWrites=true&w=majority")
+
 app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
 app.config['UPLOAD_FOLDER'] = pathlib.Path('./Quotes/').absolute().as_posix()
+# app.config['MONGO_DBNAME'] = 'sessions'
+# app.config['MONGO_URI'] = 'mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mongodb.net/sessions?retryWrites=true&w=majority'
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_TYPE'] = 'mongodb'
+app.config['SESSION_MONGODB'] = client
+app.config['SESSION_MONGODB_DB'] = 'sessions'
+app.config['SESSION_MONGODB_COLLECTION'] = 'user-sessions'
+
+# mongo  = PyMongo(app)
+# mongo.db.get_collection('user-session')
+
+Session(app)
+
 db_manager, client = setup()
 data_path = './input-data-1.xlsx'
 solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverter', 'battery']);
