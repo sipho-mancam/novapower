@@ -106,11 +106,13 @@ def get_featured_products():
     # print(session)
     if validate_session(session_token):
         n = request.args.get('n')
-        x = int(n)
-        # print(x)
-        solar_package_handler.generate_package(x//2)
-        inverter_package_handler.generate_package(x//2)
-        generator_package_handler.generate_package(x//2)
+        if n is not None:
+            x = int(n)
+        else:
+            x = 10
+            solar_package_handler.generate_package(x//2)
+            inverter_package_handler.generate_package(x//2)
+            generator_package_handler.generate_package(x//2)
         return {
             'solar':solar_package_handler.get_summary(),
             'inverter':inverter_package_handler.get_summary(),
@@ -152,13 +154,11 @@ def add_to_session_cart():
 def update_cart_items():
     session_token = request.args.get('session_token')
     data = request.get_json()
-    print(data)
     func = request.args.get('func')
     if session_token in session:
         user_data = session[session_token]['data']
         res = update_cart(data['_uid'], user_data['cart'], func)
         session.modified = True
-        print(session)
         if res: return {func:'Sucessful'};
         else: return {func:'Failed'}
     return {'response':0x05}
@@ -194,7 +194,6 @@ def get_quote():
         if session_token in session:
             data = session[session_token]['data']
             p = generate_pdf(user_info['name']+'.pdf', data['cart'], user_info)
-            print(app.config['UPLOAD_FOLDER'])
             data['quote'] = p.name
             session.modified = True
             return {'filename':p.name}
@@ -260,8 +259,6 @@ def sizeme():
 @app.route('/contact-us', methods=['POST'])
 def contact_us():
     data = request.get_json() 
-    print(data)
-
     return data
 
 

@@ -56,8 +56,13 @@ window.addEventListener('load', function(e){
                 tab_row[j].addEventListener('click', function(e){
 
                      let _uid = e.currentTarget.getAttribute('id')
-               
+                    let spinner = document.getElementById(_uid+'spinner')
+                    let qty_cont = document.getElementById(_uid+'qty')
+                    
+
                     if(e.target.className.split(' ').includes('d-item')){
+                        qty_cont.style.display = 'none';
+                        spinner.style.display = 'block';
                         update_cart_server('delete', _uid)
                         .then(res=>{
                             console.log(res)
@@ -67,6 +72,8 @@ window.addEventListener('load', function(e){
                     } 
 
                     if(e.target.className.split(' ').includes('up')){
+                        qty_cont.style.display = 'none';
+                        spinner.style.display = 'block';
                         try{
                             update_cart_server('increase', _uid)
                             .then(res=>{
@@ -79,6 +86,8 @@ window.addEventListener('load', function(e){
 
                     }
                     else if(e.target.className.split(' ').includes('down')){
+                        qty_cont.style.display = 'none';
+                        spinner.style.display = 'block';
                         try{
                             update_cart_server('decrease', _uid)
                             .then(res=>{
@@ -167,7 +176,10 @@ function get_row_view(cart_obj){
             </div>
             </td>
             <td> 
-            <div class="qty-container">
+            <div class="spinner-border spinner-border-sm" style="display:none" role="status" id=${cart_obj['item']['obj']['_uid'] + 'spinner'} >
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="qty-container" id=${cart_obj['item']['obj']['_uid']+'qty'}>
                 <div class="qty-buttons">
                 <div class="qty-item">
                     <i class="bi bi-dash-lg q-b down"></i>
