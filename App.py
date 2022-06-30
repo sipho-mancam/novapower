@@ -110,9 +110,10 @@ def get_featured_products():
             x = int(n)
         else:
             x = 10
-            solar_package_handler.generate_package(x//2)
-            inverter_package_handler.generate_package(x//2)
-            generator_package_handler.generate_package(x//2)
+
+        solar_package_handler.generate_package(x//2)
+        inverter_package_handler.generate_package(x//2)
+        generator_package_handler.generate_package(x//2)
         return {
             'solar':solar_package_handler.get_summary(),
             'inverter':inverter_package_handler.get_summary(),

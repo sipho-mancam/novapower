@@ -1,7 +1,7 @@
 window.addEventListener('load', function(e){
     let flag = false;
     let loader = this.document.getElementById('loader')
-    console.log(loader)
+    // console.log(loader)
     loader.style.display = 'flex'
     //start the spinner overlay here....
 
@@ -14,9 +14,6 @@ window.addEventListener('load', function(e){
         const session_param = 'session_token='+session_token
         const f_url = 'featured?n=6&'+session_param
 
-        
-
-        const feature_products = null
         make_request('GET', base_url+f_url)
         .then(response => {
             // const res = JSON.parse(response)
