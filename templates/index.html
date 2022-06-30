@@ -9,8 +9,7 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/cards.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/tabs.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/main.css') }}" type="text/css" media="all" />
@@ -50,13 +49,17 @@
           </form>
         </div>
       </nav>
-
       <div class="video-container container-fluid">
         <video autoplay loop muted  id="bg-video" role="presentation" style="width: 100%; height:100%;object-fit: cover; object-position: center;">
           <source src="https://video.wixstatic.com/video/4b1826_aae658464790414db4a9aa8d948b9f02/720p/mp4/file.mp4" type="video/mp4" />
         </video>
       </div>
       
+      <div class="spin-overlay" id="loader">
+        <div class="spinner-grow text-primary" style="width: 150px; height: 150px; margin: auto;" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
 
 
       <div class="landing overlay"> <!--overlay-->
