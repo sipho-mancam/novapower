@@ -44,7 +44,7 @@
 .tab-content{
     /* border:1px solid black; */
     /* max-height:100vh; */
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     width:100%;
     display: flex;
     flex-flow: row;
