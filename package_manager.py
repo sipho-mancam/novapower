@@ -108,19 +108,16 @@ class DBManager:
         return record.to_dict()
     
 
-
 def setup():
     db_list = [
         CONSTANTS.DB_ITEMS,
         CONSTANTS.DB_ORDERS,
         CONSTANTS.DB_USERS
     ]
-
     client = connect(CONSTANTS.D_HOST, CONSTANTS.D_PORT)
     db_manager = DBManager(client, client[CONSTANTS.DB_MAIN], CONSTANTS.COL_MAIN, {})
 
     for db_name in db_list:
-        db_manager.register_db(client[db_name])
-        
+        db_manager.register_db(client[db_name])   
     return db_manager, client
 
