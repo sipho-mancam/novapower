@@ -35,26 +35,24 @@ function get_item(package){
     return v
 }
 
-
 function get_voltage(package){
     
     try{
         let raw = package.obj
         let inverter = null
-        // console.log(raw)
+        
         for(let i of Object.keys(raw)){
            
-            if(i !== '_uid' && raw[i].name.toLowerCase() == 'inverter'){
+            if(i != '_uid' && raw[i].name.toLowerCase() == 'inverter'){
                 inverter = raw[i]
                 break;
             }
         }
-        
-        if('Voltage' in inverter){
-            console.log(inverter)
+
+        if('Voltage' in inverter.size){
             return `${inverter.size.Voltage.value} ${inverter.size.Voltage.unit}`
         }
-        else if('BatVoltage' in inverter){
+        else if('BatVoltage' in inverter.size){
             return `${inverter.size.BatVoltage.value} ${inverter.size.BatVoltage.unit}`
         }
         else{
@@ -89,17 +87,19 @@ function get_card_html(package){
 }
 
 function get_item_full(package){
+    // console.log(package)
     let item_list = package.item_list;
-    let v = '<ul>  <li><b>Name :Brand - Type: size</b></li>';
+    let v = '<ul><b>Name: Brand - Type</b>';
     let temp = ''
     let keys = item_list;
     for(let k=0; k<keys.length; k++){
         if(item_list[k].name){
             temp = `<li><b>${item_list[k].name}</b>:&nbsp;&nbsp;   
                         ${item_list[k].brand} - 
-                        ${item_list[k].type} : size (
-                            ${get_size(item_list[k].size)}
-                            )
+                        ${item_list[k].json_obj['type-group']} :
+                            <ul>
+                                ${get_size(item_list[k].size)}
+                            </ul>
                     </li>`
             v += temp
         }
@@ -114,11 +114,42 @@ function get_size(item_size){
     let keys = Object.keys(item_size);
     let res = ''
     for(let i=0; i<keys.length; i++){
-        res += `${keys[i]} ${item_size[keys[i]]['value']}${item_size[keys[i]]['unit']} ,`
+        res += `<li><em>${keys[i]}</em>: ${item_size[keys[i]]['value']}${item_size[keys[i]]['unit']}</li> `
     }
 
     return res
 
+}
+
+function get_product_summary(package){
+    let item_list = package.item_list;
+    let temp = ''
+    let keys = item_list;
+    let v = 'Components <br /><ul>'
+    for(let k=0; k<keys.length; k++){
+        if(item_list[k].name){
+            temp = `<li><b>${item_list[k].name}</b>:&nbsp;&nbsp;   
+                        ${item_list[k].brand} - 
+                        ${item_list[k].json_obj['type-group']} 
+                    </li>`
+            v += temp
+        }
+    }
+    v += '</ul>';
+
+    v += 'Description <br />'
+    
+    v += `<ul>
+        <span style="color:grey;font-size:medium;">This UPS package can power a standard 3-bedroom house with the following appliances for x-hours, during loadshedding:
+
+        ${/*some image data about icons*/'s'}<br />
+
+        Can the inverter be able to upgrade to solar later? </span>
+    </ul> `
+
+    v 
+
+    return v
 }
 
 function get_view_more(package, p_type){
@@ -126,15 +157,26 @@ function get_view_more(package, p_type){
         `
         <div class="view-details-card container">
             <div class="img v-img">
-              <img src="${package.img_url}" class="img-thumbnail img-fluid" alt=""/>
+                <img src="${package.img_url}" class="img-thumbnail" width="300px" height="300px" alt=""/>
             </div>
 
             <div class="text">
                 <h4>${package.name}</h4>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item active-tab v-tab">
+                        <a class="nav-link"  aria-current="page" href="#">Summary</a>
+                    </li>
+                    <li class="nav-item v-tab">
+                        <a class="nav-link" href="#" >Technical Details</a>
+                    </li>
+                    <li class="nav-item v-tab">
+                        <a class="nav-link" href="#" >Reviews</a>
+                    </li>
+                </ul>
 
-                <p>This packages/Items has the below specifications:</p>
-                   
-                  ${get_item_full(package)}
+                <div class="tab-content" style="width: 100%; display:block; margin-top:5px;" id="v-tab-cont">
+                   ${get_product_summary(package)}
+                </div>
                 
                 <p class='price'>R ${package.get_total_price()}*</p>
                 <div class="buttons">

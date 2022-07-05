@@ -68,6 +68,55 @@ let groups_maps = {
     'Generator Packages':'generator'
 }
 
+let appliance_list = [
+    {
+        'name':'lights',
+        'img': "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Noun_Project_lightbulb_icon_1263005_cc.svg/1200px-Noun_Project_lightbulb_icon_1263005_cc.svg.png",
+        'power':85,
+        'rank':1000
+    },
+    {
+        'name':'laptop',
+        'img': "https://cdn-icons-png.flaticon.com/512/4812/4812557.png",
+        'power':60
+    },
+    {
+        'name':'fridge',
+        'img': "https://toppng.com/uploads/preview/file-svg-fridge-icon-sv-11563715839vbv5lvmhxn.png",
+        'power':500
+    },
+    {
+        'name':'tv',
+        'img': "https://cdn-icons-png.flaticon.com/512/3443/3443580.png",
+        'power':120
+    },
+    {
+        'name':'stove',
+        'img': "https://icon-library.com/images/85-512.png",
+        'power':3000
+    },
+    {
+        'name':'kettle',
+        'img': "https://cdn-icons-png.flaticon.com/512/125/125653.png",
+        'power':3000
+    },
+    {
+        'name':'microwave',
+        'img': "https://thumbs.dreamstime.com/b/bowl-microwave-icon-outline-style-vector-web-design-isolated-white-background-190751776.jpg",
+        'power':1200
+    },
+    {
+        'name':'internet router',
+        'img': "https://cdn-icons-png.flaticon.com/512/2502/2502330.png",
+        'power':20
+    },
+    {
+        'name':'home computer',
+        'img': "https://cdn-icons-png.flaticon.com/512/2502/2502330.png",
+        'power':120
+    }
+]
+
 let view = document.getElementById('tab-content')
 let add_to_cart_buttons = document.getElementsByClassName('add-to-cart')
 let view_more_buttons = document.getElementsByClassName('view-more-buttons')
@@ -94,5 +143,7 @@ let featured_products = []
 let _token = null
 let base_url = '/' //window.location.pathname
 let cart_count = null;
+let current_v_tab = null;
+let v_tab_cont = null;
 
 console.log(base_url)

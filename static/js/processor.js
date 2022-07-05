@@ -49,6 +49,32 @@ function view_more(e){
         overlay.style.display='flex';
         close_overlay = document.getElementById('close-overlay')
         close_overlay.addEventListener('click', close)
+        
+        let v_tab_buttons = document.getElementsByClassName('v-tab')
+        v_tab_cont = document.getElementById('v-tab-cont');
+        current_v_tab = v_tab_buttons[0];
+        // console.log(current_v_tab)
+        for(let i of v_tab_buttons){
+            i.addEventListener('click', function(){
+                current_v_tab.className = current_v_tab.className.replace('active-tab', '')
+                console.log(current_v_tab.className)
+                current_v_tab = this
+                this.className += ' active-tab '
+
+                if (this.innerText.toLowerCase() == 'summary'){
+                    v_tab_cont.innerHTML = get_product_summary(package)
+                }
+                else if(this.innerText.toLowerCase() == 'technical details'){
+                    v_tab_cont.innerHTML = get_item_full(package)
+                }
+                else if(this.innerText.toLowerCase() == 'reviews'){
+                    v_tab_cont.innerHTML = '<p style="color:grey">There are currently 0 reviews for this item</p>'
+                }
+            });
+
+        
+
+        }
         // alert('Showing the item')
     }
     else{

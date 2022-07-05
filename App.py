@@ -27,7 +27,6 @@ app.config['SESSION_MONGODB'] = client
 app.config['SESSION_MONGODB_DB'] = 'sessions'
 app.config['SESSION_MONGODB_COLLECTION'] = 'user-sessions'
 
-
 Session(app)
 
 db_manager, client = setup()

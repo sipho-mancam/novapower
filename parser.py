@@ -66,7 +66,6 @@ class Parser:
                 
 
                 for p in self.__key_map.keys():
-                    
                     # check if out current index is not size of extras since these are parsed already..
                     if self.__key_map[p] in self.__indexing_table.keys() and p != 'size' and p != 'extras': 
                         
@@ -77,8 +76,12 @@ class Parser:
                             j_data[p] = float(item[self.__indexing_table[self.__key_map[p]]])
                         else:
                             j_data[p] = item[self.__indexing_table[self.__key_map[p]]]
-                
-                self.add_to_list(j_data)
+
+                try:
+                    j_data['package-flag'] = (type(j_data['type-group']) is dict)
+                    self.add_to_list(j_data)
+                except KeyError as e:
+                    print(f'Error getting {e}')
 
         except Exception as e:
             print("Error parsing an object", e)

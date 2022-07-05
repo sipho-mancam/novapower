@@ -163,7 +163,11 @@ class Subpackage:
 
     def ordered_packing(self, package):
         try:
-            package.add_item(choice(self.__current_list))
+            item = choice(self.__items)
+            # print('Package Flag ',item.to_dict()['package-flag'])
+            while item.to_dict()['package-flag']: 
+                item = choice(self.__items)
+            package.add_item(item) # append my current element
         except IndexError as e:
             print('Error Adding package')
 
@@ -220,7 +224,11 @@ class Subpackage:
     
     def pack(self, package)->bool:
         # print("name: {} currentCount: {}, ".format(self.__name, self.__current_count), end="")
-        package.add_item(choice(self.__items)) # append my current element
+        item = choice(self.__items)
+        # print('Package Flag ',item.to_dict()['package-flag'])
+        while item.to_dict()['package-flag']: 
+            item = choice(self.__items)
+        package.add_item(item) # append my current element
         if not self.is_last(): # if you not the last subpackagegroup, call the next subpackage.
             res = self.__next_package.pack(package) # next subpackage group, give us your item
             return res # tell everyone else not to change..
@@ -257,6 +265,7 @@ class PackageHandler:
         pass
 
     def get_subs_table(self):
+        
         self.__sub_packages_list[0].add_count_to_table(self.__subs_table)
         return self.__subs_table
 
