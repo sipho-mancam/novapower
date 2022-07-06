@@ -12,16 +12,16 @@ function get_package_group_views(package_group, view, append=false){
 function get_item(package){
     let item_list = package.item_list;
     let v = '<ul>';
-    let temp = ''
+    let temp = ' ';
     let keys = item_list;
-    let p_obj = package.obj
+    let p_obj = package.obj;
 
     for(let k=0; k<keys.length; k++){
         if(item_list[k].name){
             item = item_list[k]; 
             if(item_list[k].name == 'Solar'){
                 temp += `<li>${p_obj['solar-qty']} x ${item.json_obj.size.Power.value} ${item.json_obj.size.Power.unit} ${item_list[k].name} panels</li>`;
-                v+= temp
+                v+= temp;
             }
             else if(item.name =='Battery'){
                 let i = item.json_obj
@@ -155,6 +155,7 @@ function get_product_summary(package){
 function get_view_more(package, p_type){
     return(
         `
+
         <div class="view-details-card container">
             <div class="img v-img">
                 <img src="${package.img_url}" class="img-thumbnail" width="300px" height="300px" alt=""/>
@@ -184,7 +185,6 @@ function get_view_more(package, p_type){
                 </div>
             </div>
         </div>
-        `
-    )
+        `)
     //   <a class="add-to-cart h-buttons b" id="" >Add to Cart</a> 
 }
