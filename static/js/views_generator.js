@@ -16,23 +16,40 @@ function get_item(package){
     let keys = item_list;
     let p_obj = package.obj;
 
-    for(let k=0; k<keys.length; k++){
-        if(item_list[k].name){
-            item = item_list[k]; 
-            if(item_list[k].name == 'Solar'){
-                temp += `<li>${p_obj['solar-qty']} x ${item.json_obj.size.Power.value} ${item.json_obj.size.Power.unit} ${item_list[k].name} panels</li>`;
-                v+= temp;
+    if(package.name.toLowerCase()!= 'generator'){
+        for(let k=0; k<keys.length; k++){
+            if(item_list[k].name){
+                item = item_list[k]; 
+                if(item_list[k].name == 'Solar'){
+                    temp += `<li>${p_obj['solar-qty']} x ${item.json_obj.size.Power.value} ${item.json_obj.size.Power.unit} ${item_list[k].name} panels</li>`;
+                    v+= temp;
+                }
+                else if(item.name =='Battery'){
+                    let i = item.json_obj
+                    v+= `<li>Battery backup of ${i.size.Energy.value}${i.size.Energy.unit}</li>`;
+                } 
             }
-            else if(item.name =='Battery'){
-                let i = item.json_obj
-                v+= `<li>Battery backup of ${i.size.Energy.value}${i.size.Energy.unit}</li>`;
-            } 
-        }
 
+        }
+        v+=`<li>Maximum power Output of ${p_obj['max-power']}kW</li>`;
+        v += '</ul>';
+        return v
+    }else{
+        for(let k=0; k<keys.length; k++){
+            if(item_list[k].name){
+                item = item_list[k]; 
+               
+                if(item.name.toLowerCase() =='generator'){
+                    let i = item.json_obj
+                    console.log(i)
+                    v+= `<li>Max power Output of ${i.size.Size.value}${i.size.Size.unit}</li>`;
+                } 
+            }
+
+        }
+        v += '</ul>';
+        return v
     }
-    v+=`<li>Maximum power Output of ${p_obj['max-power']}kW</li>`;
-    v += '</ul>';
-    return v
 }
 
 function search_item_in_package(package, item_name){
@@ -42,7 +59,7 @@ function search_item_in_package(package, item_name){
     for(let k=0; k<keys.length; k++){
         if(item_list[k].name){
             item = item_list[k]; 
-            if(item.name ==item_name){
+            if(item.name.toLowerCase() ==item_name.toLowerCase()){
                 return item;
             } 
         }
@@ -71,15 +88,18 @@ function get_voltage(package){
             return `${inverter.size.BatVoltage.value} ${inverter.size.BatVoltage.unit}`
         }
         else{
-            return ' '
-        }
+            let battery = search_item_in_package(package, 'battery')
+            console.log(battery)
+            if(battery)return `${battery.json_obj.size.Voltage.value} ${battery.json_obj.size.Voltage.unit}`
+            // else return `48V`
+        }   
     }catch(e){
         // console.log(e)
     }
 }
 
 function get_card_html(package){
-  
+  if(package.name.toLowerCase() != 'generator'){
     return(
         `<div class="cust-card">
               <div class ="image">
@@ -99,6 +119,25 @@ function get_card_html(package){
             </div>
           </div>`
     )
+  }
+  else{
+    return(`<div class="cust-card">
+              <div class ="image">
+                  <img  src="${package.img_url}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
+              </div>
+              <div class="info">
+                  
+                  <span>
+                    ${get_item(package)}
+                  </span>
+                  <p class='price'>R ${package.get_total_price()}*</p>
+              </div>
+            <div class="controls">
+                <a class="add-to-cart h-buttons" id="${package.get_id()}" >Add to Cart</a> 
+                <a class="view-more-buttons h-buttons" id="${package.get_id()}+1">View Details</a>
+            </div>
+          </div>`)
+  }
 }
 
 function get_item_full(package){
@@ -155,16 +194,32 @@ function get_product_summary(package){
     v += 'Description <br />'
     
     v += `<ul>
-        <span style="color:grey;font-size:medium;">This UPS package can power a standard 3-bedroom house with the following appliances for x-hours, during loadshedding: </span>
+        <span style="color:grey;font-size:medium;">This ${package.name} the following appliances : </span>
 
         ${get_pluggable_apps_view(package)}<br />
 
-        <span class =${hide_text(package)}>Can the inverter be able to upgrade to solar later? </span>
+        <span class =${hide_text(package)}>Can the inverter be able to upgrade to solar later? <img src=${show_cross_or_tick(package)} width="25" height="25" />   </span>
     </ul> `
 
     v 
 
     return v
+}
+
+function show_cross_or_tick(package){
+
+    let inverter = search_item_in_package(package, 'Inverter');
+   // || inverter.json_obj['type-group'].toLowerCase() == 'hybrid'
+    if(inverter){
+        if(inverter.json_obj['type-group'].toLowerCase() == 'hybrid'){
+            return 'https://flyclipart.com/thumb2/green-tick-check-mark-tick-green-clipart-free-to-use-clip-art-616217.png'
+        }
+        else{
+            return 'https://coneyislandpark.com/wp-content/uploads/2020/10/AdobeStock_337038526-scaled.jpeg'
+           
+        }
+    }
+    return 'https://e7.pngegg.com/pngimages/994/729/png-clipart-exclamation-mark-exclamation-mark.png'
 }
 
 function hide_text(package){

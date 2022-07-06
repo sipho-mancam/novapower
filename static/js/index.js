@@ -29,7 +29,6 @@ window.addEventListener('load', function(e){
 
             for(let i=0; i<package_groups.length; i++) {
                 if (package_groups[i].packages.length >0){
-                    // console.log(package_groups[i])
                     get_package_group_views(package_groups[i], featured_products_view, true)
                 }
                 
@@ -43,9 +42,7 @@ window.addEventListener('load', function(e){
             console.log(`Error making request`,err)
         })
     }) 
-    
     let contact_us_form = document.getElementById('contact-us-form')
-
     contact_us_form.addEventListener('submit', send_form_data)
     //stop the spinner here...
 

@@ -6,7 +6,7 @@ window.addEventListener('load', function(e){
             _token = res
         }
     )
-    let path = '/packages/all?n=20'
+    let path = '/packages/all?n=15'
     
     make_request('GET',path)
     .then(res=>{
