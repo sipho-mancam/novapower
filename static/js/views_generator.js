@@ -74,7 +74,7 @@ function get_voltage(package){
             return ' '
         }
     }catch(e){
-        console.log(e)
+        // console.log(e)
     }
 }
 
@@ -155,17 +155,27 @@ function get_product_summary(package){
     v += 'Description <br />'
     
     v += `<ul>
-        <span style="color:grey;font-size:medium;">This UPS package can power a standard 3-bedroom house with the following appliances for x-hours, during loadshedding:
+        <span style="color:grey;font-size:medium;">This UPS package can power a standard 3-bedroom house with the following appliances for x-hours, during loadshedding: </span>
 
         ${get_pluggable_apps_view(package)}<br />
 
-        Can the inverter be able to upgrade to solar later? </span>
+        <span class =${hide_text(package)}>Can the inverter be able to upgrade to solar later? </span>
     </ul> `
 
     v 
 
     return v
 }
+
+function hide_text(package){
+    if(package.name.toLowerCase() == 'solar package'){
+        return 'hide'
+    }
+    else{
+        return ' '
+    }
+}
+
 
 function get_view_more(package, p_type){
     return(
@@ -219,7 +229,6 @@ function get_pluggable_apps(package){
         total_power = inverter.json_obj.size.Power.value*1000;
 
         for(let i of appliance_list){
-            console.log(total_power)
             total_power -= i['power']
             if(total_power < 0)break;
             res += get_pluggable_view(i)

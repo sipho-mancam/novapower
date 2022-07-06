@@ -160,4 +160,4 @@ let cart_count = null;
 let current_v_tab = null;
 let v_tab_cont = null;
 
-console.log(base_url)
+// console.log(base_url)
