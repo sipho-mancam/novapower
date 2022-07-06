@@ -35,7 +35,6 @@ solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverte
 inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'battery'])
 generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
 
-
 s = 0
 
 def validate_session(token):

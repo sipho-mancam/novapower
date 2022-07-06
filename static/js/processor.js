@@ -15,7 +15,7 @@ function add_to_cart(e){
     let _search_key = e.path[0].id
    
     let package = search_package(current_list, _search_key)
-    console.log(package)
+    // console.log(package)
     if (package) {
         let p_group = package.name.split(' ')[0]
 
@@ -91,7 +91,7 @@ function add_to_cart_init(){
             view_more_buttons[i].addEventListener('click', view_more)
         }
         cart_button.addEventListener('click', openCart)
-        console.log("Objects initialized successfully")
+        // console.log("Objects initialized successfully")
     }catch(err){
         console.log(err)
     }

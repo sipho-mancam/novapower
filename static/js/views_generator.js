@@ -35,6 +35,21 @@ function get_item(package){
     return v
 }
 
+function search_item_in_package(package, item_name){
+    let item_list = package.item_list;
+    let keys = item_list;
+
+    for(let k=0; k<keys.length; k++){
+        if(item_list[k].name){
+            item = item_list[k]; 
+            if(item.name ==item_name){
+                return item;
+            } 
+        }
+    }
+    return null;
+}
+
 function get_voltage(package){
     
     try{
@@ -142,7 +157,7 @@ function get_product_summary(package){
     v += `<ul>
         <span style="color:grey;font-size:medium;">This UPS package can power a standard 3-bedroom house with the following appliances for x-hours, during loadshedding:
 
-        ${/*some image data about icons*/'s'}<br />
+        ${get_pluggable_apps_view(package)}<br />
 
         Can the inverter be able to upgrade to solar later? </span>
     </ul> `
@@ -155,7 +170,6 @@ function get_product_summary(package){
 function get_view_more(package, p_type){
     return(
         `
-
         <div class="view-details-card container">
             <div class="img v-img">
                 <img src="${package.img_url}" class="img-thumbnail" width="300px" height="300px" alt=""/>
@@ -184,7 +198,42 @@ function get_view_more(package, p_type){
                   <a class="close-buttons h-buttons b close" id="close-overlay">Close</a>
                 </div>
             </div>
-        </div>
-        `)
-    //   <a class="add-to-cart h-buttons b" id="" >Add to Cart</a> 
+        </div>`)
+}
+
+function get_pluggable_view(p_obj){
+    
+    return(`
+    <div class="product-container">
+        <img class="product-img" src=${p_obj.img} width="40" height="40" />
+        <span class="product-name">${p_obj.name}</span>
+    </div>
+    `)
+}
+
+function get_pluggable_apps(package){
+    let inverter = search_item_in_package(package, 'Inverter');
+    let total_power = 0
+    let res = ''
+    if(inverter){
+        total_power = inverter.json_obj.size.Power.value*1000;
+
+        for(let i of appliance_list){
+            
+            total_power -= i['power']
+            if(total_power < 0)break;
+            res += get_pluggable_view(i)
+        }
+
+        // console.log(total_energy)
+        return res
+    }
+}
+
+function get_pluggable_apps_view(package){
+//    console.log(get_pluggable_apps(package))
+    return(`<div class="apps-container">
+        ${get_pluggable_apps(package)}
+    </div>
+    `)
 }

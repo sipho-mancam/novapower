@@ -83,3 +83,32 @@
 #cart-button-float>i{
     margin: auto;
 }
+
+.product-container{
+    display: flex;
+    flex-flow: column;
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid rgb(173, 173, 173);
+    background-color: white;
+    border-radius: 5px;
+    padding:5px;
+    margin: 2px;
+}
+
+.product-img{
+    /* border: 1px solid black; */
+    margin: auto;
+}
+
+.product-name{
+    /* border: 1px solid black; */
+    font-size: medium;
+}
+
+.apps-container{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    width: 100%;
+}

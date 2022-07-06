@@ -78,44 +78,58 @@ let appliance_list = [
     {
         'name':'laptop',
         'img': "https://cdn-icons-png.flaticon.com/512/4812/4812557.png",
-        'power':60
+        'power':60,
+        'rank':999
     },
     {
         'name':'fridge',
         'img': "https://toppng.com/uploads/preview/file-svg-fridge-icon-sv-11563715839vbv5lvmhxn.png",
-        'power':500
+        'power':500,
+        'rank':998
     },
     {
         'name':'tv',
         'img': "https://cdn-icons-png.flaticon.com/512/3443/3443580.png",
-        'power':120
+        'power':120,
+        'rank':997
     },
     {
         'name':'stove',
         'img': "https://icon-library.com/images/85-512.png",
-        'power':3000
+        'power':3000,
+        'rank':996
     },
     {
         'name':'kettle',
         'img': "https://cdn-icons-png.flaticon.com/512/125/125653.png",
-        'power':3000
+        'power':3000,
+        'rank':995
     },
     {
         'name':'microwave',
         'img': "https://thumbs.dreamstime.com/b/bowl-microwave-icon-outline-style-vector-web-design-isolated-white-background-190751776.jpg",
-        'power':1200
+        'power':1200,
+        'rank':994
     },
     {
         'name':'internet router',
         'img': "https://cdn-icons-png.flaticon.com/512/2502/2502330.png",
-        'power':20
+        'power':20,
+        'rank':993
     },
     {
         'name':'home computer',
         'img': "https://cdn-icons-png.flaticon.com/512/2502/2502330.png",
-        'power':120
+        'power':120,
+        'rank':992
     }
 ]
+
+appliance_list.sort(function(a, b){
+    return a['power'] - b['power']
+})
+
+// console.log(appliance_list)
 
 let view = document.getElementById('tab-content')
 let add_to_cart_buttons = document.getElementsByClassName('add-to-cart')
