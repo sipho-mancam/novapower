@@ -219,7 +219,7 @@ function get_pluggable_apps(package){
         total_power = inverter.json_obj.size.Power.value*1000;
 
         for(let i of appliance_list){
-            
+            console.log(total_power)
             total_power -= i['power']
             if(total_power < 0)break;
             res += get_pluggable_view(i)
