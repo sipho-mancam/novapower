@@ -70,55 +70,55 @@ let groups_maps = {
 
 let appliance_list = [
     {
-        'name':'lights',
+        'name':'Lights',
         'img': "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Noun_Project_lightbulb_icon_1263005_cc.svg/1200px-Noun_Project_lightbulb_icon_1263005_cc.svg.png",
         'power':85,
         'rank':1000
     },
     {
-        'name':'laptop',
+        'name':'Laptop',
         'img': "https://cdn-icons-png.flaticon.com/512/4812/4812557.png",
         'power':60,
         'rank':999
     },
     {
-        'name':'fridge',
+        'name':'Fridge',
         'img': "https://toppng.com/uploads/preview/file-svg-fridge-icon-sv-11563715839vbv5lvmhxn.png",
         'power':500,
         'rank':998
     },
     {
-        'name':'tv',
+        'name':'TV',
         'img': "https://cdn-icons-png.flaticon.com/512/3443/3443580.png",
         'power':120,
         'rank':997
     },
     {
-        'name':'stove',
+        'name':'Stove',
         'img': "https://icon-library.com/images/85-512.png",
         'power':3000,
         'rank':996
     },
     {
-        'name':'kettle',
+        'name':'Kettle',
         'img': "https://cdn-icons-png.flaticon.com/512/125/125653.png",
         'power':3000,
         'rank':995
     },
     {
-        'name':'microwave',
+        'name':'Microwave',
         'img': "https://thumbs.dreamstime.com/b/bowl-microwave-icon-outline-style-vector-web-design-isolated-white-background-190751776.jpg",
         'power':1200,
         'rank':994
     },
     {
-        'name':'internet router',
+        'name':'Router',
         'img': "https://cdn-icons-png.flaticon.com/512/2502/2502330.png",
         'power':20,
         'rank':993
     },
     {
-        'name':'home computer',
+        'name':'Computer',
         'img': "https://cdn-icons-png.flaticon.com/512/2502/2502330.png",
         'power':120,
         'rank':992
