@@ -201,7 +201,7 @@ function get_product_summary(package){
         <span class =${hide_text(package)}>Can the inverter be able to upgrade to solar later? <img src=${show_cross_or_tick(package)} width="25" height="25" />   </span>
     </ul> `
 
-    v 
+    v += '<span style="color:red;font-size:small;">Price excludes installation</span>'
 
     return v
 }
