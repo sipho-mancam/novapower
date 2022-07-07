@@ -119,7 +119,7 @@ let appliance_list = [
     },
     {
         'name':'Computer',
-        'img': "https://cdn-icons-png.flaticon.com/512/2502/2502330.png",
+        'img': "https://cdn-icons-png.flaticon.com/512/3067/3067260.png",
         'power':120,
         'rank':992
     }
