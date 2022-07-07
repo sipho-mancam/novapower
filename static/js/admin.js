@@ -1,18 +1,18 @@
 window.addEventListener('load', function(){
-    const resp = get_session_token()
+    
+    const url = this.location.href
+
+    const p_url = new  URL(url)
+    _token = p_url.searchParams.get('session_token')
     let table_body = document.getElementById('table-body')
-    resp
-    .then(function(token){
-        let session_token = token;
 
-
-        let path = '/admin/get_quotes?session_token=' + session_token
-        make_request('GET', path)
-        .then(res=>{
-            console.log(res)
-            table_body.innerHTML = get_table_rows(res);
-        })
+    let path = '/admin/get_quotes?session_token=' + _token
+    make_request('GET', path)
+    .then(res=>{
+        console.log(res)
+        table_body.innerHTML = get_table_rows(res);
     })
+
 })
 
 

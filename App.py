@@ -1,5 +1,5 @@
 from crypt import methods
-from flask import Flask, render_template, request, jsonify, send_from_directory, session, url_for
+from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session, url_for
 from flask_cors import CORS
 from flask_session import Session
 from package_manager import *
@@ -37,6 +37,8 @@ solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverte
 inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'battery'])
 generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
 
+admin_creds =  session_token = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), usedforsecurity=True).hexdigest()
+
 s = 0
 
 def validate_session(token):
@@ -68,7 +70,31 @@ def sizing():
 
 @app.route('/admin', methods=['GET'])
 def admin():
-    return render_template('admin.html')  
+    session_token = request.args.get('session_token')
+    if session_token in session:
+        return render_template('admin.html')
+    else:
+        return redirect('admin-login');
+
+@app.route('/admin-login', methods=['GET'])
+def admin_login():
+    if request.method == 'GET':
+        return render_template('a_login.html') 
+
+
+@app.route('/admin-login-d', methods=['POST'])
+def admin_login_d():
+    user_creds = request.form.to_dict()
+    s = ''
+    for k in user_creds:
+        s += user_creds[k]
+    session_token = hashlib.sha512(bytes(s, 'utf-8'), usedforsecurity=True).hexdigest()
+    if session_token == admin_creds:
+        session[session_token] ={}
+        session.modified = True
+        return redirect(f'admin?session_token={session_token}')
+    else: return {'response':'Incorrect Creds'} 
+    
 
 @app.route('/admin/get_quotes', methods=['GET'])
 def admin_get_quotes():
