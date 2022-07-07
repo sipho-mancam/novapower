@@ -2,6 +2,7 @@ from pymongo import MongoClient
 import pymongo
 from pymongo.collection import Collection
 from pymongo.database import Database
+import CONSTANTS
 
 
 # 1) Read one item from the database
@@ -11,12 +12,12 @@ from pymongo.database import Database
 # 5) Update one item in the db
 # 6) Update many items in the db
 
-def connect(host, port):
+def connect(host, port=CONSTANTS.D_PORT):
     print("[+] Connecting to db ...")
     client = None
     try:
-        client = MongoClient(host, port)
-        print("[+] Connected to database on {host}:{port}".format(host=host, port=port))
+        client = MongoClient(host)
+        print("[+] Connected to database successfully")
     except pymongo.errors.ConnectionError as e:
         print("[x] Failed to connect to db")
         print("\n\n\n{error}".format(error=e))

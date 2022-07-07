@@ -194,7 +194,7 @@ function get_product_summary(package){
     v += 'Description <br />'
     
     v += `<ul>
-        <span style="color:grey;font-size:medium;">This ${package.name} the following appliances : </span>
+        <span style="color:grey;font-size:medium;">This ${package.name} can power the following appliances: </span>
 
         ${get_pluggable_apps_view(package)}<br />
 
@@ -223,7 +223,7 @@ function show_cross_or_tick(package){
 }
 
 function hide_text(package){
-    if(package.name.toLowerCase() == 'solar package'){
+    if(package.name.toLowerCase() != 'inverter package'){
         return 'hide'
     }
     else{
@@ -280,16 +280,26 @@ function get_pluggable_apps(package){
     let inverter = search_item_in_package(package, 'Inverter');
     let total_power = 0
     let res = ''
-    if(inverter){
-        total_power = inverter.json_obj.size.Power.value*1000;
-
+    let variable = null;
+    
+    if(inverter)variable = inverter;
+    else{
+        
+        if(package.name.toLowerCase() == 'generator'){
+            variable = search_item_in_package(package, 'generator');
+        }
+        
+    }
+    
+   
+    if(variable){
+        total_power = variable.json_obj.size.Size.value*1000;
+        console.log(variable)
         for(let i of appliance_list){
-            total_power -= i['power']
+            total_power -= i['power'];
             if(total_power < 0)break;
             res += get_pluggable_view(i)
         }
-
-        // console.log(total_energy)
         return res
     }
 }

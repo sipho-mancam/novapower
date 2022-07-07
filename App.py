@@ -29,7 +29,8 @@ app.config['SESSION_MONGODB_COLLECTION'] = 'user-sessions'
 
 Session(app)
 
-db_manager, client = setup()
+db_manager, clnt = setup()
+# print(db_manager.read_all())
 data_path = './input-data-1.xlsx'
 solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverter', 'battery']);
 inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'battery'])
@@ -50,7 +51,7 @@ package_table = {
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    return render_template('store.html')
 
 @app.route('/store', methods=['GET'])
 def store():
@@ -80,7 +81,6 @@ def index_data():
     }
     global s
     s +=1
-    print(s)
     return package_table
 
 
@@ -200,10 +200,17 @@ def get_quote():
             p = generate_pdf(user_info['name']+'.pdf', data['cart'], user_info)
             data['quote'] = p.name
             session.modified = True
+            user_info['cart-list'] = data['cart']
+            
+            #update the db with new user info
+            db_manager._delete_record(_query=user_info)
+            db_manager._insert_record(db_manager.get_current_db(), 'user-quotes', user_info)
+
             return {'filename':p.name}
     elif request.method == 'GET':
         session_token = request.args.get('session_token')
         if session_token in session:
+
             return send_from_directory(app.config['UPLOAD_FOLDER'], session[session_token]['data']['quote']) 
         else:
             return {'response':0x05}

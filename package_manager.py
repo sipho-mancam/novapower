@@ -1,4 +1,6 @@
 from sre_constants import ANY
+
+from numpy import record
 from mongo_broker import *
 from item import Item
 import CONSTANTS
@@ -13,7 +15,7 @@ class DBManager:
         self.__db_registery = list()
 
         self.__db_registery.append(db)
-        print("[*] Initialising package manager ...")
+        print("[+] Initialising DB manager ...")
 
     def register_collection(self, collection_name:str, db)->None:
         if collection_name in self.__collection_registery:return
@@ -95,10 +97,16 @@ class DBManager:
         return insert_records(db, collection, records)
 
     def _delete_record(self, db=None, collection=None, _query={}):
-        return delete_record(db, collection, _query)
+        if db is None:
+            return delete_record(self.__db, self.__collection, _query)
+        else:
+            return delete_record(db, collection, _query)
     
     def _delete_records(self, db=None, collection=None, records:list=None):
-        return delete_records(db, collection, records)
+        if db is None:
+            return delete_records(self.__db, self.__collection, record)
+        else:
+            return delete_records(db, collection, records)
 
 
     def parse_record(self, record:dict) -> Item:
@@ -114,8 +122,9 @@ def setup():
         CONSTANTS.DB_ORDERS,
         CONSTANTS.DB_USERS
     ]
-    client = connect(CONSTANTS.D_HOST, CONSTANTS.D_PORT)
-    db_manager = DBManager(client, client[CONSTANTS.DB_MAIN], CONSTANTS.COL_MAIN, {})
+    client = connect(CONSTANTS.D_HOST)
+    # print(client['quotes'])
+    db_manager = DBManager(client, client['quotes'], 'user-quotes', {})
 
     for db_name in db_list:
         db_manager.register_db(client[db_name])   
