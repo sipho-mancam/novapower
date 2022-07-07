@@ -323,9 +323,14 @@ async function get_quote(){
     })
 }
 
-let cart_float = document.getElementById('cart-button-float')
+try{
+    let cart_float = document.getElementById('cart-button-float')
 
-cart_float.addEventListener('click', click_cart)
+    cart_float.addEventListener('click', click_cart)
+}catch(err){
+    
+}
+
 
 function click_cart(){
     window.location.pathname = '/cart';

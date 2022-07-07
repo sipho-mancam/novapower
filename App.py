@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, render_template, request, jsonify, send_from_directory, session, url_for
 from flask_cors import CORS
 from flask_session import Session
@@ -65,6 +66,28 @@ def cart():
 def sizing():
     return render_template('sizing.html')
 
+@app.route('/admin', methods=['GET'])
+def admin():
+    return render_template('admin.html')  
+
+@app.route('/admin/get_quotes', methods=['GET'])
+def admin_get_quotes():
+    session_token = request.args.get('session_token')
+    if session_token in session:
+        res = db_manager._read_records(db_manager.get_current_db(), 'user-quotes', {})
+        res_json = {}
+        counter = 0
+        for i in res:
+            i['_id'] = str(i['_id'])
+            res_json[counter] = i
+            counter += 1
+        # pprint.pprint(res_json)
+        return res_json
+    else: return {
+        'res':0x05
+    }
+
+
 
 @app.route('/packages/all', methods=['GET', 'OPTIONS']) # require a sesson token to send data
 def index_data():
@@ -100,7 +123,6 @@ def generate_session():
             }
         }
         session.modified=True
-    print(session)
     return {'session_token':session_token}
 
 @app.route('/featured', methods=['GET'])

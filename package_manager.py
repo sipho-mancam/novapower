@@ -53,7 +53,8 @@ class DBManager:
         
         records = read_records(db, collection, _query)
         for record in records:
-            r_list.append(self.parse_record(record))
+            # r_list.append(self.parse_record(record))
+            r_list.append(record)
         return r_list
 
     def read_all(self, db_name:list=None, col_name:list=None):

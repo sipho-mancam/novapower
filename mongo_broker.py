@@ -36,8 +36,9 @@ def read_record(_db:Database, _collection:Collection|str, _schema:dict|str)->dic
 
 def read_records(_db:Database, _collection:str|Collection, _schema:str|dict={}):
     col = _db[_collection]
-    return col.find(_schema)
-
+    print(len(_schema))
+    if len(_schema)>0:return col.find(_schema)
+    else: return col.find()
 def insert_record(_db:Database, _collection:str|dict, _document:dict={}):
     if len(_document) == 0:
         return
