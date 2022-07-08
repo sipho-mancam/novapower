@@ -52,51 +52,6 @@ function get_item(package){
     }
 }
 
-function search_item_in_package(package, item_name){
-    let item_list = package.item_list;
-    let keys = item_list;
-
-    for(let k=0; k<keys.length; k++){
-        if(item_list[k].name){
-            item = item_list[k]; 
-            if(item.name.toLowerCase() ==item_name.toLowerCase()){
-                return item;
-            } 
-        }
-    }
-    return null;
-}
-
-function get_voltage(package){
-    
-    try{
-        let raw = package.obj
-        let inverter = null
-        
-        for(let i of Object.keys(raw)){
-           
-            if(i != '_uid' && raw[i].name.toLowerCase() == 'inverter'){
-                inverter = raw[i]
-                break;
-            }
-        }
-
-        if('Voltage' in inverter.size){
-            return `${inverter.size.Voltage.value} ${inverter.size.Voltage.unit}`
-        }
-        else if('BatVoltage' in inverter.size){
-            return `${inverter.size.BatVoltage.value} ${inverter.size.BatVoltage.unit}`
-        }
-        else{
-            let battery = search_item_in_package(package, 'battery')
-            console.log(battery)
-            if(battery)return `${battery.json_obj.size.Voltage.value} ${battery.json_obj.size.Voltage.unit}`
-            // else return `48V`
-        }   
-    }catch(e){
-        // console.log(e)
-    }
-}
 
 function get_card_html(package){
   if(package.name.toLowerCase() != 'generator'){

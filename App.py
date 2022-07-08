@@ -196,7 +196,7 @@ def index_data():
                 "qty":1
             },
             "item 1": {
-                "brand":"Dyness",
+                "brand":"Fusion",
                 "name":"Battery",
                 "package-flag":False,
                 "package-group":"Batteries",
@@ -205,8 +205,8 @@ def index_data():
                     "Energy":{"unit":"kWh", "value":4.8}
                 },
                 "type-group":"Lithium-ion",
-                "price":27098.60,
-                "qty":2
+                "price":26444.25,
+                "qty":1
 
             },
             "item 2": {
@@ -224,7 +224,7 @@ def index_data():
             },
             "max-power":3,
             "solar-qty":8,
-            "total-price":58270.50
+            "total-price":57616.15
         },
 
         "package 2":{
@@ -475,8 +475,7 @@ def index_data():
         'inverter':inverter_package_handler.get_summary(),
         'generator':generator_package_handler.get_summary()
     }
-    global s
-    s +=1
+   
     return package_table
 
 
