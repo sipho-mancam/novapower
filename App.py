@@ -130,8 +130,8 @@ def index_data():
     n = request.args.get('n')
     i = int(n)
     solar_package_handler.generate_package(i)
-    inverter_package_handler.generate_package(i)
-    generator_package_handler.generate_package(i)
+    inverter_package_handler.generate_package(10)
+    generator_package_handler.generate_package()
     solar_packages = {
         "package 0":{
             "item 0": {

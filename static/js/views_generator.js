@@ -152,9 +152,9 @@ function get_product_summary(package){
         <span style="color:grey;font-size:medium;">This ${package.name} can power the following appliances: </span>
 
         ${get_pluggable_apps_view(package)}<br />
-
-        <span class =${hide_text(package)}>Can the inverter be able to upgrade to solar later? <img src=${show_cross_or_tick(package)} width="25" height="25" />   </span>
     </ul> `
+
+    // <span class =${hide_text(package)}>Can the inverter be able to upgrade to solar later? <img src=${show_cross_or_tick(package)} width="25" height="25" />   </span>
 
     v += '<span style="color:red;font-size:small;">Price excludes installation</span>'
 
@@ -166,7 +166,7 @@ function show_cross_or_tick(package){
     let inverter = search_item_in_package(package, 'Inverter');
    // || inverter.json_obj['type-group'].toLowerCase() == 'hybrid'
     if(inverter){
-        if(inverter.json_obj['type-group'].toLowerCase() == 'hybrid'){
+        if(inverter.json_obj['type-group'].toLowerCase() == 'hybrid' || inverter.json_obj['type-group'].toLowerCase() == 'stand-alone'){
             return 'https://flyclipart.com/thumb2/green-tick-check-mark-tick-green-clipart-free-to-use-clip-art-616217.png'
         }
         else{
