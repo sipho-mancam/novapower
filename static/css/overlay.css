@@ -116,3 +116,7 @@
 .hide{
     display: none;
 }
+
+#cart-badge{
+    color:black;
+}

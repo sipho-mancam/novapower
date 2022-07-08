@@ -13,6 +13,7 @@ from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_s
 import pathlib
 from pricing import *
 from pymongo import MongoClient
+from parser import Parser
 
 app = Flask(__name__)
 
@@ -45,6 +46,14 @@ def validate_session(token):
     if token in session:
         return True
     return False
+
+inverter_package_handler.generate_package(1)
+
+
+
+
+
+# pprint.pprint(inverter_package_handler.get_summary())
 
 package_table = {
     'generator':generator_package_handler.get_summary(),
@@ -122,9 +131,347 @@ def index_data():
     solar_package_handler.generate_package(i)
     inverter_package_handler.generate_package(i)
     generator_package_handler.generate_package(i)
-    
+    solar_packages = {
+        "package 0":{
+            "item 0": {
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 3},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":3},
+                    "MPPTVoltage":{"unit":"V", "value":430}
+                },
+                "type-group":"Stand-alone",
+                "price":10471.90,
+                "qty":1
+            },
+            "item 1": {
+                "brand":"Dyness",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":2.4}
+                },
+                "type-group":"Lithium-ion",
+                "price":13549.30,
+                "qty":1
+            },
+            "item 2": {
+                "brand":"CNBM",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":37.5},
+                    "Power":{"unit":"kW", "value":330}
+                },
+                "type-group":"Polycrystalline",
+                "price":15525,
+                "qty":6
+            },
+            "max-power":3,
+            "solar-qty":6,
+            "total-price":39546.20
+        },
+
+        "package 1":{
+            "item 0": {
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 3},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":3},
+                    "MPPTVoltage":{"unit":"V", "value":430}
+                },
+                "type-group":"Stand-alone",
+                "price":10471.90,
+                "qty":1
+            },
+            "item 1": {
+                "brand":"Dyness",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":4.8}
+                },
+                "type-group":"Lithium-ion",
+                "price":27098.60,
+                "qty":2
+
+            },
+            "item 2": {
+                "brand":"CNBM",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":37.5},
+                    "Power":{"unit":"kW", "value":330}
+                },
+                "type-group":"Polycrystalline",
+                "price":20700,
+                "qty":8
+            },
+            "max-power":3,
+            "solar-qty":8,
+            "total-price":58270.50
+        },
+
+        "package 2":{
+            "item 0": {
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 5},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":5},
+                    "MPPTVoltage":{"unit":"V", "value":115}
+                },
+                "type-group":"Stand-alone",
+                "price":15234.05,
+                "qty":1
+            },
+            "item 1": {
+                "brand":"Fusion",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":4.8}
+                },
+                "type-group":"Lithium-ion",
+                "price":26444.25,
+                "qty":1
+
+            },
+            "item 2": {
+                "brand":"Canadian Solar",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":34.09},
+                    "Power":{"unit":"kW", "value":375}
+                },
+                "type-group":"monocrystalline",
+                "price":29072,
+                "qty":8
+            },
+            "max-power":5,
+            "solar-qty":8,
+            "total-price":70750.30
+        },
+
+        "package 3":{
+            "item 0": {
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 5},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":5},
+                    "MPPTVoltage":{"unit":"V", "value":115}
+                },
+                "type-group":"Stand-alone",
+                "price":15234.05,
+                "qty":1
+            },
+            "item 1": {
+                "brand":"Fusion",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":9.6}
+                },
+                "type-group":"Lithium-ion",
+                "price":52888.50,
+                "qty":2
+
+            },
+            "item 2": {
+                "brand":"Canadian Solar",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":34.09},
+                    "Power":{"unit":"kW", "value":375}
+                },
+                "type-group":"monocrystalline",
+                "price":36340,
+                "qty":10
+            },
+            "max-power":5,
+            "solar-qty":10,
+            "total-price":104462.55
+        },
+        "package 4":{
+            "item 0": {
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 8},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":8},
+                    "MPPTVoltage":{"unit":"V", "value":66}
+                },
+                "type-group":"Stand-alone",
+                "price":41260.85,
+                "qty":1
+            },
+            "item 1": {
+                "brand":"Fusion",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":9.6}
+                },
+                "type-group":"Lithium-ion",
+                "price":52888.50,
+                "qty":2
+
+            },
+            "item 2": {
+                "brand":"Canadian Solar",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":34.09},
+                    "Power":{"unit":"kW", "value":375}
+                },
+                "type-group":"monocrystalline",
+                "price":36340,
+                "qty":10
+            },
+            "max-power":8,
+            "solar-qty":10,
+            "total-price":130489.35
+        },
+        "package 5":{
+            "item 0": {
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 8},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":8},
+                    "MPPTVoltage":{"unit":"V", "value":66}
+                },
+                "type-group":"Stand-alone",
+                "price":41260.85,
+                "qty":1
+            },
+            "item 1": {
+                "brand":"Fusion",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":9.6}
+                },
+                "type-group":"Lithium-ion",
+                "price":52888.50,
+                "qty":2
+
+            },
+            "item 2": {
+                "brand":"Canadian Solar",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":34.09},
+                    "Power":{"unit":"kW", "value":375}
+                },
+                "type-group":"monocrystalline",
+                "price":43608,
+                "qty":12
+            },
+            "max-power":8,
+            "solar-qty":12,
+            "total-price":137757.35
+        },
+        "package 6":{
+            "item 0": {
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 8},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":8},
+                    "MPPTVoltage":{"unit":"V", "value":66}
+                },
+                "type-group":"Stand-alone",
+                "price":41260.85,
+                "qty":1
+            },
+            "item 1": {
+                "brand":"Fusion",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":14.4}
+                },
+                "type-group":"Lithium-ion",
+                "price":79332.75,
+                "qty":3
+
+            },
+            "item 2": {
+                "brand":"Canadian Solar",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":34.09},
+                    "Power":{"unit":"kW", "value":375}
+                },
+                "type-group":"monocrystalline",
+                "price":50876,
+                "qty":14
+            },
+            "max-power":8,
+            "solar-qty":14,
+            "total-price":171469.60
+        }
+    }
+
+    for package in solar_packages:
+        solar_packages[package]['_uid'] = hashlib.sha256(bytes(solar_packages[package].__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
+        for item in solar_packages[package]:
+            if type(solar_packages[package][item]) is dict:
+                solar_packages[package][item]['_uid'] =  hashlib.sha256(bytes(solar_packages[package][item].__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
     package_table = {
-        'solar':solar_package_handler.get_summary(),
+        'solar':solar_packages,
         'inverter':inverter_package_handler.get_summary(),
         'generator':generator_package_handler.get_summary()
     }
@@ -327,7 +674,7 @@ def create_ss_list(json:dict):
         json['size'],
         json['cctv'],
         json['home server'],  
-        'FALSE',
+        'False',
         json['ac'],
         json['stove'],
         json['kettle'],
