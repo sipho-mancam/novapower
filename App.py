@@ -33,10 +33,10 @@ Session(app)
 
 db_manager, clnt = setup()
 # print(db_manager.read_all())
-data_path = './input-data-1.xlsx'
-solar_package_handler = setup_input(data_path, 'Sheet1', keys=['solar', 'inverter', 'battery']);
-inverter_package_handler = setup_input(data_path, 'Sheet1', keys=['inverter', 'battery'])
-generator_package_handler = setup_input(data_path,'Sheet1', keys=['generator'])
+data_path = './DatabaseIndividualPricingInputFormat v2.xlsx'
+solar_package_handler = setup_input(data_path, 'Sheet 1', keys=['solar', 'inverter', 'battery']);
+inverter_package_handler = setup_input(data_path, 'Sheet 1', keys=['inverter', 'battery'])
+generator_package_handler = setup_input(data_path,'Sheet 1', keys=['generator'])
 
 admin_creds =  session_token = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), usedforsecurity=True).hexdigest()
 
@@ -48,9 +48,6 @@ def validate_session(token):
     return False
 
 inverter_package_handler.generate_package(1)
-
-
-
 
 
 # pprint.pprint(inverter_package_handler.get_summary())
@@ -76,6 +73,10 @@ def cart():
 @app.route('/sizing', methods=['GET'])
 def sizing():
     return render_template('sizing.html')
+
+@app.route('/favicon', methods=['GET'])
+def favicon():
+    return "https://play-lh.googleusercontent.com/i_qY-W18INRV9PsVvnMtYUx4A8Skbu_gOEa8ncAnltRoU9c9nyMws_Pc_iQNtxNzZw"
 
 @app.route('/admin', methods=['GET'])
 def admin():
@@ -144,6 +145,7 @@ def index_data():
                     "Power":{"unit":"kW", "value":3},
                     "MPPTVoltage":{"unit":"V", "value":430}
                 },
+                "image_url":"https://i.ibb.co/jzvdLNV/Solar-1-RCT-Axpert.png",
                 "type-group":"Stand-alone",
                 "price":10471.90,
                 "qty":1
@@ -185,6 +187,7 @@ def index_data():
                 "name":"Inverter",
                 "package-flag":False,
                 "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/RHYp9xP/Solar-2.png",
                 "size":{
                     "Size":{"unit":"kVA", "value": 3},
                     "Voltage":{"unit":"V", "value":48},
@@ -233,6 +236,7 @@ def index_data():
                 "name":"Inverter",
                 "package-flag":False,
                 "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/PWZPqsY/Solar-3.png",
                 "size":{
                     "Size":{"unit":"kVA", "value": 5},
                     "Voltage":{"unit":"V", "value":48},
@@ -281,6 +285,7 @@ def index_data():
                 "name":"Inverter",
                 "package-flag":False,
                 "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/RYww1C6/Solar-4.png",
                 "size":{
                     "Size":{"unit":"kVA", "value": 5},
                     "Voltage":{"unit":"V", "value":48},
@@ -328,6 +333,7 @@ def index_data():
                 "name":"Inverter",
                 "package-flag":False,
                 "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/PCYpsQF/Solar-5.png",
                 "size":{
                     "Size":{"unit":"kVA", "value": 8},
                     "Voltage":{"unit":"V", "value":48},
@@ -375,6 +381,7 @@ def index_data():
                 "name":"Inverter",
                 "package-flag":False,
                 "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/sK5xwpy/Solar-6.png",
                 "size":{
                     "Size":{"unit":"kVA", "value": 8},
                     "Voltage":{"unit":"V", "value":48},
@@ -422,6 +429,7 @@ def index_data():
                 "name":"Inverter",
                 "package-flag":False,
                 "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/hDCBkYX/Solar-7.png",
                 "size":{
                     "Size":{"unit":"kVA", "value": 8},
                     "Voltage":{"unit":"V", "value":48},
@@ -690,7 +698,7 @@ def create_ss_list(json:dict):
     
     
 if __name__ == '__main__':
-    app.run(host=CONSTANTS.HOST, debug=True)
+    app.run(host=CONSTANTS.HOST, debug=False)
     # app.run(host=CONSTANTS.HOST, debug=True)
 
 

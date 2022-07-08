@@ -24,6 +24,7 @@ class Item{
 
 class Package{
     constructor(obj){
+        // console.log(obj)
     this.id = obj['_uid']
        this.total_price = obj['total-price'];
        this.obj = obj
@@ -71,11 +72,13 @@ class PackageGroup{
         
         let p_keys = Object.keys(data)
         let packages_list = []
+       
         for (let i =0; i<p_keys.length; i++){
             let temp = data[p_keys[i]]
             temp['_id'] = p_keys[i]
             temp['name'] = this.title;
-            temp['image'] = this.images[Math.ceil(Math.random()*this.images.length-1)]
+
+            temp['image'] = (temp['item 0']['image_url'])?temp['item 0']['image_url']:this.images[Math.ceil(Math.random()*this.images.length-1)]
             let pack = new Package(temp)
             packages_list.push(pack)
         }

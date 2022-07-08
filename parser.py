@@ -22,7 +22,7 @@ class Parser:
         }
 
         l = ['ItemName', 'PackageGroup', 'Brand', 'TypeGroup', 'SizeGroup',
-                'ItemPrice', 'Extras']
+                'ItemPrice', 'Extras', "img_url"]
         
         for i in range(len(l)): # initialise index table
             self.__indexing_table[l[i]] = i
@@ -35,7 +35,8 @@ class Parser:
             'type-group':l[3],
             'size':l[4],
             'price':l[5],
-            'extras':l[6]
+            'extras':l[6],
+            'image_url':l[7]
         }
 
 
