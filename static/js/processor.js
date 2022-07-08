@@ -249,6 +249,10 @@ async function get_cart_count(){
     .then(res=>{
         let keys = Object.keys(res)
         try{
+            if('response' in keys){
+                sessionStorage.clear()
+                window.location.reload()
+            }
             cart_badge.innerText = res[keys[0]]
         }catch(err){
             console.log(err)
