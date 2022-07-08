@@ -252,12 +252,15 @@ async function get_cart_count(){
             if('response' in keys){
                 sessionStorage.clear()
                 window.location.reload()
+            }else{
+                cart_badge.innerText = res[keys[0]]
+                cart_count = res[keys[0]]
             }
-            cart_badge.innerText = res[keys[0]]
+            
         }catch(err){
             console.log(err)
         }
-        cart_count = res[keys[0]]
+       
     })
 }
 

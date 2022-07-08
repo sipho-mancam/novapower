@@ -18,8 +18,6 @@ window.addEventListener('load', function(e){
             init_tabs()
             add_to_cart_init();
             get_cart_count();
-            
-
         })
         .catch(err=>{
             console.log(err)
