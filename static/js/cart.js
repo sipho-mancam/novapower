@@ -161,7 +161,8 @@ function closeOrderForm(e){
 
 
 function get_row_view(cart_obj){
-    console.log(cart_obj)
+//     console.log(cart_obj)
+//     <span class="size">5kVA - 48V - 5kWh</span><br />
     return(
         `
           <tr id=${cart_obj['item']['obj']['_uid']}>
@@ -170,7 +171,7 @@ function get_row_view(cart_obj){
                 <img src="${cart_obj['item']['img_url']}" alt="c_image" width="100" height="100"/>
                 <div class="cart-item-text-details">
                 <span class="item-heading">${cart_obj['name']}</span><br />
-                <span class="size">5kVA - 48V - 5kWh</span><br />
+                
                 <span class="cart-item-type">${cart_obj['name']}</span>
                 </div>
             </div>
