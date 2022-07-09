@@ -1,4 +1,5 @@
 window.addEventListener('load', function(e){
+    sessionStorage.clear();
     const loader = this.document.getElementById('loader')
     get_session_token()
     .then(
