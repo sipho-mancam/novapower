@@ -68,17 +68,15 @@ class PackageGroup{
     }
     
     get_packages(data){
-
-        
         let p_keys = Object.keys(data)
         let packages_list = []
        
         for (let i =0; i<p_keys.length; i++){
             let temp = data[p_keys[i]]
-            temp['_id'] = p_keys[i]
+            temp['_id'] = data['_uid']
             temp['name'] = this.title;
 
-            temp['image'] = (temp['item 0']['image_url'])?temp['item 0']['image_url']:this.images[Math.ceil(Math.random()*this.images.length-1)]
+            temp['image'] = (temp['item 0']['image_url'])?temp['item 0']['image_url']:this.images[Math.ceil(Math.random()*this.images.length-1)] // give me an image from package 0 or give me a fallback
             let pack = new Package(temp)
             packages_list.push(pack)
         }
