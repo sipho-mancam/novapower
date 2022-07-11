@@ -236,8 +236,7 @@ async function get_session_token(){
     }else{
         _token = session_token
     }
-   return session_token
-    
+   return session_token 
 }
 
 async function get_cart_count(){
@@ -248,14 +247,17 @@ async function get_cart_count(){
         .then(res=>{
             let keys = Object.keys(res)
             try{
-                if('response' in keys){
+                if('response' in res){
                     sessionStorage.clear()
-                    window.location.reload()
+                    get_session_token()
+                    .then(res=>{
+                        get_cart_count() // recursion at its best...
+                    })
+                    // window.location.reload()
                 }else{
                     cart_count = res[keys[0]]
                     cart_badge.innerText = res[keys[0]]
                 }
-                
             }catch(err){
                 console.log(err)
             }

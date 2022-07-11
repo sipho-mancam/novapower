@@ -74,10 +74,11 @@ def cart():
 def sizing():
     return render_template('sizing.html')
 
-@app.route('/favicon', methods=['GET'])
+@app.route('/favicon.ico', methods=['GET'])
 def favicon():
-    return "https://play-lh.googleusercontent.com/i_qY-W18INRV9PsVvnMtYUx4A8Skbu_gOEa8ncAnltRoU9c9nyMws_Pc_iQNtxNzZw"
+    return send_from_directory(app.config['UPLOAD_FOLDER'], 'favicon.ico') 
 
+    
 @app.route('/admin', methods=['GET'])
 def admin():
     session_token = request.args.get('session_token')

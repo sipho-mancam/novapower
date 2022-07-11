@@ -3,8 +3,7 @@ let form_sub = null
 window.addEventListener('load', function(e){
 
     let add_installation = this.document.getElementById('installation-control')
-    // let add_delivery = this.document.getElementById('delivery-control')
-
+    
     add_installation.addEventListener('change', function(e){
         let value = e.target.value
         let path = '/add-option?session_token='+_token+'&option=installation';
@@ -14,7 +13,7 @@ window.addEventListener('load', function(e){
                 update_totals(response)
             })
         }
-    })
+    });
     // add_delivery.addEventListener('change', function(e){
     //     let value = e.target.value
 
