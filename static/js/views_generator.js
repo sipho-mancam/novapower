@@ -208,7 +208,7 @@ function get_view_more(package, p_type){
                 </ul>
 
                 <div class="tab-content" style="width: 100%; display:block; margin-top:5px;" id="v-tab-cont">
-                   ${get_product_summary(package)}
+                   ${package['description']}
                 </div>
                 
                 <p class='price'>R ${package.get_total_price()}*</p>
@@ -247,7 +247,6 @@ function get_pluggable_apps(package){
    
     if(variable){
         total_power = variable.json_obj.size.Size.value*1000;
-        console.log(variable)
         for(let i of appliance_list){
             total_power -= i['power'];
             if(total_power < 0)break;

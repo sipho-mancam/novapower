@@ -2,14 +2,11 @@
 class Item{
     constructor(obj){
         this._id = obj['_uid'];
-        this.class = obj['class'];
-        this.description = obj['description'];
-        this.img_url= obj['img_url'];
+        this.brand = obj['brand'];
+        this.img_url= obj['image_url'];
         this.price= obj['price'];
         this.options= obj['extra'];
-        this.json_obj=obj;
-        this.brand = obj['brand'];
-        this.type = obj['type'];
+        this.json_obj = obj;
         this.size = obj['size'];
         this.name = obj['name']
 
@@ -17,22 +14,24 @@ class Item{
     get_id(){return this._id}
     get_total_price(){ return this.price; }
     get_json(){ return this.json_obj; }
-    get_elec_size(){return this.options_object['elec-size']}
-    get_name(){return this.class}
+    get_elec_size(){return this.size['elec-size']}
+    get_name(){return this.name;}
 }
 
 
 class Package{
     constructor(obj){
         // console.log(obj)
-    this.id = obj['_uid']
-       this.total_price = obj['total-price'];
-       this.obj = obj
-       this.item_list = this.parse_items(); 
-       this.state = true;
-       this.name = obj['name'];
-       this.img_url = obj['image'];
-       
+        this.id = obj['_uid']
+        this.total_price = obj['total-price'];
+        this.obj = obj
+        this.item_list = this.parse_items(); 
+        this.state = true;
+        this.name = obj['name'];
+        this.img_url = obj['image'];
+        this.max_power = obj['max-power'];
+        this.solar_qty = obj['solar-qty'];
+        this.description = get_product_summary(this)
     }
 
     toggle_state(){this.state = !this.state;}
@@ -41,8 +40,10 @@ class Package{
         let l = []
         let keys = Object.keys(this.obj)
         for(let key =0; key < keys.length; key++){
-            if (keys[key] != 'total-price'){
-                l.push(new Item(this.obj[keys[key]]))
+            if(keys[key].match('item \+[0-9]')){
+                if (keys[key] != 'total-price'){
+                    l.push(new Item(this.obj[keys[key]]))
+                }
             }
         }
         return l
