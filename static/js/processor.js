@@ -18,7 +18,6 @@ function add_to_cart(e){
     // console.log(package)
     if (package) {
         let p_group = package.name.split(' ')[0]
-
         make_request('POST', '/add-to-cart?session_token='+_token, {
             'group': p_group,
             '_uid':package.id,
@@ -40,11 +39,12 @@ function add_to_cart(e){
 function view_more(e){
 
     e.preventDefault() 
-    let _search_key = e.path[0].id
+    let _search_key = e.target.getAttribute('id')
     _search_key = _search_key.split('+')[0]
     let package = search_package(current_list, _search_key)
 
     if (package) {
+
         overlay.innerHTML = get_view_more(package, package.name)
         overlay.style.display='flex';
         close_overlay = document.getElementById('close-overlay')
@@ -80,15 +80,13 @@ function view_more(e){
 
 }
 
-function add_to_cart_init(){
+function add_to_cart_init(){ // initialize the add to cart button currently present on the screen && view more buttons
     try{
-
         for(let i = 0; i < add_to_cart_buttons.length; i++){
             add_to_cart_buttons[i].addEventListener('click', add_to_cart)
             view_more_buttons[i].addEventListener('click', view_more)
         }
         cart_button.addEventListener('click', openCart)
-        // console.log("Objects initialized successfully")
     }catch(err){
         console.log(err)
     }
@@ -257,6 +255,13 @@ async function get_cart_count(){
                 }else{
                     cart_count = res[keys[0]]
                     cart_badge.innerText = res[keys[0]]
+                    if(res[keys[0]]>0){
+                        console.log('I run')
+                        let f_badge = document.getElementById('cart-badge-f');
+                        f_badge.style.display= 'block';
+                        f_badge.innerText = res[keys[0]]
+                    }
+                    
                 }
             }catch(err){
                 console.log(err)

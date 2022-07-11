@@ -78,7 +78,7 @@ def sizing():
 def favicon():
     return send_from_directory(app.config['UPLOAD_FOLDER'], 'favicon.ico') 
 
-    
+
 @app.route('/admin', methods=['GET'])
 def admin():
     session_token = request.args.get('session_token')
@@ -123,7 +123,6 @@ def admin_get_quotes():
     else: return {
         'res':0x05
     }
-
 
 
 @app.route('/packages/all', methods=['GET', 'OPTIONS']) # require a sesson token to send data
