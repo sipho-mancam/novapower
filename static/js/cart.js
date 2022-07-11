@@ -15,7 +15,6 @@ window.addEventListener('load', function(e){
             })
         }
     })
-
     // add_delivery.addEventListener('change', function(e){
     //     let value = e.target.value
 
@@ -121,6 +120,13 @@ function update_totals(res, tot_buttons=document.getElementsByClassName('tot')){
 
 function submit_quote(e){
     let path = '/contact-us';
+
+    let resp_card = document.getElementById('resp-card')
+    e.currentTarget.style.display = 'none';
+    e.currentTarget.parentNode.style.display = 'none';
+ 
+    resp_card.style.display = 'flex';
+
     e.preventDefault()
     let form_data = new FormData(e.currentTarget)
     let entries = form_data.entries()
@@ -136,8 +142,22 @@ function submit_quote(e){
     .then(res=>{
         get_quote()
         .then(res=>{
+            
+            
+            // before showing the use the quote...
+            // clear cart...
+            update_cart_server('clear')
+            
+            // show them a success message
+            
+           
+
             let uri = window.URL.createObjectURL(res)
             window.open(uri, '_blank')
+
+            window.location.pathname = '/'
+
+
         })
     })
 }

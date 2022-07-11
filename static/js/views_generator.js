@@ -41,7 +41,6 @@ function get_item(package){
                
                 if(item.name.toLowerCase() =='generator'){
                     let i = item.json_obj
-                    console.log(i)
                     v+= `<li>Max power Output of ${i.size.Size.value}${i.size.Size.unit}</li>`;
                 } 
             }
@@ -51,7 +50,6 @@ function get_item(package){
         return v
     }
 }
-
 
 function get_card_html(package){
   if(package.name.toLowerCase() != 'generator'){

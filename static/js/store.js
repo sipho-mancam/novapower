@@ -3,14 +3,14 @@ window.addEventListener('load', function(e){
     get_session_token()
     .then(
         res=>{
-            _token = res
-        
+        _token = res
         let path = '/packages/all?n=15'
         
         make_request('GET',path)
         .then(res=>{
             // console.log(res)
-            loader.style.display = 'none';
+            loader.style.display = 'none'; // hide spinner...
+            console.log(res)
             parse_json(res)
             package_groups = get_package_groups(packages_data)
             current_list = package_groups

@@ -26,7 +26,7 @@ function add_to_cart(e){
             'package':package
         })
         .then(res=>{
-            get_cart_count();
+            get_cart_count();  // update the cart icon with the current number of items in the cart
         })
 
         cart.add_to_cart(package);
@@ -34,7 +34,7 @@ function add_to_cart(e){
     else{
         alert("Couldn't find the package ...")
     }
-    // update the cart icon with the current number of items in the cart
+   
 }
 
 function view_more(e){
@@ -71,9 +71,6 @@ function view_more(e){
                     v_tab_cont.innerHTML = '<p style="color:grey">There are currently 0 reviews for this item</p>'
                 }
             });
-
-        
-
         }
         // alert('Showing the item')
     }
@@ -232,36 +229,41 @@ function make_request(method='GET', url, data){
 }
 
 async function get_session_token(){
-    let session_token = window.sessionStorage.getItem('session_token')
-    
-    if(session_token == null){
+    let session_token = window.sessionStorage.getItem('session_token');
+    if(!session_token){
         session_token = await request_token()
-        // session_token = await request_token()
-        console.log(session_token)
+       _token = session_token
+    }else{
+        _token = session_token
     }
-   
-    return session_token
+   return session_token
+    
 }
 
 async function get_cart_count(){
-    let path = '/get-cart?m=count&session_token='+_token;
-    await make_request('GET', path)
-    .then(res=>{
-        let keys = Object.keys(res)
-        try{
-            if('response' in keys){
-                sessionStorage.clear()
-                window.location.reload()
-            }else{
-                cart_count = res[keys[0]]
-                cart_badge.innerText = res[keys[0]]
+    let path
+    if(_token){
+        path = '/get-cart?m=count&session_token='+_token;
+        await make_request('GET', path)
+        .then(res=>{
+            let keys = Object.keys(res)
+            try{
+                if('response' in keys){
+                    sessionStorage.clear()
+                    window.location.reload()
+                }else{
+                    cart_count = res[keys[0]]
+                    cart_badge.innerText = res[keys[0]]
+                }
+                
+            }catch(err){
+                console.log(err)
             }
-            
-        }catch(err){
-            console.log(err)
-        }
-       
-    })
+        })
+    }else{ // clear the session storege and refresh to get a new token...
+        sessionStorage.clear()
+        window.location.reload()
+    }
 }
 
 async function get_cart_items(){
@@ -287,7 +289,7 @@ async function get_cart_items(){
     });
 }
 
-async function update_cart_server(func='increase', _uid){
+async function update_cart_server(func='increase', _uid='none'){
     let path = '/update-cart?func='+func+'&session_token='+_token;
     return make_request('POST', path, {'_uid':_uid})
 }
@@ -297,7 +299,8 @@ async function send_quote_form(fd){
 
     await make_request('POST', p, fd)
     .then(res=>{
-        console.log(res)
+        // console.log(res)
+        // respond to the users and give them feedback on their request
     })
 }
 
@@ -324,10 +327,8 @@ async function get_quote(){
         xhttp.ontimeout = function(){
             alert('timedout')
         }
-        
         xhttp.send(null)
-
-    })
+    });
 }
 
 try{
@@ -365,7 +366,6 @@ function get_voltage(package){
         }
         else{
             let battery = search_item_in_package(package, 'battery')
-            console.log(battery)
             if(battery)return `${battery.json_obj.size.Voltage.value} ${battery.json_obj.size.Voltage.unit}`
             // else return `48V`
         }   

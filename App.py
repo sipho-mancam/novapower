@@ -472,12 +472,12 @@ def index_data():
             "total-price":171469.60
         }
     }
-
     for package in solar_packages:
         solar_packages[package]['_uid'] = hashlib.sha256(bytes(solar_packages[package].__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
         for item in solar_packages[package]:
             if type(solar_packages[package][item]) is dict:
                 solar_packages[package][item]['_uid'] =  hashlib.sha256(bytes(solar_packages[package][item].__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
+
     package_table = {
         'solar':solar_packages,
         'inverter':inverter_package_handler.get_summary(),
