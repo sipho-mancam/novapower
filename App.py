@@ -170,7 +170,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":37.5},
-                    "Power":{"unit":"kW", "value":330}
+                    "Power":{"unit":"W", "value":330}
                 },
                 "type-group":"Polycrystalline",
                 "price":15525,
@@ -219,7 +219,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":37.5},
-                    "Power":{"unit":"kW", "value":330}
+                    "Power":{"unit":"W", "value":330}
                 },
                 "type-group":"Polycrystalline",
                 "price":20700,
@@ -268,7 +268,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":34.09},
-                    "Power":{"unit":"kW", "value":375}
+                    "Power":{"unit":"W", "value":375}
                 },
                 "type-group":"monocrystalline",
                 "price":29072,
@@ -317,7 +317,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":34.09},
-                    "Power":{"unit":"kW", "value":375}
+                    "Power":{"unit":"W", "value":375}
                 },
                 "type-group":"monocrystalline",
                 "price":36340,
@@ -365,7 +365,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":34.09},
-                    "Power":{"unit":"kW", "value":375}
+                    "Power":{"unit":"W", "value":375}
                 },
                 "type-group":"monocrystalline",
                 "price":36340,
@@ -413,7 +413,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":34.09},
-                    "Power":{"unit":"kW", "value":375}
+                    "Power":{"unit":"W", "value":375}
                 },
                 "type-group":"monocrystalline",
                 "price":43608,
@@ -461,7 +461,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":34.09},
-                    "Power":{"unit":"kW", "value":375}
+                    "Power":{"unit":"W", "value":375}
                 },
                 "type-group":"monocrystalline",
                 "price":50876,
