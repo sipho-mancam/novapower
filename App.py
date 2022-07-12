@@ -632,6 +632,7 @@ def price_summary():
     else:
         return {'response':0x05}
 
+
 @app.route('/add-option', methods=['POST', 'GET'])
 def add_option():
     if request.method == 'GET':
@@ -672,6 +673,7 @@ def sizeme():
 @app.route('/contact-us', methods=['POST'])
 def contact_us():
     data = request.get_json() 
+    pprint.pprint(data)
     return data
 
 

@@ -279,15 +279,17 @@ async function get_cart_items(){
     .then(res=>{
         console.log(res)
         let keys = Object.keys(res)
-        if(res[keys[0]]==5)// there's a session token error
+        if('response' in res)// there's a session token error
         {
             window.sessionStorage.clear();
             window.location.reload();
         }
         else{
             if('cart-items' in res){
+                // console.log(res)
                 for(let i=0; i<res[keys[0]].length;i++){
                     let p = res[keys[0]][i]['package']
+                    cart_items.push(p)
                     p['qty'] = res[keys[0]][i]['qty']
                     cart.add_to_cart(p)
                 }

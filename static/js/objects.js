@@ -9,6 +9,9 @@ class Item{
         this.json_obj = obj;
         this.size = obj['size'];
         this.name = obj['name']
+        this.qty = obj['qty'];
+        this.total_price = (this.qty * this.price).toFixed(2)
+        this.json_obj['total_price'] = this.total_price
 
     }
     get_id(){return this._id}

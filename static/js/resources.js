@@ -195,5 +195,6 @@ let base_url = '/' //window.location.pathname
 let cart_count = null;
 let current_v_tab = null;
 let v_tab_cont = null;
+let cart_items = []
 
 // console.log(base_url)
