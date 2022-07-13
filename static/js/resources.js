@@ -72,7 +72,7 @@ let appliance_list = [
     {
         'name':'Lights',
         'img': "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Noun_Project_lightbulb_icon_1263005_cc.svg/1200px-Noun_Project_lightbulb_icon_1263005_cc.svg.png",
-        'power':85,
+        'power':250,
         'rank':1000
     },
     {
