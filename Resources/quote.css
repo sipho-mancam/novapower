@@ -1,0 +1,58 @@
+/* .col{
+    background-color: rgba(12, 14, 123, 0.2);
+    border: 1px solid black;
+    /* display: flex;
+    flex-flow: row; */
+body{
+    background-color: rgb(230, 230, 230);
+}
+
+.main{
+    background-color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid black;
+    padding:40px;
+}
+
+.heading{
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.image-container{
+    float: right;
+    width: fit-content;
+}
+
+.name{
+    font-weight: bold;
+    font-size: x-small;
+}
+
+.text{
+    font-size: x-small;
+}
+
+.value{
+    float:right;
+    font-size: x-small;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.address{
+    font-size: x-small;
+}
+
+.left-side{
+    padding-right: 100px;
+}
+
+.shaded{
+    background-color: rgb(75, 75, 75);
+    height: fit-content;
+    color:white;
+}
+
+.t-header{
+    height: fit-content;
+}

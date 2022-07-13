@@ -13,7 +13,8 @@ from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_s
 import pathlib
 from pricing import *
 from pymongo import MongoClient
-from parser import Parser
+# from parser import Parser
+import pdfkit
 
 app = Flask(__name__)
 
@@ -599,16 +600,20 @@ def get_quote():
         user_info = request.get_json()
         if session_token in session:
             data = session[session_token]['data']
-            p = generate_pdf(user_info['name']+'.pdf', data['cart'], user_info)
-            data['quote'] = p.name
+            p = {}
+            data['pdf_data'] = user_info['pdf_data']
+            p['name'] = f'{user_info["name"]}.pdf'
+
+            data['quote'] = p['name']
+            pdf = pdfkit.from_string(data['pdf_data'], f'./Quotes/{user_info["name"]}.pdf')
             session.modified = True
-            user_info['cart-list'] = data['cart']
+            # user_info['cart-list'] = data['cart']
             
             #update the db with new user info
             db_manager._delete_record(_query=user_info)
             db_manager._insert_record(db_manager.get_current_db(), 'user-quotes', user_info)
 
-            return {'filename':p.name}
+            return {'filename':f'{user_info["name"]}.pdf'}
     elif request.method == 'GET':
         session_token = request.args.get('session_token')
         if session_token in session:
@@ -700,8 +705,8 @@ def create_ss_list(json:dict):
     
     
 if __name__ == '__main__':
-    app.run(host=CONSTANTS.HOST, debug=False)
-    # app.run(host=CONSTANTS.HOST, debug=True)
+    # app.run(host=CONSTANTS.HOST, debug=False)
+    app.run(host=CONSTANTS.HOST, debug=True)
 
 
 

@@ -4,14 +4,26 @@ class Item{
         this._id = obj['_uid'];
         this.brand = obj['brand'];
         this.img_url= obj['image_url'];
-        this.price= obj['price'];
+        this.price= obj['price'].toFixed(2);
         this.options= obj['extra'];
         this.json_obj = obj;
         this.size = obj['size'];
         this.name = obj['name']
-        this.qty = obj['qty'];
+        this.qty = obj['qty']?obj['qty']:1;
         this.total_price = (this.qty * this.price).toFixed(2)
         this.json_obj['total_price'] = this.total_price
+        this.type = obj['type-group'];
+        this.voltage = (this.name.toLowerCase() == 'inverter'  
+                        || this.name.toLowerCase() == 'generator')?obj.size.Size : obj.size.Voltage
+
+        if(this.name.toLowerCase()=='battery')this.energy = obj.size.Energy
+        else this.energy = (this.name.toLowerCase() == 'solar')?obj.size.Power:obj.size.EngineSize
+        if(this.name.toLowerCase()=='inverter')this.energy = obj.size.Voltage?obj.size.Voltage:obj.size.BatVoltage
+
+        this.json_obj['type'] = this.type
+        this.json_obj['voltage'] = this.voltage
+        this.json_obj['energy'] = this.energy
+
 
     }
     get_id(){return this._id}
