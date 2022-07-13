@@ -51,10 +51,7 @@ def validate_session(token):
     return False
 
 inverter_package_handler.generate_package(1)
-
-
 # pprint.pprint(inverter_package_handler.get_summary())
-
 package_table = {
     'generator':generator_package_handler.get_summary(),
     'solar':solar_package_handler.get_summary(),

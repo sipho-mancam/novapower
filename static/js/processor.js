@@ -12,7 +12,8 @@ function parse_json(data) {
 
 function add_to_cart(e){
     e.preventDefault() 
-    let _search_key = e.path[0].id
+    // let _search_key = e.path[0].id
+    let _search_key = e.currentTarget.getAttribute('id')
    
     let package = search_package(current_list, _search_key)
     // console.log(package)

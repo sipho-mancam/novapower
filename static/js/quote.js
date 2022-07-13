@@ -50,12 +50,12 @@ function format_package(package, index=1){
             </div>
             <div class="col">
                 <div class="text unit-price">
-                    <span class="value">R ${item['price']}</span>
+                    <span class="value">${item['price']}</span>
                 </div>
             </div>
             <div class="col">
                 <div class="text total">
-                    <span class="value">R ${item['total_price']}</span>
+                    <span class="value">${item['total_price']}</span>
                 </div>
             </div>
         </div>

@@ -4,13 +4,13 @@ class Item{
         this._id = obj['_uid'];
         this.brand = obj['brand'];
         this.img_url= obj['image_url'];
-        this.price= obj['price'].toFixed(2);
+        this.price= obj['price'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR', minimumFractionDigits:2});
         this.options= obj['extra'];
         this.json_obj = obj;
         this.size = obj['size'];
         this.name = obj['name']
         this.qty = obj['qty']?obj['qty']:1;
-        this.total_price = (this.qty * this.price).toFixed(2)
+        this.total_price = (this.qty * obj['price']).toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR', minimumFractionDigits: 2})
         this.json_obj['total_price'] = this.total_price
         this.type = obj['type-group'];
         this.voltage = (this.name.toLowerCase() == 'inverter'  

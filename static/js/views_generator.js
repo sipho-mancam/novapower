@@ -64,7 +64,7 @@ function get_card_html(package){
                     ${get_voltage(package)} system with:  <br />
                     ${get_item(package)}
                   </span>
-                  <p class='price'>R ${package.get_total_price()}*</p>
+                  <p class='price'>${package.get_total_price().toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}*</p>
               </div>
             <div class="controls">
                 <a class="add-to-cart h-buttons" id="${package.get_id()}" >Add to Cart</a> 
@@ -83,7 +83,7 @@ function get_card_html(package){
                   <span>
                     ${get_item(package)}
                   </span>
-                  <p class='price'>R ${package.get_total_price()}*</p>
+                  <p class='price'>${package.get_total_price().toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR' }) }*</p>
               </div>
             <div class="controls">
                 <a class="add-to-cart h-buttons" id="${package.get_id()}" >Add to Cart</a> 
@@ -211,7 +211,7 @@ function get_view_more(package, p_type){
                    ${package['description']}
                 </div>
                 
-                <p class='price'>R ${package.get_total_price()}*</p>
+                <p class='price'>${package.get_total_price().toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR', minimumFractionDigits: 2 }) }*</p>
                 <div class="buttons">
                   <a class="close-buttons h-buttons b close" id="close-overlay">Close</a>
                 </div>

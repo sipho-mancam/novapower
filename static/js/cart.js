@@ -192,8 +192,9 @@ function closeOrderForm(e){
 }
 
 function get_row_view(cart_obj){
-//     console.log(cart_obj)
+    console.log(cart_obj)
 //     <span class="size">5kVA - 48V - 5kWh</span><br />
+        // < span class="size" > ${ cart_obj["size"]["voltage"] + ' - ' + cart_obj["size"]["voltage"] }</span > <br />
 
     return(
         `
@@ -203,7 +204,7 @@ function get_row_view(cart_obj){
                 <img src="${cart_obj['item']['img_url']}" alt="c_image" width="100" height="100"/>
                 <div class="cart-item-text-details">
                 <span class="item-heading">${cart_obj['name']}</span><br />
-                
+               
                 <span class="cart-item-type">${cart_obj['name']}</span>
                 </div>
             </div>
@@ -227,10 +228,10 @@ function get_row_view(cart_obj){
             </div>
             </td>
             <td>
-                <span class="cart-item-unit-price">R ${cart_obj['price'].toFixed(2)}</span>
+                <span class="cart-item-unit-price">${cart_obj['price'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
             </td>
             <td>
-            <span class="cart-item-unit-price">R ${(cart_obj['price']*cart_obj['qty']).toFixed(2)}</span>
+            <span class="cart-item-unit-price">${(cart_obj['price']*cart_obj['qty']).toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
             </td>
             <td>
                 <div class="remove-container">
