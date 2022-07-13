@@ -15,6 +15,8 @@ from pricing import *
 from pymongo import MongoClient
 # from parser import Parser
 import pdfkit
+import pydf
+
 
 app = Flask(__name__)
 
@@ -605,7 +607,13 @@ def get_quote():
             p['name'] = f'{user_info["name"]}.pdf'
 
             data['quote'] = p['name']
-            pdf = pdfkit.from_string(data['pdf_data'], f'./Quotes/{user_info["name"]}.pdf')
+            pdfkit.from_string(data['pdf_data'], f'./Quotes/{user_info["name"]}.pdf')
+            
+            # pdf = pydf.generate_pdf(data['pdf_data'])
+
+            # with open(f'./Quotes/{user_info["name"]}.pdf', 'wb') as f:
+            #     f.write(pdf)
+
             session.modified = True
             # user_info['cart-list'] = data['cart']
             
