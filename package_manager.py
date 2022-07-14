@@ -109,6 +109,12 @@ class DBManager:
         else:
             return delete_records(db, collection, records)
 
+    def _replace_one(self,db=None, collection=None, find:dict={}, replacement:dict={}):
+        return update_record(db, collection, find, replacement)
+
+    def _replace_many(self,db=None, collection=None, find:dict={}, replacement:dict={}):
+        return update_records(db, collection, find, replacement)
+
 
     def parse_record(self, record:dict) -> Item:
         return Item(_obj=record)

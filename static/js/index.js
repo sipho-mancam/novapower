@@ -51,25 +51,5 @@ window.addEventListener('load', function(e){
 })
 
 
-function send_form_data(e){
-    let path = '/contact-us';
-    e.preventDefault()
-    let form_data = new FormData(e.currentTarget)
-    let entries = form_data.entries()
-    let res = entries.next()
-    let form_json = {}
-    while(!res.done){
-        form_json[res.value[0]] = res.value[1]
-        res = entries.next()
-    }
-    
-    make_request('POST', path, form_json)
-    .then(res=>{
-        // console.log(res)
-    })
-    .catch(err=>{
 
-        console.log(err)
-    })
-}
 

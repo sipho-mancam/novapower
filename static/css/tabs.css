@@ -1,6 +1,11 @@
 
+footer{
+    width: 100%;
+    overflow: hidden;
+}
 .view-cont{
     margin-top: 20px;
+    
 }
 
 .tabs-container{
@@ -9,6 +14,7 @@
     margin-top:20px;
     flex-flow: column;
     background-color:rgb(253, 250, 250);
+    width: 100%;
     /* border: 1px solid black; */
 }
 

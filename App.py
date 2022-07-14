@@ -1,4 +1,5 @@
 from crypt import methods
+import re
 from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session, url_for
 from flask_cors import CORS
 from flask_session import Session
@@ -591,6 +592,23 @@ def get_cart_items():
     else:
         return {'response':0x05}
 
+# db_manager._delete_records(db_manager.get_current_db(), 'user-quotes', {})
+@app.route('/admin/update_quotes', methods=['POST'])
+def update_quotes():
+    session_token = request.args.get('session_token')
+    option = request.args.get('option')
+    payload = request.get_json();
+    db = db_manager.get_current_db()
+    collection = 'user-quotes'
+    if session_token in session:
+        if option == 'many':
+            pass
+        elif option =='one':
+            res = db_manager._replace_one(db, collection, {'_id':payload['uid'], 'name':payload['name'],
+                                                             'pdf_data':payload['pdf_data']}, payload)
+            return {'res':res.matched_count}
+    return {'response':0x05}
+            
 
 @app.route('/get-quote', methods=['GET', 'POST'])
 def get_quote():
@@ -605,16 +623,12 @@ def get_quote():
 
             data['quote'] = p['name']
             pdfkit.from_string(data['pdf_data'], f'./Quotes/{user_info["name"]}.pdf')
-            
-            # pdf = pydf.generate_pdf(data['pdf_data'])
-
-            # with open(f'./Quotes/{user_info["name"]}.pdf', 'wb') as f:
-            #     f.write(pdf)
 
             session.modified = True
-            # user_info['cart-list'] = data['cart']
-            
+            # user_info['cart-list'] = data['cart']            
             #update the db with new user info
+            user_info['date'] = datetime.datetime.now().strftime("%d/%m/%Y");
+            user_info['_id'] = hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
             db_manager._delete_record(_query=user_info)
             db_manager._insert_record(db_manager.get_current_db(), 'user-quotes', user_info)
 
@@ -680,12 +694,34 @@ def sizeme():
     }
     return jsonify(resp)
 
+
+
 @app.route('/contact-us', methods=['POST'])
 def contact_us():
     data = request.get_json() 
-    pprint.pprint(data)
-    return data
+    data['time'] = datetime.datetime.now().strftime("%d/%M/%Y - %H:%M:%S")
+    data['_id'] = hashlib.sha512(bytes(data.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
 
+    pprint.pprint(data)
+    data['uid'] = data['_id']
+    db_manager._delete_record(db_manager.get_current_db(), 'enquiries',_query=data)
+    db_manager._insert_record(db_manager.get_current_db(), 'enquiries', data)
+    return {'message':'Thank you for your enquiry, we will contact you soon.'}
+
+@app.route('/admin/get_enquiries', methods=['GET'])
+def get_enquiries():
+    session_token = request.args.get('session_token')
+    if session_token in session:
+        res = db_manager._read_records(db_manager.get_current_db(), 'enquiries', {})
+        res_json = {}
+        counter = 0
+        for i in res:
+            i['_id'] = str(i['_id'])
+            res_json[counter] = i
+            counter += 1
+        return res_json
+    return {'response':0x05}
+   
 
 
 def create_ss_list(json:dict):
