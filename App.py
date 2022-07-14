@@ -605,7 +605,7 @@ def update_quotes():
             pass
         elif option =='one':
             res = db_manager._replace_one(db, collection, {'_id':payload['uid'], 'name':payload['name'],
-                                                             'pdf_data':payload['pdf_data']}, payload)
+                                                            }, payload)
             return {'res':res.matched_count}
     return {'response':0x05}
             
