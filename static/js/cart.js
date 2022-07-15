@@ -118,8 +118,9 @@ function view_quote(html_data){
 
     cl_q.addEventListener('click', function(){
         disp.style.display = 'none';
-        window.location.pathname = '/';
         print();
+        window.location.pathname = '/';
+        
     });
     quote_view.innerHTML = html_data;
     
