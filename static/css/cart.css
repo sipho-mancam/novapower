@@ -337,3 +337,23 @@ td{
         overflow-x: auto;
     }
 }
+
+.overlay-full{
+    display: none;
+    width: 100%;
+    padding:10px;
+    /* height: 100vh; */
+    background-color: rgba(10, 10, 10, 0.7);
+    position:absolute;
+    top: 0; left:0;
+    z-index: 1000;
+}
+
+#close-q-overlay{
+    color:white;
+    position: fixed;
+}
+
+#close-q-overlay:hover{
+    color:red;
+}

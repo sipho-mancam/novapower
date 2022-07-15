@@ -81,6 +81,10 @@ function sort_data(data, d_table=data_table){
             d_table[data[key]['status']].push(data[key]);
         }
     }
+
+    for(let i in data_table){ // order by latest
+        data_table[i] = reverse_array(data_table[i]);
+    }
 }
 
 function update_select(status){
@@ -130,6 +134,13 @@ function get_table_rows(cart_list={}){
     return res
 }
 
+function reverse_array(arr=[]){
+    let rev_arr = []
+    for(let i=arr.length-1; i>=0; i--){
+        rev_arr.push(arr[i])
+    }
+    return rev_arr
+}
 
 
 function init_table(){ 
@@ -211,13 +222,9 @@ function update_server(item_s){
 function get_enquiries_list_view(){
     let enquiries_list = data_table['enquiries'].reverse();
     let res = ''
-    // enquiries_list = enquiries_list.reverse()
-    let rev_arr = []
-    for(let i=enquiries_list.length-1; i>=0; i--){
-        rev_arr.push(enquiries_list[i])
-    }
 
-    enquiries_list = rev_arr;
+    enquiries_list = reverse_array(enquiries_list)
+
     for(let i of enquiries_list){
         res +=
         `<div class="row user-det">

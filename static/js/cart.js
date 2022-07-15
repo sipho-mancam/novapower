@@ -15,17 +15,7 @@ window.addEventListener('load', function(e){
         }
     });
 
-    // add_delivery.addEventListener('change', function(e){
-    //     let value = e.target.value
-
-    //     let path = '/add-option?session_token='+_token+'&option=delivery';
-    //     if(value == 1){
-    //         make_request('GET',path)
-    //         .then(function(response){
-    //             update_totals(response)
-    //         })
-    //     }
-    // })
+   
 
     form_sub = document.getElementById('form')    
     get_session_token()
@@ -119,6 +109,21 @@ function update_totals(res, tot_buttons=document.getElementsByClassName('tot')){
     tot_buttons[2].innerText = res[keys[1]].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
 }
 
+function view_quote(html_data){
+    const disp = document.getElementById('overlay');
+    const cl_q = document.getElementById('close-q-overlay');
+    const quote_view = document.getElementById('view-quote');
+
+    disp.style.display = 'block';
+
+    cl_q.addEventListener('click', function(){
+        disp.style.display = 'none';
+        window.location.pathname = '/';
+    });
+    quote_view.innerHTML = html_data;
+    print()
+}
+
 function submit_quote(e){
     let path = '/contact-us';
 
@@ -149,6 +154,8 @@ function submit_quote(e){
     quote_data['price-summary'] = price_summary
     form_json['pdf_data'] = generate_html_for_pdf(quote_data)
 
+    view_quote(form_json['pdf_data'])
+
     send_quote_form(form_json)
     .then(res=>{
         get_quote()
@@ -160,7 +167,7 @@ function submit_quote(e){
             update_cart_server('clear')
             .then(
                 ()=>{
-                    window.location.pathname = '/'
+                    // window.location.pathname = '/'
                     // window.location.reload()
                 }
             )
@@ -169,7 +176,10 @@ function submit_quote(e){
                  
             let uri = window.URL.createObjectURL(res)
             saveFile(res, 'Quote.pdf')
-            window.open(uri, '_blank')
+            // window.open(uri, '_blank')
+        }).catch(err=>{
+            console.log(err);
+            alert("Sorry we couldn't download your quote at this moment, but it has been recevied.")
         })
     })
 }
