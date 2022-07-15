@@ -117,13 +117,11 @@ function view_quote(html_data){
     disp.style.display = 'block';
 
     cl_q.addEventListener('click', function(){
-        disp.style.display = 'none';
-        print();
-        window.location.pathname = '/';
-        
+        disp.style.display = 'none'; 
+        window.location.pathname = '/'; 
     });
     quote_view.innerHTML = html_data;
-    
+    print();
 }
 
 function submit_quote(e){
