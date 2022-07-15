@@ -118,7 +118,7 @@ function view_quote(html_data){
 
     cl_q.addEventListener('click', function(){
         disp.style.display = 'none'; 
-        window.location.pathname = '/'; 
+        // window.location.pathname = '/'; 
     });
     quote_view.innerHTML = html_data;
     print();
@@ -167,7 +167,7 @@ function submit_quote(e){
             update_cart_server('clear')
             .then(
                 ()=>{
-                    // window.location.pathname = '/'
+                    window.location.pathname = '/'
                     // window.location.reload()
                     console.log('Done')
                 }
