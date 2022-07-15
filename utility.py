@@ -107,5 +107,5 @@ def test_write(data={}, n=1):
 
 def format_price(price):
     s = "R {:,.2f}".format(price)
-    return s
+    return price
 

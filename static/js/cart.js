@@ -114,9 +114,9 @@ window.addEventListener('load', function(e){
 function update_totals(res, tot_buttons=document.getElementsByClassName('tot')){
     
     let keys = Object.keys(res)
-    tot_buttons[0].innerText = res[keys[0]]
-    tot_buttons[1].innerText = res[keys[2]]
-    tot_buttons[2].innerText = res[keys[1]]
+    tot_buttons[0].innerText = res[keys[0]].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
+    tot_buttons[1].innerText = res[keys[2]].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
+    tot_buttons[2].innerText = res[keys[1]].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
 }
 
 function submit_quote(e){

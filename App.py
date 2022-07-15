@@ -699,7 +699,7 @@ def sizeme():
 @app.route('/contact-us', methods=['POST'])
 def contact_us():
     data = request.get_json() 
-    data['time'] = datetime.datetime.now().strftime("%d/%M/%Y - %H:%M:%S")
+    data['time'] = datetime.datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
     data['_id'] = hashlib.sha512(bytes(data.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
 
     pprint.pprint(data)

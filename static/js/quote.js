@@ -268,7 +268,7 @@ function generate_html_for_pdf(data){
                 <div class="col">
                 <div class="right-side shaded">
                     <div class="text">
-                        <span class="name">Total Due:</span><span class="value">${data['price-summary']['total']}</span>
+                        <span class="name">Total Due:</span><span class="value">${data['price-summary']['total'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
                     </div>
                 </div>
                 </div>
@@ -318,7 +318,7 @@ function generate_html_for_pdf(data){
                </div>
                <div class="col">
                    <span class="text ">
-                       <span class="value">${data['price-summary']['sub-total']}</span>
+                       <span class="value">${data['price-summary']['sub-total'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
                    </span>
                </div>
            </div>
@@ -334,7 +334,7 @@ function generate_html_for_pdf(data){
                </div>
                <div class="col">
                    <span class="text total">
-                       <span class="value">${data['price-summary']['vat']}</span>
+                       <span class="value">${data['price-summary']['vat'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
                    </span>
                </div>
            </div>
@@ -350,7 +350,7 @@ function generate_html_for_pdf(data){
                </div>
                <div class="col" style="border-top: 1px solid black;">
                    <span class="text total">
-                       <span class="name">${data['price-summary']['total']}</span>
+                       <span class="name">${data['price-summary']['total'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
                    </span>
                </div>
            </div>

@@ -58,6 +58,7 @@
 
 #close-q-overlay{
     color:white;
+    position: fixed;
 }
 
 #close-q-overlay:hover{
@@ -75,10 +76,17 @@
 }
 
 .user-det{
-    border-top: 1px solid rgba(187, 187, 187, 0.479);
-    border-bottom: 1px solid rgba(180, 180, 180, 0.568);
+    /* border-top: 1px solid rgba(187, 187, 187, 0.479); */
+    /* border-bottom: 1px solid rgba(180, 180, 180, 0.568); */
     background-color: rgb(221, 221, 221);
     padding:5px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-bottom: 12px;
     
+}
+
+.user-det:hover{
+    background-color: rgb(172, 172, 172);
 }
 

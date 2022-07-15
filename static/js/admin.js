@@ -7,6 +7,7 @@ let overlay_v = null;
 let close_q_overlay = null;
 let display = null
 let table = null
+let flag = true;
 
 window.addEventListener('load', function(){
     data_table = {
@@ -67,7 +68,7 @@ function update_table(){
     display.style.display ='none';
     const table_body = document.getElementById('table-body')
     table_body.innerHTML = get_table_rows(data_table[current_selected.getAttribute('name')]); 
-    init_table()
+    init_table();
 }
 
 function sort_data(data, d_table=data_table){
@@ -129,8 +130,11 @@ function get_table_rows(cart_list={}){
     return res
 }
 
+
+
 function init_table(){ 
     const table_rows = document.getElementsByTagName('tr')
+
     for(let i of table_rows){
         i.addEventListener('click', function(e){     
             // get the currently selected list....(it's the only one we are interacting with anyways...)
@@ -139,17 +143,25 @@ function init_table(){
             const d_key = current_selected.getAttribute('name')
             const index = (i.rowIndex-1)
             const current_item = data_table[d_key][index]
-
-            if(e.target.getAttribute('name') == 'select'){
-                const p_data = data_table[d_key].splice(data_table[d_key].indexOf(current_item), 1);
-                const next_list = e.target.value;
-                p_data[0]['status'] = next_list
-                data_table[next_list].push(p_data[0]);
-                update_counts()
-                update_table()
-                update_server(p_data[0])
+            if(!flag){
+                if(e.target.getAttribute('name') == 'select'){
+                    const p_data = data_table[d_key].splice(data_table[d_key].indexOf(current_item), 1);
+                    const next_list = e.target.value;
+                    console.log(next_list)
+                    p_data[0]['status'] = next_list
+                    data_table[next_list].push(p_data[0]);
+                    update_counts()
+                    console.log('I run')
+                    update_server(p_data[0])
+                    update_table(); 
+                }
+            
+                flag = !flag;
+                return
             }
-            else if(e.target.getAttribute('name') == 'view-button'){
+            flag = !flag;
+
+            if(e.target.getAttribute('name') == 'view-button'){
                 overlay_v.style.display = "flex";
                 quote_view.innerHTML = current_item['pdf_data']
                 close_q_overlay = document.getElementById('close-q-overlay');
@@ -157,6 +169,8 @@ function init_table(){
                     overlay_v.style.display = 'none';
                 });
             }
+
+            // update_table();
         })
     }
 }
@@ -195,9 +209,15 @@ function update_server(item_s){
 }
 
 function get_enquiries_list_view(){
-
-    const enquiries_list = data_table['enquiries']
+    let enquiries_list = data_table['enquiries'].reverse();
     let res = ''
+    // enquiries_list = enquiries_list.reverse()
+    let rev_arr = []
+    for(let i=enquiries_list.length-1; i>=0; i--){
+        rev_arr.push(enquiries_list[i])
+    }
+
+    enquiries_list = rev_arr;
     for(let i of enquiries_list){
         res +=
         `<div class="row user-det">
@@ -206,7 +226,7 @@ function get_enquiries_list_view(){
             <span class="message">
                 ${i.message}
             </span> 
-        </div><br />`
+        </div>`
     }
     return res
 }
