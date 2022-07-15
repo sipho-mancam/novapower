@@ -399,9 +399,9 @@ function search_item_in_package(package, item_name){
     return null;
 }
 
-function send_form_data(e){
+function send_form_data(e=null){
     let path = '/contact-us';
-    e.preventDefault()
+    if(e)e.preventDefault();
     let form_data = new FormData(e.currentTarget)
     let entries = form_data.entries()
     let res = entries.next()
@@ -414,9 +414,11 @@ function send_form_data(e){
     make_request('POST', path, form_json)
     .then(res=>{
         // console.log(res)
+        window.alert('Thank you for your inquiry, we\'ll be in touch');
+        window.location.reload();
     })
     .catch(err=>{
-
+        window.alert('There was an error sending your message, please try again');
         console.log(err)
     })
 }

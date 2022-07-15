@@ -1,7 +1,9 @@
 window.addEventListener('load', function(e){
     const loader = this.document.getElementById('loader')
     let contact_us_form = document.getElementById('contact-us-form')
+
     contact_us_form.addEventListener('submit', send_form_data)
+    
     get_session_token()
     .then(
         res=>{

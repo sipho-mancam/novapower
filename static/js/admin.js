@@ -29,7 +29,6 @@ window.addEventListener('load', function(){
         overlay_v.style.display = 'none';
     })
     
-    
     init_tabs()
     const p_url = new  URL(url)
     _token = p_url.searchParams.get('session_token')
@@ -46,8 +45,7 @@ window.addEventListener('load', function(){
                 data_table['enquiries'].push(res[key]);
             }
             update_counts()
-        })
-
+        });
         sort_data(res)
         init_tabs()
         update_counts()

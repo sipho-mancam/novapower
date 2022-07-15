@@ -119,9 +119,10 @@ function view_quote(html_data){
     cl_q.addEventListener('click', function(){
         disp.style.display = 'none';
         window.location.pathname = '/';
+        print();
     });
     quote_view.innerHTML = html_data;
-    print()
+    
 }
 
 function submit_quote(e){
@@ -144,7 +145,7 @@ function submit_quote(e){
         res = entries.next()
     }
 
-    console.log(form_json)
+    // console.log(form_json)
 
 
     form_json['sub-tot'] = cart.total_price

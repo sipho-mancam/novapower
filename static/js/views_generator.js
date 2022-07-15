@@ -56,7 +56,7 @@ function get_card_html(package){
     return(
         `<div class="cust-card">
               <div class ="image">
-                  <img  src="${package.img_url}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
+                  <img  src="${package.img_url}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width="210" height="210"  alt="p-h" />
               </div>
               <div class="info">
                   
