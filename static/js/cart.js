@@ -169,6 +169,7 @@ function submit_quote(e){
                 ()=>{
                     // window.location.pathname = '/'
                     // window.location.reload()
+                    console.log('Done')
                 }
             )
             
