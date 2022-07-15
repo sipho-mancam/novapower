@@ -639,7 +639,10 @@ def get_quote():
             p['name'] = f'{user_info["name"]}.pdf'
 
             data['quote'] = p['name']
-            pdfkit.from_string(data['pdf_data'], f'./Quotes/{user_info["name"]}.pdf')
+            try:
+                pdfkit.from_string(data['pdf_data'], f'./Quotes/{user_info["name"]}.pdf')
+            except Exception as e:
+                pass
 
             session.modified = True
             # user_info['cart-list'] = data['cart']            
