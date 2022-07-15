@@ -106,7 +106,24 @@ def admin_login_d():
         session.modified = True
         return redirect(f'admin?session_token={session_token}')
     else: return {'response':'Incorrect Creds'} 
-    
+
+@app.route('/admin/delete', methods=['DELETE'])
+def delete_quote():   
+    session_token = request.args.get('session_token')
+    q = request.get_json()
+    d_type = request.args.get('type')
+
+    if session_token in session:
+        if d_type == 'quote':
+            res = db_manager._delete_record(db_manager.get_current_db(), 'user-quotes', {'_id':q['_id']})
+            return {'count':res.deleted_count}
+        elif d_type == 'message':
+            res = db_manager._delete_record(db_manager.get_current_db(), 'enquiries', q)
+            return {'count':res.deleted_count}
+
+    return {
+        'res':0x05
+    }
 
 @app.route('/admin/get_quotes', methods=['GET'])
 def admin_get_quotes():

@@ -124,6 +124,9 @@ function get_table_rows(cart_list={}){
             <td name="champion">
                <span >WB</span> 
             </td>
+            <td name="delete">
+               <span name="delete"><i name="delete" class="bi delete-b bi-trash3"></i></span> 
+            </td>
         </tr>
         `
         counter ++;
@@ -164,7 +167,7 @@ function init_table(){
                     update_server(p_data[0])
                     update_table(); 
                 }
-            
+               
                 flag = !flag;
                 return
             }
@@ -177,6 +180,16 @@ function init_table(){
                 close_q_overlay.addEventListener('click', function(e){
                     overlay_v.style.display = 'none';
                 });
+            }
+            if(e.target.getAttribute('name') == 'delete'){
+                delete_item(current_item, 'quote')
+                .then(res=>{
+                    console.log(res);
+                    data_table[d_key].splice(data_table[d_key].indexOf(current_item), 1);
+                    update_table(); 
+                    update_counts();
+                });
+                
             }
 
             // update_table();
@@ -215,6 +228,17 @@ function update_server(item_s){
     .then(function(response){
         // console.log(response)
     })
+}
+
+function delete_item(item, type='quote'){
+    let ans = confirm(`Are you sure you want to delete this ${type} \nThis action is irreversible!`)
+    if(ans){
+        let p =`/admin/delete?type=${type}&session_token=${_token}`;
+        return make_request('DELETE',p, item);
+    }
+    
+    console.log(ans)
+    
 }
 
 function get_enquiries_list_view(){

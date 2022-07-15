@@ -98,6 +98,9 @@
 
 .message{
     width: 40%;
+}
 
+.delete-b:hover{
+    color: red;
 }
 

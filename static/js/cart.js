@@ -173,7 +173,6 @@ function submit_quote(e){
             )
             
             // show them a success message
-                 
             let uri = window.URL.createObjectURL(res)
             saveFile(res, 'Quote.pdf')
             // window.open(uri, '_blank')
