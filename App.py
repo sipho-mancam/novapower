@@ -53,7 +53,7 @@ def _get_pdfkit_config():
             
          WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')], stdout=subprocess.PIPE).communicate()[0].strip()
          print(WKHTMLTOPDF_CMD)
-         return pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
+         return pdfkit.configuration(wkhtmltopdf="/app/bin/wkhtmltopdf")
 
 def validate_session(token):
     if token in session:
