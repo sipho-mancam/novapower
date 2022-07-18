@@ -1,0 +1,108 @@
+:root{
+--font:Arial, Helvetica, sans-serif;
+}
+
+.cust-card{
+    /* display: ; */
+    /* border:1px solid rgba(180,180,180,0.5); */
+    border-radius: 5px;
+    /* border-style: groove; */
+    display:flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    padding-bottom: 5px;
+    background-color:rgb(250, 255, 255);
+    padding:1.5vh;
+<<<<<<< HEAD:frontEndDesign/css/cards.css
+    margin:0.8vh;
+    max-width: 340px;
+    min-width:320px;
+
+=======
+    max-width: 340px;
+    min-width: 320px;
+>>>>>>> dev-web-server:static/css/cards.css
+}
+
+@media  only screen and (max-width:500px) {
+    .cust-card{
+        width:80%;
+    }
+    
+}
+
+/* .cust-card:hover{
+    transition: transform 0.5s ease-in-out;
+    transform: scale(1.01);
+} */
+
+.image{
+    /* border:1px solid black; */
+    border-top-left-radius: 3vh;
+    border-top-right-radius: 3vh;
+    display:flex;
+    justify-content: center;
+    overflow:hidden;
+    margin-bottom:1vh;
+
+}
+
+h4{
+    font-size: large;
+    text-align: center;
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.info{
+    /* border: 1px solid black; */
+    font-size:medium;
+    font-weight: lighter;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.price{
+    /* border: 1px solid black; */
+    
+    font-weight: bold;
+    font-size:large;
+    text-align: end;
+}
+
+.controls{
+    /* border:1px solid black; */
+    margin-top: 0vh;
+    padding-top: 0.5vh;
+    /* border-top: 1px solid rgb(172, 170, 170); */
+    display:flex;
+    flex-flow: column;
+    justify-content: center;
+    background-color:rgb(255, 255, 255);
+  
+}
+
+.h-buttons{
+    /* border:1px solid black; */
+    height: fit-content;
+    padding: 0.5vh;
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 3vh;
+    margin:1px 0 1px 0;
+    border:2px solid rgb(0, 204, 255);
+    color:rgb(109, 5, 5);
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
+    transition: background-color 0.1s ease-in;
+    cursor: pointer;
+}
+
+
+.h-buttons:hover{
+    transition: background-color 0.5s ease-in;
+    background-color: rgb(0, 204, 255);
+    border:2px solid white;
+    color:white;
+}
+

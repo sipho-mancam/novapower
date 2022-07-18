@@ -1,9 +1,16 @@
+<<<<<<< HEAD
+=======
+from parser import Parser
+>>>>>>> dev-web-server
 from utility import *
 import pandas as pd
 import os
 import pathlib
+<<<<<<< HEAD
 import pprint
 
+=======
+>>>>>>> dev-web-server
 
 # itemName; PackageGroup; Brand; TypeGroup; sizeGroup; ItemPrice; Extras
 
@@ -35,6 +42,7 @@ def clean_data(df):
                 inplace=True
             )
 
+<<<<<<< HEAD
 def parse_size(size:str)->dict:
     res = dict()
     # name-unit:value, ...
@@ -87,10 +95,17 @@ def parse_excel_to_dict(data_frame):
     return items_collection
 
 
+=======
+def parse_excel_to_dict(data_frame):
+    clean_data(data_frame)
+    parser = Parser()
+    return parser.parse_data_frame(data_frame)
+>>>>>>> dev-web-server
 
 def xl_to_json(xl_file, sheet):
     df = read_excel(xl_file, sheet)
     js = parse_excel_to_dict(df)
+<<<<<<< HEAD
     # pprint.pprint(js)
     write_json('data-1.json', js)
 
@@ -101,3 +116,7 @@ def xl_to_json(xl_file, sheet):
 
 
 # print(js)
+=======
+    write_json('data-1.json', js)
+    return js
+>>>>>>> dev-web-server

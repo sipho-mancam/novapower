@@ -1,5 +1,6 @@
 
 import enum
+import hashlib
 import CONSTANTS
 
 
@@ -15,7 +16,13 @@ class Item:
         self.__options = dict()
         self.__obj_raw = _obj
         self.__size = {}
-
+        self.__hashing_object = hashlib.md5(self.encode_for_hashing(self.__obj_raw.__str__()))
+        self.__uid = ''
+        self.update_hash()
+        self.__obj_raw['_uid'] = self.__uid
+        self.__qty = 1
+        self.__name = ''
+        
         if _obj is not None:
             if type(_obj) is dict:
                 for _key in _obj.keys():
@@ -33,6 +40,10 @@ class Item:
                         self.__options = _obj[_key]
                     elif _key == CONSTANTS.SIZE:
                         self.__size = _obj[_key]
+                    elif _key == 'qty':
+                        self.__qty = _obj['qty']
+                    elif _key =='name':
+                        self.__name = _obj[_key]
 
 
             elif type(_obj) is list and len(_obj)>=5:
@@ -56,8 +67,27 @@ class Item:
                         self.__options = value
 
 
+    def encode_for_hashing(self, s:str):
+        return bytes(s, 'utf-8')
+    
+    def update_hashing_string(self, s:str):
+        st = self.encode_for_hashing(s)
+        self.__hashing_object.update(st)
+        self.update_hash()
+
+    def get_name(self):return self.__name
+    def get_qty(self):return self.__qty
+    def set_qty(self, n):
+        self.__qty = n
+        self.__obj_raw['qty'] = self.__qty
+
+    def update_hash(self):
+       self.__uid = self.__hashing_object.hexdigest()
+
     def get_price(self):return self.__price
     
+    def get_size(self):return self.__size
+
     def to_dict(self)->dict:
         return self.__obj_raw
         

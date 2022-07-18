@@ -15,6 +15,8 @@ from excel_driver import *
 
 def setup_input(xl_path, sheet_name, keys=[]):
     data = xl_to_json(xl_path, sheet=sheet_name)
+    d_table = None;
+    
     if len(keys)>0:
         d_table = parse_json(data, keys=keys)
     else: 
