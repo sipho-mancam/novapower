@@ -632,8 +632,10 @@ def get_quote():
 
             data['quote'] = user_info["name"]+hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
             try:
-                pdfkit.from_string(data['pdf_data'], f'./Quotes/{data["quote"]}.pdf')
+                p = pdfkit.from_string(data['pdf_data'], f'./Quotes/{data["quote"]}.pdf')
+                print('[*] PDF successfully generated: {}'.format(p))
             except Exception as e:
+                print('There was an error')
                 print(e)
 
             session.modified = True
