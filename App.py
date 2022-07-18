@@ -61,7 +61,7 @@ package_table = {
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('store.html')
+    return "<h1>Hello world</h1>"#render_template('store.html')
 
 @app.route('/store', methods=['GET'])
 def store():
