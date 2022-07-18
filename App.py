@@ -628,28 +628,26 @@ def get_quote():
             data = session[session_token]['data']
             p = {}
             data['pdf_data'] = user_info['pdf_data']
-            p['name'] = f'{user_info["name"]}.pdf'
+            p['name'] = user_info["name"]+hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
 
             data['quote'] = user_info["name"]+hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
             try:
-                name = user_info["name"]+hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
-                pdfkit.from_string(data['pdf_data'], f'./Quotes/{name}.pdf')
+                pdfkit.from_string(data['pdf_data'], f'./Quotes/{data["quote"]}.pdf')
             except Exception as e:
                 print(e)
 
             session.modified = True
-            # user_info['cart-list'] = data['cart']            
-            #update the db with new user info
             user_info['date'] = datetime.datetime.now().strftime("%d/%m/%Y");
             user_info['_id'] = hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
             db_manager._delete_record(_query=user_info)
             db_manager._insert_record(db_manager.get_current_db(), 'user-quotes', user_info)
 
-            return {'filename':f'{user_info["name"]}.pdf'}
+            return {'filename':f'{data["quote"]}.pdf'}
     elif request.method == 'GET':
         session_token = request.args.get('session_token')
+        print(session[session_token]['data']['quote'])
         if session_token in session:
-
+            print(session[session_token]['data']['quote'])
             return send_from_directory(app.config['UPLOAD_FOLDER'], session[session_token]['data']['quote']) 
         else:
             return {'response':0x05}
