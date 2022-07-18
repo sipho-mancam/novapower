@@ -413,7 +413,6 @@ function generate_html_for_pdf(data){
     </html>
     
     `
-
     return res
 }
 

@@ -154,24 +154,7 @@ function init_table(){
             // use it to get the data and perform updates...
             const d_key = current_selected.getAttribute('name')
             const index = (i.rowIndex-1)
-            const current_item = data_table[d_key][index]
-            if(!flag){
-                if(e.target.getAttribute('name') == 'select'){
-                    const p_data = data_table[d_key].splice(data_table[d_key].indexOf(current_item), 1);
-                    const next_list = e.target.value;
-                    console.log(next_list)
-                    p_data[0]['status'] = next_list
-                    data_table[next_list].push(p_data[0]);
-                    update_counts()
-                    console.log('I run')
-                    update_server(p_data[0])
-                    update_table(); 
-                }
-               
-                flag = !flag;
-                return
-            }
-            flag = !flag;
+            const current_item = data_table[d_key][index];
 
             if(e.target.getAttribute('name') == 'view-button'){
                 overlay_v.style.display = "flex";
@@ -191,6 +174,26 @@ function init_table(){
                 });
                 
             }
+
+            if(!flag){
+                if(e.target.getAttribute('name') == 'select'){
+                    const p_data = data_table[d_key].splice(data_table[d_key].indexOf(current_item), 1);
+                    const next_list = e.target.value;
+                    console.log(next_list)
+                    p_data[0]['status'] = next_list
+                    data_table[next_list].push(p_data[0]);
+                    update_counts()
+                    console.log('I run');
+                    update_server(p_data[0]);
+                    update_table(); 
+                }
+                flag = !flag;
+                return;
+               
+            }
+            flag = !flag;
+
+            
 
             // update_table();
         })
