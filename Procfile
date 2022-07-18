@@ -1,2 +1,3 @@
-web: gunicorn  --workers=4 --worker-class 'gthread' App:app
+web: export FLASK_APP=App.py && flask run
+
 ps:scale web=2
