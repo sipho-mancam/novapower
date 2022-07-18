@@ -645,9 +645,8 @@ def get_quote():
             return {'filename':f'{data["quote"]}.pdf'}
     elif request.method == 'GET':
         session_token = request.args.get('session_token')
-        print(session[session_token]['data']['quote'])
         if session_token in session:
-            print(session[session_token]['data']['quote'])
+            # print(session[session_token]['data']['quote'])
             return send_from_directory(app.config['UPLOAD_FOLDER'], session[session_token]['data']['quote']+'.pdf') 
         else:
             return {'response':0x05}

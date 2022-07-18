@@ -121,7 +121,7 @@ function view_quote(html_data){
         // window.location.pathname = '/'; 
     });
     quote_view.innerHTML = html_data;
-    print();
+    // print();
 }
 
 function submit_quote(e){
