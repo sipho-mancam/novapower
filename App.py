@@ -54,7 +54,7 @@ package_table = {
 
 @app.route('/', methods=['GET'])
 def index():
-    return "<h1>Hello world</h1>"#render_template('store.html')
+    return render_template('store.html')
 
 @app.route('/store', methods=['GET'])
 def store():
@@ -635,7 +635,7 @@ def get_quote():
             try:
                 pdfkit.from_string(data['pdf_data'], f'./Quotes/{user_info["name"]}.pdf')
             except Exception as e:
-                pass
+                print(e)
 
             session.modified = True
             # user_info['cart-list'] = data['cart']            
