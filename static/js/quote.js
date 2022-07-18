@@ -410,7 +410,6 @@ function generate_html_for_pdf(data){
     <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" type="text/css" media="all"></script>-->
     <!-- <script src="./quote.js" type="text/javascript"></script>  -->
-
     </html>
     
     `
