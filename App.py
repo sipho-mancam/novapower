@@ -20,10 +20,10 @@ client = MongoClient("mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mo
 
 app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
 app.config['UPLOAD_FOLDER'] = pathlib.Path('./Quotes/').absolute().as_posix()
-app.config['SESSION_TYPE'] = 'mongodb'
-app.config['SESSION_MONGODB'] = client
-app.config['SESSION_MONGODB_DB'] = 'sessions'
-app.config['SESSION_MONGODB_COLLECTION'] = 'user-sessions'
+app.config['SESSION_TYPE'] = 'filesystem' #'mongodb'
+# app.config['SESSION_MONGODB'] = client
+# app.config['SESSION_MONGODB_DB'] = 'sessions'
+# app.config['SESSION_MONGODB_COLLECTION'] = 'user-sessions'
 
 Session(app)
 
@@ -34,7 +34,8 @@ solar_package_handler = setup_input(data_path, 'Sheet 1', keys=['solar', 'invert
 inverter_package_handler = setup_input(data_path, 'Sheet 1', keys=['inverter', 'battery'])
 generator_package_handler = setup_input(data_path,'Sheet 1', keys=['generator'])
 
-admin_creds =  session_token = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), usedforsecurity=True).hexdigest()
+admin_creds  = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), usedforsecurity=True).hexdigest()
+session_token = admin_creds
 
 s = 0
 
