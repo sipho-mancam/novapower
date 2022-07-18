@@ -78,13 +78,13 @@ let appliance_list = [
     {
         'name':'Laptop',
         'img': "https://cdn-icons-png.flaticon.com/512/4812/4812557.png",
-        'power':60,
+        'power':80,
         'rank':999
     },
     {
         'name':'Fridge',
         'img': "https://toppng.com/uploads/preview/file-svg-fridge-icon-sv-11563715839vbv5lvmhxn.png",
-        'power':500,
+        'power':600,
         'rank':998
     },
     {
@@ -144,7 +144,7 @@ let appliance_list = [
     {
         'name':'Pool Pump',
         'img': "https://thumbs.dreamstime.com/b/pool-pump-icon-outline-pool-pump-vector-icon-web-design-isolated-white-background-pool-pump-icon-outline-style-142253818.jpg",
-        'power':850,
+        'power':1000,
         'rank':991
     },
     {

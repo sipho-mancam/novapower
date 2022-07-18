@@ -1,2 +1,2 @@
-web: gunicorn --workers=2 App:app
+web: gunicorn  --workers=4 --worker-class 'gevent' App:app
 ps:scale web=2
