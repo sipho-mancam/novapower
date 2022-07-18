@@ -13,7 +13,6 @@ from pymongo import MongoClient
 import pdfkit
 
 
-
 app = Flask(__name__)
 
 client = MongoClient("mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mongodb.net/sessions?retryWrites=true&w=majority")
@@ -633,7 +632,8 @@ def get_quote():
 
             data['quote'] = p['name']
             try:
-                pdfkit.from_string(data['pdf_data'], f'./Quotes/{user_info["name"]}.pdf')
+                name = user_info["name"]+hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
+                pdfkit.from_string(data['pdf_data'], f'./Quotes/{name}.pdf')
             except Exception as e:
                 print(e)
 
