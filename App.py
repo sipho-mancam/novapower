@@ -1,22 +1,17 @@
-from crypt import methods
-import re
-from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session, url_for
-from flask_cors import CORS
+from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session
 from flask_session import Session
 from package_manager import *
 import CONSTANTS
 from packages import *
 from init import *
 import datetime
-from pdf_gen import generate_pdf
 from utility import update_cart
 from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
 import pathlib
 from pricing import *
 from pymongo import MongoClient
-# from parser import Parser
 import pdfkit
-import pydf
+
 
 
 app = Flask(__name__)
@@ -25,9 +20,6 @@ client = MongoClient("mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mo
 
 app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
 app.config['UPLOAD_FOLDER'] = pathlib.Path('./Quotes/').absolute().as_posix()
-# app.config['MONGO_DBNAME'] = 'sessions'
-# app.config['MONGO_URI'] = 'mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mongodb.net/sessions?retryWrites=true&w=majority'
-# app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] = 'mongodb'
 app.config['SESSION_MONGODB'] = client
 app.config['SESSION_MONGODB_DB'] = 'sessions'
@@ -59,7 +51,7 @@ package_table = {
     'inverter':inverter_package_handler.get_summary()
 }
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
     return "<h1>Hello world</h1>"#render_template('store.html')
 
