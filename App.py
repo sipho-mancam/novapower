@@ -630,7 +630,7 @@ def get_quote():
             data['pdf_data'] = user_info['pdf_data']
             p['name'] = f'{user_info["name"]}.pdf'
 
-            data['quote'] = p['name']
+            data['quote'] = user_info["name"]+hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
             try:
                 name = user_info["name"]+hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
                 pdfkit.from_string(data['pdf_data'], f'./Quotes/{name}.pdf')
