@@ -11,6 +11,8 @@ import pathlib
 from pricing import *
 from pymongo import MongoClient
 import pdfkit
+import platform
+import subprocess
 
 
 app = Flask(__name__)
@@ -37,6 +39,19 @@ admin_creds  = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), used
 session_token = admin_creds
 
 s = 0
+
+def _get_pdfkit_config():
+     """wkhtmltopdf lives and functions differently depending on Windows or Linux. We
+      need to support both since we develop on windows but deploy on Heroku.
+
+     Returns:
+         A pdfkit configuration
+     """
+     if platform.system() == 'Windows':
+         return pdfkit.configuration(wkhtmltopdf=os.environ.get('WKHTMLTOPDF_BINARY', 'C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'))
+     else:
+         WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')], stdout=subprocess.PIPE).communicate()[0].strip()
+         return pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
 
 def validate_session(token):
     if token in session:
@@ -632,7 +647,7 @@ def get_quote():
 
             data['quote'] = user_info["name"]+hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
             try:
-                p = pdfkit.from_string(data['pdf_data'], f'./Quotes/{data["quote"]}.pdf')
+                p = pdfkit.from_string(data['pdf_data'], f'./Quotes/{data["quote"]}.pdf', configuration=_get_pdfkit_config())
                 print('[*] PDF successfully generated: {}'.format(p))
             except Exception as e:
                 print('There was an error')
