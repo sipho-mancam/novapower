@@ -1,3 +1,5 @@
+from crypt import methods
+from operator import methodcaller
 from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session
 from flask_session import Session
 from package_manager import *
@@ -22,16 +24,15 @@ client = MongoClient("mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mo
 app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
 app.config['UPLOAD_FOLDER'] = pathlib.Path('./Quotes/').absolute().as_posix()
 app.config['SESSION_TYPE'] = 'filesystem' #'mongodb'
-# app.config['SESSION_MONGODB'] = client
-# app.config['SESSION_MONGODB_DB'] = 'sessions'
-# app.config['SESSION_MONGODB_COLLECTION'] = 'user-sessions'
+
 
 Session(app)
 
+#  
+
 db_manager, clnt = setup()
-# print(db_manager.read_all())
 data_path = './DatabaseIndividualPricingInputFormat v2.xlsx'
-solar_package_handler = setup_input(data_path, 'Sheet 1', keys=['solar', 'inverter', 'battery']);
+solar_package_handler = setup_input(data_path, 'Sheet 1',keys=['solar', 'inverter', 'battery']);
 inverter_package_handler = setup_input(data_path, 'Sheet 1', keys=['inverter', 'battery'])
 generator_package_handler = setup_input(data_path,'Sheet 1', keys=['generator'])
 
@@ -52,7 +53,7 @@ def _get_pdfkit_config():
      else:
             
          WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')], stdout=subprocess.PIPE).communicate()[0].strip()
-         print(WKHTMLTOPDF_CMD)
+        #  print(WKHTMLTOPDF_CMD)
          return pdfkit.configuration(wkhtmltopdf="/app/bin/wkhtmltopdf")
 
 def validate_session(token):
@@ -87,6 +88,10 @@ def sizing():
 @app.route('/favicon.ico', methods=['GET'])
 def favicon():
     return send_from_directory(app.config['UPLOAD_FOLDER'], 'favicon.ico') 
+
+@app.route('/products_list', methods=['GET'])
+def products_list():
+    return render_template('products_list.html')
 
 
 @app.route('/admin', methods=['GET'])
@@ -503,16 +508,14 @@ def index_data():
         solar_packages[package]['_uid'] = hashlib.sha256(bytes(solar_packages[package].__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
         for item in solar_packages[package]:
             if type(solar_packages[package][item]) is dict:
-                solar_packages[package][item]['_uid'] =  hashlib.sha256(bytes(solar_packages[package][item].__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
+                solar_packages[package][item]['_uid'] =  hashlib.sha256(bytes(solar_packages[package][ item].__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
 
     package_table = {
         'solar':solar_packages,
         'inverter':inverter_package_handler.get_summary(),
         'generator':generator_package_handler.get_summary()
     }
-   
     return package_table
-
 
 
 @app.route('/session', methods=['GET'])
@@ -522,7 +525,7 @@ def generate_session():
     if session_token not in session:
         session[session_token] = {
             'id': session_token,
-            'start-time':datetime.datetime.now().strftime("%H:%M:%S"),
+            'start-time':datetime.datetime.now().strftime("%H:%M:%S - %d/%m/%Y"),
             'data': {
                 'cart':[],
                 'price':{},
@@ -772,7 +775,6 @@ def create_ss_list(json:dict):
         json['pool pump']
     ]
     return l
-    
     
 if __name__ == '__main__':
     # app.run(host=CONSTANTS.HOST, debug=False)

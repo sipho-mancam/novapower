@@ -36,7 +36,7 @@ def update_cart(uid:str, cart_list:list, func:str='increase'):
 
 
 
-def parse_json(data1, keys:list=[]): # organise the data according to ... solar, inverter and battery , etc
+def parse_json(data1, keys:list=None): # organise the data according to ... solar, inverter and battery , etc
     l = list()
     d_table = dict()
     if keys is not None:

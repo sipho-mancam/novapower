@@ -246,6 +246,8 @@ class PackageHandler:
             self.__populate_sub_p(_sub_packages)
             self.get_subs_table()
 
+    def get_sub_package_list(self):return self.__sub_packages_list
+
     def possible_package_count(self):
         max_count = 1
         for i in self.__subs_table.values():
@@ -265,9 +267,9 @@ class PackageHandler:
         pass
 
     def get_subs_table(self):
-        
-        self.__sub_packages_list[0].add_count_to_table(self.__subs_table)
-        return self.__subs_table
+        if len(self.__sub_packages_list) > 0:
+            self.__sub_packages_list[0].add_count_to_table(self.__subs_table)
+            return self.__subs_table
 
     def __append_sub(self, sub_p:Subpackage):
         if sub_p not in self.__sub_packages_list:
