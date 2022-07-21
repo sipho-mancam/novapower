@@ -1,7 +1,6 @@
-from crypt import methods
-from operator import methodcaller
 from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session
 from flask_session import Session
+import Products
 from package_manager import *
 import CONSTANTS
 from packages import *
@@ -39,6 +38,8 @@ generator_package_handler = setup_input(data_path,'Sheet 1', keys=['generator'])
 admin_creds  = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), usedforsecurity=True).hexdigest()
 session_token = admin_creds
 
+stage = Products.init_stage()
+# pprint.pprint(stage.get_summary())
 s = 0
 
 def _get_pdfkit_config():
@@ -107,6 +108,13 @@ def admin_login():
     if request.method == 'GET':
         return render_template('a_login.html') 
 
+@app.route('/products_list/init', methods=['GET'])
+def products_init():
+    res = {}
+    res['categories'] =  stage.get_products_list()
+    res['filters'] = stage.get_default_filters()
+    res['data'] = stage.get_summary()
+    return res
 
 @app.route('/admin-login-d', methods=['POST'])
 def admin_login_d():
