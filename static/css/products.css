@@ -1,0 +1,78 @@
+.main{
+    position: fixed;
+    top:40px;
+    /* background-color: rgb(199, 120, 17); */
+    max-height:100vh;
+    border: 1px solid black;
+    height: 100vh;
+    padding: 50px;
+}
+
+.section{
+    height: 85vh;
+    /* border: 1px solid black; */
+    background-color: rgba(100, 100, 100, 0.2);
+    max-height:85vh;
+    overflow: auto;
+    /* margin-right: 16px; */
+    border-radius: 10px;
+}
+
+.main-display{
+    background-color: inherit;
+    padding-left:28px;
+}
+
+.advert{
+    background-color: rgba(100, 100, 100, 0.2);
+    height: 30vh;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+.cards{
+    height: 53vh;
+    border-radius: 10px;
+    /* background-color: rgba(100, 100, 100, 0.2); */
+}
+
+.name{
+    font-weight: bold;
+    font-size: large;
+}
+
+.size-details{
+    font-size: small;
+    color: grey;
+}
+
+.product-card{
+    background-color: rgba(200, 200, 200, 0.1);
+    height: fit-content;
+    width: fit-content;
+    margin: 10px;
+    border-radius: 16px;
+}
+
+.image{
+    border-radius:16px;
+    width: 100%;
+    /* border: 1px solid black; */
+    /* width: fit-content; */
+}
+
+.cards-container{
+    display: flex;
+    flex-flow:row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.s{
+    text-decoration: none;
+    color:black;
+}
