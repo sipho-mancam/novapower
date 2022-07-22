@@ -35,16 +35,16 @@ class Stage:
         return res
 
     def __get_sub_brands(self, sub_pacakage):
-        res = {'name': sub_pacakage._get_name(), 'brands':set()}
+        res = {'name': sub_pacakage._get_name(), 'brand':set()}
 
         items_list = sub_pacakage._get_items()
         for i in items_list:
             i = i.to_dict()
-            res['brands'].add(i['brand'])
+            if not i['package-flag'] :res['brand'].add(i['brand'])
         l = []
-        for i in res['brands']:
+        for i in res['brand']:
             l.append(i)
-        res['brands'] = l
+        res['brand'] = l
         return res
 
         
@@ -78,14 +78,25 @@ class Stage:
             self.__temp_list = {}
             for l in self.__sub_package_objects:
                 # get the object in the list...
-                if l._get_name() in self.filters['scope']:
-                    self.__temp_list[l._get_name()] = l._get_items()
+                if '*' not in self.filters['scope']:
+                    if l._get_name() in self.filters['scope']:
+                        self.__temp_list[l._get_name()] = l._get_items()
+                else:
+                    self.__temp_list = {}
+                    for l in self.__sub_package_objects:
+                        self.__temp_list[l._get_name()] = l._get_items()
 
     def __apply_filter_to_list(self, filter:dict, l:list):
         count = 0
         limit = len(filter)
         for item in l:
             for f_key in filter.keys():
+                filt = filter[f_key]
+
+                if 'scope' in filt and filt['scope'] != '*' and item.to_dict()['name'].lower() not in filt['scope']: # this item is not affected by this filter.
+                    count += 1
+                    continue;
+                
                 d = item.to_dict()
                 if type(filter[f_key]['value']) is str: # string comparison   
                     t = d[filter[f_key]['name']]
@@ -140,6 +151,7 @@ class Stage:
         self.summary['metadata'] = {}
         self.summary['metadata']['count'] = len(self.__committed)
         self.summary['metadata']['filters'] = self.filters['filter']
+        self.summary['metadata']['scope'] = self.filters['scope']
         self.summary['metadata']['max-count'] = self.max_count
         self.summary['data'] = {}
         count = 0
@@ -174,6 +186,7 @@ class Stage:
         if self.__validate_before_processing():
             self.apply_filter()
             self.__set_meta_data()
+            self.__committed = []
             return self.summary
         else:
             print("Please add a filter") 

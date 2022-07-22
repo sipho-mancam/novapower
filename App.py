@@ -108,6 +108,7 @@ def admin_login():
     if request.method == 'GET':
         return render_template('a_login.html') 
 
+
 @app.route('/products_list/init', methods=['GET'])
 def products_init():
     res = {}
@@ -115,6 +116,16 @@ def products_init():
     res['filters'] = stage.get_default_filters()
     res['data'] = stage.get_summary()
     return res
+
+@app.route('/products_list/apply_filter', methods=['PUT', 'POST', 'GET'])
+def apply_filter():
+    if request.method == 'PUT' or request.method == 'POST':
+        j_data = request.get_json()
+        stage.add_filter(j_data)
+        res = stage.get_summary()
+        return res
+    else:
+        return stage.get_summary()
 
 @app.route('/admin-login-d', methods=['POST'])
 def admin_login_d():
@@ -761,6 +772,8 @@ def get_enquiries():
             counter += 1
         return res_json
     return {'response':0x05}
+
+
    
 
 
