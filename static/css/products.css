@@ -64,7 +64,7 @@
 }
 
 .tabs{
-    height: 5vh;
+    height: fit-content;
     background-color: rgba(206, 205, 205, 0.267);
 }
 
