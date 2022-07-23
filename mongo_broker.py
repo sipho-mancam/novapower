@@ -2,6 +2,7 @@ from pymongo import MongoClient
 import pymongo
 from pymongo.collection import Collection
 from pymongo.database import Database
+import CONSTANTS
 
 
 # 1) Read one item from the database
@@ -11,12 +12,12 @@ from pymongo.database import Database
 # 5) Update one item in the db
 # 6) Update many items in the db
 
-def connect(host, port):
+def connect(host, port=CONSTANTS.D_PORT):
     print("[+] Connecting to db ...")
     client = None
     try:
-        client = MongoClient(host, port)
-        print("[+] Connected to database on {host}:{port}".format(host=host, port=port))
+        client = MongoClient(host)
+        print("[+] Connected to database successfully")
     except pymongo.errors.ConnectionError as e:
         print("[x] Failed to connect to db")
         print("\n\n\n{error}".format(error=e))
@@ -35,8 +36,9 @@ def read_record(_db:Database, _collection:Collection|str, _schema:dict|str)->dic
 
 def read_records(_db:Database, _collection:str|Collection, _schema:str|dict={}):
     col = _db[_collection]
-    return col.find(_schema)
-
+    print(len(_schema))
+    if len(_schema)>0:return col.find(_schema)
+    else: return col.find()
 def insert_record(_db:Database, _collection:str|dict, _document:dict={}):
     if len(_document) == 0:
         return
@@ -53,12 +55,12 @@ def update_record(_db:Database, _collection:str,_filter:dict, _u_document:dict):
     if len(_u_document) == 0:
         print("[x] Error! Add the document to update")
         return
-    return _db[_collection].update_one(_filter,_u_document, True)
+    return _db[_collection].replace_one(_filter,_u_document, True)
 
 def update_records(_db:Database, _collection:str,_filter:dict, _u_documents:list):
     if len(_u_documents) == 0:
         print("[x] Error! Add the documents to update")
-        return _db[_collection].update_many(_filter,_u_documents, True)
+        return _db[_collection].replace_many(_filter,_u_documents, True)
 
 def delete_record(_db:Database,_collection:str, _filter:dict):
     return _db[_collection].delete_one(_filter)

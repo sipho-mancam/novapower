@@ -1,0 +1,41 @@
+.c-badge-f{
+    position:absolute;
+    top: -10px;
+    right: 10px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+   
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    z-index: 20;
+    padding: 2px;
+    width:30px;
+    height: 30px;
+}
+
+#cart-button-float>div{
+    /* border: 1px solid black; */
+    margin: auto;
+    transform: rotate(50deg);
+}
+
+#cart-button-float>i{
+    margin: auto;
+    
+}
+
+#cart-button-float{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    box-shadow: 2px 2px 50px rgba(190, 190, 190, 0.2), -2px -2px 50px rgba(190, 190, 190, 0.1);
+    position: fixed;
+    bottom: 2vh;
+    right: -1%;
+    transform: rotate(-50deg);
+}

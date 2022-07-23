@@ -56,7 +56,7 @@ valid_collection_list = [
 DEBUG=True
 HOST='0.0.0.0'
 
-D_HOST = 'localhost'
+D_HOST = "mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mongodb.net/quotes?retryWrites=true&w=majority"
 D_PORT = 27017
 
 STD_VOLTAGE_12 ='Voltage-12'

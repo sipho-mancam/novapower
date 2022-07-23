@@ -68,6 +68,105 @@ let groups_maps = {
     'Generator Packages':'generator'
 }
 
+let appliance_list = [
+    {
+        'name':'Lights',
+        'img': "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Noun_Project_lightbulb_icon_1263005_cc.svg/1200px-Noun_Project_lightbulb_icon_1263005_cc.svg.png",
+        'power':250,
+        'rank':1000
+    },
+    {
+        'name':'Laptop',
+        'img': "https://cdn-icons-png.flaticon.com/512/4812/4812557.png",
+        'power':80,
+        'rank':999
+    },
+    {
+        'name':'Fridge',
+        'img': "https://toppng.com/uploads/preview/file-svg-fridge-icon-sv-11563715839vbv5lvmhxn.png",
+        'power':600,
+        'rank':998
+    },
+    {
+        'name':'TV',
+        'img': "https://cdn-icons-png.flaticon.com/512/3443/3443580.png",
+        'power':120,
+        'rank':996
+    },
+    {
+        'name':'Stove',
+        'img': "https://icon-library.com/images/85-512.png",
+        'power':3000,
+        'rank':976
+    },
+    {
+        'name':'Kettle',
+        'img': "https://cdn-icons-png.flaticon.com/512/125/125653.png",
+        'power':3000,
+        'rank':993
+    },
+    {
+        'name':'Microwave',
+        'img': "https://thumbs.dreamstime.com/b/bowl-microwave-icon-outline-style-vector-web-design-isolated-white-background-190751776.jpg",
+        'power':1200,
+        'rank':994
+    },
+    {
+        'name':'Router',
+        'img': "https://cdn-icons-png.flaticon.com/512/2502/2502330.png",
+        'power':20,
+        'rank':997
+    },
+    {
+        'name':'Computer',
+        'img': "https://cdn-icons-png.flaticon.com/512/3067/3067260.png",
+        'power':120,
+        'rank':995
+    },
+    {
+        'name':'CCTV',
+        'img': "https://cdn-icons-png.flaticon.com/512/3773/3773845.png",
+        'power':150,
+        'rank':996
+    },
+    {
+        'name':'DSTV',
+        'img': "https://cdn-icons-png.flaticon.com/512/2366/2366040.png",
+        'power':15,
+        'rank':990
+    },
+    {
+        'name':'Charger',
+        'img': "https://cdn3.vectorstock.com/i/thumb-large/51/47/phone-charging-vector-28465147.jpg",
+        'power':20,
+        'rank':989
+    },
+    {
+        'name':'Pool Pump',
+        'img': "https://thumbs.dreamstime.com/b/pool-pump-icon-outline-pool-pump-vector-icon-web-design-isolated-white-background-pool-pump-icon-outline-style-142253818.jpg",
+        'power':1000,
+        'rank':991
+    },
+    {
+        'name':'Fan',
+        'img': "https://cdn-icons-png.flaticon.com/512/4551/4551810.png",
+        'power':900,
+        'rank':991
+    },
+    {
+        'name':'Toaster',
+        'img': "https://cdn-icons-png.flaticon.com/512/2933/2933792.png",
+        'power':1400,
+        'rank':991
+    }
+]
+
+appliance_list.sort(function(a, b){
+    return a['power'] - b['power']
+})
+
+// console.log(appliance_list)
+
 let view = document.getElementById('tab-content')
 let add_to_cart_buttons = document.getElementsByClassName('add-to-cart')
 let view_more_buttons = document.getElementsByClassName('view-more-buttons')
@@ -87,11 +186,16 @@ let cart_total = null
 let current_cart_obj = null;
 let overlay = document.getElementById('view-detail')
 let close_overlay = document.getElementById('close-overlay')
-let order_button = document.getElementById('order-button')
+let order_button = document.getElementById('get-quote-b')
 let order_form = document.getElementById('order-form')
 let close_order_form = document.getElementById('close-order-form')
 let featured_products = []
 let _token = null
 let base_url = '/' //window.location.pathname
+let cart_count = null;
+let current_v_tab = null;
+let v_tab_cont = null;
+let cart_items = []
+let price_summary = {}
 
-console.log(base_url)
+// console.log(base_url)

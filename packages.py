@@ -1,13 +1,9 @@
-from turtle import update
-
-from bson import encode
 from CONSTANTS import *
 from item import *
 from random import *
 import json
 from package_manager import *
 import hashlib
-
 
 class Package:
     def __init__(self, _obj:dict=None) -> None:
@@ -84,7 +80,7 @@ class Package:
         
 
 class Subpackage:
-    def __init__(self, items:list=[]):
+    def __init__(self, items:list=[]): # items in this list are already parsed into local Item objects.
         self.__items = items
         self.__current_count = 0
         self.__current_item = self.__items[0]
@@ -93,7 +89,7 @@ class Subpackage:
         self.__change_flag = False
         self.__max_items = len(self.__items)
         self.__name = None
-        self.__organised_data_structure = {}
+        self.__organised_data_structure = {}  # this structure sorts the data according to the 
         self.__current_list = []
         self.__current_list_index = 0
         
@@ -114,36 +110,36 @@ class Subpackage:
     def _get_name(self):return self.__name if self.__name is not None else ''
 
     def order_data(self):
-        for i in self.__items:
-            dict_temp = i.to_dict();
-            size = dict_temp['size'];
-            
-            s =''
-            if 'Voltage' in size:
-                # figure out where it falls...
-                voltage = round(size['Voltage']['value'])
-                if abs(voltage-12) <= 3 or voltage <=12:
-                    s = STD_VOLTAGE_12
-                elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
-                    s = STD_VOLTAGE_24
-                elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
-                    s = STD_VOLTAGE_48
+        if self.__name is not None and self.__name.lower() != 'generator':
+            for i in self.__items:
+                dict_temp = i.to_dict();
+                size = dict_temp['size'];
+                
+                s =''
+                if 'Voltage' in size:
+                    # figure out where it falls...
+                    voltage = round(size['Voltage']['value'])
+                    if abs(voltage-12) <= 3 or voltage <=12:
+                        s = STD_VOLTAGE_12
+                    elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
+                        s = STD_VOLTAGE_24
+                    elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
+                        s = STD_VOLTAGE_48
 
-            elif 'BatVoltage' in size:
-                voltage = round(size['BatVoltage']['value'])
+                elif 'BatVoltage' in size:
+                    voltage = round(size['BatVoltage']['value'])
+                    if abs(voltage-12) <= 3 or voltage <=12:
+                        s = STD_VOLTAGE_12
+                    elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
+                        s = STD_VOLTAGE_24
+                    elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
+                        s = STD_VOLTAGE_48
 
-                if abs(voltage-12) <= 3 or voltage <=12:
-                    s = STD_VOLTAGE_12
-                elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
-                    s = STD_VOLTAGE_24
-                elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
-                    s = STD_VOLTAGE_48
-
-            if s in self.__organised_data_structure:
-                self.__organised_data_structure[s].append(i)
-            else:
-                self.__organised_data_structure[s] = []
-                self.__organised_data_structure[s].append(i)
+                if s in self.__organised_data_structure:
+                    self.__organised_data_structure[s].append(i)
+                else:
+                    self.__organised_data_structure[s] = []
+                    self.__organised_data_structure[s].append(i)
 
     def set_current_size(self, size):
         if size in STD_VOLTAGE_LIST:
@@ -167,32 +163,19 @@ class Subpackage:
 
     def ordered_packing(self, package):
         try:
-            package.add_item(self.__current_list[self.__current_list_index])
+            item = choice(self.__items)
+            # print('Package Flag ',item.to_dict()['package-flag'])
+            while item.to_dict()['package-flag']: 
+                item = choice(self.__items)
+            package.add_item(item) # append my current element
         except IndexError as e:
-            self.__current_list_index = 0
-            package.add_item(self.__current_list[self.__current_list_index])
+            print('Error Adding package')
 
         if not self.is_last(): # if you not the last subpackagegroup, call the next subpackage.
-            res = self.__next_package.ordered_packing(package) # next subpackage group, give us your item
-            if res: # you are supposed to change...
-                if not self.is_current_end(): # are we at the end of the list ?
-                    if self.__current_list_index <= len(self.__current_list)-2:
-                        self.__current_list_index +=1 # increase the indexing ...
-                        return False # stop changes on you.
-                else:
-                    self.__current_list_index = 0 # reset indexing to 0
-                    return True # tell the previous subpackage group to change*
-            return res # tell everyone else not to change...
-        else:  # if it is the last subpackage group
-            # print('\n')
-            if self.is_current_end(): #we at the end of the items list
-                self.__current_list_index = 0 # reset items indexing to 0
-                self.__change_flag = True # tell the previous container to now change to the second item.
-                return self.__change_flag
-            else: # if we not at the end, index to the next item
-                if self.__current_list_index<=len(self.__current_list)-2: # increase index to get the next item in the group.
-                    self.__current_list_index +=1
-                return False
+            res = self.__next_package.ordered_packing(package) 
+            return res
+        else: 
+            return False
                 
     def next_package(self):
         return self.__next_package
@@ -233,31 +216,26 @@ class Subpackage:
             self.__next_package.reset()
         return
 
+    def create_package(self, package):
+        if self.__name.lower() == 'generator':
+            self.pack(package)
+        else:
+            self.ordered_packing(package)
+    
     def pack(self, package)->bool:
         # print("name: {} currentCount: {}, ".format(self.__name, self.__current_count), end="")
-        package.add_item(self._get_current_item()) # append my current element
-
+        item = choice(self.__items)
+        # print('Package Flag ',item.to_dict()['package-flag'])
+        while item.to_dict()['package-flag']: 
+            item = choice(self.__items)
+        package.add_item(item) # append my current element
         if not self.is_last(): # if you not the last subpackagegroup, call the next subpackage.
             res = self.__next_package.pack(package) # next subpackage group, give us your item
-            if res: # you are supposed to change...
-                if not self.is_end(): # are we at the end of the list ?
-                    self.next() # increase the indexing ...
-                    return False # stop changes on you.
-                else:
-                    self.reset() # reset indexing to 0
-                    return True # tell the previous subpackage group to change*
-            return res # tell everyone else not to change...
+            return res # tell everyone else not to change..
+        else:  
+            return False
 
-        else:  # if it is the last subpackage group
-            if self.is_end(): #we at the end of the items list
-                self.reset() # reset items indexing to 0
-                self.__change_flag = True # tell the previous container to now change to the second item.
-                return self.__change_flag
-            else: # if we not at the end, index to the next item
-                self.next() # increase index to get the next item in the group.
-                return False
-
-        
+     
 class PackageHandler:
     def __init__(self, _sub_packages:dict=None):
         self.__sub_packages_list = list()
@@ -267,6 +245,8 @@ class PackageHandler:
         if _sub_packages is not None:
             self.__populate_sub_p(_sub_packages)
             self.get_subs_table()
+
+    def get_sub_package_list(self):return self.__sub_packages_list
 
     def possible_package_count(self):
         max_count = 1
@@ -287,8 +267,9 @@ class PackageHandler:
         pass
 
     def get_subs_table(self):
-        self.__sub_packages_list[0].add_count_to_table(self.__subs_table)
-        return self.__subs_table
+        if len(self.__sub_packages_list) > 0:
+            self.__sub_packages_list[0].add_count_to_table(self.__subs_table)
+            return self.__subs_table
 
     def __append_sub(self, sub_p:Subpackage):
         if sub_p not in self.__sub_packages_list:
@@ -313,23 +294,22 @@ class PackageHandler:
         
     def generate_package(self, n=0):        
         first_sub = self.__sub_packages_list[0]
-        first_sub.set_current_size(STD_VOLTAGE_48)
+        try:
+            first_sub.set_current_size(STD_VOLTAGE_48)
+        except Exception as e:
+            pass
         self.__packages = []
         if n > 0:
             for i in range(n):
                 temp = Package()
-                first_sub.ordered_packing(temp)
+                first_sub.create_package(temp)
                 self.__package_count +=1
                 self.__packages.append(temp)
             return self.__packages
         else:
             for i in range(self.possible_package_count() if self.possible_package_count() <100 else 100):
                 temp = Package()
-                first_sub.ordered_packing(temp)
+                first_sub.create_package(temp)
                 self.__package_count +=1
                 self.__packages.append(temp)
             return self.__packages
-
-
-            
-           

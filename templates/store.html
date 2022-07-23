@@ -7,6 +7,10 @@
     <title>Nova Power</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static',filename='/css/general.css') }}" text="text/css" media="all" />
+
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/cards.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/tabs.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/main.css') }}" type="text/css" media="all" />
@@ -27,29 +31,28 @@
             <li class="nav-item active">
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li> 
-            <li class="nav-item">
-              <a class="nav-link" href="/sizing">Sizing Tool</a>
-            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="/sizing">Tools</a>
+            </li> -->
             <!-- <li class="nav-item">
               <a class="nav-link" href="/">Contact Us</a>
             </li> -->
-
             <li class="nav-item">
                 <button type="button" class="btn btn-primary mr-5" id="cart-button">
-                    Cart <span class="badge badge-light" id="cart-badge">0</span>
+                    <i class="bi bi-cart4"></i> <span class="badge badge-light" id="cart-badge">0</span>
                     <span class="sr-only">cart-items</span>
                 </button>
               </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input disabled class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button disabled class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
       </nav>
 
      
-      <div class="container view-cont">
+      <div class="container-fluid view-cont">
         <div class="tabs-container">
           <ul class="nav nav-tabs">
             <li class="nav-item active-tab tab">
@@ -61,20 +64,118 @@
             <li class="nav-item tab">
               <a class="nav-link" href="">Generator Packages</a>
             </li>
-            <li class="nav-item disabled tab">
-              <a class="nav-link disabled" href="">Products</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/products_list" name="components">Products List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#cont-us">Contact-Us</a>
             </li>
           </ul>
 
-          <div class="tab-content container" id="tab-cont">
-            
+          <div class="tab-content container-fluid" style="width: 100%;" id="tab-cont">
+              <div class="spinner-border text-primary" id="loader" style="width: 150px; height: 150px; margin: auto;" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
           </div>
         </div>
       </div>
 
+      <button type="button" class="btn btn-primary mr-5" id="cart-button-float">
+        <div><i class="bi bi-cart4"></i></div> 
+        <div class="c-badge-f"  id="cart-badge-f" style="display: none;">
+          0
+        </div>
+      </button>
+
       <div class="view-details overlay" id="view-detail">
 
       </div>
+
+    <footer class="page-footer" id="cont-us">
+        <div class="container">
+          <div class="contact-us container-fluid" >
+            <div class="container">
+              <h4 class="contact-us-heading">Enquire for your tailor made solution</h4>
+    
+              <p class="message">
+                We want to hear from you! <br /><br /><br />
+                Tel: 011 463 0073 | Email: novapower@rbconsult.co.za<br />
+                Optimum House, 13 Sloane Street Epsom Downs Office Park, Bryanston, Johannesburg, 2191
+    
+              </p>
+              <form id="contact-us-form" >
+                <div class="mb-3">
+                  <input type="text" class="form-control contact-us-control" required id="contact-us-name" name="name" placeholder="Name">
+                </div>
+                <div class="mb-3">
+                  <input type="email" class="form-control contact-us-control" required id="contact-us-email" name="email" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                  <input type="text" class="form-control contact-us-control" required id="contact-us-subject" name="subject" placeholder="Subject">
+                </div>
+                <div class="mb-3">
+                  <textarea class="form-control contact-us-control" required id="contact-us-message" name="message" placeholder="Message" rows="8"></textarea>
+                </div>
+    
+                <div class="mb-3">
+                  <input type="submit" class="form-control contact-us-control" id="contact-us-submit" placeholder="Subject">
+                </div>
+              </form>
+            </div>
+            
+          </div>
+    
+        </div>
+
+          <div class="row">
+              <div class="col">
+                <h5 class="white-text">Novapower</h5>
+                <p class="grey-text text-lighten-4">We are your solution to loadshedding and high electricity bills</p>
+              </div>
+              <div class="col">
+                  <h5 class="white-text">Menu</h5>
+                  <ul class="footer-links">
+                    <li><a class="grey-text" href="/">Home</a></li>
+                    <!-- <li><a class="grey-text" href="/sizing">Tools</a></li> -->
+                    <li><a class="grey-text" href="/store">Store</a></li>
+                    <li><a class="grey-text" href="/cart">Cart</a></li>
+                  </ul>
+              </div>
+
+              <div class="col">
+                <h5 class="white-text">Contacts</h5>
+                <ul class="footer-links">
+                  <li>
+                    <a class="grey-text" href="#!">
+                      <i class="bi bi-telephone-fill"></i>&nbsp 011 463 0073 | <i class="bi bi-envelope-fill"></i><a href="mailto:novapower@rbconsult.co.za?subject=Enquiries">novapower@rbconsult.co.za</a>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="grey-text" href="#!">
+                      <i class="bi bi-geo-alt-fill"></i>&nbsp Optimum House, 13 Sloane Street Epsom Downs Office Park, Bryanston, Johannesburg, 2191
+                    </a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="row">
+          <div class="col">
+            <form class="form-inline my-2 my-lg-0">
+              <input disabled class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button disabled class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+       </div>
+      <div class="footer-copyright">
+        <div class="container">
+            © 2022 Copyright novapower
+            <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+        </div>
+      </div>
+    </footer>
+      
 
 </body>
 
@@ -88,12 +189,5 @@
 <script type="text/javascript" src="{{ url_for('static',filename='/js/views_generator.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static',filename='/js/processor.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static',filename='/js/store.js') }}"></script>
-
-<!-- <script type="text/javascript" src="./js/constants.js"></script>
-<script type="text/javascript" src="./js/db_query.js"></script>
-<script type="text/javascript" src="./js/objects.js"></script>
-<script type="text/javascript" src="./js/resources.js"></script>
-<script type="text/javascript" src="./js/views_generator.js"></script>
-<script type="text/javascript" src="./js/processor.js"></script> -->
 
 </html>

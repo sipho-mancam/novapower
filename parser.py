@@ -22,7 +22,7 @@ class Parser:
         }
 
         l = ['ItemName', 'PackageGroup', 'Brand', 'TypeGroup', 'SizeGroup',
-                'ItemPrice', 'Extras']
+                'ItemPrice', 'Extras', "img_url"]
         
         for i in range(len(l)): # initialise index table
             self.__indexing_table[l[i]] = i
@@ -35,7 +35,8 @@ class Parser:
             'type-group':l[3],
             'size':l[4],
             'price':l[5],
-            'extras':l[6]
+            'extras':l[6],
+            'image_url':l[7]
         }
 
 
@@ -47,6 +48,7 @@ class Parser:
         # 4) parse the rest of the items in the extras first ... 
         # 5) parse the rest of the items 
         # 6) append element to the list ...
+        
         self.__data_frame = df
         try:
             length = len(self.__data_frame.index)
@@ -66,7 +68,6 @@ class Parser:
                 
 
                 for p in self.__key_map.keys():
-                    
                     # check if out current index is not size of extras since these are parsed already..
                     if self.__key_map[p] in self.__indexing_table.keys() and p != 'size' and p != 'extras': 
                         
@@ -77,8 +78,12 @@ class Parser:
                             j_data[p] = float(item[self.__indexing_table[self.__key_map[p]]])
                         else:
                             j_data[p] = item[self.__indexing_table[self.__key_map[p]]]
-                
-                self.add_to_list(j_data)
+
+                try:
+                    j_data['package-flag'] = (type(j_data['type-group']) is dict)
+                    self.add_to_list(j_data)
+                except KeyError as e:
+                    print(f'Error getting {e}')
 
         except Exception as e:
             print("Error parsing an object", e)

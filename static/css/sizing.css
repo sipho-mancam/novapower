@@ -7,17 +7,12 @@ body{
 }
 
 .c{
-    position: absolute;
-    left: 0;
-    top: 0;
     display: flex;
     flex-flow: column;
     justify-content: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 100%;
-    height:100vh;
-    display: flex;
-    flex-flow: column;
+    /* height:100vh; */
 }
 
 .sizing-container{
@@ -29,10 +24,6 @@ body{
     display: flex;
     flex-flow: column;
     justify-content: center;
-    background-image: url('https://static.wixstatic.com/media/4b1826_9c73f9c0bf5e4a94b9dc5412f99c7b4a~mv2.png');
-    background-size:contain;
-    background-repeat: no-repeat;
-    background-position: right;
     color:rgb(0, 0, 0);
 }
 

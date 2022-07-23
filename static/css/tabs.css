@@ -1,10 +1,20 @@
 
+footer{
+    width: 100%;
+    overflow: hidden;
+}
+.view-cont{
+    margin-top: 20px;
+    
+}
+
 .tabs-container{
     display:flex;
     justify-content: center;
-    margin-top:10vh;
+    margin-top:20px;
     flex-flow: column;
-    background-color: rgb(253, 250, 250);
+    background-color:rgb(253, 250, 250);
+    width: 100%;
     /* border: 1px solid black; */
 }
 
@@ -20,6 +30,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom:0vh;
+    margin-top:5vh;
 }
 
 .nav-link{
@@ -27,22 +38,19 @@
     text-decoration: none;
 }
 
-
-
 .active-tab{
     border-top: 4px solid green;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
     border-left: 1px solid grey;
     border-right:1px solid grey;
-
     background-color: white;
 }
 
 .tab-content{
     /* border:1px solid black; */
-    max-height:80vh;
-    overflow-y: scroll;
+    /* max-height:100vh; */
+    /* overflow-y: scroll; */
     width:100%;
     display: flex;
     flex-flow: row;

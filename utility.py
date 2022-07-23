@@ -4,7 +4,7 @@ import json
 from package_manager import *
 from mongo_broker import *
 import CONSTANTS
-
+from pricing import *
 
 client = connect(host=CONSTANTS.D_HOST, port=CONSTANTS.D_PORT)
 db_manager = DBManager(client, client[CONSTANTS.DB_TEST], CONSTANTS.COL_TEST, {})
@@ -27,13 +27,16 @@ def update_cart(uid:str, cart_list:list, func:str='increase'):
                 return True
         elif func == 'delete':
             cart_list.remove(res)
-            return True
-    else: return False;
+            return True 
+    elif func == 'clear':
+        cart_list.clear()       
+    else: 
+        return False;
     
 
 
 
-def parse_json(data1, keys:list=[]):
+def parse_json(data1, keys:list=None): # organise the data according to ... solar, inverter and battery , etc
     l = list()
     d_table = dict()
     if keys is not None:
@@ -101,28 +104,8 @@ def test_write(data={}, n=1):
         else:
             print("[x] Failed to write to db")
 
-# def generate_mock_items(n = 1):
-#     l = list()
-#     c_list = ['solar', 'battery', 'inverter', 'charger', 'racking', 'cabling']
-#     if n > 1:
-#         for i in range(n):
-#             l.append(Item(
-#                 _obj={
-#                 CONSTANTS.ID: str(randbytes(32)),
-#                 CONSTANTS.CLASS:choice(c_list),
-#                 CONSTANTS.PRICE:random()*1000,
-#                 CONSTANTS.IMG_URL:'https://some-image-server/'+str(randbytes(32)),
-#                 CONSTANTS.OPTIONS:{}
-#                 }
-#             ).to_dict())
-#         return l
-#     else:
-#         return Item(
-#                 _obj={
-#                 CONSTANTS.ID: str(randbytes(32)),
-#                 CONSTANTS.CLASS:choice(c_list),
-#                 CONSTANTS.PRICE:random()*1000,
-#                 CONSTANTS.IMG_URL:'https://some-image-server/'+str(randbytes(32)),
-#                 CONSTANTS.OPTIONS:{}
-#                 }
-#             ).to_dict()
+
+def format_price(price):
+    s = "R {:,.2f}".format(price)
+    return price
+
