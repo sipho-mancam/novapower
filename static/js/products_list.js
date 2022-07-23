@@ -27,11 +27,15 @@ window.addEventListener('load', function(e){
         filter_view.innerHTML = get_filter_groups(res['filters']);
         products_container.innerHTML = get_item_cards(sorted_data[current_selected_tab.getAttribute('name')]);
         update_tab_counts()
+        update_filters_view(res['categories']);
+
         let input = this.document.getElementsByClassName('input');
         for(let i of input){
             i.addEventListener('change', update_content);
         }
-    })
+    });
+
+    // get_cart_count();
 
 });
 
@@ -41,8 +45,8 @@ function sort_data(data){
     for(let i of data['categories']){
         sorted_data[i] = []
     }
-    let products = data['data']['data']
 
+    let products = data['data']['data']
     for(let p in products){
         sorted_data[products[p]['name'].toLowerCase()].push(products[p])
     }
@@ -129,7 +133,7 @@ function get_filters(){
     1) Get all the filter objects...
     2) Check all the ones that are checked.
     3) get their names and/or values
-    4) Build the filter structure and return an object of name/value parse for filters..
+    4) Build the filter structure and return an object of name/value pairs for filters..
     */
    let filter_object = get_scope();
    let filters = filter_object['filter']
@@ -197,21 +201,44 @@ function build_filter(){
 function update_filters_view(categories_list){
     let cat_list = categories_list
     let filters = document.getElementsByClassName('s')
+    const children = document.getElementsByClassName('child');
 
     for(let f of filters){
-        const children = document.getElementsByClassName('child')
-        for(let c of children){
-            if(c.getAttribute('name') == f.getAttribute('id'))c.className = c.className.replace('show', ' ')
-        }
+        f.addEventListener('click', function(e){
+            try{
+                const icon = e.target.children[0];
+                // console.log(icon, e.target.getAttribute('aria-expanded'))
+                if(e.target.getAttribute('aria-expanded') =='true'){
+                    icon.innerHTML = `<i class="bi bi-caret-down-fill"></i>`
+                }
+                else{
+                    icon.innerHTML = `<i class="bi bi-caret-right-fill"></i>`
+                }
+            }catch(err){
+                console.log(null)
+            }
+            
+        });
         f.style.display = 'none';
+        
+        // for(let c of children){
+        //     console.log(c)
+        //     if(c.getAttribute('name') != f.getAttribute('id')){
+        //         // c.className = c.className.replace('show', ' ')
+        //     }
+        // }
     }
-    for(let cat of cat_list){
+
+    for(let cat of cat_list){        
+
             if(cat != '*'){
                 let temp = document.getElementById(cat)
-                temp.style.display = 'inline';
+                let t2 = document.getElementById(cat+'+1');
+                temp.style.display = 'block';
+                t2.style.display = 'block';
             }
             else{
-                for(let f of filters)f.style.display = 'inline';
+                for(let f of filters)f.style.display = 'block';
             }
     }
     
@@ -239,20 +266,18 @@ async function update_content(e){
             }
         }
    }
-   let path = '/products_list/apply_filter';
+    let path = '/products_list/apply_filter';
     let filter = build_filter()
-    // console.log(filter)
-   await make_request('PUT', path, filter)
-   .then(res=>{
+
+    await make_request('PUT', path, filter)
+    .then(res=>{
         res['categories'] = data_o['categories']
-        // res['data'] = res
         let temp = res['data']
         
         res['data'] = {}
         res['data']['data'] = temp
     
         sort_data(res);
-        console.log(sorted_data)
         products_container.innerHTML = get_item_cards(sorted_data[current_selected_tab.getAttribute('name')]);
         update_tab_counts()
         //initialise cards here...
@@ -281,12 +306,11 @@ function get_filter_groups(filter_group){
     let keys = Object.keys(filter_group)
     let res = ``
     for(let k of keys){
-        res += `<em><b>${k.toUpperCase()}</b></span><ul>`
-    
+        res += `<div class="filter-group">`
+        res += `<span >${k}(s)</span>`
         res += get_filter_view(filter_group, 'brand')
-    
-        res += '</ul>'
-        break;
+        res += `</div> <br/>`
+        // break; // temporary for testing ...
     }
    
     return res
@@ -299,16 +323,16 @@ function get_filter_view(filter, key){
         let keys = Object.keys(filter[key])
         for(let k of keys){
             res+=`
-            <li>
-                <a class="s" data-bs-toggle="collapse" name=${k} href="#${k}" style="display:inline;" id=${k} role="button" aria-expanded="false" aria-controls="collapseExample">
-                    ${k}&nbsp 
+            <div class="s s-1" id="${k}+1" >
+                <a class="s f-item" data-bs-toggle="collapse" name=${k} href="#${k}" style="display:block;" id="${k}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <span class="icon"><i class="bi bi-caret-right-fill"></span></i>&nbsp ${k}&nbsp 
                 </a>
-                <div class="collapse child" name="${k}" id="${k}">
+                <div class="collapse child" style="background-color:white;" name="${k}" id="${k}">
                     <ul>
                         ${get_filter_sec_list(filter['brand'][k],'brand', k)}
                     </ul>
-                </div>
-            </li>            
+                </div>  
+            </div>         
             `
         }
     }
@@ -440,7 +464,7 @@ function get_view_more(package, p_type){
                 <div class="tab-content" style="width: 100%; display:block; margin-top:5px;" id="v-tab-cont">
                    ${package['description']}
                 </div>
-                
+    
                 <p class='price'>${package.get_total_price().toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR', minimumFractionDigits: 2 }) }*</p>
                 <div class="buttons">
                   <a class="close-buttons h-buttons b close" id="close-overlay">Close</a>
