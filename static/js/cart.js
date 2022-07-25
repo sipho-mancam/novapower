@@ -25,6 +25,7 @@ window.addEventListener('load', function(e){
        .then(function(){
             cart_table = this.document.getElementById('cart-table')
             cart_total = this.document.getElementById('cart-total')
+            console.log(cart)
             update_table(cart.cart_objects, cart_table)
 
             let cart_counts = this.document.getElementsByClassName('cart-count')
@@ -205,31 +206,39 @@ function get_row_view(cart_obj){
     console.log(cart_obj)
 //     <span class="size">5kVA - 48V - 5kWh</span><br />
         // < span class="size" > ${ cart_obj["size"]["voltage"] + ' - ' + cart_obj["size"]["voltage"] }</span > <br />
+    let item = null;
+    if('obj' in cart_obj['item'])item = cart_obj['item']['obj'];
+    else item = cart_obj['item'];
+    let image = null;
+    if('image' in item)image = item['image']
+    else image = item['image_url']
+
+    console.log(item)
 
     return(
         `
-          <tr id=${cart_obj['item']['obj']['_uid']}>
+          <tr id=${item['_uid']}>
             <th scope="row">
             <div class="cart-item-details">
-                <img src="${cart_obj['item']['img_url']}" alt="c_image" width="100" height="100"/>
+                <img src="${image}" alt="c_image" width="100" height="100"/>
                 <div class="cart-item-text-details">
-                <span class="item-heading">${cart_obj['name']}</span><br />
+                <span class="item-heading">${item['name']}</span><br />
                
-                <span class="cart-item-type">${cart_obj['name']}</span>
+                <span class="cart-item-type">${item['name']}</span>
                 </div>
             </div>
             </td>
             <td> 
-            <div class="spinner-border spinner-border-sm" style="display:none" role="status" id=${cart_obj['item']['obj']['_uid'] + 'spinner'} >
+            <div class="spinner-border spinner-border-sm" style="display:none" role="status" id=${item['_uid'] + 'spinner'} >
                 <span class="visually-hidden">Loading...</span>
             </div>
-            <div class="qty-container" id=${cart_obj['item']['obj']['_uid']+'qty'}>
+            <div class="qty-container" id=${item['_uid']+'qty'}>
                 <div class="qty-buttons">
                 <div class="qty-item">
                     <i class="bi bi-dash-lg q-b down"></i>
                 </div>
                 <div class="qty-item">
-                    <input type="text" disabled name="qty" class="q-input" value="${cart_obj['qty']}" />
+                    <input type="text" disabled name="qty" class="q-input" value="${item['qty']}" />
                 </div>
                 <div class="qty-item">
                     <i class="bi bi-plus-lg q-b up"></i>
@@ -238,19 +247,17 @@ function get_row_view(cart_obj){
             </div>
             </td>
             <td>
-                <span class="cart-item-unit-price">${cart_obj['price'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
+                <span class="cart-item-unit-price">${item['price'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
             </td>
             <td>
-            <span class="cart-item-unit-price">${(cart_obj['price']*cart_obj['qty']).toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
+            <span class="cart-item-unit-price">${(item['price']*item['qty']).toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
             </td>
             <td>
                 <div class="remove-container">
                     <i class="bi bi-trash d-item" ></i>
                 </div>
             </td>
-        </tr>
-        `
-    )
+        </tr>`)
 }
 
 function update_table(cart,view){

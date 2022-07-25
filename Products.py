@@ -13,13 +13,15 @@ class Stage:
         self.summary = {}
         self.max_count = 15
         self.last_index = 0
+        brands = self.get_brands()
+        brands['type'] = 'list|object'
         self.__default_filters = {
             'size':{
-                'Size':'int|float',
-                'voltage':'int|float',
+                'Size':{'type': 'int|float'},
+                'voltage':{'type':'int|float'}
             },
-            'brand':self.get_brands(),
-            'price':'float'
+            'brand':brands,
+            'price':{'type':'float'}
         }
 
     def get_filters(self):return self.filters
