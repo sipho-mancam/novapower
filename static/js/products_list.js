@@ -383,7 +383,7 @@ function price_filter_view(price_filter){
                 <span class="range-display value">R 1 000,00</span>
             </div>
             <div class='range-item'>
-                <input type='range' min=1000 max=50000 value='3000' step=500  class='input price-input form-range' name="price" scope='*' group="filter" />
+                <input type='range' min=1000 max=50000 value='5000' step=500  class='input price-input form-range' name="price" scope='*' group="filter" />
             </div>
             <div class='range-item'>
                 <div class="white-block wb-r"></div>

@@ -23,6 +23,16 @@ class Stage:
             'brand':brands,
             'price':{'type':'float'}
         }
+        self.__rollback_filters = {'scope':'*', 'filter':{
+            'p':{
+                'name':'package-flag',
+                'value':False
+            }
+        }}
+
+    def reset(self):
+        self.filters = self.__rollback_filters
+    
 
     def get_filters(self):return self.filters
 
@@ -187,6 +197,7 @@ class Stage:
             self.apply_filter()
             self.__set_meta_data()
             self.__committed = []
+            self.reset()
             return self.summary
         else:
             print("Please add a filter") 

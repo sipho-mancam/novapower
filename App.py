@@ -636,7 +636,7 @@ def get_cart_items():
     else:
         return {'response':0x05}
 
-# db_manager._delete_records(db_manager.get_current_db(), 'user-quotes', {})
+
 @app.route('/admin/update_quotes', methods=['POST'])
 def update_quotes():
     session_token = request.args.get('session_token')
