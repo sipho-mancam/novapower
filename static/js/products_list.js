@@ -7,6 +7,9 @@ let data_o = null;
 let products_tabs = null;
 let current_selected_tab = null;
 let sorted_data = null;
+let filterview_callback_list = {
+    'brand':brand_filter_view
+}
 
 window.addEventListener('load', function(e){
     filter_view =  document.getElementById('filter_list')
@@ -38,6 +41,12 @@ window.addEventListener('load', function(e){
     // get_cart_count();
 
 });
+
+function register_filter_view_cb(f_name, cb){
+
+    filterview_callback_list[f_name] = cb
+
+}
 
 function sort_data(data){
     sorted_data = {}
@@ -220,13 +229,6 @@ function update_filters_view(categories_list){
             
         });
         f.style.display = 'none';
-        
-        // for(let c of children){
-        //     console.log(c)
-        //     if(c.getAttribute('name') != f.getAttribute('id')){
-        //         // c.className = c.className.replace('show', ' ')
-        //     }
-        // }
     }
 
     for(let cat of cat_list){        
@@ -295,8 +297,7 @@ function get_categories_view(cat){
         res += `
         <li>
             <input type="checkbox" class="input" value=${c} name="scope" group="scope" /> &nbsp ${c}
-        </li>
-        `
+        </li>`
     }
     return res
 }
@@ -308,40 +309,46 @@ function get_filter_groups(filter_group){
     for(let k of keys){
         res += `<div class="filter-group">`
         res += `<span >${k}(s)</span>`
-        res += get_filter_view(filter_group, 'brand')
+        res += get_filter_view(filter_group[k], k)
         res += `</div> <br/>`
         // break; // temporary for testing ...
     }
-   
     return res
 }
 
-function get_filter_view(filter, key){
-    let res = ''
-    // console.log(filter)
-    if('brand' in filter){
-        let keys = Object.keys(filter[key])
-        for(let k of keys){
-            res+=`
-            <div class="s s-1" id="${k}+1" >
-                <a class="s f-item" data-bs-toggle="collapse" name=${k} href="#${k}" style="display:block;" id="${k}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    <span class="icon"><i class="bi bi-caret-right-fill"></span></i>&nbsp ${k}&nbsp 
-                </a>
-                <div class="collapse child" style="background-color:white;" name="${k}" id="${k}">
-                    <ul>
-                        ${get_filter_sec_list(filter['brand'][k],'brand', k)}
-                    </ul>
-                </div>  
-            </div>         
-            `
-        }
-    }
-    if('size' in filter){
+function get_filter_view(filter, name){
+    if(name in filterview_callback_list)return filterview_callback_list[name](filter)
+}
 
+function brand_filter_view(brand_filter){
+    let res = ' '
+    let keys = Object.keys(brand_filter)
+    for(let k of keys){
+        res+=
+        `<div class="s s-1" id="${k}+1" >
+            <a class="s f-item" data-bs-toggle="collapse" name=${k} href="#${k}" style="display:block;" id="${k}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <span class="icon"><i class="bi bi-caret-right-fill"></span></i>&nbsp ${k}&nbsp 
+            </a>
+            <div class="collapse child" style="background-color:white;" name="${k}" id="${k}">
+                <ul>
+                    ${get_filter_sec_list(brand_filter[k],'brand', k)}
+                </ul>
+            </div>  
+        </div>`
     }
-
     return res
 }
+
+function price_filter_view(price_filter){
+    let res = 
+    `<div class="price-f-view">
+        <br />
+        <input type='range' min='10000' max='100000' step='1000' value='50000' />
+    </div>`
+    return res
+}   
+
+register_filter_view_cb('price', price_filter_view);
 
 function get_filter_sec_list(filter_array, key='brand', scope='*'){
     let res =  ''
@@ -400,10 +407,7 @@ function get_item_cards(item_dict){
 }
 
 function product_view_more(e){
-
     e.preventDefault() 
-    
-
     console.log(e.currentTarget.getAttribute('index'))
 
         overlay.innerHTML = get_view_more(sorted_data[current_selected_tab.getAttribute('name')][e.currentTarget.getAttribute('index')])
@@ -414,7 +418,6 @@ function product_view_more(e){
         let v_tab_buttons = document.getElementsByClassName('v-tab')
         v_tab_cont = document.getElementById('v-tab-cont');
         current_v_tab = v_tab_buttons[0];
-        // console.log(current_v_tab)
         for(let i of v_tab_buttons){
             i.addEventListener('click', function(){
                 current_v_tab.className = current_v_tab.className.replace('active-tab', '')
@@ -433,9 +436,6 @@ function product_view_more(e){
                 }
             });
         }
-
-    
- 
 }
 
 

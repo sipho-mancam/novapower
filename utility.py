@@ -7,6 +7,7 @@ import CONSTANTS
 from pricing import *
 
 client = connect(host=CONSTANTS.D_HOST, port=CONSTANTS.D_PORT)
+# print(client)
 db_manager = DBManager(client, client[CONSTANTS.DB_TEST], CONSTANTS.COL_TEST, {})
 
 def search_cart(uid, cart_list):

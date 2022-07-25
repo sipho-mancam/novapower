@@ -24,11 +24,7 @@ app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest(
 app.config['UPLOAD_FOLDER'] = pathlib.Path('./Quotes/').absolute().as_posix()
 app.config['SESSION_TYPE'] = 'filesystem' #'mongodb'
 
-
 Session(app)
-
-#  
-
 db_manager, clnt = setup()
 data_path = './DatabaseIndividualPricingInputFormat v2.xlsx'
 solar_package_handler = setup_input(data_path, 'Sheet 1',keys=['solar', 'inverter', 'battery']);
@@ -138,7 +134,7 @@ def admin_login_d():
         session[session_token] ={}
         session.modified = True
         return redirect(f'admin?session_token={session_token}')
-    else: return {'response':'Incorrect Creds'} 
+    else: return {'response':'Incorrect Credentialis , please try again'} 
 
 @app.route('/admin/delete', methods=['DELETE'])
 def delete_quote():   

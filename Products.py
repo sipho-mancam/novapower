@@ -19,6 +19,7 @@ class Stage:
                 'voltage':'int|float',
             },
             'brand':self.get_brands(),
+            'price':'float'
         }
 
     def get_filters(self):return self.filters
@@ -47,7 +48,6 @@ class Stage:
         res['brand'] = l
         return res
 
-        
     def add_to_stage(self, sub_pacakage:Subpackage)->None:
         if sub_pacakage is not None:
             if type(sub_pacakage) is Subpackage:
@@ -159,9 +159,7 @@ class Stage:
             # if count < self.max_count:
             self.summary['data']['item '+str(count)] = item.to_dict()
             count += 1
-            # else:
-            #     self.last_index = count if count < len(self.__committed)-1 else 0
-            #     break;
+
     def get_products_list(self):
         res = []
         for k in self.__sub_package_objects:
