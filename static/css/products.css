@@ -2,11 +2,13 @@
 .main{
     position: fixed;
     top:40px;
+    width: 100%;
     /* background-color: rgb(199, 120, 17); */
     max-height:100vh;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 100vh;
-    padding: 50px;
+    padding: 0px;
+    /* background-color: aqua; */
 }
 
 .heading{
@@ -266,11 +268,11 @@ ul{
 
   @media  only screen and (max-width:900px){
     body{
-        min-width: 460px;    
+        width: fit-content;  
+        padding: 0;
     }
     .main{
         overflow: auto;
-        /* border: 1px solid black; */
         padding:0px;
     }
     .main-container{
@@ -290,19 +292,20 @@ ul{
         width: 100%;
     }
     .tool-bar{
+        width: 100%;
         display: flex;
-        border:1px solid black;
+        /* border:3px solid rgb(211, 26, 26); */
         background-color:blue;
         color:white;
-        position:absolute;
-        bottom: -2px;
-        width: 100%;
-        margin-top: 10px;
+        position:fixed;
+        bottom: 0px;
+       
+        /* margin-top: 10px; */
     }
     .tool-bar-item{
         display: flex;
         flex-flow: column;
-        /* width: 100%; */
+        width: 100%;
         /* max-width: 100px; */
         justify-content: center;
         text-decoration: none;
