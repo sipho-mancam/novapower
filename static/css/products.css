@@ -240,7 +240,7 @@ ul{
     display: block;
   }
 
-  @media  only screen and (max-width:900px){
+@media  only screen and (max-width:900px){
     .main{
         overflow: auto;
         padding:0px;

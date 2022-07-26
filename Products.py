@@ -33,7 +33,6 @@ class Stage:
     def reset(self):
         self.filters = self.__rollback_filters
     
-
     def get_filters(self):return self.filters
 
     def get_default_filters(self):return self.__default_filters
@@ -42,14 +41,12 @@ class Stage:
 
     def get_brands(self):
         res = {}
-
         for sub in self.__sub_package_objects:
             res[sub._get_name()] = self.__get_sub_brands(sub);
         return res
 
     def __get_sub_brands(self, sub_pacakage):
         res = {'name': sub_pacakage._get_name(), 'brand':set()}
-
         items_list = sub_pacakage._get_items()
         for i in items_list:
             i = i.to_dict()
@@ -214,8 +211,7 @@ def init_stage():
         }
     }})
     return stage
-          
-                
+
 # s = init_stage()
 
 

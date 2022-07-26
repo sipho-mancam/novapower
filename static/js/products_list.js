@@ -14,7 +14,6 @@ let buttons_handlers = {
     'details':product_view_more,
     'cart':product_add_to_cart
 }
-
 let price_range = null;
 
 window.addEventListener('load', function(e){
@@ -79,7 +78,7 @@ window.addEventListener('load', function(e){
         let path = '/products_list/init'
         make_request('GET', path)
         .then(res=>{
-            console.log(res)
+            // console.log(res)
             sort_data(res)
             all_products_list = res['data']['data'];
             data_o = res; 
@@ -100,8 +99,6 @@ window.addEventListener('load', function(e){
         });
          get_cart_count();
     });
-   
-
 });
 
 function register_filter_view_cb(f_name, cb){
@@ -364,7 +361,6 @@ async function update_content(e){
    });
 }
 
-
 function get_categories_view(cat){
     let res = `
     <li>
@@ -379,7 +375,6 @@ function get_categories_view(cat){
     }
     return res
 }
-
 
 function get_filter_groups(filter_group){
     let keys = Object.keys(filter_group)
@@ -453,6 +448,7 @@ function size_filter_view(size_filter){
     </div>
     `
 }
+
 register_filter_view_cb('brand', brand_filter_view);
 register_filter_view_cb('price', price_filter_view);
 register_filter_view_cb('size', size_filter_view);
@@ -651,8 +647,6 @@ function product_view_more(e){
         });
     }
 }
-
-
 
 function get_view_more(package, p_type){
     return(
