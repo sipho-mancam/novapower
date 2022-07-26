@@ -241,10 +241,6 @@ ul{
   }
 
   @media  only screen and (max-width:900px){
-    body{
-        width: fit-content;  
-        padding: 0;
-    }
     .main{
         overflow: auto;
         padding:0px;
@@ -258,8 +254,12 @@ ul{
         width: 100%;
     }
     .side-bar{
-        width: 100%;
+        width: 0%;
         display:none;
+        position: absolute;
+        z-index: 50000;
+        background-color: rgb(235, 235, 235);
+        height: 90vh;
     }
 
     .main-display{
@@ -298,3 +298,5 @@ ul{
         font-size: small;
     }
   }
+
+    

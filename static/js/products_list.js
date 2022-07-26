@@ -22,7 +22,52 @@ window.addEventListener('load', function(e){
     cat_view = document.getElementById('categories-list')
     products_container = this.document.getElementById('products_container')
     products_tabs = document.getElementById('products-tabs');
+    let side_bar = document.getElementById('side-bar-view')
+    this.document.getElementById('filter-toggle').addEventListener('click', function(e){
+        let state = this.getAttribute('expanded');
+
+        if(state == 'false'){ // expand the filter
+            const width_anim = [
+                {width:'0%'},
+                {width:'100%'}
+            ]
+            const anim_options = {
+                duration:200,
+                iterations:1, 
+            }
     
+            side_bar.animate(width_anim, anim_options);
+            side_bar.style.display = 'block';
+            side_bar.style.width = '100%';
+            state = 'true';
+
+        }else if(state =='true'){ // it is expanded...
+            
+            const width_anim = [
+                {height:'100%'},
+                {height:'0%'}
+            ];
+
+            const anim_options = {
+                duration:200,
+                iterations:1, 
+            };
+
+            side_bar.animate(width_anim, anim_options);
+            side_bar.setAttribute('h', side_bar.style.height);
+            side_bar.style.height = '0%';
+            state = 'false';
+
+            setTimeout(function(){
+                side_bar.style.display = 'none';
+                side_bar.style.width = '0%';
+                side_bar.style.height = side_bar.getAttribute('h');
+            },200);
+        }
+       
+        this.setAttribute('expanded', state);
+    });
+
     const cart_button = document.getElementById('cart-button');
     cart_button.addEventListener('click', function(e){
         window.location.pathname = '/cart';
