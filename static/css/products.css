@@ -295,7 +295,7 @@ ul{
     .tool-bar{
         width: 100%;
         display: flex;
-        border:3px solid rgb(211, 26, 26);
+        /* border:3px solid rgb(211, 26, 26); */
         background-color:blue;
         color:white;
         position:fixed;
