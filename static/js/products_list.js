@@ -7,13 +7,16 @@ let data_o = null;
 let products_tabs = null;
 let current_selected_tab = null;
 let sorted_data = null;
+
 let filterview_callback_list = {
     'brand':brand_filter_view
 }
+
 let buttons_handlers = {
     'details':product_view_more,
     'cart':product_add_to_cart
 }
+
 let price_range = null;
 
 window.addEventListener('load', function(e){
@@ -449,10 +452,6 @@ function size_filter_view(size_filter){
     `
 }
 
-register_filter_view_cb('brand', brand_filter_view);
-register_filter_view_cb('price', price_filter_view);
-register_filter_view_cb('size', size_filter_view);
-
 function get_filter_sec_list(filter_array, key='brand', scope='*'){
     let res =  ''
     if(typeof(filter_array) != 'string'){
@@ -682,6 +681,6 @@ function get_view_more(package, p_type){
         </div>`)
 }
 
-function text_scrolling_animation(){
-
-}
+register_filter_view_cb('brand', brand_filter_view);
+register_filter_view_cb('price', price_filter_view);
+register_filter_view_cb('size', size_filter_view);
