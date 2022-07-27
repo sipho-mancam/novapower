@@ -11,7 +11,7 @@ SIZE='size'
 TYPE='type'
 
 
-# class definitions
+# class definitions 
 
 CL_SOLAR='solar'
 CL_INVERTER='inverter'
