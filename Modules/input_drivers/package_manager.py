@@ -1,9 +1,16 @@
+import pprint
 import Modules.Utils.CONSTANTS as CONSTANTS
-import Modules.input_drivers.item as item
 import Modules.input_drivers.db_manager as db_manager
 import hashlib
 import random
 
+
+"""
+We need to define a mathematical modelling for effectively packaging items into meaningful packages.
+
+1) Current Defined parameters are
+
+"""
 class Package:
     def __init__(self, _obj:dict=None) -> None:
         self._obj = _obj
@@ -13,8 +20,7 @@ class Package:
         self.__uid = self.__hashing_object.hexdigest()
         self.__max_power = 0
         self.__solar_qty = 0
-
-    
+        
     def add_item(self, item):
         self.__items_list.append(item)
         self.solar_qty()
@@ -25,8 +31,8 @@ class Package:
     
     def calc_max_power(self):
         for i in self.__items_list:
-            if i.get_name().lower() == 'inverter':
-                temp = i.get_size()
+            if i['name'].lower() == 'inverter':
+                temp = i['size']
                 # print(temp)
                 if 'Power' in temp:
                     power = temp['Power']['value']
@@ -35,8 +41,8 @@ class Package:
     def solar_qty(self):
         self.calc_max_power()
         for i in self.__items_list:
-            if i.get_name().lower() == 'solar':
-                qty = (self.__max_power*1000)//i.get_size()['Power']['value']
+            if i['name'].lower() == 'solar':
+                qty = (self.__max_power*1000)//i['size']['Power']['value']
                 self.__solar_qty = qty
                 # print('qty: {} max_power: {}'.format(i.to_dict(), self.__max_power))
                 return
@@ -55,20 +61,19 @@ class Package:
         self.__uid = self.__hashing_object.hexdigest()
     
     def _gen_total(self):
-        s = self.__items_list[0].get_price()
+        s = self.__items_list[0]['price']
         for item in self.__items_list:
-            if item.get_name() == 'solar':
-                s+= item.get_price()*self.__solar_qty
+            if item['name'] == 'solar':
+                s+= item['price']*self.__solar_qty
             else:
-                s += item.get_price()
-
-        return (s - self.__items_list[0].get_price())
+                s += item['price']
+        return (s - self.__items_list[0]['price'])
     
     def get_summary(self):
         counter = 0
         d = dict()
         for i in self.__items_list:
-            d['item '+str(counter)] = i.to_dict()
+            d['item '+str(counter)] = i
             counter += 1
         d['total-price'] = self.__total_price
         d['_uid'] = self.__uid
@@ -82,7 +87,7 @@ class Subpackage:
     def __init__(self, items:list=[]): # items in this list are already parsed into local Item objects.
         self.__items = items
         self.__current_count = 0
-        self.__current_item = self.__items[0]
+        self.__current_item = self.__items[0] if len(self.__items) >0 else None
         self.__next_package = None
         self.__index = 0
         self.__change_flag = False
@@ -92,7 +97,6 @@ class Subpackage:
         self.__current_list = []
         self.__current_list_index = 0
         
-        # print("Items in subpackage:\n",items)
     
     def _get_items(self):return self.__items
     def _set_items(self, items_list):self.__items = items_list
@@ -104,15 +108,15 @@ class Subpackage:
         self.__name = name
         if name =='solar' or name=='inverter' or name=='battery':
             self.order_data()
-            # print(self.__organised_data_structure,'\n', name)
         
     def _get_name(self):return self.__name if self.__name is not None else ''
 
     def order_data(self):
         if self.__name is not None and self.__name.lower() != 'generator':
             for i in self.__items:
-                dict_temp = i.to_dict();
-                size = dict_temp['size'];
+           
+                dict_temp = i
+                size = dict_temp['size']
                 
                 s =''
                 if 'Voltage' in size:
@@ -164,7 +168,7 @@ class Subpackage:
         try:
             item = random.choice(self.__items)
             # print('Package Flag ',item.to_dict()['package-flag'])
-            while item.to_dict()['package-flag']: 
+            while item['package-flag']: 
                 item = random.choice(self.__items)
             package.add_item(item) # append my current element
         except IndexError as e:
@@ -225,7 +229,7 @@ class Subpackage:
         # print("name: {} currentCount: {}, ".format(self.__name, self.__current_count), end="")
         item = random.choice(self.__items)
         # print('Package Flag ',item.to_dict()['package-flag'])
-        while item.to_dict()['package-flag']: 
+        while item['package-flag']: 
             item = random.choice(self.__items)
         package.add_item(item) # append my current element
         if not self.is_last(): # if you not the last subpackagegroup, call the next subpackage.
@@ -241,6 +245,8 @@ class PackageHandler:
         self.__packages = list()
         self.__package_count = 0
         self.__subs_table = {}
+
+        # pprint.pprint(_sub_packages)
         if _sub_packages is not None:
             self.__populate_sub_p(_sub_packages)
             self.get_subs_table()
@@ -258,7 +264,7 @@ class PackageHandler:
         counter = 0
         t_list = random.sample(self.__packages, len(self.__packages))
         for p in t_list:
-            d['packag '+str(counter)]=p.get_summary()
+            d['package '+str(counter)]=p.get_summary()
             counter+=1
         return d
 
@@ -276,8 +282,7 @@ class PackageHandler:
             self.__sub_packages_list.append(sub_p)
 
     def __populate_sub_p(self, subs:dict):
-        keys = subs.keys()
-        for i in keys:
+        for i in subs:
             temp = Subpackage(subs[i])
             temp._set_name(i)
             self.__sub_packages_list.append(temp)
@@ -312,3 +317,4 @@ class PackageHandler:
                 self.__package_count +=1
                 self.__packages.append(temp)
             return self.__packages
+

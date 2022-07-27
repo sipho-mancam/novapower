@@ -16,9 +16,9 @@ def setup_input(xl_path, sheet_name, keys=[]):
     d_table = None;
 
     if len(keys)>0:
-        d_table = utility.parse_json(data, keys=keys)
+        d_table = utility.arrange_data_to_table(data, keys=keys)
     else: 
-        d_table = utility.parse_json(data)
+        d_table = utility.arrange_data_to_table(data)
 
     package_handler = pm.PackageHandler(d_table)
 

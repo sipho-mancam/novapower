@@ -1,6 +1,7 @@
 import os
 import pathlib
 import json
+import pprint
 import Modules.input_drivers.db_manager as db_manager
 import Modules.input_drivers.mongo_broker as mongo_broker
 import Modules.Utils.CONSTANTS as CONSTANTS
@@ -33,30 +34,18 @@ def update_cart(uid:str, cart_list:list, func:str='increase'):
     else: 
         return False;
     
-
-
-
-def parse_json(data1, keys:list=None): # organise the data according to ... solar, inverter and battery , etc
-    l = list()
-    d_table = dict()
-    if keys is not None:
-        for pack in data1.keys():
-            if pack in keys:
-                if len(data1[pack])>0:
-                    d_table[pack] = list()
-                    for item in data1[pack]: 
-                        temp = db_manager.parse_record(item)
-                        d_table[pack].append(temp)
-        return d_table
+def arrange_data_to_table(json_data:dict, keys:list=[]): # organise the data according to ... solar, inverter and battery , 
+    d_table = {}
+    if len(keys)>0:
+        for k in keys:
+            if k in json_data and len(json_data[k]):
+                d_table[k] = json_data[k]
     else:
-        for pack in data1.keys():      
-                if len(data1[pack])>0:
-                    d_table[pack] = list()
-                    for item in data1[pack]: 
-                        temp = db_manager.parse_record(item)
-                        d_table[pack].append(temp)
-        return d_table
-
+        for p in json_data:
+            if len(json_data[p])>0:
+                d_table[p] = json_data[p]
+    return d_table
+   
 
 def read_json(path):
     if os.path.isfile(path):

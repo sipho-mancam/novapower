@@ -49,7 +49,7 @@ class Stage:
         res = {'name': sub_pacakage._get_name(), 'brand':set()}
         items_list = sub_pacakage._get_items()
         for i in items_list:
-            i = i.to_dict()
+            # i = i.to_dict()
             if not i['package-flag'] :res['brand'].add(i['brand'])
         l = []
         for i in res['brand']:
@@ -106,7 +106,7 @@ class Stage:
                     count += 1
                     continue;
                 
-                d = item.to_dict()
+                d = item
                 if type(filter[f_key]['value']) is str: # string comparison   
                     t = d[filter[f_key]['name']]
                     if type(t) is str: 
@@ -166,7 +166,7 @@ class Stage:
         count = 0
         for item in self.__committed:
             # if count < self.max_count:
-            self.summary['data']['item '+str(count)] = item.to_dict()
+            self.summary['data']['item '+str(count)] = item
             count += 1
 
     def get_products_list(self):

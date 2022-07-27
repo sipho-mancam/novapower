@@ -1,8 +1,6 @@
-from sre_constants import ANY
-from numpy import record
-from Modules.input_drivers.mongo_broker import *
-import Modules.input_drivers.item as item
+import Modules.input_drivers.mongo_broker as mongo_broker
 import Modules.Utils.CONSTANTS as CONSTANTS
+
 
 class DBManager:
     def __init__(self,client, db=None, collection=None, query=None) -> None:
@@ -38,22 +36,22 @@ class DBManager:
     def get_current_db(self):return self.__db
     def get_current_collection_name(self):return self.__collection
 
-    def _read_record(self, db=None,collection=None, _query=ANY)->item.Item:
+    def _read_record(self, db=None,collection=None, _query={})->dict:
         if db is None or collection is None:
-            return read_record(self.__db, self.__collection, self.__query)
-        return self.parse_record(read_record(db, collection, _query))
+            return self._read_record(self.__db, self.__collection, self.__query)
+        return self.parse_record(mongo_broker.read_record(db, collection, _query))
     
-    def _read_records(self, db=None,collection=None,_query=ANY)->list[item.Item]:
+    def _read_records(self, db=None,collection=None,_query={})->list:
         records = None
         r_list = list()
         
         if db is None or collection is None:
             return self._read_records(self.__db, self.__collection, self.__query)
         
-        records = read_records(db, collection, _query)
+        records = mongo_broker.read_records(db, collection, _query)
         for record in records:
-            # r_list.append(self.parse_record(record))
             r_list.append(record)
+
         return r_list
 
     def read_all(self, db_name:list=None, col_name:list=None):
@@ -80,48 +78,47 @@ class DBManager:
                             res[db.name][c] = temp
             return res 
 
-    def _insert_record(self, db=None, collection=None, record:item.Item|dict={}):
+    def _insert_record(self, db=None, collection=None, record:dict={}):
         if db is None or collection is None:
             return self._insert_record(self.__db, self.__collection, record)
 
         self.register_db(db)
         if type(record) is dict:
-            return insert_record(db, collection, record)
-        else:
-            return insert_record(db, collection, self.parse_input(record))
+            return mongo_broker.insert_record(db, collection, record)
+       
 
-    def _insert_records(self, db=None, collection=None, records:list|list=None):
+    def _insert_records(self, db=None, collection=None, records:list=None):
         if records is not None:
             if db is None or collection is None:
                 return self._insert_records(self.__db, self.__collection, records)
             self.register_db(db)
-            return insert_records(db, collection, records)
+            return mongo_broker.insert_records(db, collection, records)
         return None
 
     def _delete_record(self, db=None, collection=None, _query={}):
         if db is None:
-            return delete_record(self.__db, self.__collection, _query)
+            return self._delete_record(self.__db, self.__collection, _query)
         else:
-            return delete_record(db, collection, _query)
+            return mongo_broker.delete_record(db, collection, _query)
     
     def _delete_records(self, db=None, collection=None, records:list=None):
         if db is None:
-            return delete_records(self.__db, self.__collection, record)
+            return self._delete_records(self.__db, self.__collection, records)
         else:
-            return delete_records(db, collection, records)
+            return mongo_broker.delete_records(db, collection, records)
 
     def _replace_one(self,db=None, collection=None, find:dict={}, replacement:dict={}):
-        return update_record(db, collection, find, replacement)
+        return mongo_broker.update_record(db, collection, find, replacement)
 
     def _replace_many(self,db=None, collection=None, find:dict={}, replacement:dict={}):
-        return update_records(db, collection, find, replacement)
+        return mongo_broker.update_records(db, collection, find, replacement)
 
 
-    def parse_record(self, record:dict) -> item.Item:
-        return item.Item(_obj=record)
+    # def parse_record(self, record:dict) -> item.Item:
+    #     return item.Item(_obj=record)
     
-    def parse_input(self, record:item.Item)->dict:
-        return record.to_dict()
+    # def parse_input(self, record:item.Item)->dict:
+    #     return record.to_dict()
     
 
 def setup():
@@ -130,7 +127,7 @@ def setup():
         CONSTANTS.DB_ORDERS,
         CONSTANTS.DB_USERS
     ]
-    client = connect(CONSTANTS.D_HOST)
+    client = mongo_broker.connect(CONSTANTS.D_HOST)
     # print(client['quotes'])
     db_manager = DBManager(client, client['quotes'], 'user-quotes', {})
 

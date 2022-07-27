@@ -24,10 +24,9 @@ def connect(host, port=CONSTANTS.D_PORT):
     finally:
         return client
 
-def get_db_instance(client:MongoClient=None, db_name:str=''):
+def get_db_instance(client:MongoClient, db_name:str=''):
     if client is None:
         raise pymongo.error.PyMongoError
-        return
     return client[db_name]
 
 def read_record(_db:Database, _collection:Collection|str, _schema:dict|str)->dict:
@@ -36,13 +35,13 @@ def read_record(_db:Database, _collection:Collection|str, _schema:dict|str)->dic
 
 def read_records(_db:Database, _collection:str|Collection, _schema:str|dict={}):
     col = _db[_collection]
-    print(len(_schema))
+    # print(len(_schema))
     if len(_schema)>0:return col.find(_schema)
     else: return col.find()
 def insert_record(_db:Database, _collection:str|dict, _document:dict={}):
     if len(_document) == 0:
         return
-    print("Collection is {}: db is {}".format(_collection, _db))
+    # print("Collection is {}: db is {}".format(_collection, _db))
     return _db[_collection].insert_one(_document)
 
 def insert_records(_db:Database, _collection:str|Collection, _documents:list):
