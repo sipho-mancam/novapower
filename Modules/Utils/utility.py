@@ -1,14 +1,13 @@
 import os
 import pathlib
 import json
-from input_drivers.db_manager import *
-from Modules.input_drivers.mongo_broker import *
-import CONSTANTS
-from Modules.Processors.pricing import *
+import Modules.input_drivers.db_manager as db_manager
+import Modules.input_drivers.mongo_broker as mongo_broker
+import Modules.Utils.CONSTANTS as CONSTANTS
+import Modules.Processors.pricing as pricing
 
-client = connect(host=CONSTANTS.D_HOST, port=CONSTANTS.D_PORT)
-# print(client)
-db_manager = DBManager(client, client[CONSTANTS.DB_TEST], CONSTANTS.COL_TEST, {})
+client = mongo_broker.connect(host=CONSTANTS.D_HOST, port=CONSTANTS.D_PORT)
+db_manager = db_manager.DBManager(client, client[CONSTANTS.DB_TEST], CONSTANTS.COL_TEST, {})
 
 def search_cart(uid, cart_list):
     for item in cart_list:

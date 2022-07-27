@@ -1,8 +1,8 @@
 from sre_constants import ANY
 from numpy import record
 from Modules.input_drivers.mongo_broker import *
-from input_drivers.item import Item
-import CONSTANTS
+import Modules.input_drivers.item as item
+import Modules.Utils.CONSTANTS as CONSTANTS
 
 class DBManager:
     def __init__(self,client, db=None, collection=None, query=None) -> None:
@@ -38,12 +38,12 @@ class DBManager:
     def get_current_db(self):return self.__db
     def get_current_collection_name(self):return self.__collection
 
-    def _read_record(self, db=None,collection=None, _query=ANY)->Item:
+    def _read_record(self, db=None,collection=None, _query=ANY)->item.Item:
         if db is None or collection is None:
             return read_record(self.__db, self.__collection, self.__query)
         return self.parse_record(read_record(db, collection, _query))
     
-    def _read_records(self, db=None,collection=None,_query=ANY)->list[Item]:
+    def _read_records(self, db=None,collection=None,_query=ANY)->list[item.Item]:
         records = None
         r_list = list()
         
@@ -80,7 +80,7 @@ class DBManager:
                             res[db.name][c] = temp
             return res 
 
-    def _insert_record(self, db=None, collection=None, record:Item|dict={}):
+    def _insert_record(self, db=None, collection=None, record:item.Item|dict={}):
         if db is None or collection is None:
             return self._insert_record(self.__db, self.__collection, record)
 
@@ -90,11 +90,13 @@ class DBManager:
         else:
             return insert_record(db, collection, self.parse_input(record))
 
-    def _insert_records(self, db=None, collection=None, records:list[dict]|list[Item]=None):
-        if db is None or collection is None:
-            return self._insert_records(self.__db, self.__collection, records)
-        self.register_db(db)
-        return insert_records(db, collection, records)
+    def _insert_records(self, db=None, collection=None, records:list|list=None):
+        if records is not None:
+            if db is None or collection is None:
+                return self._insert_records(self.__db, self.__collection, records)
+            self.register_db(db)
+            return insert_records(db, collection, records)
+        return None
 
     def _delete_record(self, db=None, collection=None, _query={}):
         if db is None:
@@ -115,10 +117,10 @@ class DBManager:
         return update_records(db, collection, find, replacement)
 
 
-    def parse_record(self, record:dict) -> Item:
-        return Item(_obj=record)
+    def parse_record(self, record:dict) -> item.Item:
+        return item.Item(_obj=record)
     
-    def parse_input(self, record:Item)->dict:
+    def parse_input(self, record:item.Item)->dict:
         return record.to_dict()
     
 

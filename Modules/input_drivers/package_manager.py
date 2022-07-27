@@ -1,9 +1,8 @@
-from CONSTANTS import *
-from input_drivers.item import *
-from random import *
-import json
-from input_drivers.db_manager import *
+import Modules.Utils.CONSTANTS as CONSTANTS
+import Modules.input_drivers.item as item
+import Modules.input_drivers.db_manager as db_manager
 import hashlib
+import random
 
 class Package:
     def __init__(self, _obj:dict=None) -> None:
@@ -120,20 +119,20 @@ class Subpackage:
                     # figure out where it falls...
                     voltage = round(size['Voltage']['value'])
                     if abs(voltage-12) <= 3 or voltage <=12:
-                        s = STD_VOLTAGE_12
+                        s = CONSTANTS.STD_VOLTAGE_12
                     elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
-                        s = STD_VOLTAGE_24
+                        s = CONSTANTS.STD_VOLTAGE_24
                     elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
-                        s = STD_VOLTAGE_48
+                        s = CONSTANTS.STD_VOLTAGE_48
 
                 elif 'BatVoltage' in size:
                     voltage = round(size['BatVoltage']['value'])
                     if abs(voltage-12) <= 3 or voltage <=12:
-                        s = STD_VOLTAGE_12
+                        s = CONSTANTS.STD_VOLTAGE_12
                     elif abs(voltage-24) <= 3 or (voltage <=24 and voltage>=16):
-                        s = STD_VOLTAGE_24
+                        s = CONSTANTS.STD_VOLTAGE_24
                     elif abs(voltage-48) <= 8 or (voltage <=48 and voltage >=28):
-                        s = STD_VOLTAGE_48
+                        s = CONSTANTS.STD_VOLTAGE_48
 
                 if s in self.__organised_data_structure:
                     self.__organised_data_structure[s].append(i)
@@ -142,7 +141,7 @@ class Subpackage:
                     self.__organised_data_structure[s].append(i)
 
     def set_current_size(self, size):
-        if size in STD_VOLTAGE_LIST:
+        if size in CONSTANTS.STD_VOLTAGE_LIST:
             if size in self.__organised_data_structure:
                 self.__current_list = self.__organised_data_structure[size]
                 if self.__next_package is not None:
@@ -155,7 +154,7 @@ class Subpackage:
                     return self.__next_package.set_current_size(size)
                 else:
                     try:
-                        self.__current_list = self.__organised_data_structure[STD_VOLTAGE_48]
+                        self.__current_list = self.__organised_data_structure[CONSTANTS.STD_VOLTAGE_48]
                         return self.__next_package.set_current_size(size)
                     except Exception as e:
                         print("Error setting current size {}".format(size),e)
@@ -163,10 +162,10 @@ class Subpackage:
 
     def ordered_packing(self, package):
         try:
-            item = choice(self.__items)
+            item = random.choice(self.__items)
             # print('Package Flag ',item.to_dict()['package-flag'])
             while item.to_dict()['package-flag']: 
-                item = choice(self.__items)
+                item = random.choice(self.__items)
             package.add_item(item) # append my current element
         except IndexError as e:
             print('Error Adding package')
@@ -224,10 +223,10 @@ class Subpackage:
     
     def pack(self, package)->bool:
         # print("name: {} currentCount: {}, ".format(self.__name, self.__current_count), end="")
-        item = choice(self.__items)
+        item = random.choice(self.__items)
         # print('Package Flag ',item.to_dict()['package-flag'])
         while item.to_dict()['package-flag']: 
-            item = choice(self.__items)
+            item = random.choice(self.__items)
         package.add_item(item) # append my current element
         if not self.is_last(): # if you not the last subpackagegroup, call the next subpackage.
             res = self.__next_package.pack(package) # next subpackage group, give us your item
@@ -257,7 +256,7 @@ class PackageHandler:
     def get_summary(self):
         d = dict()
         counter = 0
-        t_list = sample(self.__packages, len(self.__packages))
+        t_list = random.sample(self.__packages, len(self.__packages))
         for p in t_list:
             d['packag '+str(counter)]=p.get_summary()
             counter+=1
@@ -295,7 +294,7 @@ class PackageHandler:
     def generate_package(self, n=0):        
         first_sub = self.__sub_packages_list[0]
         try:
-            first_sub.set_current_size(STD_VOLTAGE_48)
+            first_sub.set_current_size(CONSTANTS.STD_VOLTAGE_48)
         except Exception as e:
             pass
         self.__packages = []

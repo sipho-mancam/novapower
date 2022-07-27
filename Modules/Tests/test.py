@@ -1,11 +1,11 @@
-from input_drivers.db_manager import *
+from Modules.input_drivers.db_manager import *
 from Modules.input_drivers.mongo_broker import *
-import CONSTANTS
+import Modules.Utils.CONSTANTS as CONSTANTS
 from random import choice, randbytes, random
 import json
-from input_drivers.package_manager import *
-from utility import *
-from init import *
+from Modules.input_drivers.package_manager import *
+from Modules.Utils.utility import *
+from Modules.Utils.init import *
 import pprint
 # db_manager, client = setup()
 

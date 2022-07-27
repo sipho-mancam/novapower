@@ -1,42 +1,45 @@
 from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session
 from flask_session import Session
 import Modules.Processors.filter as filter
-from input_drivers.db_manager import *
-import CONSTANTS
-from input_drivers.package_manager import *
-from init import *
+import Modules.input_drivers.db_manager as db_manager
+import Modules.Utils.CONSTANTS as CONSTANTS
+import Modules.input_drivers.package_manager as pm
+import Modules.Utils.init as init
 import datetime
-from utility import update_cart
-from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
+import Modules.Utils.utility as utils
+import Modules.Services.Sizing.sizing_tool as s_tool
 import pathlib
-from Modules.Processors.pricing import *
+import Modules.Processors.pricing as pricing
 from pymongo import MongoClient
 import pdfkit
 import platform
 import subprocess
-
+import hashlib
+import random
+import os
+import pprint
 
 app = Flask(__name__)
 
 client = MongoClient("mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mongodb.net/sessions?retryWrites=true&w=majority")
 
-app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
-app.config['UPLOAD_FOLDER'] = pathlib.Path('./Quotes/').absolute().as_posix()
+app.secret_key = hashlib.sha256(random.randbytes(256), usedforsecurity=True).hexdigest()
+app.config['UPLOAD_FOLDER'] = pathlib.Path('./Data/Quotes/').absolute().as_posix()
 app.config['SESSION_TYPE'] = 'filesystem' #'mongodb'
 
 Session(app)
-db_manager, clnt = setup()
-data_path = './DatabaseIndividualPricingInputFormat v2.xlsx'
-solar_package_handler = setup_input(data_path, 'Sheet 1',keys=['solar', 'inverter', 'battery']);
-inverter_package_handler = setup_input(data_path, 'Sheet 1', keys=['inverter', 'battery'])
-generator_package_handler = setup_input(data_path,'Sheet 1', keys=['generator'])
+
+db_manager, clnt = db_manager.setup()
+
+data_path = "./Data/DatabaseIndividualPricingInputFormat v2.xlsx"
+solar_package_handler = init.setup_input(data_path, 'Sheet 1',keys=['solar', 'inverter', 'battery']);
+inverter_package_handler = init.setup_input(data_path, 'Sheet 1', keys=['inverter', 'battery'])
+generator_package_handler = init.setup_input(data_path,'Sheet 1', keys=['generator'])
 
 admin_creds  = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), usedforsecurity=True).hexdigest()
 session_token = admin_creds
 
 stage = filter.init_stage()
-# pprint.pprint(stage.get_summary())
-s = 0
 
 def _get_pdfkit_config():
      """wkhtmltopdf lives and functions differently depending on Windows or Linux. We
@@ -58,8 +61,6 @@ def validate_session(token):
         return True
     return False
 
-inverter_package_handler.generate_package(1)
-# pprint.pprint(inverter_package_handler.get_summary())
 package_table = {
     'generator':generator_package_handler.get_summary(),
     'solar':solar_package_handler.get_summary(),
@@ -90,7 +91,6 @@ def favicon():
 def products_list():
     return render_template('products_list.html')
 
-
 @app.route('/admin', methods=['GET'])
 def admin():
     session_token = request.args.get('session_token')
@@ -103,7 +103,6 @@ def admin():
 def admin_login():
     if request.method == 'GET':
         return render_template('a_login.html') 
-
 
 @app.route('/products_list/init', methods=['GET'])
 def products_init():
@@ -170,7 +169,6 @@ def admin_get_quotes():
     else: return {
         'res':0x05
     }
-
 
 @app.route('/packages/all', methods=['GET', 'OPTIONS']) # require a sesson token to send data
 def index_data():
@@ -532,7 +530,6 @@ def index_data():
     }
     return package_table
 
-
 @app.route('/session', methods=['GET'])
 def generate_session():
     session_id = request.args.get('session_id')
@@ -553,7 +550,6 @@ def generate_session():
 @app.route('/featured', methods=['GET'])
 def get_featured_products():
     session_token = request.args.get('session_token')
-    # print(session)
     if validate_session(session_token):
         n = request.args.get('n')
         if n is not None:
@@ -576,9 +572,7 @@ def get_featured_products():
         }
 
 
-def validate_cart_object(schema:dict, data:dict):
     return True
-
 
 @app.route('/add-to-cart', methods=['POST', 'PUT'])
 def add_to_session_cart():
@@ -588,7 +582,7 @@ def add_to_session_cart():
     if session_token in session:
         user_data = session[session_token]
         if 'cart' in user_data['data']:
-            res = update_cart(data['_uid'], user_data['data']['cart'])
+            res = utils.update_cart(data['_uid'], user_data['data']['cart'])
             if not res:
                 session[session_token]['data']['cart'].append(data)    
             session.modified = True
@@ -600,7 +594,6 @@ def add_to_session_cart():
     else:
         return {'response':0x05}
 
-
 @app.route('/update-cart', methods=['POST'])
 def update_cart_items():
     session_token = request.args.get('session_token')
@@ -608,12 +601,11 @@ def update_cart_items():
     func = request.args.get('func')
     if session_token in session:
         user_data = session[session_token]['data']
-        res = update_cart(data['_uid'], user_data['cart'], func)
+        res = utils.update_cart(data['_uid'], user_data['cart'], func)
         session.modified = True
         if res: return {func:'Sucessful'};
         else: return {func:'Failed'}
     return {'response':0x05}
-
 
 @app.route('/get-cart', methods=['GET'])
 def get_cart_items():
@@ -636,7 +628,6 @@ def get_cart_items():
     else:
         return {'response':0x05}
 
-
 @app.route('/admin/update_quotes', methods=['POST'])
 def update_quotes():
     session_token = request.args.get('session_token')
@@ -653,7 +644,6 @@ def update_quotes():
             return {'res':res.matched_count}
     return {'response':0x05}
             
-
 @app.route('/get-quote', methods=['GET', 'POST'])
 def get_quote():
     if request.method == 'POST':
@@ -694,54 +684,48 @@ def price_summary():
     if session_token in session:
         data = session[session_token]['data']
         cart_list = data['cart']
-        res = process_cart_pricing(cart_list, session_token, data['processed-list'])
+        res = pricing.process_cart_pricing(cart_list, session_token, data['processed-list'])
         res = res.get_totals()
         session.modified = True
         for key in res.keys():
-            res[key] = format_price(res[key])
+            res[key] = utils.format_price(res[key])
         return res
     else:
         return {'response':0x05}
-
 
 @app.route('/add-option', methods=['POST', 'GET'])
 def add_option():
     if request.method == 'GET':
         session_token = request.args.get('session_token')
-        options_list = [installers_option]
+        options_list = [utils.installers_option]
         if session_token in session:
             data = session[session_token]['data']
-            res = add_options_to_all(session_token, data, options_list)
-
+            res = pricing.add_options_to_all(session_token, data, options_list)
             res = res.get_totals()
             for key in res.keys():
-                res[key] = format_price(res[key])
+                res[key] = utils.format_price(res[key])
+
             return res
         else:
             return {'response':0x05}
     else:
         return {'status':0x05}
 
-
 @app.route('/size-me', methods=['POST'])
 def sizeme():
-    data = request.get_data(cache=True, as_text=True)
     json = request.get_json(cache=True, force=True)
     # Need to create a queuing system here to make sure we take care of races...
-
     res = create_ss_list(json)
     
-    write_sheet(INPUT_SHEET_NAME, data=res)
+    s_tool.write_sheet(CONSTANTS.INPUT_SHEET_NAME, data=res)
 
-    result = read_sheet(OUTPUT_SHEET_NAME);
+    result = s_tool.read_sheet(CONSTANTS.OUTPUT_SHEET_NAME);
 
     resp ={
         'size':result[0][0],
         'price':result[0][1]
     }
     return jsonify(resp)
-
-
 
 @app.route('/contact-us', methods=['POST'])
 def contact_us():
@@ -769,10 +753,6 @@ def get_enquiries():
         return res_json
     return {'response':0x05}
 
-
-   
-
-
 def create_ss_list(json:dict):
     l = [
         json['size'],
@@ -794,7 +774,6 @@ def create_ss_list(json:dict):
     return l
     
 if __name__ == '__main__':
-    # app.run(host=CONSTANTS.HOST, debug=False)
     app.run(host=CONSTANTS.HOST, debug=True)
 
 

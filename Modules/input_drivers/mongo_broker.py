@@ -2,7 +2,7 @@ from pymongo import MongoClient
 import pymongo
 from pymongo.collection import Collection
 from pymongo.database import Database
-import CONSTANTS
+import Modules.Utils.CONSTANTS as CONSTANTS
 
 
 # 1) Read one item from the database

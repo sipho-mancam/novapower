@@ -5,8 +5,6 @@ import os
 import pathlib
 import sys
 
-
-
 """
 All Internal functions will be denoted by a trailing underscore before their name.
 All those functions are never really called by the user, but internal by the program.

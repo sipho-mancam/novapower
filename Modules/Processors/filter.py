@@ -1,11 +1,11 @@
-from init import setup_input
-from input_drivers.package_manager import Subpackage
+from Modules.Utils.init import setup_input
+import Modules.input_drivers.package_manager as pm
 
 class Stage:
-    def __init__(self, sub_package:Subpackage, filters:dict=None) -> None:
+    def __init__(self, sub_package:pm.Subpackage, filters:dict=None) -> None:
         self.__sub_package_objects = []
         if sub_package is not None and type(sub_package) is list: self.__sub_package_objects = sub_package
-        elif sub_package is not None and type(sub_package) is Subpackage: self.__sub_package_objects.append(sub_package)
+        elif sub_package is not None and type(sub_package) is pm.Subpackage: self.__sub_package_objects.append(sub_package)
         self.__temp_list = []
         self.__committed = []
         self.filters = filters
@@ -57,9 +57,9 @@ class Stage:
         res['brand'] = l
         return res
 
-    def add_to_stage(self, sub_pacakage:Subpackage)->None:
+    def add_to_stage(self, sub_pacakage:pm.Subpackage)->None:
         if sub_pacakage is not None:
-            if type(sub_pacakage) is Subpackage:
+            if type(sub_pacakage) is pm.Subpackage:
                 self.__sub_package_objects.append(sub_pacakage)
             elif type(sub_pacakage) is list:
                 for i in sub_pacakage:
@@ -202,7 +202,7 @@ class Stage:
 
 
 def init_stage():
-    data_path = './DatabaseIndividualPricingInputFormat v2.xlsx'
+    data_path = "Data/DatabaseIndividualPricingInputFormat v2.xlsx"
     stage = Stage(setup_input(data_path, 'Sheet 1').get_sub_package_list())
     stage.add_filter({'scope':'*', 'filter':{
         'p':{
