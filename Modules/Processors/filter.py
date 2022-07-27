@@ -1,5 +1,5 @@
 from init import setup_input
-from packages import Subpackage
+from input_drivers.package_manager import Subpackage
 
 class Stage:
     def __init__(self, sub_package:Subpackage, filters:dict=None) -> None:

@@ -1,8 +1,8 @@
 from CONSTANTS import *
-from item import *
+from input_drivers.item import *
 from random import *
 import json
-from package_manager import *
+from input_drivers.db_manager import *
 import hashlib
 
 class Package:

@@ -1,10 +1,10 @@
 import os
 import pathlib
 import json
-from package_manager import *
-from mongo_broker import *
+from input_drivers.db_manager import *
+from Modules.input_drivers.mongo_broker import *
 import CONSTANTS
-from pricing import *
+from Modules.Processors.pricing import *
 
 client = connect(host=CONSTANTS.D_HOST, port=CONSTANTS.D_PORT)
 # print(client)

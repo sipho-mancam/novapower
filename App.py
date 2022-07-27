@@ -1,15 +1,15 @@
 from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session
 from flask_session import Session
-import Products
-from package_manager import *
+import Modules.Processors.filter as filter
+from input_drivers.db_manager import *
 import CONSTANTS
-from packages import *
+from input_drivers.package_manager import *
 from init import *
 import datetime
 from utility import update_cart
 from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
 import pathlib
-from pricing import *
+from Modules.Processors.pricing import *
 from pymongo import MongoClient
 import pdfkit
 import platform
@@ -34,7 +34,7 @@ generator_package_handler = setup_input(data_path,'Sheet 1', keys=['generator'])
 admin_creds  = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), usedforsecurity=True).hexdigest()
 session_token = admin_creds
 
-stage = Products.init_stage()
+stage = filter.init_stage()
 # pprint.pprint(stage.get_summary())
 s = 0
 
@@ -584,7 +584,7 @@ def validate_cart_object(schema:dict, data:dict):
 def add_to_session_cart():
     session_token = request.args.get('session_token')
     data = request.get_json()
-    # print(data)
+    
     if session_token in session:
         user_data = session[session_token]
         if 'cart' in user_data['data']:

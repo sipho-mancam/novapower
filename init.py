@@ -5,23 +5,22 @@
 # initialize the kafka connector
 # set up the validator  qw
 
-from mongo_broker import *
-from package_manager import DBManager
+from Modules.input_drivers.mongo_broker import *
 import CONSTANTS
-from utility import *
-from packages import *
-from excel_driver import *
+import utility 
+from input_drivers.package_manager import *
+from input_drivers.excel_driver import *
 
 
 def setup_input(xl_path, sheet_name, keys=[]):
-    data = xl_to_json(xl_path, sheet=sheet_name)
+    data = xl_to_json(xl_path, sheet=sheet_name) 
     d_table = None;
-    
+
     if len(keys)>0:
-        d_table = parse_json(data, keys=keys)
+        d_table = utility.parse_json(data, keys=keys)
     else: 
-        d_table = parse_json(data)
-        # print(d_table)
+        d_table = utility.parse_json(data)
+
     package_handler = PackageHandler(d_table)
 
     return package_handler
