@@ -96,7 +96,6 @@ class PriceModel:
         self.__tax = round(0.15*self.__tot, 2)
         self.__sub_tot = self.__tot - self.__tax
         
-
     def get_pricing_summary(self)->dict:
         s = {}
         counter = 0
@@ -116,7 +115,6 @@ class PriceModel:
         s['vat'] = self.__tax
         return s
     
-
     def validate_item(self, item:dict)->bool:
         schema = {
             'name':{
@@ -151,7 +149,6 @@ class PriceModel:
         validator = Validator(schema, allow_unknown=True, require_all=True)
         self.validator = validator
         return validator.validate(options)    
-
 
 def process_cart_pricing(cart_list:list, session_token:str, processed_list:list=None)->dict:
     pricing = PriceModel(session_token)

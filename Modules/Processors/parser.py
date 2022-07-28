@@ -39,6 +39,31 @@ class Parser:
             'image_url':l[7]
         }
 
+    def set_configs(self, items_collect:dict, key_map:dict):
+        """
+        Args:
+            items_collect: dict-> The arrangement of the items in json table keys:list -> 
+                            for this to work, you *must* have the name key in the key map which will be tracked to this collection.
+                            The collection should be of the form
+                            collections ->{
+                                'group':list, ....
+                            }
+            key_map:dict -> This is the key map that will be used to map from excel heads to json keys.
+                            The Key map should be of the form: ->
+                            map->{
+                                'json-key':'xcel-heading', ...
+                                'name':'required key'
+                            } 
+        Reason:
+            This Method will take in the key map to use when Mapping out from Xcel Parser to a JSON document.
+            The Key map should be of the form: ->
+                map{
+                    'json-key':'xcel-heading', ...
+                } 
+        Return None:
+        """
+        self.__key_map = key_map
+        self.__items_collection
 
     def parse_data_frame(self, df)->dict:
         # print(self.__data_frame)
@@ -48,14 +73,17 @@ class Parser:
         # 4) parse the rest of the items in the extras first ... 
         # 5) parse the rest of the items 
         # 6) append element to the list ...
-        
+        if 'name' in self.__key_map:
+            pass
+        else: raise KeyError('*name* key is not found in the map')
+
         self.__data_frame = df
         try:
             length = len(self.__data_frame.index)
             
             for i in range(length):
                 j_data = {}
-                item = self.__data_frame.loc[i]
+                item = self.__data_frame.loc[i] # grab a row from excel
                 
                 e_table = self.parse_extras(item)
                 
@@ -89,8 +117,6 @@ class Parser:
             print("Error parsing an object", e)
         finally:
             return self.__items_collection         
-
-
 
     def parse_size(self, df_item, n:int=1):
         size = df_item[self.__indexing_table[self.__key_map['size']]]
@@ -151,7 +177,6 @@ class Parser:
             else:
                 return i_list
 
-
     def parse_extras(self, df_item):
         extras_table = {}
         
@@ -170,7 +195,6 @@ class Parser:
             print('Error getting extras: ', e)
         finally:
             return extras_table
-
 
     def add_to_list(self, j_item:dict):
         if j_item['name'].lower().lstrip() in self.__items_collection:
