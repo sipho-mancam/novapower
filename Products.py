@@ -203,7 +203,7 @@ class Stage:
 
 def init_stage():
     data_path = './DatabaseIndividualPricingInputFormat v2.xlsx'
-    stage = Stage(setup_input(data_path, 'Sheet 1').get_sub_package_list())
+    stage = Stage(setup_input(data_path, 'Sheet 1', ['solar', 'inverter', 'battery']).get_sub_package_list())
     stage.add_filter({'scope':'*', 'filter':{
         'p':{
             'name':'package-flag',
