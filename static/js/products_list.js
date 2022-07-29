@@ -76,12 +76,12 @@ window.addEventListener('load', function(e){
     });
     get_session_token()
     .then(res=>{
-        console.log(res)
+        // console.log(res)
 
         let path = '/products_list/init'
         make_request('GET', path)
         .then(res=>{
-            // console.log(res)
+            console.log(res)
             sort_data(res)
             all_products_list = res['data']['data'];
             data_o = res; 
@@ -596,12 +596,7 @@ function get_products_view_more(item_data){
                     <li class="nav-item active-tab v-tab">
                         <a class="nav-link"  aria-current="page" href="#">Summary</a>
                     </li>
-                    <li class="nav-item v-tab">
-                        <a class="nav-link" href="#" >Technical Details</a>
-                    </li>
-                    <li class="nav-item v-tab">
-                        <a class="nav-link" href="#" >Reviews</a>
-                    </li>
+                    
                 </ul>
 
                 <div class="tab-content" style="width: 100%; display:block; margin-top:5px;" id="v-tab-cont">
@@ -616,16 +611,27 @@ function get_products_view_more(item_data){
         </div>`)
 }
 
+// <li class="nav-item v-tab">
+//                         <a class="nav-link" href="#" >Technical Details</a>
+//                     </li>
+//                     <li class="nav-item v-tab">
+//                         <a class="nav-link" href="#" >Reviews</a>
+//                     </li>
+
 function product_view_more(e){
     e.preventDefault() 
 
     overlay.innerHTML = get_products_view_more(sorted_data[current_selected_tab.getAttribute('name')][e.target.getAttribute('index')])
+    let item = sorted_data[current_selected_tab.getAttribute('name')][e.target.getAttribute('index')]
+
     overlay.style.display='flex';
     close_overlay = document.getElementById('close-overlay')
     close_overlay.addEventListener('click', close)
     
     let v_tab_buttons = document.getElementsByClassName('v-tab')
     v_tab_cont = document.getElementById('v-tab-cont');
+    v_tab_cont.innerHTML = `<img src=${item['description']} />`;
+
     current_v_tab = v_tab_buttons[0];
     for(let i of v_tab_buttons){
         i.addEventListener('click', function(){
@@ -635,10 +641,10 @@ function product_view_more(e){
             this.className += ' active-tab '
 
             if (this.innerText.toLowerCase() == 'summary'){
-                v_tab_cont.innerHTML = get_product_summary(package)
+                v_tab_cont.innerHTML = `<img src=${item['description']} />`;
             }
             else if(this.innerText.toLowerCase() == 'technical details'){
-                v_tab_cont.innerHTML = get_item_full(package)
+                // v_tab_cont.innerHTML = get_item_full(package)
             }
             else if(this.innerText.toLowerCase() == 'reviews'){
                 v_tab_cont.innerHTML = '<p style="color:grey">There are currently 0 reviews for this item</p>'
@@ -647,7 +653,8 @@ function product_view_more(e){
     }
 }
 
-function get_view_more(package, p_type){
+function get_view_more(package){
+    console.log(package)
     return(
         `
         <div class="view-details-card container">
@@ -661,9 +668,7 @@ function get_view_more(package, p_type){
                     <li class="nav-item active-tab v-tab">
                         <a class="nav-link"  aria-current="page" href="#">Summary</a>
                     </li>
-                    <li class="nav-item v-tab">
-                        <a class="nav-link" href="#" >Technical Details</a>
-                    </li>
+                  
                     <li class="nav-item v-tab">
                         <a class="nav-link" href="#" >Reviews</a>
                     </li>
@@ -684,3 +689,8 @@ function get_view_more(package, p_type){
 register_filter_view_cb('brand', brand_filter_view);
 register_filter_view_cb('price', price_filter_view);
 register_filter_view_cb('size', size_filter_view);
+
+
+// <li class="nav-item v-tab">
+// <a class="nav-link" href="#" >Technical Details</a>
+// </li>
