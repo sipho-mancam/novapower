@@ -206,8 +206,10 @@ ul{
 }
 
 .overlay{
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     z-index: 100000;
+    padding:20px;
 }
 
 .view-details-card{
