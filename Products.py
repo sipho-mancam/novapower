@@ -16,12 +16,12 @@ class Stage:
         brands = self.get_brands()
         brands['type'] = 'list|object'
         self.__default_filters = {
-            'size':{
-                'Size':{'type': 'int|float'},
-                'voltage':{'type':'int|float'}
-            },
+            # 'size':{
+            #     'Size':{'type': 'int|float'},
+            #     'voltage':{'type':'int|float'}
+            # },
             'brand':brands,
-            'price':{'type':'float'}
+            'max-price':{'type':'float'}
         }
         self.__rollback_filters = {'scope':'*', 'filter':{
             'p':{

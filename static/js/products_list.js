@@ -251,6 +251,7 @@ function get_filters(){
         }
    }
    filter_object['filter'] = f_output
+
    return filter_object
 }
 
@@ -324,6 +325,19 @@ function update_filters_view(categories_list){
     
 }
 
+function set_current_tab(name){
+    const tabs = document.getElementsByClassName('tab');
+    current_selected_tab.className = current_selected_tab.className.replace('selected', ' ')
+    for(let tab of tabs){
+        if(tab.getAttribute('name').toLowerCase() == name.toLowerCase()){
+            current_selected_tab = tab;
+            break;
+        }
+    }
+
+    current_selected_tab.className += " selected";
+}
+
 async function update_content(e){
     /* 
     1) Get the filter model.
@@ -331,6 +345,12 @@ async function update_content(e){
     3) Recieve data and split it into Viewport/Data groups
     3) Call the draw method to update the screen ...
     */
+   if(e.target.getAttribute('group') == 'filter'){
+        set_current_tab(e.target.getAttribute('scope'))
+   }else if(e.target.getAttribute('group')=='scope'){
+        set_current_tab(e.target.getAttribute('value'))
+   }
+
    if(e.target.checked && e.target.getAttribute('group')=='scope'){
         let value  = e.target.getAttribute('value')
         if(value != '*'){
@@ -384,7 +404,7 @@ function get_filter_groups(filter_group){
     let res = ``
     for(let k of keys){
         res += `<div class="filter-group">`
-        res += `<span >${k}(s)</span>`
+        res += `<span >${k}</span>`
         res += get_filter_view(filter_group[k], k)
         res += `</div> <br/>`
         // break; // temporary for testing ...
@@ -400,7 +420,7 @@ function brand_filter_view(brand_filter){
     let res = ' '
     let keys = Object.keys(brand_filter)
     for(let k of keys){
-        res+=
+        if(k != 'type')res+=
         `<div class="s s-1" id="${k}+1" >
             <a class="s f-item" data-bs-toggle="collapse" name=${k} href="#${k}" style="display:block;" id="${k}" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <span class="icon"><i class="bi bi-caret-right-fill"></span></i>&nbsp ${k}&nbsp 
@@ -426,16 +446,16 @@ function price_filter_view(price_filter){
                 <span class="range-display value">R 1 000,00</span>
             </div>
             <div class='range-item'>
-                <input type='range' min=1000 max=50000 value='5000' step=500  class='input price-input form-range' name="price" scope='*' group="filter" />
+                <input type='range' min=1000 max=10000 value='5000' step=500  class='input price-input form-range' name="price" scope='*' group="filter" />
             </div>
             <div class='range-item'>
                 <div class="white-block wb-r"></div>
-                <span class="range-display value">R 50 000,00</span>
+                <span class="range-display value">R 500 000,00</span>
             </div>
         </div>
        <div class='range-item'>
             <div class="range-update">
-                <span class="value">Set:&nbsp</span><span class="value" id="range-value" >all</span>
+                <span class="value">Set:&nbsp</span><span class="value" id="range-value" >R 50 000,00</span>
             </div> 
         </div>
         
@@ -456,6 +476,7 @@ function get_filter_sec_list(filter_array, key='brand', scope='*'){
     let res =  ''
     if(typeof(filter_array) != 'string'){
         for(let i of filter_array[key]){
+           
             res += `
             <li>
                 <input type="checkbox" value="${i}" class="input" name="${key}" scope=${scope} group="filter" /> &nbsp ${i}
@@ -611,13 +632,6 @@ function get_products_view_more(item_data){
         </div>`)
 }
 
-// <li class="nav-item v-tab">
-//                         <a class="nav-link" href="#" >Technical Details</a>
-//                     </li>
-//                     <li class="nav-item v-tab">
-//                         <a class="nav-link" href="#" >Reviews</a>
-//                     </li>
-
 function product_view_more(e){
     e.preventDefault() 
 
@@ -687,10 +701,5 @@ function get_view_more(package){
 }
 
 register_filter_view_cb('brand', brand_filter_view);
-register_filter_view_cb('price', price_filter_view);
-register_filter_view_cb('size', size_filter_view);
-
-
-// <li class="nav-item v-tab">
-// <a class="nav-link" href="#" >Technical Details</a>
-// </li>
+register_filter_view_cb('max-price', price_filter_view);
+// register_filter_view_cb('size', size_filter_view);
