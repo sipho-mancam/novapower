@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-# from crypt import methods
-from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session, url_for
-from flask_cors import CORS
-=======
 from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session
->>>>>>> 7ceb7a4ab64a92441d8c85713219f261838e949e
 from flask_session import Session
 import Products
 from package_manager import *
@@ -799,10 +793,6 @@ def create_ss_list(json:dict):
     ]
     return l
     
-<<<<<<< HEAD
-      
-=======
->>>>>>> 7ceb7a4ab64a92441d8c85713219f261838e949e
 if __name__ == '__main__':
     # app.run(host=CONSTANTS.HOST, debug=False)
     app.run(host=CONSTANTS.HOST, debug=True)
