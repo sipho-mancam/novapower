@@ -131,7 +131,8 @@ function openTab(event){
     event.preventDefault();
 
     // do some logic to append data to the tab
-    let id = groups_maps[event.currentTarget.innerText]
+  
+    let id = groups_maps[event.currentTarget.getAttribute('name')]
 
     let package_group = search_package_group(package_groups, id);
     

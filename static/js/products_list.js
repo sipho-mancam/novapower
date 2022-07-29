@@ -112,12 +112,13 @@ function sort_data(data){
     sorted_data = {}
 
     for(let i of data['categories']){
-        sorted_data[i] = []
+        if(i.toLowerCase() != 'generator')sorted_data[i] = []
     }
 
     let products = data['data']['data']
     for(let p in products){
-        sorted_data[products[p]['name'].toLowerCase()].push(products[p])
+        // console.log(products[p])
+        if(products[p]['name'].toLowerCase() != 'generator')sorted_data[products[p]['name'].toLowerCase()].push(products[p])
     }
 }
 
@@ -125,7 +126,7 @@ function get_products_tabs(categories){
     let res =""
 
     for(let i of categories){
-       res +=`<div class="col tab " name="${i}">
+       if(i.toLowerCase() != 'generator')res +=`<div class="col tab " name="${i}">
                         ${i}<span class="count" name="${i}" >(0)</span>
             </div>
             `
