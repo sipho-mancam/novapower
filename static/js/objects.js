@@ -2,37 +2,51 @@
 class Item{
     constructor(obj){
         this._id = obj['_uid'];
-        this.class = obj['class'];
-        this.description = obj['description'];
-        this.img_url= obj['img_url'];
-        this.price= obj['price'];
-        this.options= obj['extra'];
-        this.json_obj=obj;
         this.brand = obj['brand'];
-        this.type = obj['type'];
+        this.img_url= obj['image_url'];
+        this.price= obj['price'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR', minimumFractionDigits:2});
+        this.options= obj['extra'];
+        this.json_obj = obj;
         this.size = obj['size'];
         this.name = obj['name']
+        this.qty = obj['qty']?obj['qty']:1;
+        this.total_price = (this.qty * obj['price']).toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR', minimumFractionDigits: 2})
+        this.json_obj['total_price'] = this.total_price
+        this.type = obj['type-group'];
+        this.voltage = (this.name.toLowerCase() == 'inverter'  
+                        || this.name.toLowerCase() == 'generator')?obj.size.Size : obj.size.Voltage
+
+        if(this.name.toLowerCase()=='battery')this.energy = obj.size.Energy
+        else this.energy = (this.name.toLowerCase() == 'solar')?obj.size.Power:obj.size.EngineSize
+        if(this.name.toLowerCase()=='inverter')this.energy = obj.size.Voltage?obj.size.Voltage:obj.size.BatVoltage
+
+        this.json_obj['type'] = this.type
+        this.json_obj['voltage'] = this.voltage
+        this.json_obj['energy'] = this.energy
+
 
     }
     get_id(){return this._id}
     get_total_price(){ return this.price; }
     get_json(){ return this.json_obj; }
-    get_elec_size(){return this.options_object['elec-size']}
-    get_name(){return this.class}
+    get_elec_size(){return this.size['elec-size']}
+    get_name(){return this.name;}
 }
 
 
 class Package{
     constructor(obj){
         // console.log(obj)
-    this.id = obj['_uid']
-       this.total_price = obj['total-price'];
-       this.obj = obj
-       this.item_list = this.parse_items(); 
-       this.state = true;
-       this.name = obj['name'];
-       this.img_url = obj['image'];
-       
+        this.id = obj['_uid']
+        this.total_price = obj['total-price'];
+        this.obj = obj
+        this.item_list = this.parse_items(); 
+        this.state = true;
+        this.name = obj['name'];
+        this.img_url = obj['image'];
+        this.max_power = obj['max-power'];
+        this.solar_qty = obj['solar-qty'];
+        this.description = get_product_summary(this)
     }
 
     toggle_state(){this.state = !this.state;}
@@ -41,8 +55,10 @@ class Package{
         let l = []
         let keys = Object.keys(this.obj)
         for(let key =0; key < keys.length; key++){
-            if (keys[key] != 'total-price'){
-                l.push(new Item(this.obj[keys[key]]))
+            if(keys[key].match('item \+[0-9]')){
+                if (keys[key] != 'total-price'){
+                    l.push(new Item(this.obj[keys[key]]))
+                }
             }
         }
         return l
@@ -68,17 +84,16 @@ class PackageGroup{
     }
     
     get_packages(data){
-
-        
         let p_keys = Object.keys(data)
         let packages_list = []
        
         for (let i =0; i<p_keys.length; i++){
             let temp = data[p_keys[i]]
+            // console.log(data)
             temp['_id'] = p_keys[i]
             temp['name'] = this.title;
 
-            temp['image'] = (temp['item 0']['image_url'])?temp['item 0']['image_url']:this.images[Math.ceil(Math.random()*this.images.length-1)]
+            temp['image'] = (temp['item 0']['image_url'])?temp['item 0']['image_url']:this.images[Math.ceil(Math.random()*this.images.length-1)] // give me an image from package 0 or give me a fallback
             let pack = new Package(temp)
             packages_list.push(pack)
         }

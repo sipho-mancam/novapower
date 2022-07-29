@@ -282,6 +282,37 @@ td{
     background-color: red;
 }
 
+.order-response{
+    /* border:1px solid black; */
+    position: relative;
+    display: none;
+    flex-flow: column;
+    width: fit-content;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 2px 2px 3px #777, -2px -2px 3px #777;
+}
+
+.r-text{
+    width: fit-content;
+    /* border: 1px solid black;
+     */
+     margin: auto;
+}
+
+.r-text>i{
+    color:green;
+    font-size: xx-large;
+}
+
+/* .order-response>span{
+    border: 1px solid black;
+    margin: auto;
+} */
+
+
 @media only screen and (max-width:900px){
     .cart-main-container{
         width:100%;
@@ -305,4 +336,24 @@ td{
         max-height: fit-content;
         overflow-x: auto;
     }
+}
+
+.overlay-full{
+    display: none;
+    width: 100%;
+    padding:10px;
+    /* height: 100vh; */
+    background-color: rgba(10, 10, 10, 0.7);
+    position:absolute;
+    top: 0; left:0;
+    z-index: 1000;
+}
+
+#close-q-overlay{
+    color:white;
+    position: fixed;
+}
+
+#close-q-overlay:hover{
+    color:red;
 }

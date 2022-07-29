@@ -12,13 +12,13 @@ function parse_json(data) {
 
 function add_to_cart(e){
     e.preventDefault() 
-    let _search_key = e.path[0].id
+    // let _search_key = e.path[0].id
+    let _search_key = e.currentTarget.getAttribute('id')
    
     let package = search_package(current_list, _search_key)
     // console.log(package)
     if (package) {
         let p_group = package.name.split(' ')[0]
-
         make_request('POST', '/add-to-cart?session_token='+_token, {
             'group': p_group,
             '_uid':package.id,
@@ -26,7 +26,7 @@ function add_to_cart(e){
             'package':package
         })
         .then(res=>{
-            get_cart_count();
+            get_cart_count();  // update the cart icon with the current number of items in the cart
         })
 
         cart.add_to_cart(package);
@@ -34,17 +34,18 @@ function add_to_cart(e){
     else{
         alert("Couldn't find the package ...")
     }
-    // update the cart icon with the current number of items in the cart
+   
 }
 
 function view_more(e){
 
     e.preventDefault() 
-    let _search_key = e.path[0].id
+    let _search_key = e.target.getAttribute('id')
     _search_key = _search_key.split('+')[0]
     let package = search_package(current_list, _search_key)
 
     if (package) {
+
         overlay.innerHTML = get_view_more(package, package.name)
         overlay.style.display='flex';
         close_overlay = document.getElementById('close-overlay')
@@ -71,9 +72,6 @@ function view_more(e){
                     v_tab_cont.innerHTML = '<p style="color:grey">There are currently 0 reviews for this item</p>'
                 }
             });
-
-        
-
         }
         // alert('Showing the item')
     }
@@ -83,15 +81,13 @@ function view_more(e){
 
 }
 
-function add_to_cart_init(){
+function add_to_cart_init(){ // initialize the add to cart button currently present on the screen && view more buttons
     try{
-
         for(let i = 0; i < add_to_cart_buttons.length; i++){
             add_to_cart_buttons[i].addEventListener('click', add_to_cart)
             view_more_buttons[i].addEventListener('click', view_more)
         }
         cart_button.addEventListener('click', openCart)
-        // console.log("Objects initialized successfully")
     }catch(err){
         console.log(err)
     }
@@ -232,53 +228,71 @@ function make_request(method='GET', url, data){
 }
 
 async function get_session_token(){
-    let session_token = window.sessionStorage.getItem('session_token')
-    
-    if(session_token == null){
+    let session_token = window.sessionStorage.getItem('session_token');
+    if(!session_token){
         session_token = await request_token()
-        // session_token = await request_token()
-        console.log(session_token)
+       _token = session_token
+    }else{
+        _token = session_token
     }
-   
-    return session_token
+   return session_token 
 }
 
 async function get_cart_count(){
-    let path = '/get-cart?m=count&session_token='+_token;
-    await make_request('GET', path)
-    .then(res=>{
-        let keys = Object.keys(res)
-        try{
-            if('response' in keys){
-                sessionStorage.clear()
-                window.location.reload()
-            }else{
-                cart_badge.innerText = res[keys[0]]
-                cart_count = res[keys[0]]
+    let path
+    if(_token){
+        path = '/get-cart?m=count&session_token='+_token;
+        await make_request('GET', path)
+        .then(res=>{
+            let keys = Object.keys(res)
+            try{
+                if('response' in res){
+                    sessionStorage.clear()
+                    get_session_token()
+                    .then(res=>{
+                        get_cart_count() // recursion at its best...
+                    })
+                    // window.location.reload()
+                }else{
+                    cart_count = res[keys[0]]
+                    cart_badge.innerText = res[keys[0]]
+                    if(res[keys[0]]>0){
+                        console.log('I run')
+                        let f_badge = document.getElementById('cart-badge-f');
+                        f_badge.style.display= 'block';
+                        f_badge.innerText = res[keys[0]]
+                    }
+                    
+                }
+            }catch(err){
+                console.log(err)
             }
-            
-        }catch(err){
-            console.log(err)
-        }
-       
-    })
+        })
+    }else{ // clear the session storege and refresh to get a new token...
+        sessionStorage.clear()
+        window.location.reload()
+    }
 }
 
 async function get_cart_items(){
     let path = '/get-cart?m=items&session_token='+_token;
+
     await make_request('GET', path)
     .then(res=>{
         console.log(res)
         let keys = Object.keys(res)
-        if(res[keys[0]]==5)// there's a session token error
+        if('response' in res)// there's a session token error
         {
             window.sessionStorage.clear();
             window.location.reload();
         }
         else{
             if('cart-items' in res){
+                console.log(res)
                 for(let i=0; i<res[keys[0]].length;i++){
                     let p = res[keys[0]][i]['package']
+                    if('type' in res[keys[0]][i])p['type'] = res[keys[0]][i]['type']
+                    cart_items.push(p)
                     p['qty'] = res[keys[0]][i]['qty']
                     cart.add_to_cart(p)
                 }
@@ -287,7 +301,7 @@ async function get_cart_items(){
     });
 }
 
-async function update_cart_server(func='increase', _uid){
+async function update_cart_server(func='increase', _uid='none'){
     let path = '/update-cart?func='+func+'&session_token='+_token;
     return make_request('POST', path, {'_uid':_uid})
 }
@@ -297,7 +311,8 @@ async function send_quote_form(fd){
 
     await make_request('POST', p, fd)
     .then(res=>{
-        console.log(res)
+        // console.log(res)
+        // respond to the users and give them feedback on their request
     })
 }
 
@@ -324,10 +339,8 @@ async function get_quote(){
         xhttp.ontimeout = function(){
             alert('timedout')
         }
-        
         xhttp.send(null)
-
-    })
+    });
 }
 
 try{
@@ -365,7 +378,6 @@ function get_voltage(package){
         }
         else{
             let battery = search_item_in_package(package, 'battery')
-            console.log(battery)
             if(battery)return `${battery.json_obj.size.Voltage.value} ${battery.json_obj.size.Voltage.unit}`
             // else return `48V`
         }   
@@ -387,4 +399,28 @@ function search_item_in_package(package, item_name){
         }
     }
     return null;
+}
+
+function send_form_data(e=null){
+    let path = '/contact-us';
+    if(e)e.preventDefault();
+    let form_data = new FormData(e.currentTarget)
+    let entries = form_data.entries()
+    let res = entries.next()
+    let form_json = {}
+    while(!res.done){
+        form_json[res.value[0]] = res.value[1]
+        res = entries.next()
+    }
+    
+    make_request('POST', path, form_json)
+    .then(res=>{
+        // console.log(res)
+        window.alert('Thank you for your inquiry, we\'ll be in touch');
+        window.location.reload();
+    })
+    .catch(err=>{
+        window.alert('There was an error sending your message, please try again');
+        console.log(err)
+    })
 }

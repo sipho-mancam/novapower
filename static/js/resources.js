@@ -72,38 +72,38 @@ let appliance_list = [
     {
         'name':'Lights',
         'img': "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Noun_Project_lightbulb_icon_1263005_cc.svg/1200px-Noun_Project_lightbulb_icon_1263005_cc.svg.png",
-        'power':85,
+        'power':250,
         'rank':1000
     },
     {
         'name':'Laptop',
         'img': "https://cdn-icons-png.flaticon.com/512/4812/4812557.png",
-        'power':60,
+        'power':80,
         'rank':999
     },
     {
         'name':'Fridge',
         'img': "https://toppng.com/uploads/preview/file-svg-fridge-icon-sv-11563715839vbv5lvmhxn.png",
-        'power':500,
+        'power':600,
         'rank':998
     },
     {
         'name':'TV',
         'img': "https://cdn-icons-png.flaticon.com/512/3443/3443580.png",
         'power':120,
-        'rank':997
+        'rank':996
     },
     {
         'name':'Stove',
         'img': "https://icon-library.com/images/85-512.png",
         'power':3000,
-        'rank':996
+        'rank':976
     },
     {
         'name':'Kettle',
         'img': "https://cdn-icons-png.flaticon.com/512/125/125653.png",
         'power':3000,
-        'rank':995
+        'rank':993
     },
     {
         'name':'Microwave',
@@ -115,13 +115,49 @@ let appliance_list = [
         'name':'Router',
         'img': "https://cdn-icons-png.flaticon.com/512/2502/2502330.png",
         'power':20,
-        'rank':993
+        'rank':997
     },
     {
         'name':'Computer',
         'img': "https://cdn-icons-png.flaticon.com/512/3067/3067260.png",
         'power':120,
-        'rank':992
+        'rank':995
+    },
+    {
+        'name':'CCTV',
+        'img': "https://cdn-icons-png.flaticon.com/512/3773/3773845.png",
+        'power':150,
+        'rank':996
+    },
+    {
+        'name':'DSTV',
+        'img': "https://cdn-icons-png.flaticon.com/512/2366/2366040.png",
+        'power':15,
+        'rank':990
+    },
+    {
+        'name':'Charger',
+        'img': "https://cdn3.vectorstock.com/i/thumb-large/51/47/phone-charging-vector-28465147.jpg",
+        'power':20,
+        'rank':989
+    },
+    {
+        'name':'Pool Pump',
+        'img': "https://thumbs.dreamstime.com/b/pool-pump-icon-outline-pool-pump-vector-icon-web-design-isolated-white-background-pool-pump-icon-outline-style-142253818.jpg",
+        'power':1000,
+        'rank':991
+    },
+    {
+        'name':'Fan',
+        'img': "https://cdn-icons-png.flaticon.com/512/4551/4551810.png",
+        'power':900,
+        'rank':991
+    },
+    {
+        'name':'Toaster',
+        'img': "https://cdn-icons-png.flaticon.com/512/2933/2933792.png",
+        'power':1400,
+        'rank':991
     }
 ]
 
@@ -159,5 +195,7 @@ let base_url = '/' //window.location.pathname
 let cart_count = null;
 let current_v_tab = null;
 let v_tab_cont = null;
+let cart_items = []
+let price_summary = {}
 
 // console.log(base_url)

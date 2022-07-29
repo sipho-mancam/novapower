@@ -1,5 +1,4 @@
 from sre_constants import ANY
-
 from numpy import record
 from mongo_broker import *
 from item import Item
@@ -108,6 +107,12 @@ class DBManager:
             return delete_records(self.__db, self.__collection, record)
         else:
             return delete_records(db, collection, records)
+
+    def _replace_one(self,db=None, collection=None, find:dict={}, replacement:dict={}):
+        return update_record(db, collection, find, replacement)
+
+    def _replace_many(self,db=None, collection=None, find:dict={}, replacement:dict={}):
+        return update_records(db, collection, find, replacement)
 
 
     def parse_record(self, record:dict) -> Item:

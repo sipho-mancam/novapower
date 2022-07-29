@@ -1,19 +1,26 @@
+<<<<<<< HEAD
 # from crypt import methods
 from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session, url_for
 from flask_cors import CORS
+=======
+from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session
+>>>>>>> 7ceb7a4ab64a92441d8c85713219f261838e949e
 from flask_session import Session
+import Products
 from package_manager import *
 import CONSTANTS
 from packages import *
 from init import *
 import datetime
-from pdf_gen import generate_pdf
 from utility import update_cart
 from sizing_tool import INPUT_SHEET_NAME, OUTPUT_SHEET_NAME, read_sheet, write_sheet
 import pathlib
 from pricing import *
 from pymongo import MongoClient
-from parser import Parser
+import pdfkit
+import platform
+import subprocess
+
 
 app = Flask(__name__)
 
@@ -21,26 +28,36 @@ client = MongoClient("mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mo
 
 app.secret_key = hashlib.sha256(randbytes(256), usedforsecurity=True).hexdigest()
 app.config['UPLOAD_FOLDER'] = pathlib.Path('./Quotes/').absolute().as_posix()
-# app.config['MONGO_DBNAME'] = 'sessions'
-# app.config['MONGO_URI'] = 'mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mongodb.net/sessions?retryWrites=true&w=majority'
-# app.config['SESSION_PERMANENT'] = False
-app.config['SESSION_TYPE'] = 'mongodb'
-app.config['SESSION_MONGODB'] = client
-app.config['SESSION_MONGODB_DB'] = 'sessions'
-app.config['SESSION_MONGODB_COLLECTION'] = 'user-sessions'
+app.config['SESSION_TYPE'] = 'filesystem' #'mongodb'
 
 Session(app)
-
 db_manager, clnt = setup()
-# print(db_manager.read_all())
 data_path = './DatabaseIndividualPricingInputFormat v2.xlsx'
-solar_package_handler = setup_input(data_path, 'Sheet 1', keys=['solar', 'inverter', 'battery']);
+solar_package_handler = setup_input(data_path, 'Sheet 1',keys=['solar', 'inverter', 'battery']);
 inverter_package_handler = setup_input(data_path, 'Sheet 1', keys=['inverter', 'battery'])
 generator_package_handler = setup_input(data_path,'Sheet 1', keys=['generator'])
 
-admin_creds =  session_token = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), usedforsecurity=True).hexdigest()
+admin_creds  = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), usedforsecurity=True).hexdigest()
+session_token = admin_creds
 
+stage = Products.init_stage()
+# pprint.pprint(stage.get_summary())
 s = 0
+
+def _get_pdfkit_config():
+     """wkhtmltopdf lives and functions differently depending on Windows or Linux. We
+      need to support both since we develop on windows but deploy on Heroku.
+
+     Returns:
+         A pdfkit configuration
+     """
+     if platform.system() == 'Windows':
+         return pdfkit.configuration(wkhtmltopdf=os.environ.get('WKHTMLTOPDF_BINARY', 'C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'))
+     else:
+            
+         WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')], stdout=subprocess.PIPE).communicate()[0].strip()
+        #  print(WKHTMLTOPDF_CMD)
+         return pdfkit.configuration(wkhtmltopdf="/app/bin/wkhtmltopdf")
 
 def validate_session(token):
     if token in session:
@@ -48,17 +65,14 @@ def validate_session(token):
     return False
 
 inverter_package_handler.generate_package(1)
-
-
 # pprint.pprint(inverter_package_handler.get_summary())
-
 package_table = {
     'generator':generator_package_handler.get_summary(),
     'solar':solar_package_handler.get_summary(),
     'inverter':inverter_package_handler.get_summary()
 }
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
     return render_template('store.html')
 
@@ -74,9 +88,14 @@ def cart():
 def sizing():
     return render_template('sizing.html')
 
-@app.route('/favicon', methods=['GET'])
+@app.route('/favicon.ico', methods=['GET'])
 def favicon():
-    return "https://play-lh.googleusercontent.com/i_qY-W18INRV9PsVvnMtYUx4A8Skbu_gOEa8ncAnltRoU9c9nyMws_Pc_iQNtxNzZw"
+    return send_from_directory(app.config['UPLOAD_FOLDER'], 'favicon.ico') 
+
+@app.route('/products_list', methods=['GET'])
+def products_list():
+    return render_template('products_list.html')
+
 
 @app.route('/admin', methods=['GET'])
 def admin():
@@ -92,6 +111,24 @@ def admin_login():
         return render_template('a_login.html') 
 
 
+@app.route('/products_list/init', methods=['GET'])
+def products_init():
+    res = {}
+    res['categories'] =  stage.get_products_list()
+    res['filters'] = stage.get_default_filters()
+    res['data'] = stage.get_summary()
+    return res
+
+@app.route('/products_list/apply_filter', methods=['PUT', 'POST', 'GET'])
+def apply_filter():
+    if request.method == 'PUT' or request.method == 'POST':
+        j_data = request.get_json()
+        stage.add_filter(j_data)
+        res = stage.get_summary()
+        return res
+    else:
+        return stage.get_summary()
+
 @app.route('/admin-login-d', methods=['POST'])
 def admin_login_d():
     user_creds = request.form.to_dict()
@@ -103,8 +140,25 @@ def admin_login_d():
         session[session_token] ={}
         session.modified = True
         return redirect(f'admin?session_token={session_token}')
-    else: return {'response':'Incorrect Creds'} 
-    
+    else: return {'response':'Incorrect Credentialis , please try again'} 
+
+@app.route('/admin/delete', methods=['DELETE'])
+def delete_quote():   
+    session_token = request.args.get('session_token')
+    q = request.get_json()
+    d_type = request.args.get('type')
+
+    if session_token in session:
+        if d_type == 'quote':
+            res = db_manager._delete_record(db_manager.get_current_db(), 'user-quotes', {'_id':q['_id']})
+            return {'count':res.deleted_count}
+        elif d_type == 'message':
+            res = db_manager._delete_record(db_manager.get_current_db(), 'enquiries', q)
+            return {'count':res.deleted_count}
+
+    return {
+        'res':0x05
+    }
 
 @app.route('/admin/get_quotes', methods=['GET'])
 def admin_get_quotes():
@@ -122,7 +176,6 @@ def admin_get_quotes():
     else: return {
         'res':0x05
     }
-
 
 
 @app.route('/packages/all', methods=['GET', 'OPTIONS']) # require a sesson token to send data
@@ -170,7 +223,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":37.5},
-                    "Power":{"unit":"kW", "value":330}
+                    "Power":{"unit":"W", "value":330}
                 },
                 "type-group":"Polycrystalline",
                 "price":15525,
@@ -219,7 +272,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":37.5},
-                    "Power":{"unit":"kW", "value":330}
+                    "Power":{"unit":"W", "value":330}
                 },
                 "type-group":"Polycrystalline",
                 "price":20700,
@@ -268,7 +321,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":34.09},
-                    "Power":{"unit":"kW", "value":375}
+                    "Power":{"unit":"W", "value":375}
                 },
                 "type-group":"monocrystalline",
                 "price":29072,
@@ -317,7 +370,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":34.09},
-                    "Power":{"unit":"kW", "value":375}
+                    "Power":{"unit":"W", "value":375}
                 },
                 "type-group":"monocrystalline",
                 "price":36340,
@@ -365,7 +418,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":34.09},
-                    "Power":{"unit":"kW", "value":375}
+                    "Power":{"unit":"W", "value":375}
                 },
                 "type-group":"monocrystalline",
                 "price":36340,
@@ -413,7 +466,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":34.09},
-                    "Power":{"unit":"kW", "value":375}
+                    "Power":{"unit":"W", "value":375}
                 },
                 "type-group":"monocrystalline",
                 "price":43608,
@@ -461,7 +514,7 @@ def index_data():
                 "package-group":"Solar",
                 "size":{
                     "Voltage":{"unit":"V", "value":34.09},
-                    "Power":{"unit":"kW", "value":375}
+                    "Power":{"unit":"W", "value":375}
                 },
                 "type-group":"monocrystalline",
                 "price":50876,
@@ -472,20 +525,18 @@ def index_data():
             "total-price":171469.60
         }
     }
-
     for package in solar_packages:
         solar_packages[package]['_uid'] = hashlib.sha256(bytes(solar_packages[package].__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
         for item in solar_packages[package]:
             if type(solar_packages[package][item]) is dict:
-                solar_packages[package][item]['_uid'] =  hashlib.sha256(bytes(solar_packages[package][item].__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
+                solar_packages[package][item]['_uid'] =  hashlib.sha256(bytes(solar_packages[package][ item].__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
+
     package_table = {
         'solar':solar_packages,
         'inverter':inverter_package_handler.get_summary(),
         'generator':generator_package_handler.get_summary()
     }
-   
     return package_table
-
 
 
 @app.route('/session', methods=['GET'])
@@ -495,7 +546,7 @@ def generate_session():
     if session_token not in session:
         session[session_token] = {
             'id': session_token,
-            'start-time':datetime.datetime.now().strftime("%H:%M:%S"),
+            'start-time':datetime.datetime.now().strftime("%H:%M:%S - %d/%m/%Y"),
             'data': {
                 'cart':[],
                 'price':{},
@@ -592,6 +643,23 @@ def get_cart_items():
         return {'response':0x05}
 
 
+@app.route('/admin/update_quotes', methods=['POST'])
+def update_quotes():
+    session_token = request.args.get('session_token')
+    option = request.args.get('option')
+    payload = request.get_json();
+    db = db_manager.get_current_db()
+    collection = 'user-quotes'
+    if session_token in session:
+        if option == 'many':
+            pass
+        elif option =='one':
+            res = db_manager._replace_one(db, collection, {'_id':payload['uid'], 'name':payload['name'],
+                                                            }, payload)
+            return {'res':res.matched_count}
+    return {'response':0x05}
+            
+
 @app.route('/get-quote', methods=['GET', 'POST'])
 def get_quote():
     if request.method == 'POST':
@@ -599,21 +667,30 @@ def get_quote():
         user_info = request.get_json()
         if session_token in session:
             data = session[session_token]['data']
-            p = generate_pdf(user_info['name']+'.pdf', data['cart'], user_info)
-            data['quote'] = p.name
+            p = {}
+            data['pdf_data'] = user_info['pdf_data']
+            p['name'] = user_info["name"]+hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
+
+            data['quote'] = user_info["name"]+hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
+            try:
+                p = pdfkit.from_string(data['pdf_data'], f'./Quotes/{data["quote"]}.pdf', configuration=_get_pdfkit_config())
+                print('[*] PDF successfully generated: {}'.format(p))
+            except Exception as e:
+                print('There was an error')
+                print(e)
+
             session.modified = True
-            user_info['cart-list'] = data['cart']
-            
-            #update the db with new user info
+            user_info['date'] = datetime.datetime.now().strftime("%d/%m/%Y");
+            user_info['_id'] = hashlib.sha512(bytes(user_info.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
             db_manager._delete_record(_query=user_info)
             db_manager._insert_record(db_manager.get_current_db(), 'user-quotes', user_info)
 
-            return {'filename':p.name}
+            return {'filename':f'{data["quote"]}.pdf'}
     elif request.method == 'GET':
         session_token = request.args.get('session_token')
         if session_token in session:
-
-            return send_from_directory(app.config['UPLOAD_FOLDER'], session[session_token]['data']['quote']) 
+            # print(session[session_token]['data']['quote'])
+            return send_from_directory(app.config['UPLOAD_FOLDER'], session[session_token]['data']['quote']+'.pdf') 
         else:
             return {'response':0x05}
 
@@ -631,6 +708,7 @@ def price_summary():
         return res
     else:
         return {'response':0x05}
+
 
 @app.route('/add-option', methods=['POST', 'GET'])
 def add_option():
@@ -669,11 +747,36 @@ def sizeme():
     }
     return jsonify(resp)
 
+
+
 @app.route('/contact-us', methods=['POST'])
 def contact_us():
     data = request.get_json() 
-    return data
+    data['time'] = datetime.datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
+    data['_id'] = hashlib.sha512(bytes(data.__str__(), 'utf-8'), usedforsecurity=True).hexdigest()
 
+    pprint.pprint(data)
+    data['uid'] = data['_id']
+    db_manager._delete_record(db_manager.get_current_db(), 'enquiries',_query=data)
+    db_manager._insert_record(db_manager.get_current_db(), 'enquiries', data)
+    return {'message':'Thank you for your enquiry, we will contact you soon.'}
+
+@app.route('/admin/get_enquiries', methods=['GET'])
+def get_enquiries():
+    session_token = request.args.get('session_token')
+    if session_token in session:
+        res = db_manager._read_records(db_manager.get_current_db(), 'enquiries', {})
+        res_json = {}
+        counter = 0
+        for i in res:
+            i['_id'] = str(i['_id'])
+            res_json[counter] = i
+            counter += 1
+        return res_json
+    return {'response':0x05}
+
+
+   
 
 
 def create_ss_list(json:dict):
@@ -696,10 +799,13 @@ def create_ss_list(json:dict):
     ]
     return l
     
+<<<<<<< HEAD
       
+=======
+>>>>>>> 7ceb7a4ab64a92441d8c85713219f261838e949e
 if __name__ == '__main__':
-    app.run(host=CONSTANTS.HOST, debug=False)
-    # app.run(host=CONSTANTS.HOST, debug=True)
+    # app.run(host=CONSTANTS.HOST, debug=False)
+    app.run(host=CONSTANTS.HOST, debug=True)
 
 
 

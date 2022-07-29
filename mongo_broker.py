@@ -55,12 +55,12 @@ def update_record(_db:Database, _collection:str,_filter:dict, _u_document:dict):
     if len(_u_document) == 0:
         print("[x] Error! Add the document to update")
         return
-    return _db[_collection].update_one(_filter,_u_document, True)
+    return _db[_collection].replace_one(_filter,_u_document, True)
 
 def update_records(_db:Database, _collection:str,_filter:dict, _u_documents:list):
     if len(_u_documents) == 0:
         print("[x] Error! Add the documents to update")
-        return _db[_collection].update_many(_filter,_u_documents, True)
+        return _db[_collection].replace_many(_filter,_u_documents, True)
 
 def delete_record(_db:Database,_collection:str, _filter:dict):
     return _db[_collection].delete_one(_filter)

@@ -3,8 +3,7 @@ let form_sub = null
 window.addEventListener('load', function(e){
 
     let add_installation = this.document.getElementById('installation-control')
-    // let add_delivery = this.document.getElementById('delivery-control')
-
+    
     add_installation.addEventListener('change', function(e){
         let value = e.target.value
         let path = '/add-option?session_token='+_token+'&option=installation';
@@ -16,19 +15,9 @@ window.addEventListener('load', function(e){
                 console.log(err)
             })
         }
-    })
+    });
 
-    // add_delivery.addEventListener('change', function(e){
-    //     let value = e.target.value
-
-    //     let path = '/add-option?session_token='+_token+'&option=delivery';
-    //     if(value == 1){
-    //         make_request('GET',path)
-    //         .then(function(response){
-    //             update_totals(response)
-    //         })
-    //     }
-    // })
+   
 
     form_sub = document.getElementById('form')    
     get_session_token()
@@ -38,6 +27,7 @@ window.addEventListener('load', function(e){
        .then(function(){
             cart_table = this.document.getElementById('cart-table')
             cart_total = this.document.getElementById('cart-total')
+            console.log(cart)
             update_table(cart.cart_objects, cart_table)
 
             let cart_counts = this.document.getElementsByClassName('cart-count')
@@ -107,6 +97,7 @@ window.addEventListener('load', function(e){
             get_price_summary(_token)
             .then(res=>{
                 update_totals(res)
+                price_summary = res
             })
        })
     })
@@ -116,13 +107,35 @@ window.addEventListener('load', function(e){
 function update_totals(res, tot_buttons=document.getElementsByClassName('tot')){
     
     let keys = Object.keys(res)
-    tot_buttons[0].innerText = res[keys[0]]
-    tot_buttons[1].innerText = res[keys[2]]
-    tot_buttons[2].innerText = res[keys[1]]
+    tot_buttons[0].innerText = res[keys[0]].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
+    tot_buttons[1].innerText = res[keys[2]].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
+    tot_buttons[2].innerText = res[keys[1]].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
+}
+
+function view_quote(html_data){
+    const disp = document.getElementById('overlay');
+    const cl_q = document.getElementById('close-q-overlay');
+    const quote_view = document.getElementById('view-quote');
+
+    disp.style.display = 'block';
+
+    cl_q.addEventListener('click', function(){
+        disp.style.display = 'none'; 
+        // window.location.pathname = '/'; 
+    });
+    quote_view.innerHTML = html_data;
+    // print();
 }
 
 function submit_quote(e){
     let path = '/contact-us';
+
+    let resp_card = document.getElementById('resp-card')
+    e.currentTarget.style.display = 'none';
+    e.currentTarget.parentNode.style.display = 'none';
+ 
+    resp_card.style.display = 'flex';
+
     e.preventDefault()
     let form_data = new FormData(e.currentTarget)
     let entries = form_data.entries()
@@ -133,13 +146,43 @@ function submit_quote(e){
         form_json[res.value[0]] = res.value[1]
         res = entries.next()
     }
+
+    // console.log(form_json)
+
+
     form_json['sub-tot'] = cart.total_price
+
+    let quote_data = form_json;
+    quote_data['cart-list'] = cart_items
+    quote_data['price-summary'] = price_summary
+    form_json['pdf_data'] = generate_html_for_pdf(quote_data)
+
+    view_quote(form_json['pdf_data'])
+
     send_quote_form(form_json)
     .then(res=>{
         get_quote()
         .then(res=>{
+            
+            
+            // before showing the use the quote...
+            // clear cart...
+            update_cart_server('clear')
+            .then(
+                ()=>{
+                    window.location.pathname = '/'
+                    // window.location.reload()
+                    console.log('Done')
+                }
+            )
+            
+            // show them a success message
             let uri = window.URL.createObjectURL(res)
-            window.open(uri, '_blank')
+            saveFile(res, 'Quote.pdf')
+            // window.open(uri, '_blank')
+        }).catch(err=>{
+            console.log(err);
+            alert("Sorry we couldn't download your quote at this moment, but it has been recevied.")
         })
     })
 }
@@ -161,33 +204,43 @@ function closeOrderForm(e){
     order_form.style.display = 'none'
 }
 
-
 function get_row_view(cart_obj){
     console.log(cart_obj)
+//     <span class="size">5kVA - 48V - 5kWh</span><br />
+        // < span class="size" > ${ cart_obj["size"]["voltage"] + ' - ' + cart_obj["size"]["voltage"] }</span > <br />
+    let item = null;
+    if('obj' in cart_obj['item'])item = cart_obj['item']['obj'];
+    else item = cart_obj['item'];
+    let image = null;
+    if('image' in item)image = item['image']
+    else image = item['image_url']
+
+    console.log(item)
+
     return(
         `
-          <tr id=${cart_obj['item']['obj']['_uid']}>
+          <tr id=${item['_uid']}>
             <th scope="row">
             <div class="cart-item-details">
-                <img src="${cart_obj['item']['img_url']}" alt="c_image" width="100" height="100"/>
+                <img src="${image}" alt="c_image" width="100" height="100"/>
                 <div class="cart-item-text-details">
-                <span class="item-heading">${cart_obj['name']}</span><br />
-                <span class="size">5kVA - 48V - 5kWh</span><br />
-                <span class="cart-item-type">${cart_obj['name']}</span>
+                <span class="item-heading">${item['name']}</span><br />
+               
+                <span class="cart-item-type">${item['name']}</span>
                 </div>
             </div>
             </td>
             <td> 
-            <div class="spinner-border spinner-border-sm" style="display:none" role="status" id=${cart_obj['item']['obj']['_uid'] + 'spinner'} >
+            <div class="spinner-border spinner-border-sm" style="display:none" role="status" id=${item['_uid'] + 'spinner'} >
                 <span class="visually-hidden">Loading...</span>
             </div>
-            <div class="qty-container" id=${cart_obj['item']['obj']['_uid']+'qty'}>
+            <div class="qty-container" id=${item['_uid']+'qty'}>
                 <div class="qty-buttons">
                 <div class="qty-item">
                     <i class="bi bi-dash-lg q-b down"></i>
                 </div>
                 <div class="qty-item">
-                    <input type="text" disabled name="qty" class="q-input" value="${cart_obj['qty']}" />
+                    <input type="text" disabled name="qty" class="q-input" value="${item['qty']}" />
                 </div>
                 <div class="qty-item">
                     <i class="bi bi-plus-lg q-b up"></i>
@@ -196,19 +249,17 @@ function get_row_view(cart_obj){
             </div>
             </td>
             <td>
-                <span class="cart-item-unit-price">R ${cart_obj['price']}</span>
+                <span class="cart-item-unit-price">${item['price'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
             </td>
             <td>
-            <span class="cart-item-unit-price">R ${cart_obj['price']*cart_obj['qty']}</span>
+            <span class="cart-item-unit-price">${(item['price']*item['qty']).toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
             </td>
             <td>
                 <div class="remove-container">
                     <i class="bi bi-trash d-item" ></i>
                 </div>
             </td>
-        </tr>
-        `
-    )
+        </tr>`)
 }
 
 function update_table(cart,view){
@@ -225,3 +276,20 @@ async function get_price_summary(session_token){
 
 }
 
+
+function saveFile(blob, filename) {
+    if (window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = filename;
+      a.click();
+      setTimeout(() => {
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      }, 0)
+    }
+  }

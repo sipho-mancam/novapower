@@ -33,12 +33,12 @@
               <a class="nav-link" href="/store">Store</a>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="/sizing">Tools</a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" href="/">Contact us</a>
-            </li>
+            </li> -->
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input disabled class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -47,8 +47,28 @@
         </div>
       </nav>
       
+      <div class="view overlay-full" id="overlay">
+        <h1><i id="close-q-overlay" class="bi bi-x-lg"></i></h1>
+        <div class="container" id="view-quote">
+
+        </div>
+      </div>
 
       <div class="cart-main-container">
+        <!-- <div class="overlay resp-cards> -->
+            <div class="order-response  resp-cards" id="resp-card" style="color: black;">
+              <span class="r-text">
+                <i class="bi bi-check-circle"></i>
+              </span>
+              <span class="r-text">Thank you!</span>
+              <span class="r-text">Our sales team will contact you soon!</span>
+            
+              <!-- <div class="button" style="background-color: green; ">
+                        <a href="/">Ok</a>
+                      </div> -->
+            </div>
+        <!-- </div> -->
+        
 
         <div class="cart-main container content">
               
@@ -97,7 +117,7 @@
                     </div>
 
                     <div class="s-item install-option">
-                      <span class="i-topic">Installation</span>
+                      <span class="i-topic">Delivery & Installation</span>
                       <div class="text-lines">
                         <div class="t-line"><span class="name">Price</span><span class="value">R 0</span></div>
                         <div class="t-line">
@@ -130,7 +150,11 @@
                       Get Quote
                     </div>
               </div>
+
+              
             </div>
+
+            
 
           <div class="cart-checkout" id="order-form">
             <p>Please provide the details below to help us process your order.</p>
@@ -186,6 +210,8 @@
 <script type="text/javascript" src="{{ url_for('static',filename='/js/views_generator.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static',filename='/js/processor.js') }}"></script>
 <!-- <script type="text/javascript" src="{{ url_for('static',filename='/js/background-anim.js') }}"></script> -->
+<!-- "></script> --> 
+<script type="text/javascript" src="{{ url_for('static',filename='/js/quote.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static',filename='/js/cart.js') }}"></script>
 
 

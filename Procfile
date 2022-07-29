@@ -1,2 +1,2 @@
-web: gunicorn App:app
-ps:scale web=1
+web: gunicorn  --workers=4 --worker-class 'gthread' App:app
+ps:scale web=2

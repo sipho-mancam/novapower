@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
- 
+    <link rel="stylesheet" href="{{ url_for('static',filename='/css/general.css') }}" text="text/css" media="all" />
+
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/cards.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/tabs.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ url_for('static',filename='/css/main.css') }}" type="text/css" media="all" />
@@ -36,7 +37,6 @@
             <!-- <li class="nav-item">
               <a class="nav-link" href="/">Contact Us</a>
             </li> -->
-
             <li class="nav-item">
                 <button type="button" class="btn btn-primary mr-5" id="cart-button">
                     <i class="bi bi-cart4"></i> <span class="badge badge-light" id="cart-badge">0</span>
@@ -65,31 +65,33 @@
               <a class="nav-link" href="">Generator Packages</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/products_list" name="components">Products List</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#cont-us">Contact-Us</a>
             </li>
           </ul>
 
           <div class="tab-content container-fluid" style="width: 100%;" id="tab-cont">
-            <!-- <div class="spin-overlay" > -->
               <div class="spinner-border text-primary" id="loader" style="width: 150px; height: 150px; margin: auto;" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
-            <!-- </div> -->
           </div>
         </div>
       </div>
 
       <button type="button" class="btn btn-primary mr-5" id="cart-button-float">
-        <i class="bi bi-cart4"></i>
-        <span class="sr-only">cart-items</span>
+        <div><i class="bi bi-cart4"></i></div> 
+        <div class="c-badge-f"  id="cart-badge-f" style="display: none;">
+          0
+        </div>
       </button>
 
       <div class="view-details overlay" id="view-detail">
 
       </div>
 
-
-      <footer class="page-footer" id="cont-us">
+    <footer class="page-footer" id="cont-us">
         <div class="container">
           <div class="contact-us container-fluid" >
             <div class="container">
@@ -134,7 +136,7 @@
                   <h5 class="white-text">Menu</h5>
                   <ul class="footer-links">
                     <li><a class="grey-text" href="/">Home</a></li>
-                    <li><a class="grey-text" href="/sizing">Tools</a></li>
+                    <!-- <li><a class="grey-text" href="/sizing">Tools</a></li> -->
                     <li><a class="grey-text" href="/store">Store</a></li>
                     <li><a class="grey-text" href="/cart">Cart</a></li>
                   </ul>
@@ -173,6 +175,7 @@
         </div>
       </div>
     </footer>
+      
 
 </body>
 
@@ -186,12 +189,5 @@
 <script type="text/javascript" src="{{ url_for('static',filename='/js/views_generator.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static',filename='/js/processor.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static',filename='/js/store.js') }}"></script>
-
-<!-- <script type="text/javascript" src="./js/constants.js"></script>
-<script type="text/javascript" src="./js/db_query.js"></script>
-<script type="text/javascript" src="./js/objects.js"></script>
-<script type="text/javascript" src="./js/resources.js"></script>
-<script type="text/javascript" src="./js/views_generator.js"></script>
-<script type="text/javascript" src="./js/processor.js"></script> -->
 
 </html>

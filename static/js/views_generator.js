@@ -41,7 +41,6 @@ function get_item(package){
                
                 if(item.name.toLowerCase() =='generator'){
                     let i = item.json_obj
-                    console.log(i)
                     v+= `<li>Max power Output of ${i.size.Size.value}${i.size.Size.unit}</li>`;
                 } 
             }
@@ -52,13 +51,12 @@ function get_item(package){
     }
 }
 
-
 function get_card_html(package){
   if(package.name.toLowerCase() != 'generator'){
     return(
         `<div class="cust-card">
               <div class ="image">
-                  <img  src="${package.img_url}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
+                  <img  src="${package.img_url}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width="210" height="210"  alt="p-h" />
               </div>
               <div class="info">
                   
@@ -66,7 +64,7 @@ function get_card_html(package){
                     ${get_voltage(package)} system with:  <br />
                     ${get_item(package)}
                   </span>
-                  <p class='price'>R ${package.get_total_price()}*</p>
+                  <p class='price'>${package.get_total_price().toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}*</p>
               </div>
             <div class="controls">
                 <a class="add-to-cart h-buttons" id="${package.get_id()}" >Add to Cart</a> 
@@ -85,7 +83,7 @@ function get_card_html(package){
                   <span>
                     ${get_item(package)}
                   </span>
-                  <p class='price'>R ${package.get_total_price()}*</p>
+                  <p class='price'>${package.get_total_price().toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR' }) }*</p>
               </div>
             <div class="controls">
                 <a class="add-to-cart h-buttons" id="${package.get_id()}" >Add to Cart</a> 
@@ -210,10 +208,10 @@ function get_view_more(package, p_type){
                 </ul>
 
                 <div class="tab-content" style="width: 100%; display:block; margin-top:5px;" id="v-tab-cont">
-                   ${get_product_summary(package)}
+                   ${package['description']}
                 </div>
                 
-                <p class='price'>R ${package.get_total_price()}*</p>
+                <p class='price'>${package.get_total_price().toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR', minimumFractionDigits: 2 }) }*</p>
                 <div class="buttons">
                   <a class="close-buttons h-buttons b close" id="close-overlay">Close</a>
                 </div>
@@ -249,7 +247,6 @@ function get_pluggable_apps(package){
    
     if(variable){
         total_power = variable.json_obj.size.Size.value*1000;
-        console.log(variable)
         for(let i of appliance_list){
             total_power -= i['power'];
             if(total_power < 0)break;

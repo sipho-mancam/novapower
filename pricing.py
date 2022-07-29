@@ -157,9 +157,9 @@ def process_cart_pricing(cart_list:list, session_token:str, processed_list:list=
     pricing = PriceModel(session_token)
     for cart_object in cart_list:
         pack = cart_object['package']
-        r_pack = pack['obj']
+        r_pack = pack['obj'] if 'obj' in pack else pack
         r_pack['qty'] = cart_object['qty']
-        r_pack['price'] = r_pack['qty'] * r_pack['total-price']
+        r_pack['price'] = r_pack['qty'] * r_pack['price']
         pricing.add_item(r_pack)
         if processed_list is not None: processed_list.append(r_pack)
     return pricing

@@ -21,6 +21,7 @@ def setup_input(xl_path, sheet_name, keys=[]):
         d_table = parse_json(data, keys=keys)
     else: 
         d_table = parse_json(data)
+        # print(d_table)
     package_handler = PackageHandler(d_table)
 
     return package_handler
