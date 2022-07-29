@@ -12,6 +12,8 @@ window.addEventListener('load', function(e){
             make_request('GET',path)
             .then(function(response){
                 update_totals(response)
+            }).catch(err=>{
+                console.log(err)
             })
         }
     })
