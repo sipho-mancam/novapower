@@ -279,7 +279,7 @@ async function get_cart_items(){
 
     await make_request('GET', path)
     .then(res=>{
-        console.log(res)
+    
         let keys = Object.keys(res)
         if('response' in res)// there's a session token error
         {
@@ -288,7 +288,7 @@ async function get_cart_items(){
         }
         else{
             if('cart-items' in res){
-                console.log(res)
+                
                 for(let i=0; i<res[keys[0]].length;i++){
                     let p = res[keys[0]][i]['package']
                     if('type' in res[keys[0]][i])p['type'] = res[keys[0]][i]['type']

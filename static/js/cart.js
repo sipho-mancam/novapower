@@ -25,7 +25,7 @@ window.addEventListener('load', function(e){
        .then(function(){
             cart_table = this.document.getElementById('cart-table')
             cart_total = this.document.getElementById('cart-total')
-            console.log(cart)
+            // console.log(cart)
             update_table(cart.cart_objects, cart_table)
 
             let cart_counts = this.document.getElementsByClassName('cart-count')
@@ -203,13 +203,9 @@ function closeOrderForm(e){
 }
 
 function get_row_view(cart_obj){
-    console.log(cart_obj)
-//     <span class="size">5kVA - 48V - 5kWh</span><br />
-        // < span class="size" > ${ cart_obj["size"]["voltage"] + ' - ' + cart_obj["size"]["voltage"] }</span > <br />
     let item = null;
     if('obj' in cart_obj['item']){
         item = cart_obj['item']['obj'];
-        console.log(item)
     }
     else {
         item = cart_obj['item'];
@@ -218,7 +214,6 @@ function get_row_view(cart_obj){
     if('image' in item)image = item['image']
     else image = item['image_url']
 
-    console.log(item)
 
     return(
         `
