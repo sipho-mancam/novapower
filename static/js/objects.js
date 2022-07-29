@@ -38,7 +38,7 @@ class Package{
     constructor(obj){
         // console.log(obj)
         this.id = obj['_uid']
-        this.total_price = obj['total-price'];
+        this.total_price = obj['price'];
         this.obj = obj
         this.item_list = this.parse_items(); 
         this.state = true;
