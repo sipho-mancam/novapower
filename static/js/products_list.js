@@ -382,6 +382,7 @@ async function update_content(e){
         update_tab_counts()
         //initialise cards here...
         product_cards_init()
+        update_price_set_value()
    });
 }
 
@@ -447,22 +448,27 @@ function price_filter_view(price_filter){
                 <span class="range-display value">R 1 000,00</span>
             </div>
             <div class='range-item'>
-                <input type='range' min=1000 max=10000 value='5000' step=500  class='input price-input form-range' name="price" scope='*' group="filter" />
+                <input type='range' min=1000 max=100000 value='20000' step=500  class='input price-input form-range' id='max-price' name="price" scope='*' group="filter" />
             </div>
             <div class='range-item'>
                 <div class="white-block wb-r"></div>
-                <span class="range-display value">R 500 000,00</span>
+                <span class="range-display value">R 50 000,00</span>
             </div>
         </div>
        <div class='range-item'>
             <div class="range-update">
-                <span class="value">Set:&nbsp</span><span class="value" id="range-value" >R 50 000,00</span>
+                <span class="value">Set:&nbsp</span><span class="value" id="range-value" >R 20 000,00</span>
             </div> 
         </div>
         
         
     </div>`
     return res
+}
+function update_price_set_value(){
+    const val = document.getElementById('range-value');
+    const price_range = document.getElementById('max-price'); 
+    val.innerText = parseFloat(price_range.value).toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
 }
 
 function size_filter_view(size_filter){

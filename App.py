@@ -575,7 +575,6 @@ def get_featured_products():
             'response':'Invalid session token'
         }
 
-
 def validate_cart_object(schema:dict, data:dict):
     return True
 
