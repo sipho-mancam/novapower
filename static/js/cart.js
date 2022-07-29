@@ -167,7 +167,7 @@ function submit_quote(e){
             .then(
                 ()=>{
                     // window.location.pathname = '/'
-                    window.location.reload()
+                    // window.location.reload()
                     console.log('Done')
                 }
             )
