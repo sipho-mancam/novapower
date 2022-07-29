@@ -118,11 +118,11 @@ function view_quote(html_data){
     disp.style.display = 'block';
 
     cl_q.addEventListener('click', function(){
-        disp.style.display = 'none'; 
-        // window.location.pathname = '/'; 
+        disp.style.display = 'none';
+        window.location.reload(); 
     });
     quote_view.innerHTML = html_data;
-    // print();
+    
 }
 
 function submit_quote(e){
@@ -161,15 +161,13 @@ function submit_quote(e){
     .then(res=>{
         get_quote()
         .then(res=>{
-            
-            
             // before showing the use the quote...
             // clear cart...
             update_cart_server('clear')
             .then(
                 ()=>{
-                    window.location.pathname = '/'
-                    // window.location.reload()
+                    // window.location.pathname = '/'
+                    window.location.reload()
                     console.log('Done')
                 }
             )
@@ -179,9 +177,18 @@ function submit_quote(e){
             saveFile(res, 'Quote.pdf')
             // window.open(uri, '_blank')
         }).catch(err=>{
-            console.log(err);
+            update_cart_server('clear')
+            .then(
+                ()=>{
+                    // window.location.pathname = '/'
+                    print()
+                    console.log('Done Clearing cart');
+                    
+            });
             alert("Sorry we couldn't download your quote at this moment, but it has been recevied.")
         })
+    }).catch(err=>{
+        console.log(err); 
     })
 }
 

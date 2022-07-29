@@ -324,7 +324,8 @@ async function get_quote(){
         xhttp.withCredentials=true
         xhttp.responseType='blob'
         // xhttp.overrideMimeType('text\/plain; charset=x-user-defined');
-        xhttp.onerror = (e)=>{
+        xhttp.onerror = function(){
+            console.log(e)
             reject(xhttp.response)
         }
 
@@ -332,6 +333,8 @@ async function get_quote(){
 
             if(xhttp.readyState == 4 && xhttp.status == 200){ 
                 resolve(xhttp.response)
+            }else if(xhttp.status == 404){
+                reject(xhttp.response)
             }
         
         }
