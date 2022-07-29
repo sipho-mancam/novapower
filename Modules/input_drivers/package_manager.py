@@ -70,12 +70,9 @@ class Package:
         return (s - self.__items_list[0]['price'])
     
     def get_summary(self):
-        counter = 0
         d = dict()
-        for i in self.__items_list:
-            d['item '+str(counter)] = i
-            counter += 1
-        d['total-price'] = self.__total_price
+        d['items'] = self.__items_list
+        d['price'] = self.__total_price
         d['_uid'] = self.__uid
         d['max-power'] = self.__max_power
         d['solar-qty'] = self.__solar_qty

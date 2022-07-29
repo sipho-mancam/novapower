@@ -207,8 +207,14 @@ function get_row_view(cart_obj){
 //     <span class="size">5kVA - 48V - 5kWh</span><br />
         // < span class="size" > ${ cart_obj["size"]["voltage"] + ' - ' + cart_obj["size"]["voltage"] }</span > <br />
     let item = null;
-    if('obj' in cart_obj['item'])item = cart_obj['item']['obj'];
-    else item = cart_obj['item'];
+    let price = 0
+    if('obj' in cart_obj['item']){
+        item = cart_obj['item']['obj'];
+        price = item['total-price'];
+    }else{
+        item = cart_obj['item'];
+        price = item['price'];
+    } 
     let image = null;
     if('image' in item)image = item['image']
     else image = item['image_url']
@@ -247,10 +253,10 @@ function get_row_view(cart_obj){
             </div>
             </td>
             <td>
-                <span class="cart-item-unit-price">${item['price'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
+                <span class="cart-item-unit-price">${price.toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
             </td>
             <td>
-            <span class="cart-item-unit-price">${(item['price']*item['qty']).toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
+            <span class="cart-item-unit-price">${(price*item['qty']).toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
             </td>
             <td>
                 <div class="remove-container">

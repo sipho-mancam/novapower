@@ -38,7 +38,6 @@ function add_to_cart(e){
 }
 
 function view_more(e){
-
     e.preventDefault() 
     let _search_key = e.target.getAttribute('id')
     _search_key = _search_key.split('+')[0]
@@ -127,25 +126,15 @@ function openTab(event){
     current_tab.className = current_tab.className.replace(' active-tab', ' ')
     event.currentTarget.className += ' active-tab'
     current_tab = event.currentTarget;
+    console.log(current_tab)
+    let package_g_name = current_tab.getAttribute('name');
 
     event.preventDefault();
 
-    // do some logic to append data to the tab
-    let id = groups_maps[event.currentTarget.innerText]
-
-    let package_group = search_package_group(package_groups, id);
-    
-    if(package_group){
-        get_package_group_views(package_group, tab_content)
-        add_to_cart_buttons = document.getElementsByClassName('add-to-cart')
-        add_to_cart_init()
-    }
-    else{
-        current_list = null;
-        tab_content.innerHTML = `<p class="err">
-                                    No packages in this group ... Contact RBC for enquiries
-                                </p>`
-    }
+   
+    get_package_group_views(data_structure[package_g_name], tab_content, package_g_name)
+    add_to_cart_buttons = document.getElementsByClassName('add-to-cart')
+    add_to_cart_init();
 }
 
 function openCart(event){

@@ -179,7 +179,7 @@ def index_data():
     generator_package_handler.generate_package()
     solar_packages = {
         "package 0":{
-            "item 0": {
+            'items':[{
                 "brand":"RCT -AXPERT",
                 "name":"Inverter",
                 "package-flag":False,
@@ -195,7 +195,7 @@ def index_data():
                 "price":10471.90,
                 "qty":1
             },
-            "item 1": {
+             {
                 "brand":"Dyness",
                 "name":"Battery",
                 "package-flag":False,
@@ -208,7 +208,7 @@ def index_data():
                 "price":13549.30,
                 "qty":1
             },
-            "item 2": {
+            {
                 "brand":"CNBM",
                 "name":"Solar",
                 "package-flag":False,
@@ -220,14 +220,14 @@ def index_data():
                 "type-group":"Polycrystalline",
                 "price":15525,
                 "qty":6
-            },
+            }],
             "max-power":3,
             "solar-qty":6,
-            "total-price":39546.20
+            "price":39546.20
         },
 
         "package 1":{
-            "item 0": {
+            'items':[{
                 "brand":"RCT -AXPERT",
                 "name":"Inverter",
                 "package-flag":False,
@@ -243,7 +243,7 @@ def index_data():
                 "price":10471.90,
                 "qty":1
             },
-            "item 1": {
+            {
                 "brand":"Fusion",
                 "name":"Battery",
                 "package-flag":False,
@@ -257,7 +257,7 @@ def index_data():
                 "qty":1
 
             },
-            "item 2": {
+            {
                 "brand":"CNBM",
                 "name":"Solar",
                 "package-flag":False,
@@ -269,14 +269,14 @@ def index_data():
                 "type-group":"Polycrystalline",
                 "price":20700,
                 "qty":8
-            },
+            }],
             "max-power":3,
             "solar-qty":8,
-            "total-price":57616.15
+            "price":57616.15
         },
 
         "package 2":{
-            "item 0": {
+            'items':[{
                 "brand":"RCT -AXPERT",
                 "name":"Inverter",
                 "package-flag":False,
@@ -292,7 +292,7 @@ def index_data():
                 "price":15234.05,
                 "qty":1
             },
-            "item 1": {
+            {
                 "brand":"Fusion",
                 "name":"Battery",
                 "package-flag":False,
@@ -306,7 +306,7 @@ def index_data():
                 "qty":1
 
             },
-            "item 2": {
+            {
                 "brand":"Canadian Solar",
                 "name":"Solar",
                 "package-flag":False,
@@ -318,14 +318,14 @@ def index_data():
                 "type-group":"monocrystalline",
                 "price":29072,
                 "qty":8
-            },
+            }],
             "max-power":5,
             "solar-qty":8,
-            "total-price":70750.30
+            "price":70750.30
         },
 
         "package 3":{
-            "item 0": {
+            'items':[ {
                 "brand":"RCT -AXPERT",
                 "name":"Inverter",
                 "package-flag":False,
@@ -341,7 +341,7 @@ def index_data():
                 "price":15234.05,
                 "qty":1
             },
-            "item 1": {
+            {
                 "brand":"Fusion",
                 "name":"Battery",
                 "package-flag":False,
@@ -355,7 +355,7 @@ def index_data():
                 "qty":2
 
             },
-            "item 2": {
+            {
                 "brand":"Canadian Solar",
                 "name":"Solar",
                 "package-flag":False,
@@ -367,13 +367,13 @@ def index_data():
                 "type-group":"monocrystalline",
                 "price":36340,
                 "qty":10
-            },
+            }],
             "max-power":5,
             "solar-qty":10,
-            "total-price":104462.55
+            "price":104462.55
         },
         "package 4":{
-            "item 0": {
+            'items':[{
                 "brand":"RCT -AXPERT",
                 "name":"Inverter",
                 "package-flag":False,
@@ -389,7 +389,7 @@ def index_data():
                 "price":41260.85,
                 "qty":1
             },
-            "item 1": {
+            {
                 "brand":"Fusion",
                 "name":"Battery",
                 "package-flag":False,
@@ -403,7 +403,7 @@ def index_data():
                 "qty":2
 
             },
-            "item 2": {
+            {
                 "brand":"Canadian Solar",
                 "name":"Solar",
                 "package-flag":False,
@@ -415,13 +415,13 @@ def index_data():
                 "type-group":"monocrystalline",
                 "price":36340,
                 "qty":10
-            },
+            }],
             "max-power":8,
             "solar-qty":10,
-            "total-price":130489.35
+            "price":130489.35
         },
         "package 5":{
-            "item 0": {
+            'items':[{
                 "brand":"RCT -AXPERT",
                 "name":"Inverter",
                 "package-flag":False,
@@ -437,7 +437,7 @@ def index_data():
                 "price":41260.85,
                 "qty":1
             },
-            "item 1": {
+             {
                 "brand":"Fusion",
                 "name":"Battery",
                 "package-flag":False,
@@ -451,7 +451,7 @@ def index_data():
                 "qty":2
 
             },
-            "item 2": {
+             {
                 "brand":"Canadian Solar",
                 "name":"Solar",
                 "package-flag":False,
@@ -463,13 +463,13 @@ def index_data():
                 "type-group":"monocrystalline",
                 "price":43608,
                 "qty":12
-            },
+            }],
             "max-power":8,
             "solar-qty":12,
-            "total-price":137757.35
+            "price":137757.35
         },
         "package 6":{
-            "item 0": {
+            'items':[{
                 "brand":"RCT -AXPERT",
                 "name":"Inverter",
                 "package-flag":False,
@@ -485,7 +485,7 @@ def index_data():
                 "price":41260.85,
                 "qty":1
             },
-            "item 1": {
+            {
                 "brand":"Fusion",
                 "name":"Battery",
                 "package-flag":False,
@@ -499,7 +499,7 @@ def index_data():
                 "qty":3
 
             },
-            "item 2": {
+             {
                 "brand":"Canadian Solar",
                 "name":"Solar",
                 "package-flag":False,
@@ -511,10 +511,10 @@ def index_data():
                 "type-group":"monocrystalline",
                 "price":50876,
                 "qty":14
-            },
+            }],
             "max-power":8,
             "solar-qty":14,
-            "total-price":171469.60
+            "price":171469.60
         }
     }
     for package in solar_packages:

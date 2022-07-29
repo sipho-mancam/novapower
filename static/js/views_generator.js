@@ -1,8 +1,9 @@
-function get_package_group_views(package_group, view, append=false){
+function get_package_group_views(package_group, view, name, append=false){
+    console.log(package_group)
     try{
         if(!append)view.innerHTML = ''
-        for(let i=0; i<package_group.get_package_list().length; i++){
-            view.innerHTML += get_card_html(package_group.get_package_list()[i]);
+        for(let i in package_group){
+            view.innerHTML += get_card_html(package_group[i]);
         }
     }catch(err){
         console.log(err)
@@ -51,24 +52,24 @@ function get_item(package){
     }
 }
 
-function get_card_html(package){
-  if(package.name.toLowerCase() != 'generator'){
+function get_card_html(package, name='Solar'){
+  if(name.toLowerCase() != 'generator'){
     return(
         `<div class="cust-card">
               <div class ="image">
-                  <img  src="${package.img_url}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width="210" height="210"  alt="p-h" />
+                  <img  src="${'package.img_url'}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width="210" height="210"  alt="p-h" />
               </div>
               <div class="info">
                   
                   <span>
-                    ${get_voltage(package)} system with:  <br />
-                    ${get_item(package)}
+                    ${"get_voltage(package)"} system with:  <br />
+                    <!-- ${'get_item(package)'} -->
                   </span>
-                  <p class='price'>${package.get_total_price().toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}*</p>
+                  <p class='price'>${package['price'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}*</p>
               </div>
             <div class="controls">
-                <a class="add-to-cart h-buttons" id="${package.get_id()}" >Add to Cart</a> 
-                <a class="view-more-buttons h-buttons" id="${package.get_id()}+1">View Details</a>
+                <a class="add-to-cart h-buttons" id="${package['_uid']}" >Add to Cart</a> 
+                <a class="view-more-buttons h-buttons" id="${package['_uid']}+1">View Details</a>
             </div>
           </div>`
     )
@@ -183,7 +184,6 @@ function hide_text(package){
         return ' '
     }
 }
-
 
 function get_view_more(package, p_type){
     return(
