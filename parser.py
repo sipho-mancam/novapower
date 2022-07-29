@@ -48,7 +48,7 @@ class Parser:
         # 4) parse the rest of the items in the extras first ... 
         # 5) parse the rest of the items 
         # 6) append element to the list ...
-        
+
         self.__data_frame = df
         try:
             length = len(self.__data_frame.index)

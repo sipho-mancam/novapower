@@ -207,8 +207,13 @@ function get_row_view(cart_obj){
 //     <span class="size">5kVA - 48V - 5kWh</span><br />
         // < span class="size" > ${ cart_obj["size"]["voltage"] + ' - ' + cart_obj["size"]["voltage"] }</span > <br />
     let item = null;
-    if('obj' in cart_obj['item'])item = cart_obj['item']['obj'];
-    else item = cart_obj['item'];
+    if('obj' in cart_obj['item']){
+        item = cart_obj['item']['obj'];
+        console.log(item)
+    }
+    else {
+        item = cart_obj['item'];
+    }
     let image = null;
     if('image' in item)image = item['image']
     else image = item['image_url']

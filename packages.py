@@ -71,7 +71,7 @@ class Package:
         for i in self.__items_list:
             d['item '+str(counter)] = i.to_dict()
             counter += 1
-        d['total-price'] = self.__total_price
+        d['price'] = self.__total_price
         d['_uid'] = self.__uid
         d['max-power'] = self.__max_power
         d['solar-qty'] = self.__solar_qty
