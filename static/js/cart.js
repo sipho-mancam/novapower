@@ -170,11 +170,9 @@ function submit_quote(e){
             update_cart_server('clear')
             .then(
                 ()=>{
-                    window.location.pathname = '/'
-                    // window.location.reload()
+                    window.location.pathname = '/';
                     console.log('Done')
-                }
-            )
+                })
             
             // show them a success message
             let uri = window.URL.createObjectURL(res)
