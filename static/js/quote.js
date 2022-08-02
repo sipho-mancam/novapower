@@ -79,7 +79,6 @@ function format_package(package, index=1){
                     </div>
                 </div>
             </div>
-        
 
             
         
@@ -202,21 +201,6 @@ function get_quote_description(cart_list){
             console.log(p)
             res += `<h6 style="text-align:start;font-weight:bold;">Package ${cart_list.indexOf(p)}</h6>`
             res += p['package']['description'];
-            res += `<br />`
-        }
-    }
-    return res
-}
-
-function get_quote_description(cart_list){
-    let res = ''
-    for(let p of cart_list){
-        if('type' in p){
-            res += `<img src="${p['description']}" /><br />`   
-        }
-        else{
-            res += `<h6 style="text-align:start;font-weight:bold;">Package ${cart_list.indexOf(p)+1}</h6>`
-            res += p['description'];
             res += `<br />`
         }
     }
