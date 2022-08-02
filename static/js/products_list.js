@@ -31,7 +31,7 @@ window.addEventListener('load', function(e){
         if(state == 'false'){ // expand the filter
             const width_anim = [
                 {width:'0%'},
-                {width:'100%'}
+                {width:'100%'} 
             ]
             const anim_options = {
                 duration:200,
@@ -76,12 +76,12 @@ window.addEventListener('load', function(e){
     });
     get_session_token()
     .then(res=>{
-        console.log(res)
+        // console.log(res)
 
         let path = '/products_list/init'
         make_request('GET', path)
         .then(res=>{
-            // console.log(res)
+            console.log(res)
             sort_data(res)
             all_products_list = res['data']['data'];
             data_o = res; 
@@ -112,12 +112,13 @@ function sort_data(data){
     sorted_data = {}
 
     for(let i of data['categories']){
-        sorted_data[i] = []
+        if(i.toLowerCase() != 'generator')sorted_data[i] = []
     }
 
     let products = data['data']['data']
     for(let p in products){
-        sorted_data[products[p]['name'].toLowerCase()].push(products[p])
+        // console.log(products[p])
+        if(products[p]['name'].toLowerCase() != 'generator')sorted_data[products[p]['name'].toLowerCase()].push(products[p])
     }
 }
 
@@ -125,7 +126,7 @@ function get_products_tabs(categories){
     let res =""
 
     for(let i of categories){
-       res +=`<div class="col tab " name="${i}">
+       if(i.toLowerCase() != 'generator')res +=`<div class="col tab " name="${i}">
                         ${i}<span class="count" name="${i}" >(0)</span>
             </div>
             `
@@ -251,6 +252,7 @@ function get_filters(){
         }
    }
    filter_object['filter'] = f_output
+
    return filter_object
 }
 
@@ -324,6 +326,19 @@ function update_filters_view(categories_list){
     
 }
 
+function set_current_tab(name){
+    const tabs = document.getElementsByClassName('tab');
+    current_selected_tab.className = current_selected_tab.className.replace('selected', ' ')
+    for(let tab of tabs){
+        if(tab.getAttribute('name').toLowerCase() == name.toLowerCase()){
+            current_selected_tab = tab;
+            break;
+        }
+    }
+
+    current_selected_tab.className += " selected";
+}
+
 async function update_content(e){
     /* 
     1) Get the filter model.
@@ -331,6 +346,12 @@ async function update_content(e){
     3) Recieve data and split it into Viewport/Data groups
     3) Call the draw method to update the screen ...
     */
+   if(e.target.getAttribute('group') == 'filter'){
+        set_current_tab(e.target.getAttribute('scope'))
+   }else if(e.target.getAttribute('group')=='scope'){
+        set_current_tab(e.target.getAttribute('value'))
+   }
+
    if(e.target.checked && e.target.getAttribute('group')=='scope'){
         let value  = e.target.getAttribute('value')
         if(value != '*'){
@@ -361,6 +382,7 @@ async function update_content(e){
         update_tab_counts()
         //initialise cards here...
         product_cards_init()
+        update_price_set_value()
    });
 }
 
@@ -384,7 +406,7 @@ function get_filter_groups(filter_group){
     let res = ``
     for(let k of keys){
         res += `<div class="filter-group">`
-        res += `<span >${k}(s)</span>`
+        res += `<span >${k}</span>`
         res += get_filter_view(filter_group[k], k)
         res += `</div> <br/>`
         // break; // temporary for testing ...
@@ -400,7 +422,7 @@ function brand_filter_view(brand_filter){
     let res = ' '
     let keys = Object.keys(brand_filter)
     for(let k of keys){
-        res+=
+        if(k != 'type')res+=
         `<div class="s s-1" id="${k}+1" >
             <a class="s f-item" data-bs-toggle="collapse" name=${k} href="#${k}" style="display:block;" id="${k}" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <span class="icon"><i class="bi bi-caret-right-fill"></span></i>&nbsp ${k}&nbsp 
@@ -426,7 +448,7 @@ function price_filter_view(price_filter){
                 <span class="range-display value">R 1 000,00</span>
             </div>
             <div class='range-item'>
-                <input type='range' min=1000 max=50000 value='5000' step=500  class='input price-input form-range' name="price" scope='*' group="filter" />
+                <input type='range' min=1000 max=100000 value='20000' step=500  class='input price-input form-range' id='max-price' name="price" scope='*' group="filter" />
             </div>
             <div class='range-item'>
                 <div class="white-block wb-r"></div>
@@ -435,13 +457,18 @@ function price_filter_view(price_filter){
         </div>
        <div class='range-item'>
             <div class="range-update">
-                <span class="value">Set:&nbsp</span><span class="value" id="range-value" >all</span>
+                <span class="value">Set:&nbsp</span><span class="value" id="range-value" >R 20 000,00</span>
             </div> 
         </div>
         
         
     </div>`
     return res
+}
+function update_price_set_value(){
+    const val = document.getElementById('range-value');
+    const price_range = document.getElementById('max-price'); 
+    val.innerText = parseFloat(price_range.value).toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
 }
 
 function size_filter_view(size_filter){
@@ -456,6 +483,7 @@ function get_filter_sec_list(filter_array, key='brand', scope='*'){
     let res =  ''
     if(typeof(filter_array) != 'string'){
         for(let i of filter_array[key]){
+           
             res += `
             <li>
                 <input type="checkbox" value="${i}" class="input" name="${key}" scope=${scope} group="filter" /> &nbsp ${i}
@@ -596,12 +624,7 @@ function get_products_view_more(item_data){
                     <li class="nav-item active-tab v-tab">
                         <a class="nav-link"  aria-current="page" href="#">Summary</a>
                     </li>
-                    <li class="nav-item v-tab">
-                        <a class="nav-link" href="#" >Technical Details</a>
-                    </li>
-                    <li class="nav-item v-tab">
-                        <a class="nav-link" href="#" >Reviews</a>
-                    </li>
+                    
                 </ul>
 
                 <div class="tab-content" style="width: 100%; display:block; margin-top:5px;" id="v-tab-cont">
@@ -620,12 +643,16 @@ function product_view_more(e){
     e.preventDefault() 
 
     overlay.innerHTML = get_products_view_more(sorted_data[current_selected_tab.getAttribute('name')][e.target.getAttribute('index')])
+    let item = sorted_data[current_selected_tab.getAttribute('name')][e.target.getAttribute('index')]
+
     overlay.style.display='flex';
     close_overlay = document.getElementById('close-overlay')
     close_overlay.addEventListener('click', close)
     
     let v_tab_buttons = document.getElementsByClassName('v-tab')
     v_tab_cont = document.getElementById('v-tab-cont');
+    v_tab_cont.innerHTML = `<img src=${item['description']} />`;
+
     current_v_tab = v_tab_buttons[0];
     for(let i of v_tab_buttons){
         i.addEventListener('click', function(){
@@ -635,10 +662,10 @@ function product_view_more(e){
             this.className += ' active-tab '
 
             if (this.innerText.toLowerCase() == 'summary'){
-                v_tab_cont.innerHTML = get_product_summary(package)
+                v_tab_cont.innerHTML = `<img src=${item['description']} />`;
             }
             else if(this.innerText.toLowerCase() == 'technical details'){
-                v_tab_cont.innerHTML = get_item_full(package)
+                // v_tab_cont.innerHTML = get_item_full(package)
             }
             else if(this.innerText.toLowerCase() == 'reviews'){
                 v_tab_cont.innerHTML = '<p style="color:grey">There are currently 0 reviews for this item</p>'
@@ -647,7 +674,8 @@ function product_view_more(e){
     }
 }
 
-function get_view_more(package, p_type){
+function get_view_more(package){
+    console.log(package)
     return(
         `
         <div class="view-details-card container">
@@ -661,9 +689,7 @@ function get_view_more(package, p_type){
                     <li class="nav-item active-tab v-tab">
                         <a class="nav-link"  aria-current="page" href="#">Summary</a>
                     </li>
-                    <li class="nav-item v-tab">
-                        <a class="nav-link" href="#" >Technical Details</a>
-                    </li>
+                  
                     <li class="nav-item v-tab">
                         <a class="nav-link" href="#" >Reviews</a>
                     </li>
@@ -682,5 +708,5 @@ function get_view_more(package, p_type){
 }
 
 register_filter_view_cb('brand', brand_filter_view);
-register_filter_view_cb('price', price_filter_view);
-register_filter_view_cb('size', size_filter_view);
+register_filter_view_cb('max-price', price_filter_view);
+// register_filter_view_cb('size', size_filter_view);
