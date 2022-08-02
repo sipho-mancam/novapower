@@ -175,7 +175,8 @@ let tabs = document.getElementsByClassName('tab')
 let current_tab = tabs[0]
 let tab_content = document.getElementById('tab-cont')
 let package_groups = get_package_groups(packages_data);
-let current_list = package_groups[1].get_package_list()
+let current_list = null;
+let data_structure = null;
 let cart_badge = document.getElementById('cart-badge')
 let cart_button = document.getElementById('cart-button')
 let qty_buttons = document.getElementsByClassName('q-b')
@@ -197,5 +198,6 @@ let current_v_tab = null;
 let v_tab_cont = null;
 let cart_items = []
 let price_summary = {}
+
 
 // console.log(base_url)

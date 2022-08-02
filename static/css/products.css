@@ -206,10 +206,18 @@ ul{
 }
 
 .overlay{
+<<<<<<< HEAD
     min-height: 100vh;
     height: fit-content;
     z-index: 100000;
     padding:20px;
+=======
+    /* height: 100vh; */
+    min-height: 100vh;
+    height: fit-content;
+    z-index: 100000;
+    padding:40px;
+>>>>>>> refactoring
 }
 
 .view-details-card{

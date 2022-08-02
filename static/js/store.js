@@ -1,7 +1,6 @@
 window.addEventListener('load', function(e){
     const loader = this.document.getElementById('loader')
     let contact_us_form = document.getElementById('contact-us-form')
-
     contact_us_form.addEventListener('submit', send_form_data)
     
     get_session_token()
@@ -13,12 +12,14 @@ window.addEventListener('load', function(e){
         .then(res=>{
             // console.log(res)
             loader.style.display = 'none'; // hide spinner...
-            // console.log(res)
-            parse_json(res)
-            package_groups = get_package_groups(packages_data)
-            current_list = package_groups
-            get_package_group_views(search_package_group(package_groups,groups_maps['Solar Packages']), tab_content)
-            init_tabs()
+            console.log(res)
+            add_names_to_packages(res)
+            data_structure = res
+            current_selected_tab = res['solar'];
+
+            current_list = current_selected_tab
+            get_package_group_views(current_selected_tab, tab_content,'solar')
+            init_tabs() // this initialises tabs ... and their clickability.
             add_to_cart_init();
             get_cart_count();
         })
@@ -26,4 +27,17 @@ window.addEventListener('load', function(e){
             console.log(err)
         })
     })
+<<<<<<< HEAD
 })
+=======
+})
+
+function add_names_to_packages(p_groups){
+    for(let key in p_groups){
+       for(let p in p_groups[key]){
+            p_groups[key][p]['name'] = key;
+            p_groups[key][p]['description'] = get_product_summary(p_groups[key][p])
+       } 
+    }
+}
+>>>>>>> refactoring
