@@ -293,8 +293,12 @@ async function get_quote(){
         xhttp.onreadystatechange = function(){
 
             if(xhttp.readyState == 4 && xhttp.status == 200){ 
-                resolve(xhttp.response)
+                resolve(xhttp.response);
+            }else if(xhttp.status == 404){
+                reject(xhttp.response)
             }
+            
+            
         
         }
 

@@ -32,6 +32,7 @@ window.addEventListener('load', function(e){
 
             if('cart-items' in res){ // we got some stuff from the server...
                 update_table(res['cart-items'], cart_table)
+                cart_items = res['cart-items']
             }
 
             
@@ -133,7 +134,7 @@ function view_quote(html_data){
 
     cl_q.addEventListener('click', function(){
         disp.style.display = 'none'; 
-        // window.location.pathname = '/'; 
+        window.location.pathname = '/'; 
     });
     quote_view.innerHTML = html_data;
     // print();
@@ -180,21 +181,21 @@ function submit_quote(e){
             // before showing the use the quote...
             // clear cart...
             update_cart_server('clear')
-            .then(
-                ()=>{
+            .then(()=>{
                     window.location.pathname = '/'
                     // window.location.reload()
                     console.log('Done')
-                }
-            )
+            })
             
             // show them a success message
             let uri = window.URL.createObjectURL(res)
             saveFile(res, 'Quote.pdf')
             // window.open(uri, '_blank')
         }).catch(err=>{
-            console.log(err);
-            alert("Sorry we couldn't download your quote at this moment, but it has been recevied.")
+            print()
+            update_cart_server('clear')
+            .then(()=>{})
+            .catch(err={})
         })
     })
 }
@@ -271,9 +272,11 @@ function get_row_view(cart_obj){
     let image = null;
     let price = 0;
     let size = ''
+    let item
     if('type' in cart_obj){// it's an item .... do something 
         size = get_product_size(pack)
-        image = pack['image_url']
+        image = pack['image_url'];
+        item = pack
     }else{ // it's a package do something different
        item = pack;
        image = get_package_image(pack);
