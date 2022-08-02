@@ -20,15 +20,18 @@ def update_cart(uid:str, cart_list:list, func:str='increase'):
     res = search_cart(uid, cart_list)
     if res is not None:
         if func == 'increase':
-                res['qty'] += 1
-                return True
+            res['qty'] += 1
+            return True
         elif func == 'decrease':
-                res['qty'] -= 1
-                if res['qty']<0:res['qty'] = 0
-                return True
+            res['qty'] -= 1
+            if res['qty']<0:res['qty'] = 0
+            return True
         elif func == 'delete':
             cart_list.remove(res)
             return True 
+        else:
+            res['qty'] = float(func)
+            return True
     elif func == 'clear':
         cart_list.clear()       
     else: 

@@ -27,12 +27,37 @@ window.addEventListener('load', function(e){
             cart_table = this.document.getElementById('cart-table');
             cart_total = this.document.getElementById('cart-total');
             console.log(res)
-
+            let current_item = null;
             allocate_qty_to_package(res)
 
             if('cart-items' in res){ // we got some stuff from the server...
                 update_table(res['cart-items'], cart_table)
                 cart_items = res['cart-items']
+                let cart_qty_fields = document.getElementsByClassName('cart-qty');
+                for(let c_i of cart_qty_fields){
+                   
+
+                    c_i.addEventListener('keyup', function(e){
+                        if(e.target.value.match('[0-9]+')){
+                            update_cart_server(e.target.value, current_item)
+                            .then(res=>{
+                                console.log(res)
+                                // window.location.reload()
+                            })
+                        }
+                        
+                    });
+                    c_i.addEventListener('change', function(e){
+                        if(e.target.value.match('[0-9]+')){
+                            update_cart_server(e.target.value, current_item)
+                            .then(res=>{
+                                // console.log(res)
+                                window.location.reload()
+                                
+                            })
+                        }
+                    });
+                }
             }
 
             
@@ -57,7 +82,7 @@ window.addEventListener('load', function(e){
                      let _uid = e.currentTarget.getAttribute('id')
                     let spinner = document.getElementById(_uid+'spinner')
                     let qty_cont = document.getElementById(_uid+'qty')
-                    
+                    current_item = _uid;
 
                     if(e.target.className.split(' ').includes('d-item')){
                         qty_cont.style.display = 'none';
@@ -306,7 +331,7 @@ function get_row_view(cart_obj){
                     <i class="bi bi-dash-lg q-b down"></i>
                 </div>
                 <div class="qty-item">
-                    <input type="text" class="cart-qty" name="qty" class="q-input" value="${item['qty']}" />
+                    <input type="number" disabled class="cart-qty" name="qty" class="q-input" value="${item['qty']}" />
                 </div>
                 <div class="qty-item">
                     <i class="bi bi-plus-lg q-b up"></i>

@@ -139,7 +139,8 @@ td{
 .qty-item>input{
     margin:0;
     text-align: center;
-    width: 35px;
+    width: 60px;
+    /* width: fit-content; */
     height: 20px;
     
 }
