@@ -23,13 +23,6 @@ window.addEventListener('load', function(e){
     .then(res=>{
         _token = res
         get_cart_items() // update cart with current data for now ...
-<<<<<<< HEAD
-       .then(function(){
-            cart_table = this.document.getElementById('cart-table')
-            cart_total = this.document.getElementById('cart-total')
-            // console.log(cart)
-            update_table(cart.cart_objects, cart_table)
-=======
        .then(res=>{
             cart_table = this.document.getElementById('cart-table');
             cart_total = this.document.getElementById('cart-total');
@@ -43,7 +36,6 @@ window.addEventListener('load', function(e){
             }
 
             
->>>>>>> refactoring
 
             let cart_counts = this.document.getElementsByClassName('cart-count')
             let tab_row = document.getElementsByTagName('tr')
@@ -141,13 +133,8 @@ function view_quote(html_data){
     disp.style.display = 'block';
 
     cl_q.addEventListener('click', function(){
-<<<<<<< HEAD
-        disp.style.display = 'none';
-        window.location.reload(); 
-=======
         disp.style.display = 'none'; 
         window.location.pathname = '/'; 
->>>>>>> refactoring
     });
     quote_view.innerHTML = html_data;
     
@@ -192,14 +179,8 @@ function submit_quote(e){
             // before showing the use the quote...
             // clear cart...
             update_cart_server('clear')
-<<<<<<< HEAD
-            .then(
-                ()=>{
-                    // window.location.pathname = '/'
-=======
             .then(()=>{
                     window.location.pathname = '/'
->>>>>>> refactoring
                     // window.location.reload()
                     console.log('Done')
             })
@@ -209,22 +190,10 @@ function submit_quote(e){
             saveFile(res, 'Quote.pdf')
             // window.open(uri, '_blank')
         }).catch(err=>{
-<<<<<<< HEAD
-            update_cart_server('clear')
-            .then(
-                ()=>{
-                    // window.location.pathname = '/'
-                    print()
-                    console.log('Done Clearing cart');
-                    
-            });
-            alert("Sorry we couldn't download your quote at this moment, but it has been recevied.")
-=======
             print()
             update_cart_server('clear')
             .then(()=>{})
             .catch(err={})
->>>>>>> refactoring
         })
     }).catch(err=>{
         console.log(err); 
@@ -296,19 +265,6 @@ function get_product_size(item){
 }
 
 function get_row_view(cart_obj){
-<<<<<<< HEAD
-    let item = null;
-    if('obj' in cart_obj['item']){
-        item = cart_obj['item']['obj'];
-    }
-    else {
-        item = cart_obj['item'];
-    }
-    let image = null;
-    if('image' in item)image = item['image']
-    else image = item['image_url']
-
-=======
     console.log(cart_obj)
 //     <span class="size">5kVA - 48V - 5kWh</span><br />
         // < span class="size" > ${ cart_obj["size"]["voltage"] + ' - ' + cart_obj["size"]["voltage"] }</span > <br />
@@ -326,7 +282,6 @@ function get_row_view(cart_obj){
        image = get_package_image(pack);
     } 
     price = pack['price'];
->>>>>>> refactoring
 
     return(
         `

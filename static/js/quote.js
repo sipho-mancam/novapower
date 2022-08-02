@@ -54,27 +54,6 @@ function get_product_size(item){
 }
 
 function format_package(package, index=1){
-<<<<<<< HEAD
-    console.log('type' in package)
-    if('type' in package){
-        let item  = package
-        return `
-        <div class="row package-name name"> 
-            <div class="col">
-                        <div class="row">
-                            <div class="col-2">
-                                <span class="name">${index}</span>
-                            </div>
-                            <div class="col">
-                                <span class="name">${item['name']}</span>
-                            </div>
-                        </div>
-                    </div>
-
-            <div class="col">
-                <span class="text">${get_product_size(item)}
-                </span>
-=======
     let packag = package['package']
     if('type' in package){
         let item  = packag
@@ -99,7 +78,6 @@ function format_package(package, index=1){
                         </span>
                     </div>
                 </div>
->>>>>>> refactoring
             </div>
         
 
@@ -130,18 +108,11 @@ function format_package(package, index=1){
 
     }else{
         try{
-<<<<<<< HEAD
-            let items_list = package['item_list']
-            const name  = package['name']
-            const indx = String(index)
-    
-=======
             
             let items_list = packag['items']
             const name  = package['name']
             const indx = String(index)
             console.log(items_list)
->>>>>>> refactoring
             items_list = items_list.map(function(item){
                 return `
                 <div class="row data-item"> 
@@ -151,17 +122,9 @@ function format_package(package, index=1){
                             <span class="text"></span>
                         </div>
                         <div class="col">
-<<<<<<< HEAD
-                            <span class="text">${item.energy.value+''+item.energy.unit
-                                                +' '+
-                                                item.voltage.value+''+item.voltage.unit+
-                                                ' '+item['brand'] 
-                                                +' '+ item['type'] 
-=======
                             <span class="text">${get_product_size(item) +
                                                 ' '+item['brand'] 
                                                 +' '+ item['type-group'] 
->>>>>>> refactoring
                                                 + ' '+ item['name']}
                             </span>
                         </div>
@@ -180,20 +143,12 @@ function format_package(package, index=1){
                 </div>
                 <div class="col">
                     <div class="text unit-price">
-<<<<<<< HEAD
-                        <span class="value">${item['price']}</span>
-=======
                         <span class="value">${(item['price']/item['qty']).toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR'})}</span>
->>>>>>> refactoring
                     </div>
                 </div>
                 <div class="col">
                     <div class="text total">
-<<<<<<< HEAD
-                        <span class="value">${item['total_price']}</span>
-=======
                         <span class="value">${(item['price']).toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR'})}</span>
->>>>>>> refactoring
                     </div>
                 </div>
             </div>
@@ -210,11 +165,7 @@ function format_package(package, index=1){
                             <span class="name">${indx}</span>
                         </div>
                         <div class="col">
-<<<<<<< HEAD
-                            <span class="name">${name}</span>
-=======
                             <span class="name">${packag['name']}</span>
->>>>>>> refactoring
                         </div>
                     </div>
                 </div>

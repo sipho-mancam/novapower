@@ -571,11 +571,6 @@ def get_featured_products():
             'response':'Invalid session token'
         }
 
-<<<<<<< HEAD
-def validate_cart_object(schema:dict, data:dict):
-=======
-
->>>>>>> refactoring
     return True
 
 @app.route('/add-to-cart', methods=['POST', 'PUT'])

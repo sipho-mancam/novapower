@@ -71,13 +71,7 @@ class Package:
     
     def get_summary(self):
         d = dict()
-<<<<<<< HEAD:packages.py
-        for i in self.__items_list:
-            d['item '+str(counter)] = i.to_dict()
-            counter += 1
-=======
         d['items'] = self.__items_list
->>>>>>> refactoring:Modules/input_drivers/package_manager.py
         d['price'] = self.__total_price
         d['_uid'] = self.__uid
         d['max-power'] = self.__max_power

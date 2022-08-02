@@ -124,12 +124,6 @@ function openTab(event){
 
     event.preventDefault();
 
-<<<<<<< HEAD
-    // do some logic to append data to the tab
-  
-    let id = groups_maps[event.currentTarget.getAttribute('name')]
-=======
->>>>>>> refactoring
 
     current_list = data_structure[package_g_name];
     get_package_group_views(current_list, tab_content, package_g_name);
@@ -265,34 +259,8 @@ async function get_cart_count(){
 
 async function get_cart_items(){
     let path = '/get-cart?m=items&session_token='+_token;
-<<<<<<< HEAD
-
-    await make_request('GET', path)
-    .then(res=>{
-    
-        let keys = Object.keys(res)
-        if('response' in res)// there's a session token error
-        {
-            window.sessionStorage.clear();
-            window.location.reload();
-        }
-        else{
-            if('cart-items' in res){
-                
-                for(let i=0; i<res[keys[0]].length;i++){
-                    let p = res[keys[0]][i]['package']
-                    if('type' in res[keys[0]][i])p['type'] = res[keys[0]][i]['type']
-                    cart_items.push(p)
-                    p['qty'] = res[keys[0]][i]['qty']
-                    cart.add_to_cart(p)
-                }
-            }
-        }
-    });
-=======
     return  make_request('GET', path)
    
->>>>>>> refactoring
 }
 
 async function update_cart_server(func='increase', _uid='none'){
@@ -326,11 +294,7 @@ async function get_quote(){
         xhttp.onreadystatechange = function(){
 
             if(xhttp.readyState == 4 && xhttp.status == 200){ 
-<<<<<<< HEAD
-                resolve(xhttp.response)
-=======
                 resolve(xhttp.response);
->>>>>>> refactoring
             }else if(xhttp.status == 404){
                 reject(xhttp.response)
             }

@@ -449,11 +449,7 @@ function price_filter_view(price_filter){
                 <span class="range-display value">R 1 000,00</span>
             </div>
             <div class='range-item'>
-<<<<<<< HEAD
-                <input type='range' min=1000 max=100000 value='20000' step=500  class='input price-input form-range' id='max-price' name="price" scope='*' group="filter" />
-=======
                 <input type='range' min=1000 max=100000 value='20000' step=500  class='input price-input form-range' id='max-price' name="max-price" scope='*' group="filter" />
->>>>>>> refactoring
             </div>
             <div class='range-item'>
                 <div class="white-block wb-r"></div>
@@ -655,11 +651,7 @@ function product_view_more(e){
     
     let v_tab_buttons = document.getElementsByClassName('v-tab')
     v_tab_cont = document.getElementById('v-tab-cont');
-<<<<<<< HEAD
-    v_tab_cont.innerHTML = `<img src=${item['description']} />`;
-=======
     v_tab_cont.innerHTML = `<img src=${item['description']} style="width:fit-content; max-width:100%;"/>`;
->>>>>>> refactoring
 
     current_v_tab = v_tab_buttons[0];
     for(let i of v_tab_buttons){

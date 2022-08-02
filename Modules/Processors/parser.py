@@ -22,11 +22,7 @@ class Parser:
         }
 
         l = ['ItemName', 'PackageGroup', 'Brand', 'TypeGroup', 'SizeGroup',
-<<<<<<< HEAD:parser.py
-                'ItemPrice', 'Extras', "img_url", "Description"]
-=======
                 'ItemPrice', 'Extras', "img_url", 'Description']
->>>>>>> refactoring:Modules/Processors/parser.py
         
         for i in range(len(l)): # initialise index table
             self.__indexing_table[l[i]] = i
@@ -78,12 +74,9 @@ class Parser:
         # 4) parse the rest of the items in the extras first ... 
         # 5) parse the rest of the items 
         # 6) append element to the list ...
-<<<<<<< HEAD:parser.py
-=======
         if 'name' in self.__key_map:
             pass
         else: raise KeyError('*name* key is not found in the map')
->>>>>>> refactoring:Modules/Processors/parser.py
 
         self.__data_frame = df
         try:

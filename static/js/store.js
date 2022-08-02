@@ -27,9 +27,6 @@ window.addEventListener('load', function(e){
             console.log(err)
         })
     })
-<<<<<<< HEAD
-})
-=======
 })
 
 function add_names_to_packages(p_groups){
@@ -40,4 +37,3 @@ function add_names_to_packages(p_groups){
        } 
     }
 }
->>>>>>> refactoring
