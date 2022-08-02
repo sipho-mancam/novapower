@@ -93,8 +93,12 @@ class Subpackage:
         self.__organised_data_structure = {}  # this structure sorts the data according to the 
         self.__current_list = []
         self.__current_list_index = 0
-        
-    
+        self.assign_items_uid()
+
+    def assign_items_uid(self):
+        for i in self.__items:
+            i['_uid'] = hashlib.sha256(bytes(i.__str__(), 'utf-8'),usedforsecurity=True).hexdigest()
+
     def _get_items(self):return self.__items
     def _set_items(self, items_list):self.__items = items_list
     def _get_current_count(self):return self.__current_count

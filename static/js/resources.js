@@ -199,4 +199,5 @@ let v_tab_cont = null;
 let cart_items = []
 let price_summary = {}
 
+
 // console.log(base_url)

@@ -13,11 +13,13 @@ window.addEventListener('load', function(e){
             // console.log(res)
             loader.style.display = 'none'; // hide spinner...
             console.log(res)
+            add_names_to_packages(res)
             data_structure = res
             current_selected_tab = res['solar'];
-            
+
+            current_list = current_selected_tab
             get_package_group_views(current_selected_tab, tab_content,'solar')
-            init_tabs()
+            init_tabs() // this initialises tabs ... and their clickability.
             add_to_cart_init();
             get_cart_count();
         })
@@ -26,3 +28,12 @@ window.addEventListener('load', function(e){
         })
     })
 })
+
+function add_names_to_packages(p_groups){
+    for(let key in p_groups){
+       for(let p in p_groups[key]){
+            p_groups[key][p]['name'] = key;
+            p_groups[key][p]['description'] = get_product_summary(p_groups[key][p])
+       } 
+    }
+}

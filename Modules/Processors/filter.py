@@ -17,12 +17,12 @@ class Stage:
         brands = self.get_brands()
         brands['type'] = 'list|object'
         self.__default_filters = {
-            'size':{
-                'Size':{'type': 'int|float'},
-                'voltage':{'type':'int|float'}
-            },
+            # 'size':{
+            #     'Size':{'type': 'int|float'},
+            #     'voltage':{'type':'int|float'}
+            # },
             'brand':brands,
-            'price':{'type':'float'}
+            'max-price':{'type':'float'}
         }
         self.__rollback_filters = {'scope':'*', 'filter':{
             'p':{
@@ -161,6 +161,7 @@ class Stage:
         for item in l:
             for f_key in filter:
                 filt = filter[f_key] # grab a specific filter.
+                if filt['name'] == 'max-price':filt['name'] = 'price'
 
                 if 'scope' in filt and filt['scope'] != '*' and item['name'].lower() not in filt['scope']: # this item is not affected by this filter.
                     count += 1
@@ -248,6 +249,7 @@ class Stage:
             count += 1
 
     def get_products_list(self):
+        
         res = [obj._get_name() for obj in self.__sub_package_objects]
         return res
     
@@ -279,7 +281,7 @@ class Stage:
 
 def init_stage():
     data_path = "Data/DatabaseIndividualPricingInputFormat v2.xlsx"
-    stage = Stage(setup_input(data_path, 'Sheet 1').get_sub_package_list())
+    stage = Stage(setup_input(data_path, 'Sheet 1', keys=['solar', 'inverter', 'battery']).get_sub_package_list())
     stage.add_filter({'scope':'*', 'filter':{
         'p':{
             'name':'package-flag',
