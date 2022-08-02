@@ -131,7 +131,8 @@ function openTab(event){
     event.preventDefault();
 
     // do some logic to append data to the tab
-    let id = groups_maps[event.currentTarget.innerText]
+  
+    let id = groups_maps[event.currentTarget.getAttribute('name')]
 
     let package_group = search_package_group(package_groups, id);
     
@@ -279,7 +280,7 @@ async function get_cart_items(){
 
     await make_request('GET', path)
     .then(res=>{
-        console.log(res)
+    
         let keys = Object.keys(res)
         if('response' in res)// there's a session token error
         {
@@ -288,7 +289,7 @@ async function get_cart_items(){
         }
         else{
             if('cart-items' in res){
-                console.log(res)
+                
                 for(let i=0; i<res[keys[0]].length;i++){
                     let p = res[keys[0]][i]['package']
                     if('type' in res[keys[0]][i])p['type'] = res[keys[0]][i]['type']
@@ -324,7 +325,8 @@ async function get_quote(){
         xhttp.withCredentials=true
         xhttp.responseType='blob'
         // xhttp.overrideMimeType('text\/plain; charset=x-user-defined');
-        xhttp.onerror = (e)=>{
+        xhttp.onerror = function(){
+            console.log(e)
             reject(xhttp.response)
         }
 
@@ -332,6 +334,8 @@ async function get_quote(){
 
             if(xhttp.readyState == 4 && xhttp.status == 200){ 
                 resolve(xhttp.response)
+            }else if(xhttp.status == 404){
+                reject(xhttp.response)
             }
         
         }

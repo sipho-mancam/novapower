@@ -225,7 +225,7 @@ def index_data():
             },
             "max-power":3,
             "solar-qty":6,
-            "total-price":39546.20
+            "price":39546.20
         },
 
         "package 1":{
@@ -274,7 +274,7 @@ def index_data():
             },
             "max-power":3,
             "solar-qty":8,
-            "total-price":57616.15
+            "price":57616.15
         },
 
         "package 2":{
@@ -323,7 +323,7 @@ def index_data():
             },
             "max-power":5,
             "solar-qty":8,
-            "total-price":70750.30
+            "price":70750.30
         },
 
         "package 3":{
@@ -372,7 +372,7 @@ def index_data():
             },
             "max-power":5,
             "solar-qty":10,
-            "total-price":104462.55
+            "price":104462.55
         },
         "package 4":{
             "item 0": {
@@ -420,7 +420,7 @@ def index_data():
             },
             "max-power":8,
             "solar-qty":10,
-            "total-price":130489.35
+            "price":130489.35
         },
         "package 5":{
             "item 0": {
@@ -468,7 +468,7 @@ def index_data():
             },
             "max-power":8,
             "solar-qty":12,
-            "total-price":137757.35
+            "price":137757.35
         },
         "package 6":{
             "item 0": {
@@ -516,7 +516,7 @@ def index_data():
             },
             "max-power":8,
             "solar-qty":14,
-            "total-price":171469.60
+            "price":171469.60
         }
     }
     for package in solar_packages:
@@ -574,7 +574,6 @@ def get_featured_products():
             'status':0x05,
             'response':'Invalid session token'
         }
-
 
 def validate_cart_object(schema:dict, data:dict):
     return True

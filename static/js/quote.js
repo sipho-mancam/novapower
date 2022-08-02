@@ -1,8 +1,3 @@
-// add address to the quote.
-// Add Package name
-// iterate package items
-// add totals
-
 function format_csa(address_str=''){
     let address = address_str.split(',');
     address = address.map(function(obj){
@@ -11,32 +6,75 @@ function format_csa(address_str=''){
     return address.join("<br />")
 }
 
+function get_product_size(item){
+    /** @internal 
+     * asses the item for it's "sizing" parameters
+     * During the assessment prioritize 1) Voltage --> 2) Power --> 3) Apparent Power --> 4)Energy
+     * Load parameters you find into an array. 
+     * Check array length: if >= 2 proceed to generate view
+     * Else find other paramenters in the item to populate up to 3 then generate the view
+     * we need a minimum of 2 items in the list. (Unbreakable rule) - Strict mode.
+     * */ 
+    let priorities = ['Voltage','Size', 'Power', 'Energy']
+
+    let items_size_params = item['size'];
+    let keys = Object.keys(items_size_params)
+    let staging = []
+    for(let i of priorities){ // run through the priorities first
+        if(keys.includes(i)){ // check if the keys include our items as per the priorities
+            staging.push(items_size_params[i])
+        }
+        if(staging.length == 3)break;
+    }
+
+    let res = ``
+    if(staging.length >=2){
+        // proceed to generate the view and the return ...
+        for(let i of staging){
+            res += `&nbsp${i['value']+''+i['unit']} -`
+        }
+        res = res.slice(0, res.length-1)
+        return res;
+    }else{
+        // run the random wheel and take whatever we have left.
+        for(let i in items_size_params){
+            if(!staging.includes(items_size_params[i])){
+                staging.push(items_size_params[i])
+            }
+            if(staging.length == 3)break;
+        }
+
+        for(let i of staging){
+            res += `&nbsp${i['value']+''+i['unit']} -`
+        }
+        res = res.slice(0, res.length-1)
+        return res; 
+    }
+
+}
+
 function format_package(package, index=1){
-
-    try{
-        let items_list = package['item_list']
-        const name  = package['name']
-        const indx = String(index)
-
-        items_list = items_list.map(function(item){
-            return `
-            <div class="row data-item"> 
-            <div class="col-5">
-                <div class="row">
-                    <div class="col-2">
-                        <span class="text"></span>
+    console.log('type' in package)
+    if('type' in package){
+        let item  = package
+        return `
+        <div class="row package-name name"> 
+            <div class="col">
+                        <div class="row">
+                            <div class="col-2">
+                                <span class="name">${index}</span>
+                            </div>
+                            <div class="col">
+                                <span class="name">${item['name']}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col">
-                        <span class="text">${item.energy.value+''+item.energy.unit
-                                            +' '+
-                                            item.voltage.value+''+item.voltage.unit+
-                                            ' '+item['brand'] 
-                                            +' '+ item['type'] 
-                                            + ' '+ item['name']}
-                        </span>
-                    </div>
-                </div>
+
+            <div class="col">
+                <span class="text">${get_product_size(item)}
+                </span>
             </div>
+        
 
             <div class="col">
                 <div class="text rate">
@@ -50,42 +88,92 @@ function format_package(package, index=1){
             </div>
             <div class="col">
                 <div class="text unit-price">
-                    <span class="value">${item['price']}</span>
+                    <span class="value">${item['price'].toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR'})}</span>
                 </div>
             </div>
             <div class="col">
                 <div class="text total">
-                    <span class="value">${item['total_price']}</span>
+                    <span class="value">${(item['price']*item['qty']).toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR'})}</span>
                 </div>
             </div>
-        </div>
-            
+        </div>`
 
+    }else{
+        try{
+            let items_list = package['item_list']
+            const name  = package['name']
+            const indx = String(index)
+    
+            items_list = items_list.map(function(item){
+                return `
+                <div class="row data-item"> 
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-2">
+                            <span class="text"></span>
+                        </div>
+                        <div class="col">
+                            <span class="text">${item.energy.value+''+item.energy.unit
+                                                +' '+
+                                                item.voltage.value+''+item.voltage.unit+
+                                                ' '+item['brand'] 
+                                                +' '+ item['type'] 
+                                                + ' '+ item['name']}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col">
+                    <div class="text rate">
+                        <span class="text">Fixed</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text qty">
+                        <span class="text">${item['qty']}</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text unit-price">
+                        <span class="value">${item['price']}</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text total">
+                        <span class="value">${item['total_price']}</span>
+                    </div>
+                </div>
+            </div>
+                
+    
+                `
+            })
+            return `
+            <div class="row package-name"> 
+    
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-2">
+                            <span class="name">${indx}</span>
+                        </div>
+                        <div class="col">
+                            <span class="name">${name}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            ${items_list.join('')}
             `
-        })
-        return `
-        <div class="row package-name"> 
-
-            <div class="col-5">
-                <div class="row">
-                    <div class="col-2">
-                        <span class="name">${indx}</span>
-                    </div>
-                    <div class="col">
-                        <span class="name">${name}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-        </div>
-        ${items_list.join('')}
-        `
-    }catch(err){
-        console.log(err)
+        }catch(err){
+            console.log(err)
+        }
     }
+    
 }
 
 function format_packages(packages){
@@ -93,6 +181,21 @@ function format_packages(packages){
     let res = ''
     for(let i=0; i<packages.length; i++){
         res += format_package(packages[i], i+1)
+    }
+    return res
+}
+
+function get_quote_description(cart_list){
+    let res = ''
+    for(let p of cart_list){
+        if('type' in p){
+            res += `<img src="${p['description']}" /><br />`   
+        }
+        else{
+            res += `<h6 style="text-align:start;font-weight:bold;">Package ${cart_list.indexOf(p)+1}</h6>`
+            res += p['description'];
+            res += `<br />`
+        }
     }
     return res
 }
@@ -206,7 +309,7 @@ function generate_html_for_pdf(data){
                 <span class="address">
                     Optimum house<br />
                     Epsom Downs Office Park<br />
-                    13 Sloan Street<br />
+                    13 Sloane Street<br />
                     Bryanston <br />
                     2191<br />
                     <i class="bi bi-envelope-fill"></i>&nbsp;novapower@rbconsult.co.za<br />
@@ -358,10 +461,10 @@ function generate_html_for_pdf(data){
             <div class="row Description" > 
                 <div class="col-1"></div>
                 <div class="col">
-                    <span class="name">System Features:</span><br />
+                   
 
                     <span class="text">
-                       ${data['cart-list'][0]['description']}
+                       ${ get_quote_description(data['cart-list'])}
                     </span>
                 </div>
                 

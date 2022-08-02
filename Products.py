@@ -16,12 +16,12 @@ class Stage:
         brands = self.get_brands()
         brands['type'] = 'list|object'
         self.__default_filters = {
-            'size':{
-                'Size':{'type': 'int|float'},
-                'voltage':{'type':'int|float'}
-            },
+            # 'size':{
+            #     'Size':{'type': 'int|float'},
+            #     'voltage':{'type':'int|float'}
+            # },
             'brand':brands,
-            'price':{'type':'float'}
+            'max-price':{'type':'float'}
         }
         self.__rollback_filters = {'scope':'*', 'filter':{
             'p':{
@@ -203,7 +203,7 @@ class Stage:
 
 def init_stage():
     data_path = './DatabaseIndividualPricingInputFormat v2.xlsx'
-    stage = Stage(setup_input(data_path, 'Sheet 1').get_sub_package_list())
+    stage = Stage(setup_input(data_path, 'Sheet 1', ['solar', 'inverter', 'battery']).get_sub_package_list())
     stage.add_filter({'scope':'*', 'filter':{
         'p':{
             'name':'package-flag',

@@ -27,7 +27,7 @@ window.addEventListener('load', function(e){
        .then(function(){
             cart_table = this.document.getElementById('cart-table')
             cart_total = this.document.getElementById('cart-total')
-            console.log(cart)
+            // console.log(cart)
             update_table(cart.cart_objects, cart_table)
 
             let cart_counts = this.document.getElementsByClassName('cart-count')
@@ -120,11 +120,11 @@ function view_quote(html_data){
     disp.style.display = 'block';
 
     cl_q.addEventListener('click', function(){
-        disp.style.display = 'none'; 
-        // window.location.pathname = '/'; 
+        disp.style.display = 'none';
+        window.location.reload(); 
     });
     quote_view.innerHTML = html_data;
-    // print();
+    
 }
 
 function submit_quote(e){
@@ -163,14 +163,13 @@ function submit_quote(e){
     .then(res=>{
         get_quote()
         .then(res=>{
-            
-            
             // before showing the use the quote...
             // clear cart...
             update_cart_server('clear')
             .then(
                 ()=>{
-                    window.location.pathname = '/';
+                    // window.location.pathname = '/'
+                    // window.location.reload()
                     console.log('Done')
                 })
             
@@ -179,9 +178,18 @@ function submit_quote(e){
             saveFile(res, 'Quote.pdf')
             // window.open(uri, '_blank')
         }).catch(err=>{
-            console.log(err);
+            update_cart_server('clear')
+            .then(
+                ()=>{
+                    // window.location.pathname = '/'
+                    print()
+                    console.log('Done Clearing cart');
+                    
+            });
             alert("Sorry we couldn't download your quote at this moment, but it has been recevied.")
         })
+    }).catch(err=>{
+        console.log(err); 
     })
 }
 
@@ -203,17 +211,17 @@ function closeOrderForm(e){
 }
 
 function get_row_view(cart_obj){
-    console.log(cart_obj)
-//     <span class="size">5kVA - 48V - 5kWh</span><br />
-        // < span class="size" > ${ cart_obj["size"]["voltage"] + ' - ' + cart_obj["size"]["voltage"] }</span > <br />
     let item = null;
-    if('obj' in cart_obj['item'])item = cart_obj['item']['obj'];
-    else item = cart_obj['item'];
+    if('obj' in cart_obj['item']){
+        item = cart_obj['item']['obj'];
+    }
+    else {
+        item = cart_obj['item'];
+    }
     let image = null;
     if('image' in item)image = item['image']
     else image = item['image_url']
 
-    console.log(item)
 
     return(
         `
