@@ -25,13 +25,14 @@ window.addEventListener('load', function(e){
     products_container = this.document.getElementById('products_container')
     products_tabs = document.getElementById('products-tabs');
     let side_bar = document.getElementById('side-bar-view')
+
     this.document.getElementById('filter-toggle').addEventListener('click', function(e){
         let state = this.getAttribute('expanded');
 
         if(state == 'false'){ // expand the filter
             const width_anim = [
                 {width:'0%'},
-                {width:'100%'}
+                {width:'100%'} 
             ]
             const anim_options = {
                 duration:200,
@@ -194,7 +195,7 @@ function get_scope(){
                     if(f_type.includes('int') || f_type.includes('float') || f_type.includes('number')){ // type is a number 
                         value = new Number(i.value)
                         value = value.valueOf()
-                        if(name =='price'){ // update the view for the price...
+                        if(name =='max-price'){ // update the view for the price...
                             price_range.innerText = value.toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
                         }
                         let x = {
@@ -448,7 +449,7 @@ function price_filter_view(price_filter){
                 <span class="range-display value">R 1 000,00</span>
             </div>
             <div class='range-item'>
-                <input type='range' min=1000 max=100000 value='20000' step=500  class='input price-input form-range' id='max-price' name="price" scope='*' group="filter" />
+                <input type='range' min=1000 max=100000 value='20000' step=500  class='input price-input form-range' id='max-price' name="max-price" scope='*' group="filter" />
             </div>
             <div class='range-item'>
                 <div class="white-block wb-r"></div>
@@ -593,7 +594,6 @@ function product_add_to_cart(e){
     e.preventDefault() 
     // let _search_key = e.path[0].id
     let item = sorted_data[current_selected_tab.getAttribute('name')][e.target.getAttribute('index')]
-
     make_request('POST', '/add-to-cart?session_token='+_token, {
         'group': item['package-group'],
         '_uid':item['_uid'],
@@ -651,7 +651,7 @@ function product_view_more(e){
     
     let v_tab_buttons = document.getElementsByClassName('v-tab')
     v_tab_cont = document.getElementById('v-tab-cont');
-    v_tab_cont.innerHTML = `<img src=${item['description']} />`;
+    v_tab_cont.innerHTML = `<img src=${item['description']} style="width:fit-content; max-width:100%;"/>`;
 
     current_v_tab = v_tab_buttons[0];
     for(let i of v_tab_buttons){

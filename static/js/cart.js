@@ -1,5 +1,6 @@
 
-let form_sub = null
+let form_sub = null;
+
 window.addEventListener('load', function(e){
 
     let add_installation = this.document.getElementById('installation-control')
@@ -24,11 +25,19 @@ window.addEventListener('load', function(e){
     .then(res=>{
         _token = res
         get_cart_items() // update cart with current data for now ...
-       .then(function(){
-            cart_table = this.document.getElementById('cart-table')
-            cart_total = this.document.getElementById('cart-total')
-            // console.log(cart)
-            update_table(cart.cart_objects, cart_table)
+       .then(res=>{
+            cart_table = this.document.getElementById('cart-table');
+            cart_total = this.document.getElementById('cart-total');
+            console.log(res)
+
+            allocate_qty_to_package(res)
+
+            if('cart-items' in res){ // we got some stuff from the server...
+                update_table(res['cart-items'], cart_table)
+                cart_items = res['cart-items']
+            }
+
+            
 
             let cart_counts = this.document.getElementsByClassName('cart-count')
             let tab_row = document.getElementsByTagName('tr')
@@ -105,11 +114,17 @@ window.addEventListener('load', function(e){
 })
 
 function update_totals(res, tot_buttons=document.getElementsByClassName('tot')){
-    
     let keys = Object.keys(res)
     tot_buttons[0].innerText = res[keys[0]].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
     tot_buttons[1].innerText = res[keys[2]].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
     tot_buttons[2].innerText = res[keys[1]].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})
+}
+
+function allocate_qty_to_package(server_res){
+    let s_pacakges = server_res['cart-items'];
+    for(let p of s_pacakges){
+        p['package']['qty'] = p['qty'];
+    }    
 }
 
 function view_quote(html_data){
@@ -120,8 +135,8 @@ function view_quote(html_data){
     disp.style.display = 'block';
 
     cl_q.addEventListener('click', function(){
-        disp.style.display = 'none';
-        window.location.reload(); 
+        disp.style.display = 'none'; 
+        window.location.pathname = '/'; 
     });
     quote_view.innerHTML = html_data;
     
@@ -166,27 +181,25 @@ function submit_quote(e){
             // before showing the use the quote...
             // clear cart...
             update_cart_server('clear')
-            .then(
-                ()=>{
-                    // window.location.pathname = '/'
+            .then(()=>{
+                    window.location.pathname = '/'
                     // window.location.reload()
                     console.log('Done')
+<<<<<<< HEAD
                 })
+=======
+            })
+>>>>>>> 79c237d51b8cf2f698c3317af4ae074b7d7d49ca
             
             // show them a success message
             let uri = window.URL.createObjectURL(res)
             saveFile(res, 'Quote.pdf')
             // window.open(uri, '_blank')
         }).catch(err=>{
+            print()
             update_cart_server('clear')
-            .then(
-                ()=>{
-                    // window.location.pathname = '/'
-                    print()
-                    console.log('Done Clearing cart');
-                    
-            });
-            alert("Sorry we couldn't download your quote at this moment, but it has been recevied.")
+            .then(()=>{})
+            .catch(err={})
         })
     }).catch(err=>{
         console.log(err); 
@@ -210,18 +223,71 @@ function closeOrderForm(e){
     order_form.style.display = 'none'
 }
 
-function get_row_view(cart_obj){
-    let item = null;
-    if('obj' in cart_obj['item']){
-        item = cart_obj['item']['obj'];
-    }
-    else {
-        item = cart_obj['item'];
-    }
-    let image = null;
-    if('image' in item)image = item['image']
-    else image = item['image_url']
+function get_product_size(item){
+    /** @internal 
+     * asses the item for it's "sizing" parameters
+     * During the assessment prioritize 1) Voltage --> 2) Power --> 3) Apparent Power --> 4)Energy
+     * Load parameters you find into an array. 
+     * Check array length: if >= 2 proceed to generate view
+     * Else find other paramenters in the item to populate up to 3 then generate the view
+     * we need a minimum of 2 items in the list. (Unbreakable rule) - Strict mode.
+     * */ 
+    let priorities = ['Voltage','Size', 'Power', 'Energy']
 
+    let items_size_params = item['size'];
+    let keys = Object.keys(items_size_params)
+    let staging = []
+    for(let i of priorities){ // run through the priorities first
+        if(keys.includes(i)){ // check if the keys include our items as per the priorities
+            staging.push(items_size_params[i])
+        }
+        if(staging.length == 3)break;
+    }
+
+    let res = ``
+    if(staging.length >=2){
+        // proceed to generate the view and the return ...
+        for(let i of staging){
+            res += `&nbsp${i['value']+''+i['unit']} -`
+        }
+        res = res.slice(0, res.length-1)
+        return res;
+    }else{
+        // run the random wheel and take whatever we have left.
+        for(let i in items_size_params){
+            if(!staging.includes(items_size_params[i])){
+                staging.push(items_size_params[i])
+            }
+            if(staging.length == 3)break;
+        }
+
+        for(let i of staging){
+            res += `&nbsp${i['value']+''+i['unit']} -`
+        }
+        res = res.slice(0, res.length-1)
+        return res; 
+    }
+
+}
+
+function get_row_view(cart_obj){
+    console.log(cart_obj)
+//     <span class="size">5kVA - 48V - 5kWh</span><br />
+        // < span class="size" > ${ cart_obj["size"]["voltage"] + ' - ' + cart_obj["size"]["voltage"] }</span > <br />
+    let pack = cart_obj['package']
+    let image = null;
+    let price = 0;
+    let size = ''
+    let item
+    if('type' in cart_obj){// it's an item .... do something 
+        size = get_product_size(pack)
+        image = pack['image_url'];
+        item = pack
+    }else{ // it's a package do something different
+       item = pack;
+       image = get_package_image(pack);
+    } 
+    price = pack['price'];
 
     return(
         `
@@ -231,7 +297,7 @@ function get_row_view(cart_obj){
                 <img src="${image}" alt="c_image" width="100" height="100"/>
                 <div class="cart-item-text-details">
                 <span class="item-heading">${item['name']}</span><br />
-               
+                <span class="size"> ${ size }</span> <br />
                 <span class="cart-item-type">${item['name']}</span>
                 </div>
             </div>
@@ -246,7 +312,7 @@ function get_row_view(cart_obj){
                     <i class="bi bi-dash-lg q-b down"></i>
                 </div>
                 <div class="qty-item">
-                    <input type="text" disabled name="qty" class="q-input" value="${item['qty']}" />
+                    <input type="text" class="cart-qty" name="qty" class="q-input" value="${item['qty']}" />
                 </div>
                 <div class="qty-item">
                     <i class="bi bi-plus-lg q-b up"></i>
@@ -255,10 +321,10 @@ function get_row_view(cart_obj){
             </div>
             </td>
             <td>
-                <span class="cart-item-unit-price">${item['price'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
+                <span class="cart-item-unit-price">${price.toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
             </td>
             <td>
-            <span class="cart-item-unit-price">${(item['price']*item['qty']).toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
+            <span class="cart-item-unit-price">${(price*item['qty']).toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}</span>
             </td>
             <td>
                 <div class="remove-container">

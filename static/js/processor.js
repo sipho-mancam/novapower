@@ -12,24 +12,19 @@ function parse_json(data) {
 
 function add_to_cart(e){
     e.preventDefault() 
-    // let _search_key = e.path[0].id
-    let _search_key = e.currentTarget.getAttribute('id')
-   
-    let package = search_package(current_list, _search_key)
-    // console.log(package)
-    if (package) {
-        let p_group = package.name.split(' ')[0]
+    let index = e.currentTarget.getAttribute('index')
+    let selected_package = current_list['package '+index];
+
+    if (selected_package) {
+        //update cart from the server side... 
         make_request('POST', '/add-to-cart?session_token='+_token, {
-            'group': p_group,
-            '_uid':package.id,
+            '_uid':selected_package._uid,
             'qty':1,
-            'package':package
+            'package':selected_package
         })
         .then(res=>{
             get_cart_count();  // update the cart icon with the current number of items in the cart
-        })
-
-        cart.add_to_cart(package);
+        })      
     }
     else{
         alert("Couldn't find the package ...")
@@ -38,15 +33,13 @@ function add_to_cart(e){
 }
 
 function view_more(e){
-
     e.preventDefault() 
-    let _search_key = e.target.getAttribute('id')
-    _search_key = _search_key.split('+')[0]
-    let package = search_package(current_list, _search_key)
+    let index = e.currentTarget.getAttribute('index')
+    let package = current_list['package '+index];
 
     if (package) {
 
-        overlay.innerHTML = get_view_more(package, package.name)
+        overlay.innerHTML = get_view_more(package, 'Solar')
         overlay.style.display='flex';
         close_overlay = document.getElementById('close-overlay')
         close_overlay.addEventListener('click', close)
@@ -54,11 +47,10 @@ function view_more(e){
         let v_tab_buttons = document.getElementsByClassName('v-tab')
         v_tab_cont = document.getElementById('v-tab-cont');
         current_v_tab = v_tab_buttons[0];
-        // console.log(current_v_tab)
+
         for(let i of v_tab_buttons){
             i.addEventListener('click', function(){
                 current_v_tab.className = current_v_tab.className.replace('active-tab', '')
-                console.log(current_v_tab.className)
                 current_v_tab = this
                 this.className += ' active-tab '
 
@@ -127,26 +119,17 @@ function openTab(event){
     current_tab.className = current_tab.className.replace(' active-tab', ' ')
     event.currentTarget.className += ' active-tab'
     current_tab = event.currentTarget;
+    // console.log(current_tab)
+    let package_g_name = current_tab.getAttribute('name');
 
     event.preventDefault();
 
-    // do some logic to append data to the tab
-  
-    let id = groups_maps[event.currentTarget.getAttribute('name')]
 
-    let package_group = search_package_group(package_groups, id);
-    
-    if(package_group){
-        get_package_group_views(package_group, tab_content)
-        add_to_cart_buttons = document.getElementsByClassName('add-to-cart')
-        add_to_cart_init()
-    }
-    else{
-        current_list = null;
-        tab_content.innerHTML = `<p class="err">
-                                    No packages in this group ... Contact RBC for enquiries
-                                </p>`
-    }
+    current_list = data_structure[package_g_name];
+    get_package_group_views(current_list, tab_content, package_g_name);
+
+    add_to_cart_buttons = document.getElementsByClassName('add-to-cart')
+    add_to_cart_init();
 }
 
 function openCart(event){
@@ -258,7 +241,6 @@ async function get_cart_count(){
                     cart_count = res[keys[0]]
                     cart_badge.innerText = res[keys[0]]
                     if(res[keys[0]]>0){
-                        console.log('I run')
                         let f_badge = document.getElementById('cart-badge-f');
                         f_badge.style.display= 'block';
                         f_badge.innerText = res[keys[0]]
@@ -277,29 +259,8 @@ async function get_cart_count(){
 
 async function get_cart_items(){
     let path = '/get-cart?m=items&session_token='+_token;
-
-    await make_request('GET', path)
-    .then(res=>{
-    
-        let keys = Object.keys(res)
-        if('response' in res)// there's a session token error
-        {
-            window.sessionStorage.clear();
-            window.location.reload();
-        }
-        else{
-            if('cart-items' in res){
-                
-                for(let i=0; i<res[keys[0]].length;i++){
-                    let p = res[keys[0]][i]['package']
-                    if('type' in res[keys[0]][i])p['type'] = res[keys[0]][i]['type']
-                    cart_items.push(p)
-                    p['qty'] = res[keys[0]][i]['qty']
-                    cart.add_to_cart(p)
-                }
-            }
-        }
-    });
+    return  make_request('GET', path)
+   
 }
 
 async function update_cart_server(func='increase', _uid='none'){
@@ -333,10 +294,12 @@ async function get_quote(){
         xhttp.onreadystatechange = function(){
 
             if(xhttp.readyState == 4 && xhttp.status == 200){ 
-                resolve(xhttp.response)
+                resolve(xhttp.response);
             }else if(xhttp.status == 404){
                 reject(xhttp.response)
             }
+            
+            
         
         }
 
@@ -363,13 +326,12 @@ function click_cart(){
 function get_voltage(package){
     
     try{
-        let raw = package.obj
+        let items =  package.items
         let inverter = null
-        
-        for(let i of Object.keys(raw)){
+        for(let i of items){
            
-            if(i != '_uid' && raw[i].name.toLowerCase() == 'inverter'){
-                inverter = raw[i]
+            if(i != '_uid' && i.name.toLowerCase() == 'inverter'){
+                inverter = i
                 break;
             }
         }
@@ -391,12 +353,12 @@ function get_voltage(package){
 }
 
 function search_item_in_package(package, item_name){
-    let item_list = package.item_list;
-    let keys = item_list;
+    let item_list = package.items;
+    // let keys = item_list;
 
-    for(let k=0; k<keys.length; k++){
-        if(item_list[k].name){
-            item = item_list[k]; 
+    for(let k of item_list){
+        if(k.name){
+            item = k; 
             if(item.name.toLowerCase() ==item_name.toLowerCase()){
                 return item;
             } 

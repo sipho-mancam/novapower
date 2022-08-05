@@ -1,46 +1,46 @@
-function get_package_group_views(package_group, view, append=false){
+function get_package_group_views(package_group, view, name, append=false){
     try{
         if(!append)view.innerHTML = ''
-        for(let i=0; i<package_group.get_package_list().length; i++){
-            view.innerHTML += get_card_html(package_group.get_package_list()[i]);
+        let index = 0;
+        for(let i in package_group){
+
+            view.innerHTML += get_card_html(package_group[i], name, index);
+            index ++;
         }
     }catch(err){
         console.log(err)
     }
 }
 
-function get_item(package){
-    let item_list = package.item_list;
+function get_item(package, name='generator'){
+    let item_list = package.items;
     let v = '<ul>';
     let temp = ' ';
-    let keys = item_list;
-    let p_obj = package.obj;
 
-    if(package.name.toLowerCase()!= 'generator'){
-        for(let k=0; k<keys.length; k++){
-            if(item_list[k].name){
-                item = item_list[k]; 
-                if(item_list[k].name == 'Solar'){
-                    temp += `<li>${p_obj['solar-qty']} x ${item.json_obj.size.Power.value} ${item.json_obj.size.Power.unit} ${item_list[k].name} panels</li>`;
+    if(name.toLowerCase()!= 'generator'){
+        for(let k of item_list){
+            if(k.name){
+                item = k; 
+                if(k.name == 'Solar'){
+                    temp += `<li>${package['solar-qty']} x ${k.size.Power.value} ${k.size.Power.unit} ${k.name} panels</li>`;
                     v+= temp;
                 }
                 else if(item.name =='Battery'){
-                    let i = item.json_obj
+                    let i = item
                     v+= `<li>Battery backup of ${i.size.Energy.value}${i.size.Energy.unit}</li>`;
                 } 
             }
 
         }
-        v+=`<li>Maximum power Output of ${p_obj['max-power']}kW</li>`;
+        v+=`<li>Maximum power Output of ${package['max-power']}kW</li>`;
         v += '</ul>';
         return v
     }else{
-        for(let k=0; k<keys.length; k++){
-            if(item_list[k].name){
-                item = item_list[k]; 
-               
+        for(let k of item_list){
+            if(k.name){
+                item = k;
                 if(item.name.toLowerCase() =='generator'){
-                    let i = item.json_obj
+                    let i = item
                     v+= `<li>Max power Output of ${i.size.Size.value}${i.size.Size.unit}</li>`;
                 } 
             }
@@ -51,61 +51,74 @@ function get_item(package){
     }
 }
 
-function get_card_html(package){
-  if(package.name.toLowerCase() != 'generator'){
-    return(
-        `<div class="cust-card">
-              <div class ="image">
-                  <img  src="${package.img_url}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width="210" height="210"  alt="p-h" />
-              </div>
-              <div class="info">
-                  
-                  <span>
-                    ${get_voltage(package)} system with:  <br />
-                    ${get_item(package)}
-                  </span>
-                  <p class='price'>${package.get_total_price().toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}*</p>
-              </div>
-            <div class="controls">
-                <a class="add-to-cart h-buttons" id="${package.get_id()}" >Add to Cart</a> 
-                <a class="view-more-buttons h-buttons" id="${package.get_id()}+1">View Details</a>
-            </div>
-          </div>`
-    )
-  }
-  else{
-    return(`<div class="cust-card">
-              <div class ="image">
-                  <img  src="${package.img_url}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
-              </div>
-              <div class="info">
-                  
-                  <span>
-                    ${get_item(package)}
-                  </span>
-                  <p class='price'>${package.get_total_price().toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR' }) }*</p>
-              </div>
-            <div class="controls">
-                <a class="add-to-cart h-buttons" id="${package.get_id()}" >Add to Cart</a> 
-                <a class="view-more-buttons h-buttons" id="${package.get_id()}+1">View Details</a>
-            </div>
-          </div>`)
-  }
+function get_package_image(package){
+    let p = package;
+    let items = p.items
+    for(let i of items){
+        if('image_url' in i){
+            return i['image_url']
+        }
+    }
+    return images[Math.ceil(Math.random()*(images.length-1))] // return a place holder in the event that we don't find the image.
+}
+
+function get_card_html(package, name='Solar', index){
+    if(get_package_image(package)!=0){
+        if(name.toLowerCase() != 'generator'){
+            return(
+                `<div class="cust-card">
+                        <div class ="image">
+                            <img  src="${get_package_image(package)}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width="210" height="210"  alt="p-h" />
+                        </div>
+                        <div class="info">
+                            
+                        <span>
+                            ${get_voltage(package)} system with:  <br />
+                            ${get_item(package, name)}
+                        </span>
+                            <p class='price'>${package['price'].toLocaleString('af-ZA', {style:'currency', currency:'ZAR'})}*</p>
+                        </div>
+                    <div class="controls">
+                        <a class="add-to-cart h-buttons" id="${package['_uid']}" index=${index}>Add to Cart</a> 
+                        <a class="view-more-buttons h-buttons" id="${package['_uid']}+1" index=${index}>View Details</a>
+                    </div>
+                    </div>`
+            )
+        }else{
+        return(`<div class="cust-card">
+                    <div class ="image">
+                        <img  src="${get_package_image(package)}" alt="${images[Math.ceil(Math.random()*(images.length-1))]}" width=200 height=200 alt="p-h" />
+                    </div>
+                    <div class="info">
+                        
+                        <span>
+                        ${get_item(package)}
+                        </span>
+                        <p class='price'>${package['price'].toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR' }) }*</p>
+                    </div>
+                <div class="controls">
+                    <a class="add-to-cart h-buttons" id="${package['_uid']}" index=${index}>Add to Cart</a> 
+                    <a class="view-more-buttons h-buttons" id="${package['_uid']}+1" index=${index}>View Details</a>
+                </div>
+                </div>`)
+        }
+    }else{return ""}
+  
 }
 
 function get_item_full(package){
     // console.log(package)
-    let item_list = package.item_list;
+    let item_list = package.items;
     let v = '<ul><b>Name: Brand - Type</b>';
     let temp = ''
-    let keys = item_list;
-    for(let k=0; k<keys.length; k++){
-        if(item_list[k].name){
-            temp = `<li><b>${item_list[k].name}</b>:&nbsp;&nbsp;   
-                        ${item_list[k].brand} - 
-                        ${item_list[k].json_obj['type-group']} :
+
+    for(let k of item_list){
+        if(k.name){
+            temp = `<li><b>${k.name}</b>:&nbsp;&nbsp;   
+                        ${k.brand} - 
+                        ${k['type-group']} :
                             <ul>
-                                ${get_size(item_list[k].size)}
+                                ${get_size(k.size)}
                             </ul>
                     </li>`
             v += temp
@@ -129,15 +142,14 @@ function get_size(item_size){
 }
 
 function get_product_summary(package){
-    let item_list = package.item_list;
-    let temp = ''
-    let keys = item_list;
+    let item_list = package.items;
+    let temp = '';
     let v = 'Components <br /><ul>'
-    for(let k=0; k<keys.length; k++){
-        if(item_list[k].name){
-            temp = `<li><b>${item_list[k].name}</b>:&nbsp;&nbsp;   
-                        ${item_list[k].brand} - 
-                        ${item_list[k].json_obj['type-group']} 
+    for(let k of item_list){
+        if(k.name){
+            temp = `<li><b>${k.name}</b>:&nbsp;&nbsp;   
+                        ${k.brand} - 
+                        ${k['type-group']} 
                     </li>`
             v += temp
         }
@@ -184,13 +196,12 @@ function hide_text(package){
     }
 }
 
-
-function get_view_more(package, p_type){
+function get_view_more(package, name){
     return(
         `
         <div class="view-details-card container">
             <div class="img v-img">
-                <img src="${package.img_url}" class="img-thumbnail" width="300px" height="300px" alt=""/>
+                <img src="${get_package_image(package)}" class="img-thumbnail" width="300px" height="300px" alt=""/>
             </div>
 
             <div class="text">
@@ -208,10 +219,10 @@ function get_view_more(package, p_type){
                 </ul>
 
                 <div class="tab-content" style="width: 100%; display:block; margin-top:5px;" id="v-tab-cont">
-                   ${package['description']}
+                   ${package['description']?package['description']:get_product_summary(package)}
                 </div>
                 
-                <p class='price'>${package.get_total_price().toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR', minimumFractionDigits: 2 }) }*</p>
+                <p class='price'>${package['price'].toLocaleString('af-ZA', { style: 'currency', currency: 'ZAR', minimumFractionDigits: 2 }) }*</p>
                 <div class="buttons">
                   <a class="close-buttons h-buttons b close" id="close-overlay">Close</a>
                 </div>
@@ -246,7 +257,7 @@ function get_pluggable_apps(package){
     
    
     if(variable){
-        total_power = variable.json_obj.size.Size.value*1000;
+        total_power = variable.size.Size.value*1000;
         for(let i of appliance_list){
             total_power -= i['power'];
             if(total_power < 0)break;
