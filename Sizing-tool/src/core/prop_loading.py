@@ -31,6 +31,16 @@ class LPBuilder:
             self.__appliance_list.append(appliance)
         self.__compute_profile()
 
+    def calculate_hyp_profile(self, app_list:list)->list:
+        rb = self.__loading_profile
+        rb2 = self.__appliance_list
+        self.__appliance_list = app_list
+        self.__compute_profile()
+        res = self.__loading_profile
+        self.__loading_profile = rb
+        self.__appliance_list = rb2
+        return list(res)
+
     def __compute_profile(self, lp=None):
         if lp is None:self.__loading_profile = np.zeros((1,24), dtype=np.float64)[0]
         for i in self.__appliance_list:
@@ -46,6 +56,7 @@ class LPBuilder:
         x = np.array([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24])
         line2, = ax.plot(x, self.__loading_profile)
         plt.show()
+
 
     # Utility methods for quick use
     def update_profile(self, lp_profile, item_s)-> np.ndarray:
@@ -75,12 +86,13 @@ class PropertyBuilder:
         self.__available_appliances = {} # read in configuration a dictionary of appliances
         self.__propert_app_list = [] # populated as the property is built
         self.__room_types = [] # read in configuration data
-        self.__profile_builder = LPBuilder()
+        self.__l_profile_builder = LPBuilder()
         self.__property = dict()
         self.__config = None
         self.__config_files = {'room-types':'/room_types.json', 'app-list':'/app_list.json'}
-        self.config()
         self.__room_models = {} # list of usable rooms...
+        self.config()
+        
 
 
     def config(self) -> None:
@@ -97,8 +109,8 @@ class PropertyBuilder:
                         self.__room_types = temp
                     elif c == 'app-list':
                         self.__available_appliances = temp
-        l =  self.build_room_models(self.__room_types)
-
+        self.__room_models =  self.__build_room_models(self.__room_types)
+     
     def dict_to_list(self, d):
         li = []
         for i in d:
@@ -107,7 +119,7 @@ class PropertyBuilder:
             li.append(temp)
         return li
 
-    def build_room_model(self, room_conf:dict):
+    def __build_room_model(self, room_conf:dict):
         room_app_list = room_conf['app-list']
         room_app_qty = room_conf['qty-list']
         room_model={
@@ -125,36 +137,59 @@ class PropertyBuilder:
                     room_model['appliances'].append(app.copy())
         return room_model
 
-    def build_room_models(self, rooms_configs:dict)->list:
+    def __build_room_models(self, rooms_configs:dict)->list:
         output = {}
         for r_m in rooms_configs:
-            output[r_m] = self.build_room_model(rooms_configs[r_m])
+            output[r_m] = self.__build_room_model(rooms_configs[r_m])
         self.__room_models = output.copy()
         return output
 
-    def house_app_list(self, ):
-        pass
+    def __house_app_list(self, house:dict)->list:
+        total_app_list = []
+        rooms = house['rooms']
+        for room in rooms:
+            if type(rooms[room]) is dict:
+                temp = rooms[room]['appliances']
+                total_app_list.extend(temp)
+            elif type(rooms[room]) is list: # we have more than one room in this class.
+                for r in rooms[room]:
+                    total_app_list.extend(r['appliances'])
+        return total_app_list
+
    
     def __compute_house_profile(self, house):
-        pass
+        full_apps_list = self.__house_app_list(house)
+        loading_profile = self.__l_profile_builder.calculate_hyp_profile(full_apps_list)
+        return loading_profile
 
-    def build_property(self, n_of_bedrooms:int, default=True, options={})->dict:
+    def build_property(self, n_of_bedrooms:int=1, default=True, options={})->dict:
             """
             A property has the following known parameters, every property must have 1) kitchen, 2) lounge and 3) bathroom
             """
+
+            # build the default house and send it to the every.
             house = {
                 'n_bedrooms':n_of_bedrooms,
                 'rooms':{
                     'lounge':self.__room_models['lounge'].copy(),
                     'bathroom':self.__room_models['bathroom'].copy(),
                     'kitchen':self.__room_models['kitchen'].copy(),
+                    'bedroom':[self.__room_models['bedroom'].copy()]
                 },
-                'app-list':[]
+                'app-list':[],
+                'loading_profile':[]
             }
-    
-          
 
+            for br in range(0, n_of_bedrooms):
+                house['rooms']['bedroom'].append(self.__room_models['bedroom'].copy())
 
+            l_profile = self.__compute_house_profile(house)
+            house['loading_profile'] = l_profile
+            apps_list = self.__house_app_list(house)
+            house['app-list'] = apps_list
+            return house
 
-pb = PropertyBuilder()
-
+    def add_rooms(self, house, room_s:dict, room_type:str)->dict:
+        """Add a room to the house and return the house."""
+        house['rooms'][room_type] = room_s.copy()
+        return house
