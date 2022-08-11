@@ -76,8 +76,57 @@ class PackageBuilder(Feature):
     def build_data_struct(self, items_groups)->None:        
         pass
 
-    def selection_algo(self, sel_space, target):
-        pass
+    def battery_selection_algo(self, target:float, actual_data_batteries:list, symbolic_rep:list=None,  options={}):
+        """
+        Step 1: sort the list in case it's not sorted.... 
+        step 2: validate the target to be numerical
+        step 3: get the search space ... 
+        step 4: get summations -> these are symbolic representations, find the actual objects in the symbolic combinantions.
+        #### From step 5 downwards we drop the symbolic representations and work with actual objects...######
+        step 5: pass it through the sigmoid squishification function to get the weights...
+        step 6: get the weights matrix ... (symbolic representation of the actual data matrix.)
+        step 7: get the smallest weight
+
+        Args:
+            target: float  -> the required energy in kWh (everything will be scaled to a good 1000)
+            actual_data_batteries: list -> list of dict objects containing data about different batteries...
+            symbolic_rep: list -> list of numerical data (energy in kwh) following the same sequence as the actual list.
+            options: dict -> for future upgrades, to allow more lists than that of batteries.
+        
+        Return:
+            list -> list of optimal battery combinations to achieve target... weighed on price against energy...
+        """
+        if symbolic_rep is None: # we only recieved data ... check the options for the keys... (later updates)
+            pass
+        
+        actual_data_batteries.sort(key=lambda d: d['size']['Energy'])
+        symbolic_rep.sort()
+        if type(target) is float or type(int):
+            pass
+        else: 
+            raise TypeError("Target must be of type Int of Float (numerical)")
+
+        s_s = find_search_space(symbolic_rep, target, 0)
+        combinations = summations(s_s, target, 0)
+
+        print(combinations)
+
+
+    def get_battaries_symbolic_rep(self):
+        batteries = self._data['batteries']
+        sym_list = []
+
+        for i in batteries:
+            sym_list.append(i['size']['Energy'])
+        return sym_list
+    
+
+
+
+        
+
+
+
 
 package_builder = PackageBuilder()
 
