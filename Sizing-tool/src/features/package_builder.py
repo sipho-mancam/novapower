@@ -73,20 +73,15 @@ class PackageBuilder(Feature):
         """
         return super().error(err_m)
 
-    def build_data_struct(self, items_groups)->None:
-        
+    def build_data_struct(self, items_groups)->None:        
         pass
 
     def selection_algo(self, sel_space, target):
         pass
 
-
 package_builder = PackageBuilder()
 
-# package_builder.open()
-
-
-
+# package_builder.open() 
 
 def list_endpoint_convergence(l, t, epsilon=0):
     """
@@ -263,14 +258,14 @@ def combinations(s_s, k, tolerance=0)->list:
     return res_list
 
 
-import random
+# import random
 
-randomlist = random.sample(range(1, 100), 80)
+# randomlist = random.sample(range(1, 100), 80)
 
-randomlist.sort()
+# randomlist.sort()
 
-target = 50
+# target = 50
 
-s_s = find_search_space(randomlist, target)
-print(s_s)
-print(randomlist)
+# s_s = find_search_space(randomlist, target)
+# print(s_s)
+# print(randomlist)
