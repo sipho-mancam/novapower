@@ -1,5 +1,7 @@
 
+from operator import index
 import pprint
+from secrets import choice
 from features import Feature
 import pathlib
 import json
@@ -20,20 +22,16 @@ def list_endpoint_convergence(l, t, epsilon=0):
         if min < t
             if max > t: -> this means that the list has values we don't want to search,
                 go to the middle, {let middle = m}
-
                 if m > t: -> this cuts off half the list,
                     if m-1 > t: -> take the lower part of the list from middle l = [0:m]
                 else if m < t:
                     if m+1 < t: -> this means, search the up part, all the lower parts are involved{take l = [m:end]}
-
             run this until we converge to some value that fits the criteria... 
-
             sanity checks:
                 if max > t , this implies that somewhere in the list there's a (value < t), 
                     (provided that the min < t)
         else:
             return, No sum will give t in the list.
-
     Return Value:
         serach space -> list to search in for possible t summations
     """
@@ -77,22 +75,17 @@ def summations(s_s:list, t, epsilon=0)->list:
                 let k be our target and s_s be our search space,
                 k = n x m
                 where n E {s_s} and round(m)*((k/m)-round(k/m)) < 0.5 ... an acceptable condition for imperfect but close enough products. affecting the result by less than half.
-
-
             for v in s_s:
                 m = k/v
                 if round(m)*(m - round(m)) < 0.4:
                     t = (m, v)
                     res_space.append(t)
             this will give us all the possible muliplications we can come up with from the space. against the target.
-
     case 2: combinations
         In this case the challenge is:
             let k be our target and s_s be our search space,
             k = n+m+j ....
-
             where {n, j, m ....} E {s_s}
-
             stop condition:
                 we add until the mid point.
             steps:
@@ -106,7 +99,6 @@ def summations(s_s:list, t, epsilon=0)->list:
                         while(current < k and i < len(s_s)//2)
                             current += s_s[i]
                             i += 1
-
                         if current > k:
                             # start the reversing wheel
                             j = 0
@@ -120,39 +112,61 @@ def summations(s_s:list, t, epsilon=0)->list:
     # for case 1
     res_list = repeated_sums(s_s, t)
     # for case 2
-    res_list_2 = combinations(s_s, t, -1*t*0.15)
+    res_list_2 = combinations(s_s, t)
     res_list_2.extend(res_list)
     
     return res_list_2
 
-def repeated_sums(s_s, t, tolerance=0.02)->list:
+def repeated_sums(s_s, t, tolerance=0.8)->list:
     res_space = []
+    scale = 1
     for v in s_s:
-        d = t/v
-        # print((round(d)*(d-round(d)))<tolerance, (round(d)*(d-round(d))), v, round(d))
-        if round(d)>=1 and round(d)*(d-round(d)) < tolerance:
-            temp = [v for x in range(0,round(d))]
+        
+        r = t%v
+        d = int(t//v)
+        # print(d)
+        if  d > 0 : # 
+            temp = [v for x in range(0, d)]
             res_space.append(temp)
+        # else: # imperfect multiplication needs summed compensation
+        #     if d > 0:
+        #         temp = [v for x in range(0, d)]
+        #     else:
+        #         temp = [v]
+
+        #     # print("temp sum is:",sum(temp))
+        #     s_t = sum(temp)
+        #     diff = t-s_t
+        #     # print(diff)
+        #     if r > 0:
+        #         compensation = combinations(s_s, v*r, 0)
+        #         print("Compensation",compensation)
+        #         print(t*r)
+        #         # temp.append(compensation)
+        #     res_space.append(temp)
+
     return res_space
 
 def combinations(s_s, k, tolerance=0)->list:
+    # print(s_s)
     res_list = []
     k = k+tolerance
+    # print("k is -> ",k)
     incomp_list = []
-    for j in range(1, len(s_s)//2):
+    for j in range(1, len(s_s)):
         m = s_s[-1*j]
         # print("M is:",m)
+        
         if m <= k:
             temp = []
             # start the rolling wheel ... from the back.
             current = m
             temp.append(m)
             i = 0
-            while current < k and i < len(s_s)//2:
+            while current < k and i < s_s.index(m):
                 current += s_s[i]
                 temp.append(s_s[i])
                 i += 1
-
             if current > k:
                 # start the reversing wheel
                 j = 0
@@ -167,24 +181,124 @@ def combinations(s_s, k, tolerance=0)->list:
                     cach.append(m)
                     cach.remove(s_s[j-1])
                     incomp_list.append(cach)
-
-            if sum(temp) != k:
+            s_t = sum(temp)
+            if s_t != k:
                 incomp_list.append(temp)
-            else:
+            elif (s_t > k-2 and s_t < k+2):
                 res_list.append(temp)
+    # pprint.pprint(res_list)
     # print(incomp_list)
     for i_c in incomp_list:
         s = sum(i_c)
-        # res = repeated_sums(s_s, k-s, 0.2)
-        res = []
+        res = repeated_sums(s_s, k-s, 0.2)
         # print(res, "--> For the sum of: ", i_c, "The target: {} and the difference: {}".format(k, k-s))
-        if res and len(res[0]) > 0:
-            i_c.extend(res[0])
-        res_list.append(i_c)
+        # print(res)
+        if res:
+            c_i_c = i_c.copy()
+            for i in res:
+                if len(i) > 0:
+                    c_i_c.extend(i)
+                    # print(c_i_c)
+                    s = sum(c_i_c)
+                    if (s > k-2 and s < k+2):
+                        res_list.append(c_i_c)
+                    c_i_c = i_c.copy()      
+        else:
+            s = sum(i_c)
+            if (s > k-2 and s < k+2):
+                res_list.append(i_c)
     # print(res_list)
     return res_list
 
 
+class Node:
+    def __init__(self, inverter:dict) -> None:
+        self.__inverter = inverter
+        self.__solar_panels = []
+        self.__batteries = {} 
+        self.__inverter_size = self.__inverter['size']['Size']['value'] # size in kVA
+        self.__configs = [
+            'bill-crusher',
+            'back-up',
+            'hybrid'
+        ]
+
+    def set_batteries(self, batteries):
+        self.__batteries = batteries
+    def get_size(self):return self.__inverter_size
+    def get_packages(self):
+        return {
+            'back-up':self.get_backup_ps(),
+        }
+
+    # 'bill-crusher':self.get_bill_crusher(),
+    # 'hybrid':self.get_hybrid_systems()
+
+    def get_inverter_size(self):return self.__inverter_size
+
+    def get_backup_ps(self):
+        packages = []
+        if len(self.__batteries) > 0:
+            for i in self.__batteries:
+                temp={
+                    'characteristic':str(i)+' hr(s)',
+                    'items':[self.__inverter.copy(), self.__batteries[i]],
+                    'name': 'Back-up',
+                    'system-size':self.__inverter_size
+                }
+                packages.append(temp)
+        else:
+            raise ValueError('Please initialise batteries collection')
+        return packages
+
+    def get_bill_crusher(self):
+        packages = []
+        if len(self.__solar_panels)>0 :
+            for i in self.__solar_panels:
+                temp={
+                    'characteristic': str(len(self.__solar_panels[i]))+'panels',
+                    'items':[self.__inverter.copy(), self.__solar_panels[i]],
+                    'name':'bill-crusher',
+                    'system-size':self.__inverter_size
+                }
+            packages.append(temp)
+        else:
+            raise ValueError('Please initialise solar-panels collection')
+        return packages
+    
+    def get_hybrid_systems(self):
+        packages = []
+        if len(self.__solar_panels)>0 and len(self.__batteries):
+            for i in self.__solar_panels:
+                temp={
+                    'characteristic': str(len(self.__solar_panels[i]))+'panels',
+                    'items':[self.__inverter.copy(), self.__solar_panels[i]],
+                    'name':'bill-crusher',
+                    'system-size':self.__inverter_size
+                }
+                for j in self.__batteries:
+                    temp['items'].append(self.__batteries[i])
+            packages.append(temp)
+        else:
+            raise ValueError('please initialise both battery and solar panel collections')
+        return packages
+
+    def __str__(self): return f"\n{self.__inverter_size}"
+
+
+    
+# def some_func(func, hello='hello decos'):
+#     print(hello)
+#     def wrap(*args, **kwargs):
+#         func(*args, **kwargs)
+#         print('wrapper excuting')
+#     return wrap
+
+# @some_func
+# def second_func(msg='Function - second_func executing'):
+#     print(msg)
+
+# second_func()
 
 class PackageBuilder(Feature):
     def __init__(self) -> None:
@@ -194,7 +308,10 @@ class PackageBuilder(Feature):
         self._error = None
         self._config = None
         self._result = None
+        self._output = None
         super().__init__()
+
+        self.__inverter_nodes = []
 
     def open(self) -> bool:
         """
@@ -211,10 +328,20 @@ class PackageBuilder(Feature):
         with open(CONFIG_DIR+'/package_configs.json') as f:
             config = json.load(f)
             self._config = config
-        print(config)
+        # print(config)
 
+        inverters = self._data['inverter']
 
-        return super().open()
+        for i in inverters:
+            new_node = Node(i)
+            power = new_node.get_size()
+            combinations = self.choose_batteries(power)
+            # print(len(combinations))
+            new_node.set_batteries(combinations)
+            # set the panels here as well...
+            self.__inverter_nodes.append(new_node)
+
+        return True
 
     def init(self, name, data, config=None) -> None:
         """
@@ -224,20 +351,34 @@ class PackageBuilder(Feature):
         Later we'll implement a "feature" validation rule for security purposes.
         """
         if config is None: pass
+        else: self.__config = config
+
         self._data = data
+        self.__name = name
         # pprint.pprint(self._data)
-        return super().init(name, data, config)
+        self.open()
+        super().init(name, data, config)
+        return None
     
     def process(self) -> bool:
+        super().process()
         """
         this is where we'll generate the different packages... and store them in a file to read for filtering later.
         We'll create all possible packages on first go, and unless status changes to 0 we'll read from the 
         json file and run a filter and give output everytime.
         """
+        out = self._output
+        self._output = []
+        for node in self.__inverter_nodes:
+            self._output.append(node.get_packages())
+        # pprint.pprint(self._output)
 
-        return super().process()
+        with open('package-groups.json', 'w') as f:
+            f.write(json.dumps(self._output))
+        return True
     
     def output(self) -> dict:
+        super().output()
         """
         The output will be formed here.. in the form
         output = {
@@ -246,7 +387,8 @@ class PackageBuilder(Feature):
         }
         this is the structure that the world will ever see...
         """
-        return super().output()
+        self.process()
+        return self._output
 
     def error(self, err_m) -> bool:
         """
@@ -254,14 +396,29 @@ class PackageBuilder(Feature):
         """
         return super().error(err_m)
 
-    def build_data_struct(self, items_groups)->None:        
-        pass
+    # def build_data_struct(self, items_groups)->None:        
+    #     pass
 
-    def choose_batteries(self):
+    def choose_batteries(self, inverter_size=5):
         sym_list = self.get_battaries_symbolic_rep()
-        batteries_list =  self._data.get('batteries')
-        target = 20
-        self.battery_selection_algo(target, batteries_list, sym_list)
+        batteries_list =  self._data.get('battery')
+        target = 10 # compute the target P.t .. get t from configs... and P from current inverter...
+        time = self._config.get('battery').get('config')
+
+        battery_groups = {}
+        # print(time)
+        for t in time:
+            target = inverter_size*t
+            # print(target, "t = {}".format(t))
+            combination = self.battery_selection_algo(target, batteries_list, sym_list)
+            battery_groups[str(t)] = combination
+        # pprint.pprint(battery_groups)
+
+        with open('batteries-groups.json', 'w') as f:
+            f.write(json.dumps(battery_groups))
+        return battery_groups
+
+
 
     def battery_selection_algo(self, target:float, actual_data_batteries:list, symbolic_rep:list=None,  options={}):
         """
@@ -288,52 +445,61 @@ class PackageBuilder(Feature):
         actual_data_batteries.sort(key=lambda d: d['size']['Energy']['value'])
         symbolic_rep.sort()
 
-        pprint.pprint(symbolic_rep)
-        pprint.pprint(actual_data_batteries)
         if type(target) is float or type(target) is int:
             pass
         else: 
             raise TypeError("Target must be of type Int of Float (numerical)")
 
         s_s = find_search_space(symbolic_rep, target, 0)
-        combinations = summations(s_s, target, 2)
-
+        combinations = summations(s_s, target)
         real_combinations = self.map_symbolic_reps(actual_data_batteries, symbolic_rep, combinations)
-        print(real_combinations)
-        print(combinations)
-
+        price_energy_ratios = self.get_weights(real_combinations, combinations, target)
+        choice_selected = min(price_energy_ratios)
+        # pprint.pprint(combinations)
+        # # pprint.pprint(price_energy_ratios)
+        # pprint.pprint(combinations[price_energy_ratios.index(choice_selected)])
+        # print(target)
+        # print('------')
+        return real_combinations[price_energy_ratios.index(choice_selected)]
+    
     def map_symbolic_reps(self, actual, sym_list, combs)->list:
         """
         This method will map the combinations to real objects ...
         """
         out_put_list = []
         for comb in combs:
+            temp = []
             for item in comb:
                 ind = sym_list.index(item)
-                temp = []
-                temp.append(actual[ind])
+                temp.append(actual[ind].copy())
             out_put_list.append(temp)
         return out_put_list
 
+    def get_weights(self, actual_bat_combinations, sym_combinations, actual=0):
+        output_list = []
+        for comb in actual_bat_combinations:
+            total = 0
+            energy = sum(sym_combinations[actual_bat_combinations.index(comb)])
+            for battery in comb:
+                total += battery.get('price')
+            price_per_kwh = total/(energy*1000)
+            weight = ((price_per_kwh)+(len(comb)*0.5) + (actual-energy)*5)/10
+            output_list.append(weight)
+
+        return output_list
 
     def get_battaries_symbolic_rep(self):
-        batteries = self._data['batteries']
+        batteries = self._data['battery']
         sym_list = []
         for i in batteries:
             sym_list.append(i['size']['Energy']['value'])
         return sym_list
     
-
-
-
         
-
-
-
 
 package_builder = PackageBuilder()
 
-package_builder.open() 
+
 
 def battery_type_filter(list_item):
     if 'type-group' in list_item:
@@ -342,19 +508,18 @@ def battery_type_filter(list_item):
         else: return False
     else: return False
 
-with open("/home/sipho/Projects/novapower/batteries.json", "r") as f:
+with open("/home/sipho/Projects/novapower/packages-data.json", "r") as f:
     d = f.read()
     data = json.loads(d)
-    data = {'batteries':list(filter(battery_type_filter, data['batteries']))}
+    # data = {'batteries':list(filter(battery_type_filter, data['batteries']))}
     
-
+# pprint.pprint(data)
 
 package_builder.init("package-builder", data)
-package_builder.choose_batteries()
+# package_builder.choose_batteries()
+package_builder.open() 
 
-
-
-
+package_builder.process()
 
 # import random
 

@@ -16,6 +16,7 @@ class Feature(ABC):
         self._error 
         self._config
         self._result
+        self._output
 
     # after initilising variables, we open the feature, performing all configurations and all the neccessary I/Os needed before feature can work
     @abstractmethod
