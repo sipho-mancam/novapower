@@ -1,5 +1,5 @@
 
-
+import pprint
 from features import Feature
 import pathlib
 import json
@@ -9,128 +9,6 @@ CONFIG_DIR_STR = __file__+"/../../configs/"
 
 CONFIG_DIR = pathlib.Path(CONFIG_DIR_STR).resolve().__str__()
 
-class PackageBuilder(Feature):
-    def __init__(self) -> None:
-        self._status = 0
-        self._name =  ''
-        self._data = None
-        self._error = None
-        self._config = None
-        self._result = None
-        super().__init__()
-
-    def open(self) -> bool:
-        """
-        Read data from the config variable and feature data from where-ever.
-        store the data in self._data, this is where most of the feature's functionality will read
-        when looking for data specific to the feature. in this case,
-        package lists in a table.
-        1) Open the configuration file to read all the necessary constraints,
-        2) Organise data into a table with "inverters", "batteries" and "solar" etc, (store it in self._data)
-        3) 
-
-        i.e: You'll know how your data looks, so you'll handle it accordingly.
-        """
-        with open(CONFIG_DIR+'/package_configs.json') as f:
-            config = json.load(f)
-        print(config)
-
-
-        return super().open()
-
-    def init(self, name, config, data) -> None:
-        """
-        We'll initialise variables in this section and deal with any other extras that we may need to initialise,
-        as well as validation. 
-
-        Later we'll implement a "feature" validation rule for security purposes.
-        """
-        return super().init(name, config, data)
-    
-    def process(self) -> bool:
-        """
-        this is where we'll generate the different packages... and store them in a file to read for filtering later.
-        We'll create all possible packages on first go, and unless status changes to 0 we'll read from the 
-        json file and run a filter and give output everytime.
-        """
-
-        return super().process()
-    
-    def output(self) -> dict:
-        """
-        The output will be formed here.. in the form
-        output = {
-            'name':self._name,
-            'data':self._result
-        }
-        this is the structure that the world will ever see...
-        """
-        return super().output()
-
-    def error(self, err_m) -> bool:
-        """
-        Still meditating about the error handling methods that would best suit features in general
-        """
-        return super().error(err_m)
-
-    def build_data_struct(self, items_groups)->None:        
-        pass
-
-    def battery_selection_algo(self, target:float, actual_data_batteries:list, symbolic_rep:list=None,  options={}):
-        """
-        Step 1: sort the list in case it's not sorted.... 
-        step 2: validate the target to be numerical
-        step 3: get the search space ... 
-        step 4: get summations -> these are symbolic representations, find the actual objects in the symbolic combinantions.
-        #### From step 5 downwards we drop the symbolic representations and work with actual objects...######
-        step 5: pass it through the sigmoid squishification function to get the weights...
-        step 6: get the weights matrix ... (symbolic representation of the actual data matrix.)
-        step 7: get the smallest weight
-
-        Args:
-            target: float  -> the required energy in kWh (everything will be scaled to a good 1000)
-            actual_data_batteries: list -> list of dict objects containing data about different batteries...
-            symbolic_rep: list -> list of numerical data (energy in kwh) following the same sequence as the actual list.
-            options: dict -> for future upgrades, to allow more lists than that of batteries.
-        
-        Return:
-            list -> list of optimal battery combinations to achieve target... weighed on price against energy...
-        """
-        if symbolic_rep is None: # we only recieved data ... check the options for the keys... (later updates)
-            pass
-        
-        actual_data_batteries.sort(key=lambda d: d['size']['Energy'])
-        symbolic_rep.sort()
-        if type(target) is float or type(int):
-            pass
-        else: 
-            raise TypeError("Target must be of type Int of Float (numerical)")
-
-        s_s = find_search_space(symbolic_rep, target, 0)
-        combinations = summations(s_s, target, 0)
-
-        print(combinations)
-
-
-    def get_battaries_symbolic_rep(self):
-        batteries = self._data['batteries']
-        sym_list = []
-
-        for i in batteries:
-            sym_list.append(i['size']['Energy'])
-        return sym_list
-    
-
-
-
-        
-
-
-
-
-package_builder = PackageBuilder()
-
-# package_builder.open() 
 
 def list_endpoint_convergence(l, t, epsilon=0):
     """
@@ -305,6 +183,177 @@ def combinations(s_s, k, tolerance=0)->list:
         res_list.append(i_c)
     # print(res_list)
     return res_list
+
+
+
+class PackageBuilder(Feature):
+    def __init__(self) -> None:
+        self._status = 0
+        self._name =  ''
+        self._data = None
+        self._error = None
+        self._config = None
+        self._result = None
+        super().__init__()
+
+    def open(self) -> bool:
+        """
+        Read data from the config variable and feature data from where-ever.
+        store the data in self._data, this is where most of the feature's functionality will read
+        when looking for data specific to the feature. in this case,
+        package lists in a table.
+        1) Open the configuration file to read all the necessary constraints,
+        2) Organise data into a table with "inverters", "batteries" and "solar" etc, (store it in self._data)
+        3) 
+
+        i.e: You'll know how your data looks, so you'll handle it accordingly.
+        """
+        with open(CONFIG_DIR+'/package_configs.json') as f:
+            config = json.load(f)
+            self._config = config
+        print(config)
+
+
+        return super().open()
+
+    def init(self, name, data, config=None) -> None:
+        """
+        We'll initialise variables in this section and deal with any other extras that we may need to initialise,
+        as well as validation. 
+
+        Later we'll implement a "feature" validation rule for security purposes.
+        """
+        if config is None: pass
+        self._data = data
+        # pprint.pprint(self._data)
+        return super().init(name, data, config)
+    
+    def process(self) -> bool:
+        """
+        this is where we'll generate the different packages... and store them in a file to read for filtering later.
+        We'll create all possible packages on first go, and unless status changes to 0 we'll read from the 
+        json file and run a filter and give output everytime.
+        """
+
+        return super().process()
+    
+    def output(self) -> dict:
+        """
+        The output will be formed here.. in the form
+        output = {
+            'name':self._name,
+            'data':self._result
+        }
+        this is the structure that the world will ever see...
+        """
+        return super().output()
+
+    def error(self, err_m) -> bool:
+        """
+        Still meditating about the error handling methods that would best suit features in general
+        """
+        return super().error(err_m)
+
+    def build_data_struct(self, items_groups)->None:        
+        pass
+
+    def choose_batteries(self):
+        sym_list = self.get_battaries_symbolic_rep()
+        batteries_list =  self._data.get('batteries')
+        target = 20
+        self.battery_selection_algo(target, batteries_list, sym_list)
+
+    def battery_selection_algo(self, target:float, actual_data_batteries:list, symbolic_rep:list=None,  options={}):
+        """
+        Step 1: sort the list in case it's not sorted.... 
+        step 2: validate the target to be numerical
+        step 3: get the search space ... 
+        step 4: get summations -> these are symbolic representations, find the actual objects in the symbolic combinantions.
+        #### From step 5 downwards we drop the symbolic representations and work with actual objects...######
+        step 5: pass it through the sigmoid squishification function to get the weights...
+        step 6: get the weights matrix ... (symbolic representation of the actual data matrix.)
+        step 7: get the smallest weight
+
+        Args:
+            target: float  -> the required energy in kWh (everything will be scaled to a good 1000)
+            actual_data_batteries: list -> list of dict objects containing data about different batteries...
+            symbolic_rep: list -> list of numerical data (energy in kwh) following the same sequence as the actual list.
+            options: dict -> for future upgrades, to allow more lists than that of batteries.
+        Return:
+            list -> list of optimal battery combinations to achieve target... weighed on price against energy...
+        """
+        if symbolic_rep is None: # we only recieved data ... check the options for the keys... (later updates)
+            pass
+        
+        actual_data_batteries.sort(key=lambda d: d['size']['Energy']['value'])
+        symbolic_rep.sort()
+
+        pprint.pprint(symbolic_rep)
+        pprint.pprint(actual_data_batteries)
+        if type(target) is float or type(target) is int:
+            pass
+        else: 
+            raise TypeError("Target must be of type Int of Float (numerical)")
+
+        s_s = find_search_space(symbolic_rep, target, 0)
+        combinations = summations(s_s, target, 2)
+
+        real_combinations = self.map_symbolic_reps(actual_data_batteries, symbolic_rep, combinations)
+        print(real_combinations)
+        print(combinations)
+
+    def map_symbolic_reps(self, actual, sym_list, combs)->list:
+        """
+        This method will map the combinations to real objects ...
+        """
+        out_put_list = []
+        for comb in combs:
+            for item in comb:
+                ind = sym_list.index(item)
+                temp = []
+                temp.append(actual[ind])
+            out_put_list.append(temp)
+        return out_put_list
+
+
+    def get_battaries_symbolic_rep(self):
+        batteries = self._data['batteries']
+        sym_list = []
+        for i in batteries:
+            sym_list.append(i['size']['Energy']['value'])
+        return sym_list
+    
+
+
+
+        
+
+
+
+
+package_builder = PackageBuilder()
+
+package_builder.open() 
+
+def battery_type_filter(list_item):
+    if 'type-group' in list_item:
+        if list_item['type-group'].lower() == 'lithium-ion':
+            return True
+        else: return False
+    else: return False
+
+with open("/home/sipho/Projects/novapower/batteries.json", "r") as f:
+    d = f.read()
+    data = json.loads(d)
+    data = {'batteries':list(filter(battery_type_filter, data['batteries']))}
+    
+
+
+package_builder.init("package-builder", data)
+package_builder.choose_batteries()
+
+
+
 
 
 # import random
