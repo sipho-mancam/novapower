@@ -1,6 +1,7 @@
 
 from operator import index
 import pprint
+from re import search
 from secrets import choice
 from features import Feature
 import pathlib
@@ -217,22 +218,20 @@ class Node:
         self.__solar_panels = []
         self.__batteries = {} 
         self.__inverter_size = self.__inverter['size']['Size']['value'] # size in kVA
-        self.__configs = [
-            'bill-crusher',
-            'back-up',
-            'hybrid'
-        ]
+
 
     def set_batteries(self, batteries):
         self.__batteries = batteries
+    def set_panels(self, panels):
+        self.__solar_panels = panels
+    
     def get_size(self):return self.__inverter_size
     def get_packages(self):
         return {
             'back-up':self.get_backup_ps(),
+            'bill-crusher':self.get_bill_crusher(),
+            'hybrid':self.get_hybrid_systems()
         }
-
-    # 'bill-crusher':self.get_bill_crusher(),
-    # 'hybrid':self.get_hybrid_systems()
 
     def get_inverter_size(self):return self.__inverter_size
 
@@ -241,7 +240,7 @@ class Node:
         if len(self.__batteries) > 0:
             for i in self.__batteries:
                 temp={
-                    'characteristic':str(i)+' hr(s)',
+                    'characteristic':str(i)+' hr(s) backup',
                     'items':[self.__inverter.copy(), self.__batteries[i]],
                     'name': 'Back-up',
                     'system-size':self.__inverter_size
@@ -254,13 +253,12 @@ class Node:
     def get_bill_crusher(self):
         packages = []
         if len(self.__solar_panels)>0 :
-            for i in self.__solar_panels:
-                temp={
-                    'characteristic': str(len(self.__solar_panels[i]))+'panels',
-                    'items':[self.__inverter.copy(), self.__solar_panels[i]],
-                    'name':'bill-crusher',
-                    'system-size':self.__inverter_size
-                }
+            temp={
+                'characteristic': str(len(self.__solar_panels))+' panels',
+                'items':[self.__inverter.copy(), self.__solar_panels],
+                'name':'bill-crusher',
+                'system-size':self.__inverter_size
+            }
             packages.append(temp)
         else:
             raise ValueError('Please initialise solar-panels collection')
@@ -268,23 +266,20 @@ class Node:
     
     def get_hybrid_systems(self):
         packages = []
-        if len(self.__solar_panels)>0 and len(self.__batteries):
-            for i in self.__solar_panels:
+        if len(self.__batteries) > 0:
+            for i in self.__batteries:
                 temp={
-                    'characteristic': str(len(self.__solar_panels[i]))+'panels',
-                    'items':[self.__inverter.copy(), self.__solar_panels[i]],
-                    'name':'bill-crusher',
+                    'characteristic':str(i)+' hr(s) backup + '+str(len(self.__solar_panels))+ ' panels',
+                    'items':[self.__inverter.copy(), self.__batteries[i], self.__solar_panels],
+                    'name': 'Solar and Back-up',
                     'system-size':self.__inverter_size
                 }
-                for j in self.__batteries:
-                    temp['items'].append(self.__batteries[i])
-            packages.append(temp)
+                packages.append(temp)
         else:
-            raise ValueError('please initialise both battery and solar panel collections')
+            raise ValueError('Please initialise batteries collection')
         return packages
 
-    def __str__(self): return f"\n{self.__inverter_size}"
-
+    def __str__(self): return f"Inverter size is: {self.__inverter_size}"
 
     
 # def some_func(func, hello='hello decos'):
@@ -298,7 +293,31 @@ class Node:
 # def second_func(msg='Function - second_func executing'):
 #     print(msg)
 
-# second_func()
+
+
+
+
+
+def search_list(l, key, comp_cb=None):
+    l.sort(key = comp_cb)
+    def b_search_list(l, key, comp_cb=None):
+        if len(l)>1:
+            if comp_cb is None:
+                if l[0] == key: return l[0]
+                elif l[len(l)//2] == key: return l[len(l)//2]
+                elif l[len(l)//2] > key: return b_search_list(l[0:len(l)//2], key, comp_cb)
+                else: return b_search_list(l[len(l)//2:len(l)], key, comp_cb)
+            else:
+                if comp_cb(l[0]) == key: return l[0]
+                elif comp_cb(l[len(l)//2]) == key: return l[len(l)//2]
+                elif comp_cb(l[len(l)//2]) > key: return b_search_list(l[0:len(l)//2], key, comp_cb)
+                else: return b_search_list(l[len(l)//2:len(l)], key, comp_cb)
+        else:
+            return None
+    return b_search_list(l, key, comp_cb)
+
+
+
 
 class PackageBuilder(Feature):
     def __init__(self) -> None:
@@ -328,7 +347,7 @@ class PackageBuilder(Feature):
         with open(CONFIG_DIR+'/package_configs.json') as f:
             config = json.load(f)
             self._config = config
-        # print(config)
+        
 
         inverters = self._data['inverter']
 
@@ -339,7 +358,10 @@ class PackageBuilder(Feature):
             # print(len(combinations))
             new_node.set_batteries(combinations)
             # set the panels here as well...
+            new_node.set_panels(self.select_panels(new_node.get_size()))
             self.__inverter_nodes.append(new_node)
+
+        self._status = 0x01
 
         return True
 
@@ -350,31 +372,37 @@ class PackageBuilder(Feature):
 
         Later we'll implement a "feature" validation rule for security purposes.
         """
-        if config is None: pass
-        else: self.__config = config
+        super().init(name, data, config)
 
         self._data = data
         self.__name = name
-        # pprint.pprint(self._data)
         self.open()
-        super().init(name, data, config)
+        self._status = 0x02
         return None
     
     def process(self) -> bool:
-        super().process()
         """
         this is where we'll generate the different packages... and store them in a file to read for filtering later.
         We'll create all possible packages on first go, and unless status changes to 0 we'll read from the 
         json file and run a filter and give output everytime.
+
+        How many cases does this feature "process" ?
+        1) Max-demand from Loading Profile. (will be part of "self._data)" under 'load_profile' key
+        2) Initialise ... give 15 packages for each class... (Hybrid, Bill-Crusher, Back-up)
+        3) 
         """
+        super().process()
+
         out = self._output
         self._output = []
         for node in self.__inverter_nodes:
             self._output.append(node.get_packages())
-        # pprint.pprint(self._output)
+        
 
-        with open('package-groups.json', 'w') as f:
+        # back-up all the work for later use...
+        with open('package-groups.json', 'w') as f: # this ensures "availability" ... under no circumstance can we wind up with no data.
             f.write(json.dumps(self._output))
+
         return True
     
     def output(self) -> dict:
@@ -388,17 +416,72 @@ class PackageBuilder(Feature):
         this is the structure that the world will ever see...
         """
         self.process()
-        return self._output
 
-    def error(self, err_m) -> bool:
+        return {'data':self._output, 'name':self._name}
+
+    def error(self, err_obj) -> bool:
         """
-        Still meditating about the error handling methods that would best suit features in general
+        Receive error object,
+        Every feature will handle it's own errors, the manage will only invoke this method and pass after that ....
         """
-        return super().error(err_m)
+        return super().error(err_obj)
 
     # def build_data_struct(self, items_groups)->None:        
     #     pass
 
+    def get_packages_for_lp(self, lp:list):
+        """
+        Generate packages that only fit the lp peak demand criteria.
+        How we do this is:
+        step 1: Get the peak demand from the lp.
+        step 2: Find the inverter that is most suitable for the peak demand
+        step 3: if we can't find it... then, remove max, and store it with it's index. (value, index)
+        step 4: find the new max in the lp, repeat 1 to 3, then 4 until we find and inverter that fits.
+        step 5: clean up and put everything back together
+        step 6: build output and return
+        
+        """
+        peak_demand = max(lp)
+        temp_list = []
+        res = search_list(self.__inverter_nodes, peak_demand, comp_cb=lambda iNode: iNode.get_size())
+
+        while(res is None):
+            temp_list.append((peak_demand, lp.index(peak_demand)))
+            lp.remove(peak_demand)
+            peak_demand = max(lp)
+            res = search_list(self.__inverter_nodes, peak_demand, comp_cb=lambda iNode: iNode.get_size())
+            
+        if res is None:
+            return {}
+
+        # put everything back as it was...
+        for i in temp_list:
+            lp.insert(i[1], i[0])
+        
+        return {'packages':res.get_packages(), 'max_demand':res.get_size(), 'loading_profile':lp}
+
+
+    # solar algos
+    def select_panels(self, inverter_size=3):
+        """ 
+        Very easy, what we do here is:
+            1) select panels that match 80% of total power...
+        """
+        inverter_size *= 1000
+        panels = self._data.get('solar')
+        for p in panels:
+            temp = []
+            s = 0
+            if p['size']['Power']['value'] < inverter_size:
+                while(s < 0.8*inverter_size and len(temp)< 14):
+                    s += p['size']['Power']['value']
+                    temp.append(p.copy())
+                return temp
+        else: return panels[0]
+            
+
+
+    # battery algorithms...
     def choose_batteries(self, inverter_size=5):
         sym_list = self.get_battaries_symbolic_rep()
         batteries_list =  self._data.get('battery')
@@ -417,8 +500,6 @@ class PackageBuilder(Feature):
         with open('batteries-groups.json', 'w') as f:
             f.write(json.dumps(battery_groups))
         return battery_groups
-
-
 
     def battery_selection_algo(self, target:float, actual_data_batteries:list, symbolic_rep:list=None,  options={}):
         """
@@ -495,40 +576,20 @@ class PackageBuilder(Feature):
             sym_list.append(i['size']['Energy']['value'])
         return sym_list
     
-        
-
-package_builder = PackageBuilder()
-
-
-
-def battery_type_filter(list_item):
-    if 'type-group' in list_item:
-        if list_item['type-group'].lower() == 'lithium-ion':
-            return True
-        else: return False
-    else: return False
-
-with open("/home/sipho/Projects/novapower/packages-data.json", "r") as f:
-    d = f.read()
-    data = json.loads(d)
-    # data = {'batteries':list(filter(battery_type_filter, data['batteries']))}
     
-# pprint.pprint(data)
+# def battery_type_filter(list_item):
+#     if 'type-group' in list_item:
+#         if list_item['type-group'].lower() == 'lithium-ion':
+#             return True
+#         else: return False
+#     else: return False
 
-package_builder.init("package-builder", data)
-# package_builder.choose_batteries()
-package_builder.open() 
+# with open("/home/sipho/Projects/novapower/packages-data.json", "r") as f:
+#     d = f.read()
+#     data = json.loads(d)
 
-package_builder.process()
+# package_builder = PackageBuilder()
 
-# import random
+# package_builder.init("package-builder", data)
 
-# randomlist = random.sample(range(1, 100), 80)
-
-# randomlist.sort()
-
-# target = 50
-
-# s_s = find_search_space(randomlist, target)
-# print(s_s)
-# print(randomlist)
+# pprint.pprint(package_builder.get_packages_for_lp([1,2,3,14]))

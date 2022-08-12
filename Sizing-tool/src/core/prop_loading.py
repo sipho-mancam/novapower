@@ -93,8 +93,6 @@ class PropertyBuilder:
         self.__room_models = {} # list of usable rooms...
         self.config()
         
-
-
     def config(self) -> None:
         c_file_names =  self.__config_files
         for c in c_file_names:

@@ -29,7 +29,7 @@ class Feature(ABC):
         pass
     
     # called internally by the manager to perform the objects duties ... always called before output
-    # if it returns true, the process to send output otherwise raise exception
+    # if it returns true, start the process to send output otherwise raise exception
     @abstractmethod
     def process(self)->bool:
         pass

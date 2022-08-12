@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./Sizing-tool/src/features"
+    ]
+}
