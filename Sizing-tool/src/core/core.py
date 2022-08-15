@@ -8,8 +8,6 @@ import pathlib
 sys.path.append(pathlib.Path(__file__+"/../../features/").resolve().__str__())
 
 
-import numpy as np
-# import features
 from features import Feature
 from package_builder import PackageBuilder
 from prop_loading import LPBuilder
@@ -116,23 +114,3 @@ class Core:
         return output
 
 
-
-with open("/home/sipho/Projects/novapower/packages-data.json", "r") as f:
-    d = f.read()
-    data = json.loads(d)
-
-cor = Core(data)
-prop = cor.get_property(1)
-
-loading = prop.get('loading-profile')
-print(max(loading))
-packages = cor.process_loading(prop)
-
-pb = cor.get('property')
-
-
-import pprint
-
-if pb is not None:
-    pprint.pprint(pb.house_get(prop, key='all'))
-# pprint.pprint(packages)

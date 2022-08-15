@@ -101,13 +101,14 @@ class PropertyBuilder:
                 path = CONFIG_DIR.resolve().__str__()+c_file_names[c];
             else:
                 path = CONFIG_DIR.resolve().__str__()+'/'+c_file_names[c];
-
+            
             with open(path) as f:
                     temp = json.loads(f.read())
                     if c =='room-types':
                         self.__room_types = temp
                     elif c == 'app-list':
                         self.__available_appliances = temp
+                  
         self.__room_models =  self.__build_room_models(self.__room_types)
      
     def dict_to_list(self, d):
@@ -117,6 +118,8 @@ class PropertyBuilder:
             temp['name'] = i;
             li.append(temp)
         return li
+
+    def get_available_appliances(self):return [x for x in self.__available_appliances]
 
     def __build_room_model(self, room_conf:dict):
         room_app_list = room_conf['app-list']
