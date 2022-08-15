@@ -4,6 +4,7 @@ LP builder
 """
 import json
 import pprint
+import re
 import numpy as np
 import matplotlib.pyplot as plt
 import pathlib
@@ -172,17 +173,17 @@ class PropertyBuilder:
                     'lounge':self.__room_models['lounge'].copy(),
                     'bathroom':self.__room_models['bathroom'].copy(),
                     'kitchen':self.__room_models['kitchen'].copy(),
-                    'bedroom':[self.__room_models['bedroom'].copy()]
+                    'bedroom':[]
                 },
                 'app-list':[],
-                'loading_profile':[]
+                'loading-profile':[]
             }
 
             for br in range(0, n_of_bedrooms):
                 house['rooms']['bedroom'].append(self.__room_models['bedroom'].copy())
 
             l_profile = self.__compute_house_profile(house)
-            house['loading_profile'] = l_profile
+            house['loading-profile'] = l_profile
             apps_list = self.__house_app_list(house)
             house['app-list'] = apps_list
             return house
@@ -191,3 +192,39 @@ class PropertyBuilder:
         """Add a room to the house and return the house."""
         house['rooms'][room_type] = room_s.copy()
         return house
+    
+    def house_get(self, house:dict, room_type:str='lounge', key:str='appliance'):
+        hfull = house.copy()
+        house = house.get('rooms')
+        out = house.get(room_type)
+        room_type = room_type.lower()
+        key = key.lower()
+        
+        # pprint.pprint(house)    
+
+        # if out is not None:
+        #     return out.get(key)
+
+        if key.lower() == 'all': # all appliances
+            return [x.get('name') for x in hfull.get('app-list')]
+        
+        if room_type =='all': # all the rooms ... no appliances
+            return list(house.keys())
+
+        if room_type == 'summary':
+            keys = list(house.keys())
+            res = {}
+            for k in keys:
+                if type(house.get(k)) is dict:
+                    res[k] = {
+                        'appliances': [x.get('name') for x in house.get(k).get('appliances')]
+                    }
+                elif type(house.get(k)) is list:
+                    count = 0
+                    for br in house.get(k):
+                        res['bedroom '+str(count)] = [x.get('name') for x in br.get('appliances')]
+                        count +=1
+            return res
+
+
+

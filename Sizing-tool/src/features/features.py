@@ -31,7 +31,7 @@ class Feature(ABC):
     # called internally by the manager to perform the objects duties ... always called before output
     # if it returns true, start the process to send output otherwise raise exception
     @abstractmethod
-    def process(self)->bool:
+    def process(self, lp=[])->bool:
         pass
 
     # method to send output to the outside world

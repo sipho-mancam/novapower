@@ -329,7 +329,6 @@ class PackageBuilder(Feature):
         self._result = None
         self._output = None
         super().__init__()
-
         self.__inverter_nodes = []
 
     def open(self) -> bool:
@@ -349,8 +348,8 @@ class PackageBuilder(Feature):
             self._config = config
         
 
-        inverters = self._data['inverter']
-
+        inverters = self._data.get('inverter')
+        if inverters is None: inverters = []
         for i in inverters:
             new_node = Node(i)
             power = new_node.get_size()
@@ -380,7 +379,7 @@ class PackageBuilder(Feature):
         self._status = 0x02
         return None
     
-    def process(self) -> bool:
+    def process(self, lp=[]) -> bool:
         """
         this is where we'll generate the different packages... and store them in a file to read for filtering later.
         We'll create all possible packages on first go, and unless status changes to 0 we'll read from the 
@@ -391,7 +390,7 @@ class PackageBuilder(Feature):
         2) Initialise ... give 15 packages for each class... (Hybrid, Bill-Crusher, Back-up)
         3) 
         """
-        super().process()
+        super().process(lp)
 
         out = self._output
         self._output = []
@@ -439,25 +438,18 @@ class PackageBuilder(Feature):
         step 4: find the new max in the lp, repeat 1 to 3, then 4 until we find and inverter that fits.
         step 5: clean up and put everything back together
         step 6: build output and return
-        
         """
         peak_demand = max(lp)
-        temp_list = []
         res = search_list(self.__inverter_nodes, peak_demand, comp_cb=lambda iNode: iNode.get_size())
-
-        while(res is None):
-            temp_list.append((peak_demand, lp.index(peak_demand)))
-            lp.remove(peak_demand)
-            peak_demand = max(lp)
+        if res is None: peak_demand = round(peak_demand)
+        while(res is None and peak_demand >= 0):
+            peak_demand -= 0.1
+            peak_demand = round(peak_demand,2)
             res = search_list(self.__inverter_nodes, peak_demand, comp_cb=lambda iNode: iNode.get_size())
-            
+ 
         if res is None:
-            return {}
+            return {'packages':{}, 'max_demand':peak_demand, 'loading_profile':lp}
 
-        # put everything back as it was...
-        for i in temp_list:
-            lp.insert(i[1], i[0])
-        
         return {'packages':res.get_packages(), 'max_demand':res.get_size(), 'loading_profile':lp}
 
 
@@ -570,26 +562,10 @@ class PackageBuilder(Feature):
         return output_list
 
     def get_battaries_symbolic_rep(self):
-        batteries = self._data['battery']
+        batteries = self._data.get('battery')
         sym_list = []
         for i in batteries:
             sym_list.append(i['size']['Energy']['value'])
         return sym_list
     
     
-# def battery_type_filter(list_item):
-#     if 'type-group' in list_item:
-#         if list_item['type-group'].lower() == 'lithium-ion':
-#             return True
-#         else: return False
-#     else: return False
-
-# with open("/home/sipho/Projects/novapower/packages-data.json", "r") as f:
-#     d = f.read()
-#     data = json.loads(d)
-
-# package_builder = PackageBuilder()
-
-# package_builder.init("package-builder", data)
-
-# pprint.pprint(package_builder.get_packages_for_lp([1,2,3,14]))

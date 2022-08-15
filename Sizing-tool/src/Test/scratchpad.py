@@ -5,6 +5,4 @@ print(d)
 
 d['name'] = 'k'
 
-print(d)
-
-d.setdefault('name', 'sthe')
+print(list(d.keys()))
