@@ -1,0 +1,47 @@
+.main{
+    border:1px solid black;
+}
+
+.section{
+    height: 93vh;
+}
+
+.left{
+    background-color: grey;
+}
+
+.middle{
+    background-color: green;
+}
+
+.right{
+    background-color: blue;
+}
+
+
+.block{
+     background-color: aliceblue;
+     border: 1px solid black;
+     height: 48%;
+}
+
+.tabs{
+    height:40px;
+}
+
+.tab{
+    background-color: white;
+    border: 1px solid black;
+}
+
+.naming{
+    text-align: center;
+    width: 100%;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.apps-grid{
+    display: flex;
+}
+
