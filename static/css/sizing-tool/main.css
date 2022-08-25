@@ -1,7 +1,3 @@
-.main{
-    border:1px solid black;
-}
-
 .section{
     height: 93vh;
 }
@@ -10,38 +6,38 @@
     background-color: grey;
 }
 
-.middle{
-    background-color: green;
-}
-
 .right{
     background-color: blue;
 }
 
-
 .block{
-     background-color: aliceblue;
-     border: 1px solid black;
-     height: 48%;
+     background-color: rgb(226, 227, 228);
+     height: 48%;     
 }
 
-.tabs{
-    height:40px;
-}
 
-.tab{
-    background-color: white;
-    border: 1px solid black;
+.header{
+    background-color: rgb(231, 231, 231);
 }
 
 .naming{
     text-align: center;
     width: 100%;
-    border: 1px solid black;
     margin: auto;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+hr{
+    margin: 0px;
 }
 
 .apps-grid{
     display: flex;
+    padding: 5px;
+    flex-flow: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    background-color: rgb(231, 231, 231);
 }
 

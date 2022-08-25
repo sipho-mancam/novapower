@@ -1,0 +1,85 @@
+.app-icon{
+    border:1px solid rgba(0,0,0,0.05);
+    width: 66px;
+    height: fit-content;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: -3px -3px 3px  rgba(209, 208, 208, 0.2),
+                3px 3px 2px rgba(134, 134, 134, 0.05);
+    box-sizing: border-box;
+    margin: 5px;
+    display: flex;
+    flex-flow: column;
+    transition: all 0.1s ease-in-out;
+}
+
+.icon{
+    margin: auto;
+}
+
+.title{
+    font-weight: bold;
+    font-size: small;
+    text-align: center;
+    /* margin: auto; */
+    overflow: hidden;
+    /* border: 1px solid black; */
+}
+
+.name{
+    text-overflow: ellipsis;
+}
+
+.app-icon:hover{
+    /* border: 3px solid grey; */
+    transform: scale(1.2);
+    position:static;
+    background-color: #aaa8a8;
+    transition: transform 0.15s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+   
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    display: block;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    display: block;
+    background: #7c7b7b; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7c7b7b; 
+    display: block;
+  } */

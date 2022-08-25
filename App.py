@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session
 from flask_session import Session
 import Modules.Processors.filter as filter
@@ -756,6 +757,32 @@ def get_enquiries():
             counter += 1
         return res_json
     return {'response':0x05}
+
+@app.route('/sizing-tool', methods=['GET', 'POST'])
+def size_init():
+    """
+    Send a default house, with 1 bedroom, a lounge, a kitchen, and a bathroom.
+    """
+    f = request.args.get('f')
+    if f == 'init':
+        house = sizing_tool.get_property()
+        result = sizing_tool.process_loading(house)
+        result['house'] = house
+    else:
+        house = sizing_tool.get_property(f)
+        result = sizing_tool.process_loading(house)
+        result['house'] = house
+    return result
+
+@app.route('/sizing-tool/apps-list', methods=['GET', 'POST'])
+def apps_list():
+    """
+    Get the app list from sizing tool.
+    """
+    property_builder = sizing_tool.get('property-builder')
+    app_list = property_builder.get_app_list()
+    
+    return {"app-list":app_list}
 
 def create_ss_list(json:dict):
     l = [

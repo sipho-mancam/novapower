@@ -3,7 +3,7 @@
         "usage-profile":[0.02,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01],
         "Total-Time":0.24,
         "Total-Energy":0.0048,
-        "img": "https://cdn3.vectorstock.com/i/thumb-large/51/47/phone-charging-vector-28465147.jpg"
+        "img": "https://cdn-icons-png.flaticon.com/512/4298/4298272.png"
     },
     "Router":{
         "usage-profile":[0.02,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -12,7 +12,6 @@
         "Total Energy":0.48
         
     },
-    
     "Decoder":{
         "usage-profile":[0.015,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
         "Total-time":24,
@@ -49,12 +48,12 @@
         "usage-profile":[0.25,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1],
         "Total-time":14,
         "Total Energy":3.5,
-        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Noun_Project_lightbulb_icon_1263005_cc.svg/1200px-Noun_Project_lightbulb_icon_1263005_cc.svg.png"
+        "img": "https://cdn-icons-png.flaticon.com/512/702/702814.png"
     },
     "Fridge":{
         "usage-profile":[0.6,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
         "Total-time":24,
-        "img": "https://toppng.com/uploads/preview/file-svg-fridge-icon-sv-11563715839vbv5lvmhxn.png",
+        "img": "https://cdn-icons-png.flaticon.com/512/395/395598.png",
         "Total Energy":14.4
     },
     "Fan":{
@@ -66,7 +65,7 @@
     "Microwave":{
         "usage-profile":[1.2,0,0,0,0,0,0.2,0.001,0.001,0,0,0,0.01,0.01,0.01,0,0,0,0.01,0.01,0,0,0,0,0],
         "Total-time":0.252,
-        "img": "https://thumbs.dreamstime.com/b/bowl-microwave-icon-outline-style-vector-web-design-isolated-white-background-190751776.jpg",
+        "img": "https://cdn-icons-png.flaticon.com/512/2005/2005948.png",
         "Total Energy":0.3024
     },
     "Toaster":{
@@ -105,7 +104,7 @@
         "img":"https://cdn-icons-png.flaticon.com/512/3565/3565450.png",
         "Total Energy":1.5
     },
-    "Home Server":{
+    "Server":{
         "usage-profile":[0.72,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
         "Total-time":24,
         "img":"https://cdn-icons-png.flaticon.com/512/2972/2972479.png",

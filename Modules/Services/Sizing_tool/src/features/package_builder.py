@@ -285,8 +285,6 @@ class Node:
     def __str__(self): return f"Inverter size is: {self.__inverter_size}"
 
 
-
-
 def search_list(l, key, comp_cb=None):
     l.sort(key = comp_cb)
     def b_search_list(l, key, comp_cb=None):
@@ -304,9 +302,6 @@ def search_list(l, key, comp_cb=None):
         else:
             return None
     return b_search_list(l, key, comp_cb)
-
-
-
 
 class PackageBuilder(Feature):
     def __init__(self) -> None:
@@ -556,5 +551,4 @@ class PackageBuilder(Feature):
         for i in batteries:
             sym_list.append(i['size']['Energy']['value'])
         return sym_list
-    
     

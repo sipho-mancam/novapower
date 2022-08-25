@@ -7,12 +7,10 @@ import sys
 import pathlib
 sys.path.append(pathlib.Path(__file__+"/../../features/").resolve().__str__())
 sys.path.append(pathlib.Path(__file__+"/../").resolve().__str__())
-
 from features import Feature
 from package_builder import PackageBuilder
 from prop_loading import LPBuilder
 from prop_loading import PropertyBuilder
-
 
 class Core:
     def __init__(self, data:dict) -> None:
@@ -79,7 +77,7 @@ class Core:
         lp = house_model.get('loading-profile')
         return self.__package_builder.get_packages_for_lp(lp)
 
-    def get_property(self, num_of_bedrooms:int)->dict:
+    def get_property(self, num_of_bedrooms:int=1)->dict:
         return self.__property_builder.build_property(num_of_bedrooms)
 
     def process_loading(self, loading:dict)->dict:

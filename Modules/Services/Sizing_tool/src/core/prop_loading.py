@@ -110,6 +110,12 @@ class PropertyBuilder:
                         self.__available_appliances = temp
                   
         self.__room_models =  self.__build_room_models(self.__room_types)
+    def get_app_list(self):
+        l = []
+        for app in self.__available_appliances:
+            self.__available_appliances[app]['name'] = app
+            l.append(self.__available_appliances[app])
+        return l
      
     def dict_to_list(self, d):
         li = []
