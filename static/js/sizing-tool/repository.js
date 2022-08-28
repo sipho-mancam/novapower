@@ -10,6 +10,8 @@ class Repository{
     constructor(){
         this.current_data = {};
         this.data_structure = {};
+        this.old_data = {};
+        this.new_data = {};
         this.state = 0;
         this.read = 0
         
@@ -18,13 +20,24 @@ class Repository{
     update(method, url, data){
         make_request(method, url, data)
         .then(res=>{
-            this.current_data = res;
+            this.new_data = res;
             this.state = 1
             this.read = 0
+            this.old_data = this.new_data
         });
     }
 
     read_data(){
-
+        if(this.state == 0) return this.old_data;
+        else if(this.state == 1) {
+            this.read = 1;
+            return this.new_data;        
+        }
     }
+
+    isNewData(){
+        return this.state == 1;
+    }
+
+
 }

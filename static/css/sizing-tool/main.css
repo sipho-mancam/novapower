@@ -61,9 +61,11 @@ hr{
 }
 
 .mid-block{
-    height: 45%;
+    height: 42%;
     /* border: 1px solid black; */
     position:relative;
-   
+}
 
+.mid-header{
+    /* background-color: var(--bg_color); */
 }
