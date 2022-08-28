@@ -7,6 +7,11 @@ import Modules.input_drivers.mongo_broker as mongo_broker
 import Modules.Utils.CONSTANTS as CONSTANTS
 import Modules.Processors.pricing as pricing
 
+import sys
+
+sys.path.append(pathlib.Path(__file__+'/../').resolve().__str__())
+import init
+
 client = mongo_broker.connect(host=CONSTANTS.D_HOST, port=CONSTANTS.D_PORT)
 db_manager = db_manager.DBManager(client, client[CONSTANTS.DB_TEST], CONSTANTS.COL_TEST, {})
 
@@ -16,19 +21,31 @@ def search_cart(uid, cart_list):
             return item
     return None
 
+def get_packages_data(keys=['solar', 'inverter', 'battery'])->dict:
+    data_path = "./Data/DatabaseIndividualPricingInputFormat v2.xlsx"
+    sbp_list = init.setup_input(data_path, 'Sheet 1', keys=['solar', 'inverter', 'battery']).get_sub_package_list()
+    out = {}
+    for sp in sbp_list:
+        out[sp._get_name()] = sp._get_items()
+    
+    return out
+
 def update_cart(uid:str, cart_list:list, func:str='increase'):
     res = search_cart(uid, cart_list)
     if res is not None:
         if func == 'increase':
-                res['qty'] += 1
-                return True
+            res['qty'] += 1
+            return True
         elif func == 'decrease':
-                res['qty'] -= 1
-                if res['qty']<0:res['qty'] = 0
-                return True
+            res['qty'] -= 1
+            if res['qty']<0:res['qty'] = 0
+            return True
         elif func == 'delete':
             cart_list.remove(res)
             return True 
+        else:
+            res['qty'] = float(func)
+            return True
     elif func == 'clear':
         cart_list.clear()       
     else: 

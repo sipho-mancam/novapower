@@ -1,3 +1,4 @@
+# from crypt import methods
 from flask import Flask, redirect, render_template, request, jsonify, send_from_directory, session
 from flask_session import Session
 import Modules.Processors.filter as filter
@@ -7,7 +8,8 @@ import Modules.input_drivers.package_manager as pm
 import Modules.Utils.init as init
 import datetime
 import Modules.Utils.utility as utils
-import Modules.Services.Sizing.sizing_tool as s_tool
+
+# import Modules.Services.Sizing.sizing_tool. as s_tool
 import pathlib
 import Modules.Processors.pricing as pricing
 from pymongo import MongoClient
@@ -18,29 +20,36 @@ import hashlib
 import random
 import os
 import pprint
+import sys
+import pathlib
+sys.path.append(pathlib.Path(__file__+'/../Modules/').resolve().__str__())
+sys.path.append(pathlib.Path(__file__+'/../Modules/Services/Sizing_tool/src').resolve().__str__())
+import sizing_tool as s_tool
 
+
+""" default variables required by the whole system """
 app = Flask(__name__)
-
 client = MongoClient("mongodb+srv://sipho-mancam:Stheshboi2C@cluster0.silnxfe.mongodb.net/sessions?retryWrites=true&w=majority")
-
 app.secret_key = hashlib.sha256(random.randbytes(256), usedforsecurity=True).hexdigest()
 app.config['UPLOAD_FOLDER'] = pathlib.Path('./Data/Quotes/').absolute().as_posix()
 app.config['SESSION_TYPE'] = 'filesystem' #'mongodb'
-
 Session(app)
-
 db_manager, clnt = db_manager.setup()
-
 data_path = "./Data/DatabaseIndividualPricingInputFormat v2.xlsx"
 solar_package_handler = init.setup_input(data_path, 'Sheet 1',keys=['solar', 'inverter', 'battery']);
 inverter_package_handler = init.setup_input(data_path, 'Sheet 1', keys=['inverter', 'battery'])
 generator_package_handler = init.setup_input(data_path,'Sheet 1', keys=['generator'])
-
 admin_creds  = hashlib.sha512(bytes('admin@novapoweradmin@admin', 'utf-8'), usedforsecurity=True).hexdigest()
 session_token = admin_creds
-
 stage = filter.init_stage()
+sizing_tool = s_tool.get_sizing_tool(utils.get_packages_data())
+package_table = {
+    'generator':generator_package_handler.get_summary(),
+    'solar':solar_package_handler.get_summary(),
+    'inverter':inverter_package_handler.get_summary()
+}
 
+# utility methods required for initialisations
 def _get_pdfkit_config():
      """wkhtmltopdf lives and functions differently depending on Windows or Linux. We
       need to support both since we develop on windows but deploy on Heroku.
@@ -61,12 +70,8 @@ def validate_session(token):
         return True
     return False
 
-package_table = {
-    'generator':generator_package_handler.get_summary(),
-    'solar':solar_package_handler.get_summary(),
-    'inverter':inverter_package_handler.get_summary()
-}
 
+# routes ....
 @app.route('/', methods=['GET'])
 def index():
     return render_template('store.html')
@@ -751,6 +756,32 @@ def get_enquiries():
             counter += 1
         return res_json
     return {'response':0x05}
+
+@app.route('/sizing-tool', methods=['GET', 'POST'])
+def size_init():
+    """
+    Send a default house, with 1 bedroom, a lounge, a kitchen, and a bathroom.
+    """
+    f = request.args.get('f')
+    if f == 'init':
+        house = sizing_tool.get_property()
+        result = sizing_tool.process_loading(house)
+        result['house'] = house
+    else:
+        house = sizing_tool.get_property(f)
+        result = sizing_tool.process_loading(house)
+        result['house'] = house
+    return result
+
+@app.route('/sizing-tool/apps-list', methods=['GET', 'POST'])
+def apps_list():
+    """
+    Get the app list from sizing tool.
+    """
+    property_builder = sizing_tool.get('property-builder')
+    app_list = property_builder.get_app_list()
+    
+    return {"app-list":app_list}
 
 def create_ss_list(json:dict):
     l = [

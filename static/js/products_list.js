@@ -27,7 +27,7 @@ window.addEventListener('load', function(e){
     let side_bar = document.getElementById('side-bar-view')
 
     this.document.getElementById('filter-toggle').addEventListener('click', function(e){
-        let state = this.getAttribute('expanded');
+        let state = this.getAttribute('expanded');  
 
         if(state == 'false'){ // expand the filter
             const width_anim = [
@@ -43,6 +43,8 @@ window.addEventListener('load', function(e){
             side_bar.style.display = 'block';
             side_bar.style.width = '100%';
             state = 'true';
+            // n_bar.style.display = 'none';
+            // side_bar.style.padding = '50px';
 
         }else if(state =='true'){ // it is expanded...
             

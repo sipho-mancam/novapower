@@ -1,0 +1,33 @@
+{
+    "bedroom":{
+        "type":"bedroom",
+        "app-list":["Lights", "Charger", "Laptop"],
+        "qty-list":[2,2,1]
+    }, 
+    "kitchen":{
+        "type":"kitchen",
+        "app-list":["Lights", "Stove", "Microwave", "Fridge", "Kettle"],
+        "qty-list":[1,1,1,1,1]
+    },
+    "lounge":{
+        "type":"lounge",
+        "app-list":["Lights", "Charger", "Laptop", "Router", "Decoder", "Amplifier","Computer","TV"],
+        "qty-list":[2,2,2,1,1,1,1,1]
+    },
+    "bathroom":{
+        "type":"bathroom",
+        "app-list":["Lights"],
+        "qty-list":[1]
+    },
+    "garage":{
+        "type":"garage",
+        "app-list":["Lights", "Motor", "Charger"],
+        "qty-list":[1,1,1]
+    },
+    "extra":{
+        "type":"extra",
+        "app-list":[],
+        "qty-list":[]
+    }
+
+}

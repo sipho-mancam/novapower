@@ -1,0 +1,81 @@
+:root{
+    --tab-color:#131c39;
+}
+
+.tabs-container{
+    /* background-color: rgb(20, 0, 133); */
+    height:40px;
+    display:flex;
+    flex-flow: row;
+
+}
+
+.tab{
+    display: flex;
+    flex-flow: row;
+    /* justify-content: center; */
+    background-color: var(--tab-color);
+    color:white;
+    /* border-right: 1px solid black; */
+}
+
+.tab-text{
+    /* border: 1px solid black; */
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    font-size: larger;
+}
+
+.tab-icon{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    border: 1px solid black;
+    margin-right: auto;
+}
+.tab-icon h4{
+    padding: 0;
+    /* border: 1px solid black; */
+    margin: 0;
+}
+
+.selected-tab{
+    /* background-color: rgb(231, 231, 231); */
+    background-color: var(--top_color);
+    /* border: 1px solid black; */
+    border-bottom: none;
+    color:var(--tab-color);
+
+}
+
+.tab:hover{
+    background-color: rgba(160, 160, 160, 0.5);
+}
+
+.selected-tab:hover{
+    background-color: rgb(231, 231, 231);
+}
+
+.tab-content{
+    /* background-color: rgb(231, 231, 231); */
+    background-color: var(--top_color);
+}
+
+/* .pack-headers{
+    border: 4px solid red;
+} */
+
+.pack-headers span {
+    text-align: end;
+    float:right;
+    margin-right: 5px;
+    border-left:1px solid white;
+}
+
+.pack-headers span:hover{
+    background-color: rgb(223, 219, 219);
+    color:black;
+}

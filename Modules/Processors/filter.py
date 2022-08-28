@@ -4,6 +4,7 @@ import cerberus
 import pprint
 class Stage:
     def __init__(self, sub_package:pm.Subpackage|dict, filters:dict=None) -> None:
+        # pprint.pprint(sub_package[2]._get_items())
         self.__sub_package_objects = []
         if sub_package is not None and type(sub_package) is list: self.__sub_package_objects = sub_package
         elif sub_package is not None and type(sub_package) is pm.Subpackage: self.__sub_package_objects.append(sub_package)
@@ -30,6 +31,7 @@ class Stage:
                 'value':False
             }
         }}
+        
 
     def reset(self):
         self.filters = self.__rollback_filters
