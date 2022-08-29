@@ -6,6 +6,7 @@ Feautures can perform all sorts of tasks, all they have to do is conform to that
 from there you can write it to whatever you want.
 """
 from abc import ABC, abstractmethod
+
 class Feature(ABC):
     def __init__(self) -> None:
         super().__init__()
