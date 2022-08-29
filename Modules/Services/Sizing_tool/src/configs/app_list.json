@@ -1,8 +1,8 @@
 {
     "Charger":{
         "usage-profile":[0.02,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01],
-        "Total-Time":0.24,
-        "Total-Energy":0.0048,
+        "Total-time":0.24,
+        "Total Energy":0.0048,
         "img": "https://cdn-icons-png.flaticon.com/512/4298/4298272.png"
     },
     "Router":{
@@ -114,7 +114,7 @@
         "usage-profile":[0.7,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
         "Total-time":14,
         "img":"https://cdn-icons-png.flaticon.com/512/197/197859.png",
-        "Total Engergy":9.8
+        "Total Energy":9.8
     },
     "Motor":{
         "usage-profile":[1.4, 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0],
