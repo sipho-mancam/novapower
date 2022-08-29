@@ -783,6 +783,12 @@ def apps_list():
     
     return {"app-list":app_list}
 
+@app.route('/sizing-tool/update', methods=['GET', 'POST'])
+def update_lp():
+    lp = request.args.get('lp')
+    return sizing_tool.process_loading(lp)
+
+
 def create_ss_list(json:dict):
     l = [
         json['size'],

@@ -4,19 +4,26 @@
  * 
  */
 
-
-
 class ViewModel{
     constructor(){
         this.livedata = {}
         this.repoistory = new Repository()
-        this.update_query = ''
+        this.views_list = {}
     }
     
-    init(){
-        /**
-         * Request the house from the repository.
-         * 
-         */
+  
+    get(key){
+        return new Promise((resolve, reject)=>{
+            let time = setInterval(()=>{
+                if(this.repoistory.isReady()){
+                    clearInterval(time)
+                    resolve(this.repoistory.get(key))
+                }
+            })
+        })
     }
 }
+
+let global_viewModel = new ViewModel()
+
+
