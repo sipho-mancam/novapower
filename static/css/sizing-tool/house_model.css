@@ -1,5 +1,4 @@
 
-
 .house-model{
     background-color: rgb(154, 240, 211);
     display: flex;
@@ -24,4 +23,5 @@
 
 .room-model:hover{
     border: 4px solid grey;
+    cursor: pointer;
 }

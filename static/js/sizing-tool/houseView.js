@@ -32,7 +32,7 @@ class HouseView extends View{
         
         return `
         <div class="room-model block" data-target=${target}>
-            <span>${room.type} (${room.appliances.length})</span>
+            <span class="name">${room.type} (${room.appliances.length})</span>
         </div>
         `
     }

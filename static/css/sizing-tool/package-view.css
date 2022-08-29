@@ -1,0 +1,20 @@
+
+
+.p-card{
+    border: 1px solid black;
+    display: flex;
+    flex-flow:column;
+}
+
+.img-container{
+    display: flex;
+    flex-flow: row;
+    /* max-width: 300px;
+    max-height: 300px; */
+}
+
+.img-sec{
+    border: 1px solid black;
+    /* background-color: red; */
+    width: fit-content;
+}

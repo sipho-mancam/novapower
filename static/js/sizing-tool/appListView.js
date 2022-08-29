@@ -5,7 +5,6 @@ let app_view = document.getElementById('full-app-list');
 let app_details_view = document.getElementById('app-details-view')
 // let view_model = global_viewModel
 
-
 class AppGridView extends View{
     constructor(name='app-list', domElem, extras){
         super()
@@ -20,7 +19,7 @@ class AppGridView extends View{
     app_details_view(app){
         return(`<div class="app-details-view">
         <div class="img">
-          <img src=${app.img} width="100" height="100" alt=""/>
+          <img src=${app.img} width="50" height="50" alt=""/>
         </div>
         <div class="det-title">
           <span class="value-title">${app.name}</span>
@@ -32,7 +31,7 @@ class AppGridView extends View{
           <span class="key">Power: </span><span class="value">${app['Total Energy']/app['Total-time']}kW</span>
         </div>
         <div class="load-profile">
-          <canvas id="loading-profile" width="200" height="100" style="background-color: white;"></canvas>
+          <canvas id="loading-profile" width="200px" height="100" style="background-color: white;"></canvas>
         </div>
       </div>`)
     }
@@ -100,7 +99,6 @@ class AppGridView extends View{
         console.log('I run')
         this.load_data()
     }
-
 }
 
 
