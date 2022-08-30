@@ -768,7 +768,7 @@ def size_init():
         result = sizing_tool.process_loading(house)
         result['house'] = house
     else:
-        house = sizing_tool.get_property(f)
+        house = sizing_tool.get_property(int(f))
         result = sizing_tool.process_loading(house)
         result['house'] = house
     return result
