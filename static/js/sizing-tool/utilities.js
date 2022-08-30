@@ -30,7 +30,7 @@ function iconsGridView(app_list, elem){
     else return res
 }
 
-function drawLoadingChart(lp){
+function drawLoadingChart(lp, canv='loading-profile', title='Appliance Usage'){
     const labels = ['00:00', 
                     '01:00',
                     '02:00',
@@ -58,9 +58,9 @@ function drawLoadingChart(lp){
     const data = {
         labels:labels,
         datasets:[{
-            label:'Appliance Usage',
+            label:title,
             backgroundColor:'rgb(255,255,255)',
-            borderColor:'rgb(0,255,0)',
+            borderColor:'rgb(0,255,244)',
             data:lp
         }]
     };
@@ -71,7 +71,7 @@ function drawLoadingChart(lp){
         options:{}
     };
 
-    const lpChart = new Chart(document.getElementById('loading-profile'), config);
+    const lpChart = new Chart(document.getElementById(canv), config);
 }
 
 

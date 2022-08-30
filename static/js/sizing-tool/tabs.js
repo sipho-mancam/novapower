@@ -11,6 +11,8 @@
 
 let current_tab = {}
 
+let packagesV = packageView
+
 function init_tabs() {
     const tabs = document.getElementsByClassName('tab')
     const viewModel = global_viewModel
@@ -48,6 +50,12 @@ function init_tabs() {
                 .then(res=>{
                     appGridV.load_data(res['app-list'])
                 })
+            }else if(group=="packages"){
+                packagesV.updateTab(data_p)
+
+            }else if(group == "info" && data_p == "stats"){
+               let t_content = document.getElementById('house-tab-content')
+               t_content.innerHTML = '<br />'
             }
         })
     }

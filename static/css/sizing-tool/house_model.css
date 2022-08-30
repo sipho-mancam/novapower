@@ -5,6 +5,7 @@
     flex-flow:row;
     flex-wrap: wrap;
     overflow-y: auto;
+    height: 34vh;
 }
 
 .room-model{

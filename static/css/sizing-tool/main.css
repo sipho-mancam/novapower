@@ -26,8 +26,18 @@
     flex-flow: row;
     flex-wrap: wrap;
     overflow-y: auto;
-    height: 48%;     
+    height: 38vh;     
     background-color: var(--bg_color);
+}
+
+.block-2{
+    display: flex;
+    padding: 5px;
+    flex-flow: row;
+    flex-wrap: wrap;
+    overflow-y: auto; 
+    background-color: var(--bg_color);
+    height: 52vh;
 }
 
 .mid-header{
@@ -57,14 +67,11 @@ hr{
 }
 
 .apps-grid{
-    
-    /* background-color: rgb(231, 231, 231); */
     background-color: var(--top_color);
 }
 
 .mid-block{
-    height: 42%;
-    /* border: 1px solid black; */
+    height: 38vh;
     position:relative;
 }
 
