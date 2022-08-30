@@ -27,7 +27,7 @@ class PackagesView extends View{
             drawLoadingChart(this.data.loading_profile, 'loading-profile-2', 'House Loading')
             let lp = this.data.loading_profile
             let avg_demand = lp.reduce((acc, cur)=>{return acc+cur})/24
-            this.pieChartView([Math.max(...lp), avg_demand, this.data.max_demand])
+            this.pieChartView([Math.max(...lp), avg_demand, this.data.max_demand, Math.abs(this.data.max_demand - Math.max(...lp))])
         })
     }
 
@@ -48,9 +48,11 @@ class PackagesView extends View{
                 <span class="value-title">Loading Summary</span>
             </div>
             <div class="load-profile">
-                <canvas id="loading-profile-2" width="200px" height="150" style="background-color: white;"></canvas>
+                <canvas id="loading-profile-2" width="200px" height="100" style="background-color: white;"></canvas>
             </div>
-            
+            <div class="load-summary" style="margin-top:5px; border-radius:5px; width:fit-content; display: flex;">
+                <canvas id="loading-summary"  height="150" style="background-color: white; width:100%"></canvas>
+            </div>
             <div class="description" style="margin-top:5px;">
                 <span class="key">Total-Energy (daily):</span><span class="value">${total_energy}kWh</span><br />
                 <span class="key">Peak Demand:</span><span class="value">${this.data.max_demand} kW</span><br />
@@ -59,9 +61,7 @@ class PackagesView extends View{
 
             <!-- <span style="font-size: xx-small; color:red;">(%)</span>: -->
             </div>
-            <div class="load-summary" style="margin-top:5px; border-radius:5px; width:fit-content; display: flex;">
-                <canvas id="loading-summary"  height="150" style="background-color: white; width:100%"></canvas>
-            </div>
+            
             
             
         </div>
@@ -75,6 +75,7 @@ class PackagesView extends View{
               'Peak Demand',
               'Average Demand',
               'System Size',
+              'Diff (SS - PD)',
               
             ],
             datasets: [{
@@ -84,6 +85,7 @@ class PackagesView extends View{
                 'rgb(255, 99, 132)',
                 'rgb(75, 192, 192)',
                 'rgb(255, 205, 86)',
+                '#a0ce3f'
               ]
             }]
           };  

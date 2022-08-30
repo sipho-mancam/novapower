@@ -27,7 +27,7 @@ class Repository{
         this.state = 0x00;
 
         let paths = ['/sizing-tool/apps-list',
-                    '/sizing-tool?f=init']
+                    '/sizing-tool?f=10']
         for(let p of paths){
             await this.update('GET', p)
             .then(res=>{

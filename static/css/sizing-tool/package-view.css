@@ -1,6 +1,6 @@
 
 .p-tab-content{
-    padding: 16px;
+    padding: 5px;
     display: flex;
     flex-flow:row;
     flex-wrap: wrap;
@@ -21,7 +21,7 @@
     padding: 10px;
     box-shadow: -5px -5px 10px  rgba(209, 208, 208, 0.815),
                 5px 5px 5px rgba(134, 134, 134, 0.473);
-    margin: 10px;
+    margin: 5px;
     background-color: white;
 }
 
