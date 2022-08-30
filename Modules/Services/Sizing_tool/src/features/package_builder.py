@@ -246,7 +246,7 @@ class Node:
                 temp={
                     'characteristic':str(i)+' hr(s) battery backup',
                     'items':[self.__inverter.copy(), self.__batteries[i]],
-                    'name': 'Back-up UPS',
+                    'name': 'Back-up (UPS)',
                     'system-size':self.__inverter_size
                 }
                 try:

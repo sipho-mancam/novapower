@@ -22,6 +22,7 @@
     box-shadow: -5px -5px 10px  rgba(209, 208, 208, 0.815),
                 5px 5px 5px rgba(134, 134, 134, 0.473);
     margin: 10px;
+    background-color: white;
 }
 
 .img-container{
@@ -31,6 +32,10 @@
     justify-content: center;
     width: fit-content;
     margin: auto;
+}
+
+.img-container img{
+    mix-blend-mode:normal;
 }
 
 
@@ -69,7 +74,7 @@
     /* border: 1px solid black; */
     float: right;
     font-weight: bolder;
-    color:green;
+    color:rgb(211, 118, 12);
     font-size: larger;
 }
 
