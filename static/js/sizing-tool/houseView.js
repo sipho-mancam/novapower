@@ -19,6 +19,7 @@ class HouseView extends View{
         .then(res=>{
             this.data = res;
             // console.log(this.data)
+            // console.log(computeLoadingProfile(this.data['app-list']))
             this.drawHouse(this.domElement)
         })
     }
@@ -64,4 +65,6 @@ class HouseView extends View{
 
 let houseView = new HouseView('house', document.getElementById('house-view'))
 
-houseView.update()
+// houseView.update()
+
+uiController.registerView(houseView)

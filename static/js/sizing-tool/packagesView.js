@@ -8,7 +8,8 @@ class PackagesView extends View{
         this.data = null;
         this.packages_data = null
         this.viewModel = global_viewModel
-        this.update()
+        this.current_tab = 'bill-crusher'
+        // this.update()
     }
 
     update(){
@@ -21,7 +22,7 @@ class PackagesView extends View{
             this.data = res;
             this.packages_data = this.data.packages
             let details = {group:'bill-crusher'}
-            this.domElement.innerHTML = this.packagesView(this.packages_data['bill-crusher'], details)
+            this.domElement.innerHTML = this.packagesView(this.packages_data[this.current_tab], details)
             this.extras.innerHTML = this.loadingSummaryView()
 
             drawLoadingChart(this.data.loading_profile, 'loading-profile-2', 'House Loading')
@@ -33,6 +34,7 @@ class PackagesView extends View{
 
     updateTab(tab_name){
         let details = {group:tab_name}
+        this.current_tab = tab_name;
         this.domElement.innerHTML = this.packagesView(this.packages_data[tab_name], details)
     }
 
@@ -61,9 +63,6 @@ class PackagesView extends View{
 
             <!-- <span style="font-size: xx-small; color:red;">(%)</span>: -->
             </div>
-            
-            
-            
         </div>
         `
         return res
@@ -133,4 +132,5 @@ class PackagesView extends View{
 
 let packageView = new PackagesView('packages', document.getElementById('packages-view'), document.getElementById('loading-summary-container'))
 
-// packageView.update()
+
+uiController.registerView(packageView) // register the view to the controller so that it can update with the rest of the app as it changes...

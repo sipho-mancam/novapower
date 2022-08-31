@@ -31,6 +31,8 @@ function init_tabs() {
         }
 
         let appGridV = new AppGridView('house-apps', document.getElementById('house-tab-content'), {})
+        // uiController.registerView(appGridV)
+
         t.addEventListener('click', function (e) {
             /**
              * Update Tab State view.
@@ -44,7 +46,7 @@ function init_tabs() {
             /**
              * Update tab content view accordingly
              */
-            console.log(data_p)
+            // console.log(data_p)
             if(group == "info" && data_p == "app-list"){ // we are looking at the house info tabs
                 viewModel.get('house')
                 .then(res=>{
@@ -58,6 +60,49 @@ function init_tabs() {
                t_content.innerHTML = '<br />'
             }
         })
+    }
+}
+
+class TabSystem extends View{
+    constructor(name, documentslem, extras){
+        super()
+        this.name = name;
+        this.domElement = domElem
+        this.extras = extras;
+        this.data = null; 
+        this.tabContentsView = {}
+    }
+
+    registerTabContentView(tcv){
+
+    }
+
+    update(){
+        // update all tab contents
+    }
+
+    load_data(){
+        // for dynamic tabs loaded with data
+    }
+}
+
+
+class TabContentView extends View{
+    constructor(name, domElem, extras){
+        super()
+        this.name = name;
+        this.domElement = domElem
+        this.extras = extras
+        this.data = null;
+
+    }
+
+    update(){
+        
+    }
+
+    load_data(){
+
     }
 }
 

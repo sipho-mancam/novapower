@@ -31,6 +31,7 @@ function iconsGridView(app_list, elem){
 }
 
 function drawLoadingChart(lp, canv='loading-profile', title='Appliance Usage'){
+
     const labels = ['00:00', 
                     '01:00',
                     '02:00',
@@ -74,6 +75,54 @@ function drawLoadingChart(lp, canv='loading-profile', title='Appliance Usage'){
     const lpChart = new Chart(document.getElementById(canv), config);
 }
 
+function addVectors(v1, v2){
+    let s2
+
+    s2 = v2.splice(0,1)[0]
+    let resultant = []
+    for(let i=0; i<v1.length; i++){
+        resultant.push(v1[i]+s2*v2[i])
+    }
+
+    return resultant
+}
+
+function computeLoadingProfile(app_list){
+    let result = app_list[0]['usage-profile']
+    let start = Array(24).fill(0, 0, 24)
+    result = addVectors(start, result)
+    app_list.splice(0,1)
+
+    for(let a of app_list){
+        result = addVectors(result, a['usage-profile'])
+    }
+    return result
+}
+
+function buildAppList(house){
+    let rooms = house['rooms']
+    let room_keys = Object.keys(rooms)
+    let r_m
+    let ar = []
+    for(let k of room_keys){
+        r_m = rooms[k]
+        if(k == 'bedroom'){
+            for(let b of r_m){
+                ar = ar.concat(b['appliances'])
+            }
+        }else{
+            ar = ar.concat(r_m['appliances'])
+        }
+        
+        // console.log(r_m['appliances'], "--> ", k)
+    }
+    house['app-list'] = ar
+    console.log(ar)
+    return ar
+}
+
+
+
 
 class View {
     constructor(){
@@ -88,19 +137,9 @@ class View {
     }
 
     update(){
+        console.log("I run")
         this.view_callBack()
     }
 
 }
 
-class UIController{
-    constructor(){
-        this.views = {}
-    }
-
-    update(){
-        for(let k in this.views){
-            this.views[k].update();
-        }
-    }
-}
