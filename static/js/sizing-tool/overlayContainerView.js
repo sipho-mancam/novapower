@@ -33,17 +33,18 @@ class OverlayContainer{
         })
     }
     draw(draw_cb, args=[], init=0){
-        this.domElement.style.display = 'block';
+        this.content_container.style.display = 'block';
         if(typeof(args) != 'Object')args = [args];
 
         if(args.length == 0){ // assume draw_cb doesn't expect arguments.
             this.domElement.innerHTML = draw_cb()
-            this.domElement.innerHTML += this.close_b;
+            // this.domElement.innerHTML += this.close_b;
         }else{
             this.domElement.innerHTML = draw_cb(args)
-            this.domElement.innerHTML += this.close_b;
+            // this.domElement.innerHTML += this.close_b;
         }
         if(init != 0)init()
+        this.close()
     }
 
 }

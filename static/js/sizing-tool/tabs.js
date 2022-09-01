@@ -16,6 +16,8 @@ let packagesV = packageView
 function init_tabs() {
     const tabs = document.getElementsByClassName('tab')
     const viewModel = global_viewModel
+    const appGridV = new AppGridView('house>app-list', document.getElementById('house-tab-content'), {})
+    uiController.registerView(appGridV)
 
     for (let t of tabs) {
         if(t.getAttribute('group') in current_tab);
@@ -30,8 +32,8 @@ function init_tabs() {
             }
         }
 
-        let appGridV = new AppGridView('house-apps', document.getElementById('house-tab-content'), {})
-        // uiController.registerView(appGridV)
+        
+        
 
         t.addEventListener('click', function (e) {
             /**

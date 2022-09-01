@@ -14,7 +14,9 @@ class UIController{
 
     update(){
         for(let k in this.views){
+            console.log("Updating :", k)
             this.views[k].update();
+            console.log("Successfully updated: ", k)
         }
     }
 

@@ -2,7 +2,7 @@
 
 function iconView(app_data, index=0){
     return `
-    <div class="app-icon" index=${index}>
+    <div class="app-icon" index=${index} name=${' '}>
         <div class="icon">
             <img src=${app_data['img']} width="50" height="50" alt="" />
         </div>
@@ -75,15 +75,17 @@ function drawLoadingChart(lp, canv='loading-profile', title='Appliance Usage'){
     const lpChart = new Chart(document.getElementById(canv), config);
 }
 
-function addVectors(v1, v2){
-    let s2
+function augmentVector(v1=[], sc){
+    return v1.map((elem, index, arr)=>{
+        return elem*sc
+    });
+}
 
-    s2 = v2.splice(0,1)[0]
+function addVectors(v1, v2){
     let resultant = []
     for(let i=0; i<v1.length; i++){
-        resultant.push(v1[i]+s2*v2[i])
+        resultant.push(v1[i]+v2[i])
     }
-
     return resultant
 }
 
@@ -91,6 +93,7 @@ function computeLoadingProfile(app_list){
     let result = app_list[0]['usage-profile']
     let start = Array(24).fill(0, 0, 24)
     result = addVectors(start, result)
+    // console.log(result)
     app_list.splice(0,1)
 
     for(let a of app_list){

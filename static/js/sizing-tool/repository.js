@@ -64,18 +64,54 @@ class Repository{
         let path = data_m["path"];
         let data = data_m["data"];
         let type = data_m["type"];
+        let func = data_m["func"];
+        let room = data_m["room"];
 
         let cur = this.data_structure
         path = path.split('>')
         for(let p of path){
             cur = cur[p]
         }
-        // console.log(this.data_structure['app-list'].indexOf(data))
-        if(type.toLowerCase() == 'array')cur.push(this.data_structure['app-list'][this.data_structure['app-list'].indexOf(data)])
+        // console.log(data)
+        let dir = 1;
+        if(func == 'add'){
+            dir = 1
+        }else if(func =='remove') dir = -1;
+
+        let power = data['Total Energy'] / data['Total-time']
+        let up = augmentVector(data['usage-profile'], dir*power)
+        up.splice(0,1)
+        
+        let lp  = addVectors(this.data_structure['house']['loading-profile'], up) 
+        this.data_structure['house']['loading-profile'] = lp
+        
        
-        let lp = computeLoadingProfile(this.data_structure['house']['app-list'])
-        lp[23] = 0;
-        return this.update('POST', '/sizing-tool/update', {"data":lp})
+        if(room != 'app-list' && func == 'add') {
+            try{
+                this.data_structure['house']['rooms'][room]['appliances'].push(data);
+            }catch(err){
+                this.data_structure['house']['rooms'][room][0]['appliances'].push(data);
+            }
+            
+        }
+        else if(room != 'app-list' && func == 'remove') {
+            this.data_structure['house']['rooms'][room]['appliances']
+            .splice(this.data_structure['house']['rooms'][room]['appliances'].indexOf(data), 1)
+        }
+       
+        if(type.toLowerCase() == 'array' && func =='add')cur.push(data);
+        else if(func =='remove')cur.splice(cur.indexOf(data), 1);
+       
+        this.update('POST', '/sizing-tool/update', {"data":lp})
+        .then(res=>{
+            let keys = Object.keys(res)
+            for(let k of keys){
+                this.data_structure[k] = res[k];
+            }
+            // console.log(this.data_structure)
+            this.state = 0x11;
+        })
+        return this.data_structure
     }
 
     liveData(){
@@ -83,10 +119,21 @@ class Repository{
     }    
 
     get(key){
+        let temp = key.split('>')
 
         if(this.isReady()){
             // console.log(this.data_structure[key])
-            return this.data_structure[key] 
+          if(temp.length==1){
+            return this.data_structure[temp[0]] 
+          }else{
+            let cur = this.data_structure
+            for(let k of temp){
+                cur = cur[k]
+            }
+            console.log(cur, 'cur is <<')
+            return cur
+          }
+            
         }else{
             return {'error':'Still loading...'}
         }

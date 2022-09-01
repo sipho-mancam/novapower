@@ -20,7 +20,7 @@ class ViewModel{
                 if(this.repository.isReady()){
                     clearInterval(time)
                     this.livedata = this.repository.get(key)
-                    // console.log('Data is ready',this.repository.get(key), key)
+                    // console.log(this.livedata, key)
                     resolve(this.livedata)
                 }
             })
@@ -28,11 +28,8 @@ class ViewModel{
     }
 
     updateLiveData(data){
-        let res = this.repository.updateLiveData(data)
-        .then(res=>{
-            this.livedata = res
-            this.update()
-        })
+        this.repository.updateLiveData(data)
+        this.update()
     }
 
     update(){

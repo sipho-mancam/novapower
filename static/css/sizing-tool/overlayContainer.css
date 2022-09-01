@@ -7,7 +7,7 @@
     position: absolute;
     left:0; top: 0;
     display: none;
-
+    
 }
 
 .close-overlay{
@@ -37,4 +37,5 @@
     border-radius: 10px;
     padding: 10px;
     overflow: scroll;
+    /* transition: width 1s ease-in-out; */
 }

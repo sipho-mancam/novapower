@@ -51,16 +51,19 @@ function init_rooms(){
         r.addEventListener('click', (e)=>{
             viewModel.get('house')
             .then(res=>{
-                console.log(current_app)
+                // console.log(current_app)
                 let app_list = res['app-list']
-                app_list.push(current_app)
+                // console.log(res)
                 viewModel.updateLiveData({
                     path:'house>app-list',
                     data:current_app,
-                    type:'array'
+                    type:'array',
+                    func:'add',
+                    room:r.getAttribute('name')
                 })
+                ov.style.display = 'none';
             })
-            ov.style.display = 'none';
+            
         });
     }
 }
@@ -123,7 +126,7 @@ class AppGridView extends View{
         // console.log(extras)
         return `
             <div class="add-to">
-            <h1 class="title">Add To ...</h1><br />
+            <h1 class="title">Add <span class=""  style="color:red; font-weight:bold;">${current_app['name']}</span> To ...</h1><br />
             <div class="rooms house-model">
                 ${extras}
             </div>
@@ -140,47 +143,88 @@ class AppGridView extends View{
 
         const apps = document.getElementsByClassName('app-icon');
         // let current_app = null
-        console.log(this.data)
+        // console.log(this.data)
         for(let a of apps){
             a.addEventListener('mouseover', (e)=>{
                 let parentN = e.currentTarget.parentNode
                 let p_id = parentN.getAttribute('id')
-                if(p_id == 'full-app-list'){
+                // console.log(this.name)
+                if(p_id == 'full-app-list' && this.name == 'app-list'){
                     let index = parseInt(e.currentTarget.getAttribute('index'))
                     current_app = this.data[index]
                     this.extras.innerHTML = this.app_details_view(current_app)
                     let nArr = [...current_app['usage-profile']]
-                    // Object.values()
                     drawLoadingChart(nArr)
                 }
             })
 
             a.addEventListener('click', (e)=>{
                 // start the overlay here...
-                // console.log(current_app)
-                overlay.open()
+                if(e.currentTarget.getAttribute('name') == 'app-list' && this.name == 'app-list'){
+                    let index = parseInt(e.currentTarget.getAttribute('index'))
+                    current_app = this.data[index]
+                    overlay.open()
+                }
+                else if(e.currentTarget.getAttribute('name') == 'house>app-list' && this.name=='house>app-list'){ // we want it to remove the apps here..
+                    let index = parseInt(e.currentTarget.getAttribute('index'))
+                    let current_house_app = this.data[index]
+                    this.viewModel.updateLiveData({
+                        path:'house>app-list',
+                        data:current_house_app,
+                        type:'array',
+                        func:'remove',
+                        room:'app-list'
+                    });
+                }
             });
         }
     }
 
+    iconView(app_data, index=0){
+        return `
+        <div class="app-icon" index=${index} name="${this.name}">
+            <div class="icon">
+                <img src=${app_data['img']} width="50" height="50" alt="" />
+            </div>
+            <div class="title">
+                <a class="name">${app_data['name']}</a>
+            </div>
+        </div>
+        `
+    }
+    
+    iconsGridView(app_list){
+        let res = ''
+        for(app of app_list){
+            res += iconView(app, app_list.indexOf(app))
+        }
+        return res
+    }
+    
+    iconsGridView(app_list, elem){
+        let res = ''
+        for(let app of app_list){
+            res += this.iconView(app, app_list.indexOf(app))
+        }
+        if(elem)elem.innerHTML = res
+        else return res
+    }
     
 
     load_data(data=0){
-        
         if(data == 0){
             this.viewModel.get(this.name)
             .then(res1=>{
+                this.data = res1
+                
                 available_rooms()
                 .then(res=>{
                     this.available_rooms = res
-
-                    this.data = res1
-                    // console.log(res)
-                    iconsGridView(this.data, this.domElement)
+                    
+                    this.iconsGridView(this.data, this.domElement)
                     this.initAppsView()
                     this.extras.innerHTML = this.app_details_view(this.data[0])
-                    // console.log(this.data[0]['usage-profile'])
-                    drawLoadingChart(this.data[0]['usage-profile'].slice(0, 24))
+                    if(this.name=='app-list')drawLoadingChart(this.data[0]['usage-profile'].slice(0, 24))
                     
                 })
                 
@@ -189,10 +233,7 @@ class AppGridView extends View{
             iconsGridView(data, this.domElement)
             this.initAppsView2(data)
             this.extras.innerHTML = this.app_details_view(data[0])
-
         }
-        
-        
     }
     
    

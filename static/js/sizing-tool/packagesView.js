@@ -74,17 +74,17 @@ class PackagesView extends View{
               'Peak Demand',
               'Average Demand',
               'System Size',
-              'Diff (SS - PD)',
+              'System Tolarance',
               
             ],
             datasets: [{
               label: 'My First Dataset',
               data: list,
               backgroundColor: [
-                'rgb(255, 99, 132)',
+                'rgb(0, 99, 132)',
                 'rgb(75, 192, 192)',
-                'rgb(255, 205, 86)',
-                '#a0ce3f'
+                'rgb(86, 205, 86)',
+                'rgb(255, 0, 0)'
               ]
             }]
           };  
