@@ -98,6 +98,7 @@ class HouseView extends View{
                 appliances:[]
             }
 
+
             this.viewModel.get('app-list')
             .then(res=>{
                 
@@ -126,7 +127,7 @@ class HouseView extends View{
                                     </div>
                                 </div>
                                 <div class="add-room-btn-container">
-                                    <a href="#" class="add-room-btn" id="create-room-btn-1">Create Room <i class="bi bi-plus-circle-fill"></i> </a>
+                                    <a href="" class="add-room-btn" id="create-room-btn-1">Create Room <i class="bi bi-plus-circle-fill"></i> </a>
                                 </div>
                             </div>`
 
@@ -141,34 +142,39 @@ class HouseView extends View{
                             let index = parseInt(e.currentTarget.getAttribute('index'))
                             let obj = {...res[index]}
                             obj['id'] = index.toString()+(Math.random()*1000).toString()
-                            obj['room'] = 'custom-room'
+                            obj['room'] = create_room['type']
                             create_room['appliances'].push(obj)
                             iconsGridView(create_room['appliances'], 'create-room-app', cust_r_apps);
+
+                            for (let b of document.getElementsByClassName('create-room-app')) {
+                                b.addEventListener('click', (e) => {
+                                    let index = parseInt(e.currentTarget.getAttribute('index'))
+                                    create_room['appliances'].splice(index, 1);
+                                    b.remove(); 
+                                   
+                                });
+                            }
                         });
+
+                        
                         
                     }
-                    for(let b of document.getElementsByClassName('create-room-app')){
-                        b.addEventListener('click', (e)=>{
-                            let index = parseInt(e.currentTarget.getAttribute('index'))
-                            create_room['appliances'].splice(index, 1);
-                            // iconsGridView(create_room['appliances'], 'create-room-app', cust_r_apps);
-                        });
-                    }
+                    
 
                     document.getElementById('create-room-btn-1')
                     .addEventListener('click', (e)=>{
-
-                        this.viewModel.updateLiveData({
-                            path:'house>rooms',
-                            data:create_room,
-                            type:'json',
-                            func:'add',
-                            room:'custom-room'
-                        });
-                    
-                    this.overlay.close(true)
-
-                    })
+                        e.preventDefault();
+                        if(create_room['appliances'].length > 0){
+                            this.viewModel.updateLiveData({
+                                path: 'house>rooms',
+                                data: create_room,
+                                type: 'json',
+                                func: 'add',
+                                room: create_room['type']
+                            });
+                            this.overlay.close(true)
+                        }
+                    });
                     
 
 

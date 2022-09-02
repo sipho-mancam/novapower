@@ -5,12 +5,12 @@
     flex-flow:row;
     flex-wrap: wrap;
     overflow-y: auto;
-    height: 20vh;
+    height: 25vh;
 }
 
 .room-model{
     width: 130px;
-    height: 75px;
+    height: 80px;
     background-color: rgb(235, 211, 211);
     text-align: center;
     margin: 5px;
@@ -69,8 +69,7 @@
     display: flex;
     flex-flow: column;
     height: fit-content;
-    /* margin: 10px; */
-}/* background-color: orange; */
+}
 
 .a-title{
     /* border: 1px solid black; */

@@ -26,7 +26,7 @@ class PackagesView extends View{
             this.extras.innerHTML = this.loadingSummaryView()
 
             drawLoadingChart(this.data.loading_profile, 'loading-profile-2', 'House Loading')
-            let lp = this.data.loading_profile
+            let lp = this.data.loading_profile;
             let avg_demand = lp.reduce((acc, cur)=>{return acc+cur})/24
             this.pieChartView([Math.max(...lp), avg_demand, this.data.max_demand, Math.abs(this.data.max_demand - Math.max(...lp))])
         })

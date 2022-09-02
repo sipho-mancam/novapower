@@ -13,8 +13,7 @@
         xhttp.responseType='json'
 
         if(data){
-            xhttp.setRequestHeader('Content-Type', 'application/json')
-
+            xhttp.setRequestHeader('Content-Type', 'application/json');
         }
 
         xhttp.onerror = (e)=>{

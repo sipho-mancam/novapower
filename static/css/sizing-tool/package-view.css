@@ -5,11 +5,7 @@
     flex-flow:row;
     flex-wrap: wrap;
     overflow-y: scroll;
-    /* border: 1px solid black; */
     height: 67vh;
-    /* height: fit-content; */
-    /* height: 60vh; */
-    /* border: 1px solid black; */
 }
 
 .p-card{

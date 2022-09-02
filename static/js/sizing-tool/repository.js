@@ -63,7 +63,6 @@ class Repository{
                 this.data_structure[k] = res[k];
                 
             }
-            // console.log(this.data_structure)
             this.state = 0x11; // data is ready state
         })
     }
@@ -142,10 +141,18 @@ class Repository{
                     break;
 
                 case 'add': // add room to the house
-                cur[room] = data
+                cur[room] = data   
+                    // console.log(this.data_structure)
+                for(let a of data['appliances']){
+                    let power = a['Total Energy'] / a['Total-time']
+                    let up = augmentVector(a['usage-profile'], 1 * power)
+                    up.splice(0, 1)
 
-                    
-                
+                    lp = addVectors(this.data_structure['house']['loading-profile'], up)
+                    this.data_structure['house']['loading-profile'] = lp
+                    this.data_structure['house']['app-list'].push({...a})
+                }
+
                 break;
             }
         }
@@ -169,7 +176,7 @@ class Repository{
 
     get(key){
         let temp = key.split('>')
-
+        console.log(key)
         if(this.isReady()){
             // console.log(this.data_structure[key])
           if(temp.length==1){

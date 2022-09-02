@@ -30,10 +30,6 @@ async function available_rooms(){
 }
 
 
-
-
-
-
 function roomView(room, index){
     return `
     <div class="room-model block rt" index=${index} name=${room.type}>
