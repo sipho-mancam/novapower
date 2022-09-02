@@ -1,3 +1,4 @@
+import hashlib
 import pathlib
 import sys
 sys.path.append(pathlib.Path(__file__+"/../").resolve().__str__())
@@ -243,44 +244,78 @@ class Node:
         if len(self.__batteries) > 0:
             for i in self.__batteries:
                 temp={
-                    'characteristic':str(i)+' hr(s) backup',
+                    'characteristic':str(i)+' hr(s) battery backup',
                     'items':[self.__inverter.copy(), self.__batteries[i]],
-                    'name': 'Back-up',
+                    'name': 'Back-up (UPS)',
                     'system-size':self.__inverter_size
                 }
+                try:
+                    temp['img'] = temp['items'][1].get('image_url') 
+                except Exception as e:
+                    temp['img'] = temp['items'][1][0].get('image_url')
                 packages.append(temp)
         else:
             raise ValueError('Please initialise batteries collection')
-        return packages
+
+        return self.__compute_details(packages)
+
+    def __compute_details(self, packages:list=[]):
+        price = 0
+        hash_string = ''
+        for p in packages:
+            for i in p.get('items'):
+                if type(i) is dict:
+                    # pprint.pprint(i.get('price'))
+                    price += i.get('price')
+                    hash_string += i.get('_uid')
+                elif type(i) is list:
+                    for j in i:
+                        price += j.get('price')
+                        hash_string += j.get('_uid')
+            p['price'] = price
+            p['hash_in'] = hash_string
+            price = 0
+            p['_uid'] = hashlib.sha512(bytes(hash_string, 'utf-8'), usedforsecurity=True).hexdigest()
+            hash_string = ''
+        return packages 
+
 
     def get_bill_crusher(self):
         packages = []
         if len(self.__solar_panels)>0 :
             temp={
-                'characteristic': str(len(self.__solar_panels))+' panels',
+                'characteristic': str(len(self.__solar_panels))+' x solar panels',
                 'items':[self.__inverter.copy(), self.__solar_panels],
-                'name':'bill-crusher',
+                'name':'Solar and Inverter',
                 'system-size':self.__inverter_size
             }
+            try:
+                temp['img'] = temp['items'][1].get('image_url') 
+            except Exception as e:
+                temp['img'] = temp['items'][1][0].get('image_url')
             packages.append(temp)
         else:
             raise ValueError('Please initialise solar-panels collection')
-        return packages
+        return self.__compute_details(packages)
     
     def get_hybrid_systems(self):
         packages = []
         if len(self.__batteries) > 0:
             for i in self.__batteries:
                 temp={
-                    'characteristic':str(i)+' hr(s) backup + '+str(len(self.__solar_panels))+ ' panels',
+                    'characteristic':str(i)+' hr backup + '+str(len(self.__solar_panels))+ ' x solar panels',
                     'items':[self.__inverter.copy(), self.__batteries[i], self.__solar_panels],
                     'name': 'Solar and Back-up',
                     'system-size':self.__inverter_size
                 }
+                try: # temporary code until I decide what I want to us on the image part.
+                    temp['img'] = temp['items'][0].get('image_url') 
+                except Exception as e:
+                    temp['img'] = temp['items'][1][0].get('image_url')
                 packages.append(temp)
         else:
             raise ValueError('Please initialise batteries collection')
-        return packages
+        return self.__compute_details(packages)
 
     def __str__(self): return f"Inverter size is: {self.__inverter_size}"
 
@@ -424,13 +459,40 @@ class PackageBuilder(Feature):
         step 6: build output and return
         """
         peak_demand = max(lp)
+        
         res = search_list(self.__inverter_nodes, peak_demand, comp_cb=lambda iNode: iNode.get_size())
         if res is None: peak_demand = round(peak_demand)
-        while(res is None and peak_demand >= 0):
+
+        focal_point = peak_demand
+        acc_back = 0
+        acc_forward = 0
+        back_res = None
+        front_res = None
+     
+        while(back_res is None and peak_demand >= 0):
+            # The backwards search
             peak_demand -= 0.1
             peak_demand = round(peak_demand,2)
-            res = search_list(self.__inverter_nodes, peak_demand, comp_cb=lambda iNode: iNode.get_size())
- 
+            back_res = search_list(self.__inverter_nodes, peak_demand, comp_cb=lambda iNode: iNode.get_size())
+            acc_back += 1
+
+        peak_demand = focal_point
+
+        while(front_res is None and acc_forward <= 100):
+            # The forward search search
+            peak_demand += 0.1
+            peak_demand = round(peak_demand,2)
+            front_res = search_list(self.__inverter_nodes, peak_demand, comp_cb=lambda iNode: iNode.get_size())
+            acc_forward += 1
+        
+        if acc_back - acc_forward > 0 : # means back has more steps than front   
+            res = front_res if front_res is not None else back_res
+        elif acc_back - acc_forward < 0: # means back smaller than front, take back result
+            res = back_res if back_res is not None else front_res
+        elif acc_back - acc_forward == 0: # means there's not better choice, choose the bigger one.
+            res = front_res if front_res is not None else back_res
+
+        print(f"Forward -->{front_res} steps: {acc_forward}\nBackward -->{back_res} steps: {acc_back}\nFocal Point: {focal_point}")
         if res is None:
             return {'packages':{}, 'max_demand':peak_demand, 'loading_profile':lp}
 

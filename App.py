@@ -768,7 +768,7 @@ def size_init():
         result = sizing_tool.process_loading(house)
         result['house'] = house
     else:
-        house = sizing_tool.get_property(f)
+        house = sizing_tool.get_property(int(f))
         result = sizing_tool.process_loading(house)
         result['house'] = house
     return result
@@ -785,8 +785,11 @@ def apps_list():
 
 @app.route('/sizing-tool/update', methods=['GET', 'POST'])
 def update_lp():
-    lp = request.args.get('lp')
-    return sizing_tool.process_loading(lp)
+    lp = request.get_json().get('data')
+    if lp is not None:
+        return sizing_tool.process_loading(lp)
+    else:
+        return {"error":"Loading profile no found! (key=data)"}
 
 
 def create_ss_list(json:dict):

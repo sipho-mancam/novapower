@@ -2,8 +2,10 @@
 LP builder
 
 """
+import hashlib
 import json
 import pprint
+import random
 import re
 import numpy as np
 import matplotlib.pyplot as plt
@@ -142,7 +144,10 @@ class PropertyBuilder:
                 # find out the quantity of the appliance from the qty list
                 qty = room_app_qty[room_app_list.index(i)]
                 for i in range(0, qty):
-                    room_model['appliances'].append(app.copy())
+                    ap_cp = app.copy()
+                    ap_cp['room'] = room_model['type']
+                    ap_cp['id'] = hashlib.sha256(bytes(ap_cp.__str__()+ random.getrandbits(32).__str__() , 'utf-8')).hexdigest()
+                    room_model['appliances'].append(ap_cp)
         return room_model
 
     def __build_room_models(self, rooms_configs:dict)->list:
@@ -164,7 +169,6 @@ class PropertyBuilder:
                     total_app_list.extend(r['appliances'])
         return total_app_list
 
-   
     def __compute_house_profile(self, house):
         full_apps_list = self.__house_app_list(house)
         loading_profile = self.__l_profile_builder.calculate_hyp_profile(full_apps_list)
@@ -208,11 +212,6 @@ class PropertyBuilder:
         out = house.get(room_type)
         room_type = room_type.lower()
         key = key.lower()
-        
-        # pprint.pprint(house)    
-
-        # if out is not None:
-        #     return out.get(key)
 
         if key.lower() == 'all': # all appliances
             return [x.get('name') for x in hfull.get('app-list')]

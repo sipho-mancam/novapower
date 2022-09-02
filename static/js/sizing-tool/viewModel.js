@@ -7,20 +7,33 @@
 class ViewModel{
     constructor(){
         this.livedata = {}
-        this.repoistory = new Repository()
+        this.repository = new Repository()
         this.views_list = {}
+        this.uiController = uiController;
+        this.update()
     }
     
-  
     get(key){
+        
         return new Promise((resolve, reject)=>{
             let time = setInterval(()=>{
-                if(this.repoistory.isReady()){
+                if(this.repository.isReady()){
                     clearInterval(time)
-                    resolve(this.repoistory.get(key))
+                    this.livedata = this.repository.get(key)
+                    // console.log(this.livedata, key)
+                    resolve(this.livedata)
                 }
             })
         })
+    }
+
+    updateLiveData(data){
+        this.repository.updateLiveData(data)
+        this.update()
+    }
+
+    update(){
+        this.uiController.update()
     }
 }
 

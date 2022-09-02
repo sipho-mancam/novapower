@@ -1,6 +1,6 @@
 :root{
   --bg_color: #a0ce3f;
-  --top_color: white;
+  --top_color: #dde3e6;
   --text-color:white;
   /* --room-mod-color: */
 }
@@ -11,7 +11,7 @@
     height: fit-content;
     padding: 5px;
     border-radius: 10px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     box-shadow: -3px -3px 3px  rgba(209, 208, 208, 0.2),
                 3px 3px 2px rgba(134, 134, 134, 0.05);
     box-sizing: border-box;
