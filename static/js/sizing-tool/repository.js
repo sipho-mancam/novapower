@@ -6,6 +6,13 @@
  * How do we do this ?
  */
 
+function search_app_by_id(app_list, id){
+    for(let app of app_list){
+        if(app['id'] == id)return app_list.indexOf(app)
+    }
+    return -1;
+}
+
 class Repository{
     constructor(){
         this.current_data = {};
@@ -38,7 +45,7 @@ class Repository{
                 }  
             })   
         }
-        // console.log(this.data_structure
+        console.log(this.data_structure)
         this.state = 0x11  
     }
 
@@ -72,35 +79,77 @@ class Repository{
         for(let p of path){
             cur = cur[p]
         }
-        // console.log(data)
-        let dir = 1;
-        if(func == 'add'){
-            dir = 1
-        }else if(func =='remove') dir = -1;
+        console.log(data)
+        let lp = null
+        if(type == 'array'){ // adding and removing of appliances
+            let dir = 1;
+            if(func == 'add'){
+                dir = 1
+            }else if(func =='remove') dir = -1;
 
-        let power = data['Total Energy'] / data['Total-time']
-        let up = augmentVector(data['usage-profile'], dir*power)
-        up.splice(0,1)
-        
-        let lp  = addVectors(this.data_structure['house']['loading-profile'], up) 
-        this.data_structure['house']['loading-profile'] = lp
-        
-       
-        if(room != 'app-list' && func == 'add') {
-            try{
-                this.data_structure['house']['rooms'][room]['appliances'].push(data);
-            }catch(err){
-                this.data_structure['house']['rooms'][room][0]['appliances'].push(data);
-            }
+            let power = data['Total Energy'] / data['Total-time']
+            let up = augmentVector(data['usage-profile'], dir*power)
+            up.splice(0,1)
             
+            lp  = addVectors(this.data_structure['house']['loading-profile'], up) 
+            this.data_structure['house']['loading-profile'] = lp
+
+            if(room != 'app-list' && func == 'add') {
+                try{
+                    this.data_structure['house']['rooms'][room]['appliances'].push(data);
+                }catch(err){
+                    this.data_structure['house']['rooms'][room][0]['appliances'].push(data);
+                }
+                
+            }
+            else if(room != 'app-list' && func == 'remove') {
+            let c_app_index =  0
+                try{
+                    c_app_index = search_app_by_id(this.data_structure['house']['rooms'][room]['appliances'], data['id'])
+                    this.data_structure['house']['rooms'][room]['appliances'].splice(c_app_index, 1)
+                }catch(err){
+                    c_app_index = search_app_by_id(this.data_structure['house']['rooms'][room][0]['appliances'], data['id'])
+                    let i=1;
+                    while(c_app_index == -1 && i< this.data_structure['house']['rooms'][room].length){
+                        c_app_index = search_app_by_id(this.data_structure['house']['rooms'][room][i]['appliances'], data['id'])
+                        i++;
+                    }
+
+                    this.data_structure['house']['rooms'][room][0]['appliances'].splice(c_app_index,1)
+                }    
+            }
+
+            if(func =='add')cur.push(data);
+            else if(func =='remove')cur.splice(cur.indexOf(data), 1);
+        }else if(type =='json'){
+            switch(func){
+                case 'remove':
+                 
+                    let ap = null
+                    ap = data['appliances']
+                    if(!ap)ap=data[0]['appliances']
+
+                    for(let d of ap){
+                        let power = d['Total Energy'] / d['Total-time']
+                        let up = augmentVector(d['usage-profile'], -1*power)
+                        up.splice(0,1)
+                        lp  = addVectors(this.data_structure['house']['loading-profile'], up)
+                        this.data_structure['house']['loading-profile'] = lp
+                        this.data_structure['loading-profle'] = lp
+                        this.data_structure['house']['app-list'].splice(search_app_by_id(this.data_structure['house']['app-list'], d['id']), 1);
+                    }
+                    delete cur[room];
+                    break;
+
+                case 'add': // add room to the house
+                cur[room] = data
+
+                    
+                
+                break;
+            }
         }
-        else if(room != 'app-list' && func == 'remove') {
-            this.data_structure['house']['rooms'][room]['appliances']
-            .splice(this.data_structure['house']['rooms'][room]['appliances'].indexOf(data), 1)
-        }
-       
-        if(type.toLowerCase() == 'array' && func =='add')cur.push(data);
-        else if(func =='remove')cur.splice(cur.indexOf(data), 1);
+        
        
         this.update('POST', '/sizing-tool/update', {"data":lp})
         .then(res=>{

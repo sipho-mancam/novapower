@@ -1,8 +1,8 @@
 
 
-function iconView(app_data, index=0){
+function iconView(app_data, index=0, cust_class=' '){
     return `
-    <div class="app-icon" index=${index} name=${' '}>
+    <div class="app-icon ${cust_class}" index=${index} name=${' '}>
         <div class="icon">
             <img src=${app_data['img']} width="50" height="50" alt="" />
         </div>
@@ -13,18 +13,18 @@ function iconView(app_data, index=0){
     `
 }
 
-function iconsGridView(app_list){
+function iconsGridView(app_list, cust_class=''){
     let res = ''
     for(app of app_list){
-        res += iconView(app, app_list.indexOf(app))
+        res += iconView(app, app_list.indexOf(app), cust_class)
     }
     return res
 }
 
-function iconsGridView(app_list, elem){
+function iconsGridView(app_list, cust_class='',  elem){
     let res = ''
     for(app of app_list){
-        res += iconView(app, app_list.indexOf(app))
+        res += iconView(app, app_list.indexOf(app), cust_class)
     }
     if(elem)elem.innerHTML = res
     else return res

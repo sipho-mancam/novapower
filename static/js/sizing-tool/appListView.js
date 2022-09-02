@@ -53,7 +53,7 @@ function init_rooms(){
             .then(res=>{
                 // console.log(current_app)
                 let app_list = res['app-list']
-                // console.log(res)
+                current_app['room'] = r.getAttribute('name')
                 viewModel.updateLiveData({
                     path:'house>app-list',
                     data:current_app,
@@ -168,12 +168,13 @@ class AppGridView extends View{
                 else if(e.currentTarget.getAttribute('name') == 'house>app-list' && this.name=='house>app-list'){ // we want it to remove the apps here..
                     let index = parseInt(e.currentTarget.getAttribute('index'))
                     let current_house_app = this.data[index]
+                    console.log(current_house_app)
                     this.viewModel.updateLiveData({
                         path:'house>app-list',
                         data:current_house_app,
                         type:'array',
                         func:'remove',
-                        room:'app-list'
+                        room:current_house_app['room']
                     });
                 }
             });

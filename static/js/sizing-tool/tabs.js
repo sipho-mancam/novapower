@@ -16,7 +16,9 @@ let packagesV = packageView
 function init_tabs() {
     const tabs = document.getElementsByClassName('tab')
     const viewModel = global_viewModel
-    const appGridV = new AppGridView('house>app-list', document.getElementById('house-tab-content'), {})
+    const t_content = document.getElementById('house-tab-content')
+    const appGridV = new AppGridView('house>app-list', t_content, {})
+
     uiController.registerView(appGridV)
 
     for (let t of tabs) {
@@ -24,12 +26,12 @@ function init_tabs() {
         else {
             current_tab[t.getAttribute('group')] = t;
             
-            if(t.getAttribute('group') == "info" ){ // we are looking at the house info tabs
+           if(t.getAttribute('group') == "info" ){ // we are looking at the house info tabs
                 viewModel.get('house')
                 .then(res=>{
                     appGridV.load_data(res['app-list'])
                 })
-            }
+            } 
         }
 
         
@@ -48,21 +50,35 @@ function init_tabs() {
             /**
              * Update tab content view accordingly
              */
-            // console.log(data_p)
+            
             if(group == "info" && data_p == "app-list"){ // we are looking at the house info tabs
-                viewModel.get('house')
-                .then(res=>{
-                    appGridV.load_data(res['app-list'])
-                })
+                appGridV.update()
+
             }else if(group=="packages"){
+                
                 packagesV.updateTab(data_p)
 
             }else if(group == "info" && data_p == "stats"){
-               let t_content = document.getElementById('house-tab-content')
-               t_content.innerHTML = '<br />'
+                viewModel.get('house')
+                .then(res=>{
+                    t_content.innerHTML = house_details_feature_view(res)
+                })
+               
             }
         })
     }
+}
+
+function house_details_feature_view(house){
+    return `
+    <div class="feature-view">
+        <h6 class="feature-name">House Details</h6>
+        <div class="feature-content">
+            <div class="f-item"><span class="f-key">Rooms: </span><span class="f-value"> ${Object.keys(house['rooms']).length}</span></div>
+            <div class="f-item"><span class="f-key">Number of Apps: </span><span class="f-value"> ${house['app-list'].length}</span></div>
+        </div>
+    </div>
+    `
 }
 
 class TabSystem extends View{

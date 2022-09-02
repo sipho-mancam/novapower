@@ -26,11 +26,16 @@ class OverlayContainer{
         if(this.initCb != 0)this.initCb()
     }   
 
-    close(){
-        let b = document.getElementById('close-ol')
-        b.addEventListener('click', (e)=>{
+    close(b=false){
+        if(!b){
+            let b = document.getElementById('close-ol')
+            b.addEventListener('click', (e)=>{
+                this.content_container.style.display = 'none';
+            })
+        }else{
             this.content_container.style.display = 'none';
-        })
+        }
+        
     }
     draw(draw_cb, args=[], init=0){
         this.content_container.style.display = 'block';
