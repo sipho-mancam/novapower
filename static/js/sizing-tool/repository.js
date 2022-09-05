@@ -22,7 +22,7 @@ class Repository{
         this.state = 0;
         this.read = 0;
         this.init()
-
+        this.session_token = null
     }
 
     async init(){
@@ -30,28 +30,78 @@ class Repository{
          * Get apps list.
          * Get Default house model
          * Get Default pacakges
+         * Get Cart Count
          */
         this.state = 0x00;
 
         let paths = ['/sizing-tool/apps-list',
-                    '/sizing-tool?f=init']
+                    '/sizing-tool?f=init', ]
+        await get_session_token()
+        .then(res=>{
+            this.session_token = res; 
+            get_cart_count(this.session_token)
+            .then(res=>{
+                this.data_structure['cart-count'] = res['cart-items-count']
+            })
+    
+        })
+        
         for(let p of paths){
             await this.update('GET', p)
             .then(res=>{
                 let keys = Object.keys(res)
                 for(let k of keys){
                     this.data_structure[k] = res[k];
-                    // if(k == 'house')this.updateContent(res[k])
                 }  
             })   
         }
-        console.log(this.data_structure)
+        // console.log(this.data_structure)
         this.state = 0x11  
+    }
+
+    async procesCart(data_m={}){
+        let path = data_m["path"];
+        let data = data_m["data"];
+        let type = data_m["type"];
+        let func = data_m["func"];
+       
+        let cur = this.traverseDataStructure(path)
+        // console.log(cur)
+       
+        switch(type){
+            case "add":
+                await addPackageToCart(cur, this.session_token)
+                .then(res=>{
+                    console.log(res)
+                    if('response' in res){
+                         return get_cart_count(this.session_token)
+                        .then(res=>{
+                             this.data_structure['cart-count'] = res['cart-items-count']
+                        })
+                    }
+                })
+                break;
+            case "remove":
+                updateCart(this.session_token, 'delete', cur['_uid'])
+                .then(res=>{
+                    console.log(res)
+                })
+                break;
+        }
     }
 
     update(method, url, data){
         this.state = 0x00; // reading state
         return make_request(method, url, data)
+    }
+
+    traverseDataStructure(path){
+        let cur = this.data_structure
+        let paths = path.split('>')
+        for(let p of paths){
+            cur = cur[p]
+        }
+        return cur
     }
 
     updateContent(house){
@@ -73,13 +123,9 @@ class Repository{
         let func = data_m["func"];
         let room = data_m["room"];
 
-        let cur = this.data_structure
-        path = path.split('>')
-        for(let p of path){
-            cur = cur[p]
-        }
-        console.log(data)
-        let lp = null
+        let cur = this.traverseDataStructure(path)
+       
+        let lp = null;
         if(type == 'array'){ // adding and removing of appliances
             let dir = 1;
             if(func == 'add'){
@@ -175,21 +221,9 @@ class Repository{
     }    
 
     get(key){
-        let temp = key.split('>')
-        console.log(key)
+
         if(this.isReady()){
-            // console.log(this.data_structure[key])
-          if(temp.length==1){
-            return this.data_structure[temp[0]] 
-          }else{
-            let cur = this.data_structure
-            for(let k of temp){
-                cur = cur[k]
-            }
-            console.log(cur, 'cur is <<')
-            return cur
-          }
-            
+            return this.traverseDataStructure(key)
         }else{
             return {'error':'Still loading...'}
         }
@@ -197,13 +231,6 @@ class Repository{
 
     isReady(){return this.state==0x11}
 
-    read_data(){
-        if(this.state == 0) return this.old_data;
-        else if(this.state == 1) {
-            this.read = 1;
-            return this.new_data;        
-        }
-    }
 
     isNewData(){
         return this.state == 1;

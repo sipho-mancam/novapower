@@ -182,7 +182,7 @@ def index_data():
     solar_package_handler.generate_package(i)
     inverter_package_handler.generate_package(10)
     generator_package_handler.generate_package()
-    solar_packages = {
+    solar_packages = { 
         "package 0":{
             'items':[{
                 "brand":"RCT -AXPERT",
@@ -582,7 +582,7 @@ def get_featured_products():
 def add_to_session_cart():
     session_token = request.args.get('session_token')
     data = request.get_json()
-    
+    # pprint.pprint(data)
     if session_token in session:
         user_data = session[session_token]
         if 'cart' in user_data['data']:

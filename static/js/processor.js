@@ -149,8 +149,7 @@ function close(e){
 }
 
 function is_session_token(){
-    let session_token = window.sessionStorage.getItem('session_token')
-    return session_token == null
+    return window.sessionStorage.getItem('session_token') == null
 }
 
 function make_request(method='GET', url, data){

@@ -169,7 +169,7 @@ function view_quote(html_data){
 
 function submit_quote(e){
     let path = '/contact-us';
-
+    
     let resp_card = document.getElementById('resp-card')
     e.currentTarget.style.display = 'none';
     e.currentTarget.parentNode.style.display = 'none';
@@ -186,9 +186,6 @@ function submit_quote(e){
         form_json[res.value[0]] = res.value[1]
         res = entries.next()
     }
-
-    // console.log(form_json)
-
 
     form_json['sub-tot'] = cart.total_price
 
@@ -210,11 +207,10 @@ function submit_quote(e){
                     window.location.pathname = '/'
                     // window.location.reload()
                     console.log('Done')
-<<<<<<< HEAD
                 })
-=======
+
             })
->>>>>>> 79c237d51b8cf2f698c3317af4ae074b7d7d49ca
+
             
             // show them a success message
             let uri = window.URL.createObjectURL(res)
@@ -226,9 +222,7 @@ function submit_quote(e){
             .then(()=>{})
             .catch(err={})
         })
-    }).catch(err=>{
-        console.log(err); 
-    })
+   
 }
 
 function openOrderForm(e){

@@ -53,13 +53,3 @@ class OverlayContainer{
     }
 
 }
-
-
-// let ov = new OverlayContainer('overlay', (extras)=>{
-//             return `<h1 style="color:black">${extras}</h1>`
-// }, 'Hello world', ()=>{
-//     alert('hello world')
-// })
-
-
-// ov.open()

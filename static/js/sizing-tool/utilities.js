@@ -133,6 +133,7 @@ class View {
         this.extras = null
         this.view_callBack = null
         this.name = null
+        this.viewModel = global_viewModel
     }
 
     load_data(){

@@ -26,6 +26,14 @@ class ViewModel{
             })
         })
     }
+    processCart(data={}){
+        this.repository.procesCart(data)
+        .then(res=>{
+            console.log(this.repository.get('cart-count'))
+            this.uiController.updateOne('cart-count')
+        })
+        
+    }
 
     updateLiveData(data){
         this.repository.updateLiveData(data)

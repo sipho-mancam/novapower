@@ -59,7 +59,6 @@ function init_rooms(){
                 })
                 ov.style.display = 'none';
             })
-            
         });
     }
 }
@@ -79,23 +78,24 @@ class AppGridView extends View{
 
     app_details_view(app){
         // console.log(app)
-        return(`<div class="app-details-view">
-        <div class="img">
-        <img src=${app.img} width="50" height="50" alt=""/>
-        </div>
-        <div class="det-title">
-        <span class="value-title">${app.name}</span>
-        </div>
-        <div class="description">
-        <span class="key"> Total-Energy:</span><span class="value">${app['Total Energy']}kWh</span><br />
-        <span class="key"> Total-Time:</span><span class="value">${app['Total-time']}hr(s)</span><br />
-        <span class="key">Total Usage<span style="font-size: xx-small; color:red;">(%)</span>:<span class="value">${Math.ceil((app['Total-time']/24)*100)} %</span><br />
-        <span class="key">Power: </span><span class="value">${app['Total Energy']/app['Total-time']}kW</span>
-        </div>
-        <div class="load-profile">
-        <canvas id="loading-profile" width="200px" height="100" style="background-color: white;"></canvas>
-        </div>
-    </div>`)
+        return(
+        `<div class="app-details-view">
+            <div class="img">
+                <img src=${app.img} width="50" height="50" alt=""/>
+            </div>
+            <div class="det-title">
+                <span class="value-title">${app.name}</span>
+            </div>
+            <div class="description">
+                <span class="key"> Total-Energy:</span><span class="value">${app['Total Energy']}kWh</span><br />
+                <span class="key"> Total-Time:</span><span class="value">${app['Total-time']}hr(s)</span><br />
+                <span class="key">Total Usage<span style="font-size: xx-small; color:red;">(%)</span>:<span class="value">${Math.ceil((app['Total-time']/24)*100)} %</span><br />
+                <span class="key">Power: </span><span class="value">${app['Total Energy']/app['Total-time']}kW</span>
+            </div>
+            <div class="load-profile">
+                <canvas id="loading-profile" width="200px" height="100" style="background-color: white;"></canvas>
+            </div>
+        </div>`)
     }
 
 

@@ -154,10 +154,7 @@ class HouseView extends View{
                                    
                                 });
                             }
-                        });
-
-                        
-                        
+                        });  
                     }
                     
 
@@ -218,7 +215,5 @@ class HouseView extends View{
 
 
 let houseView = new HouseView('house', document.getElementById('house-view'))
-
-// houseView.update()
 
 uiController.registerView(houseView)
