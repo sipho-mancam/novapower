@@ -39,6 +39,26 @@ function make_request(method='GET', url, data){
     
 }
 
+async function request_token(url){
+
+    let s_url = 'session?session_id='+Math.random()*10000
+    let session_token = null
+    await make_request('GET','/'+s_url)
+    .then(responseData=>{
+        try{
+            session_token = responseData.session_token
+        }catch(err){
+            console.log(err)
+        }
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+    sessionStorage.setItem('session_token', session_token)
+    
+    return session_token
+
+}
 
 async function get_session_token(){
     let session_token = window.sessionStorage.getItem('session_token');
