@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./Modules/Services/Sizing_tool/src",
+        "./Modules/Services/Sizing_tool/src/features"
+    ]
+}

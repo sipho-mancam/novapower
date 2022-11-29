@@ -1,0 +1,125 @@
+{
+    "Charger":{ 
+        "usage-profile":[0.02,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01],
+        "Total-time":0.24,
+        "Total Energy":0.0048,
+        "img": "https://cdn-icons-png.flaticon.com/512/4298/4298272.png"
+    },
+    "Router":{
+        "usage-profile":[0.02,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "Total-time":24,
+        "img": "https://cdn-icons-png.flaticon.com/512/2502/2502330.png",
+        "Total Energy":0.48
+        
+    },
+    "Decoder":{
+        "usage-profile":[0.015,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "Total-time":24,
+        "img": "https://cdn-icons-png.flaticon.com/512/2366/2366040.png",
+        "Total Energy":0.36
+    },
+    "Laptop":{
+        "usage-profile":[0.08,0.01,0.01,0.01,0.01,0.01,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0.01,0.01,0.01],
+        "Total-time":5.08,
+        "img": "https://cdn-icons-png.flaticon.com/512/4812/4812557.png",
+        "Total Energy":0.4064
+    },
+    "TV":{
+        "usage-profile":[0.12,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+        "Total-time":17,
+        "img": "https://cdn-icons-png.flaticon.com/512/3443/3443580.png", 
+        "Total Energy":2.04
+    },
+    
+    "Computer":{
+        "usage-profile":[0.22,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+        "Total-time":17,
+        "img": "https://cdn-icons-png.flaticon.com/512/3067/3067260.png",
+        "Total Energy":3.74
+    },
+    
+    "CCTV":{
+        "usage-profile":[0.15,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "Total-time":24,
+        "img": "https://cdn-icons-png.flaticon.com/512/3773/3773845.png",
+        "Total Energy":3.6
+    },
+    "Lights":{
+        "usage-profile":[0.25,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1],
+        "Total-time":14,
+        "Total Energy":3.5,
+        "img": "https://cdn-icons-png.flaticon.com/512/702/702814.png"
+    },
+    "Fridge":{
+        "usage-profile":[0.6,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "Total-time":24,
+        "img": "https://cdn-icons-png.flaticon.com/512/395/395598.png",
+        "Total Energy":14.4
+    },
+    "Fan":{
+        "usage-profile":[0.9,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0],
+        "Total-time":6,
+        "img": "https://cdn-icons-png.flaticon.com/512/4551/4551810.png",
+        "Total Energy": 5.4
+    },
+    "Microwave":{
+        "usage-profile":[1.2,0,0,0,0,0,0.2,0.001,0.001,0,0,0,0.01,0.01,0.01,0,0,0,0.01,0.01,0,0,0,0,0],
+        "Total-time":0.252,
+        "img": "https://cdn-icons-png.flaticon.com/512/2005/2005948.png",
+        "Total Energy":0.3024
+    },
+    "Toaster":{
+        "usage-profile":[1.4,0,0,0,0,0,0.5,0.001,0.001,0.001,0.001,0.2,0.2,0.1,0,0.5,0,0,0,0,0,0,0,0,0],
+        "Total-time":1.504,
+        "img": "https://cdn-icons-png.flaticon.com/512/2933/2933792.png",
+        "Total Energy":2.1056
+    },
+    "Stove":{
+        "usage-profile":[3,0,0,0,0,0,0,0,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,1,0.44,0,0,0,0,0],
+        "Total-time":1.45,
+        "img": "https://icon-library.com/images/85-512.png",
+        "Total Energy":4.35
+    },
+    "Kettle":{
+        "usage-profile":[3,0,0,0,0,0.1,0.1,0.1,0,0,0,0,0,0,0,0,0.1,0.1,0.1,0.001,0.1,0,0,0,0],
+        "Total-time":0.701,
+        "img": "https://cdn-icons-png.flaticon.com/512/125/125653.png",
+        "Total Energy":2.103
+    },
+    "Heater":{
+        "usage-profile":[2,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0],
+        "Total-time":11,
+        "img":"https://cdn-icons-png.flaticon.com/512/289/289759.png",
+        "Total Energy":22
+    },
+    "AC":{
+        "usage-profile":[2.5,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0],
+        "Total-time":8,
+        "img":"https://cdn-icons-png.flaticon.com/512/1530/1530481.png",
+        "Total Energy":20
+    },
+    "Oven":{
+        "usage-profile":[1.5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
+        "Total-time":1,
+        "img":"https://cdn-icons-png.flaticon.com/512/3565/3565450.png",
+        "Total Energy":1.5
+    },
+    "Server":{
+        "usage-profile":[0.72,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "Total-time":24,
+        "img":"https://cdn-icons-png.flaticon.com/512/2972/2972479.png",
+        "Total Energy":17.28
+    },
+    "Amplifier":{
+        "usage-profile":[0.7,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+        "Total-time":14,
+        "img":"https://cdn-icons-png.flaticon.com/512/197/197859.png",
+        "Total Energy":9.8
+    },
+    "Motor":{
+        "usage-profile":[1.4, 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0],
+        "Total-time":0.2,
+        "img":"https://cdn-icons-png.flaticon.com/512/2983/2983881.png",
+        "Total Energy":0.28
+    }
+}

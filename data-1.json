@@ -1,0 +1,245 @@
+
+
+
+
+        "package 2":{
+            'items':[{
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/PWZPqsY/Solar-3.png",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 5},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":5},
+                    "MPPTVoltage":{"unit":"V", "value":115}
+                },
+                "type-group":"Stand-alone",
+                "price":15234.05,
+                "qty":1
+            },
+            {
+                "brand":"Fusion",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":4.8}
+                },
+                "type-group":"Lithium-ion",
+                "price":26444.25,
+                "qty":1
+
+            },
+            {
+                "brand":"Canadian Solar",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":34.09},
+                    "Power":{"unit":"W", "value":375}
+                },
+                "type-group":"monocrystalline",
+                "price":29072,
+                "qty":8
+            }],
+            "max-power":5,
+            "solar-qty":8,
+            "price":70750.30
+        },
+
+        "package 3":{
+            'items':[ {
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/RYww1C6/Solar-4.png",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 5},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":5},
+                    "MPPTVoltage":{"unit":"V", "value":115}
+                },
+                "type-group":"Stand-alone",
+                "price":15234.05,
+                "qty":1
+            },
+            {
+                "brand":"Fusion",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":9.6}
+                },
+                "type-group":"Lithium-ion",
+                "price":52888.50,
+                "qty":2
+
+            },
+            {
+                "brand":"Canadian Solar",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":34.09},
+                    "Power":{"unit":"W", "value":375}
+                },
+                "type-group":"monocrystalline",
+                "price":36340,
+                "qty":10
+            }],
+            "max-power":5,
+            "solar-qty":10,
+            "price":104462.55
+        },
+        "package 4":{
+            'items':[{
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/PCYpsQF/Solar-5.png",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 8},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":8},
+                    "MPPTVoltage":{"unit":"V", "value":66}
+                },
+                "type-group":"Stand-alone",
+                "price":41260.85,
+                "qty":1
+            },
+            {
+                "brand":"Fusion",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":9.6}
+                },
+                "type-group":"Lithium-ion",
+                "price":52888.50,
+                "qty":2
+
+            },
+            {
+                "brand":"Canadian Solar",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":34.09},
+                    "Power":{"unit":"W", "value":375}
+                },
+                "type-group":"monocrystalline",
+                "price":36340,
+                "qty":10
+            }],
+            "max-power":8,
+            "solar-qty":10,
+            "price":130489.35
+        },
+        "package 5":{
+            'items':[{
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/sK5xwpy/Solar-6.png",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 8},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":8},
+                    "MPPTVoltage":{"unit":"V", "value":66}
+                },
+                "type-group":"Stand-alone",
+                "price":41260.85,
+                "qty":1
+            },
+             {
+                "brand":"Fusion",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":9.6}
+                },
+                "type-group":"Lithium-ion",
+                "price":52888.50,
+                "qty":2
+
+            },
+             {
+                "brand":"Canadian Solar",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":34.09},
+                    "Power":{"unit":"W", "value":375}
+                },
+                "type-group":"monocrystalline",
+                "price":43608,
+                "qty":12
+            }],
+            "max-power":8,
+            "solar-qty":12,
+            "price":137757.35
+        },
+        "package 6":{
+            'items':[{
+                "brand":"RCT -AXPERT",
+                "name":"Inverter",
+                "package-flag":False,
+                "package-group":"Inverters",
+                "image_url":"https://i.ibb.co/hDCBkYX/Solar-7.png",
+                "size":{
+                    "Size":{"unit":"kVA", "value": 8},
+                    "Voltage":{"unit":"V", "value":48},
+                    "Power":{"unit":"kW", "value":8},
+                    "MPPTVoltage":{"unit":"V", "value":66}
+                },
+                "type-group":"Stand-alone",
+                "price":41260.85,
+                "qty":1
+            },
+            {
+                "brand":"Fusion",
+                "name":"Battery",
+                "package-flag":False,
+                "package-group":"Batteries",
+                "size":{
+                    "Voltage":{"unit":"V", "value":48},
+                    "Energy":{"unit":"kWh", "value":14.4}
+                },
+                "type-group":"Lithium-ion",
+                "price":79332.75,
+                "qty":3
+
+            },
+             {
+                "brand":"Canadian Solar",
+                "name":"Solar",
+                "package-flag":False,
+                "package-group":"Solar",
+                "size":{
+                    "Voltage":{"unit":"V", "value":34.09},
+                    "Power":{"unit":"W", "value":375}
+                },
+                "type-group":"monocrystalline",
+                "price":50876,
+                "qty":14
+            }],
+            "max-power":8,
+            "solar-qty":14,
+            "price":171469.60
+        }

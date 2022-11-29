@@ -1,0 +1,16 @@
+
+
+{
+    "inverter":{
+        "config":[],
+        "unit": "kVA"
+    },
+    "solar":{
+        "config":[6,8,10,12,14],
+        "unit":"kW"
+    },
+    "battery":{
+        "config":[1,2,4,6],
+        "unit":"hrs"
+    }
+}

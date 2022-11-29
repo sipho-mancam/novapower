@@ -1,0 +1,106 @@
+.admin-update{
+    /* border: 1px solid black; */
+    padding:10px;
+    background-color: rgb(52, 52, 212);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.admin-update:hover{
+    text-decoration: none;
+    color:white;
+    transform: scale(1.2);
+    transition: transform 1s ease-in-out;
+}
+
+.tab-container{
+    border: 2px solid green;
+    border-radius: 5px;
+    background-color: rgb(57, 241, 11);
+    padding: 3px;
+}
+
+
+.tab-item{
+    border:2px solid rgb(230, 7, 7);
+    width: 70%;
+    text-align: center;
+    border-radius: 10px;
+    padding:5px;
+    margin: auto;
+    background-color: rgb(241, 226, 11);
+    cursor: pointer;
+    /* font-weight: bold; */
+}
+
+.enquiries{
+    background-color: rgb(101, 124, 255);
+    border-color: blue;
+}
+
+.tab-item:hover{
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.selected{
+    background-color: rgb(145, 138, 21);
+    transform: scale(1.1);
+    color:white;
+}
+
+.overlay-full{
+    display: none;
+    width: 100%;
+    padding:10px;
+    /* height: 100vh; */
+    /* background-color: rgba(10, 10, 10, 0.7); */
+    background-color: white;
+    position:absolute;
+    top: 0; left:0;
+}
+
+#close-q-overlay{
+    color:white;
+    position: fixed;
+}
+
+#close-q-overlay:hover{
+    color:red;
+}
+
+
+.user-details{
+    font-weight: bold;
+}
+
+.time{
+    font-size: small;
+    color:grey;
+}
+
+.user-det{
+    /* border-top: 1px solid rgba(187, 187, 187, 0.479); */
+    /* border-bottom: 1px solid rgba(180, 180, 180, 0.568); */
+    background-color: rgb(221, 221, 221);
+    padding:5px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-bottom: 12px;
+    
+}
+
+.user-det:hover{
+    background-color: rgb(172, 172, 172);
+}
+
+.message{
+    width: 40%;
+}
+
+.delete-b:hover{
+    color: red;
+}
+
